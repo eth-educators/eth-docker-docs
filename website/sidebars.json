@@ -1,19 +1,27 @@
 {
   	"docs": {
 
-		"High Level Overview": [
-			"acknowledgements",
-			"overview"
+		"About": [
+			"About/Acknowledgements",
+			"About/Overview",
+			"About/Clients",
+			"About/PrysmWeb",
+			"About/Changelog"
 		],
-		"Supported Clients": [
-			"clients",
-			"WEB"
-		],
+		
 		"Usage": [
-			"usage/start",
-			"usage/steps",
-			"usage/RECOMMENDATIONS",
-			"usage/RESOURCE-USE"
+			"Usage/BeforeYouStart",
+			"Usage/Prerequisites",
+			"Usage/ClientSetup",
+			"Usage/BuildClient",
+			"Usage/ConfigureWallet",
+			"Usage/ImportKeys",
+			"Usage/StartClient",
+			"Usage/Deposit",
+			"Usage/Dashboards"
+		],
+		"Extras": [
+			"Recommendations"
 		]
 }
 }

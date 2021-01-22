@@ -36,8 +36,8 @@ module.exports = {
             links: [],
         },
         algolia: {
-            apiKey: 'd56b00e670b1ea4c44047c2d34807f6d',
-            indexName: 'prysmaticlabs_prysm',
+            apiKey: '1cfe22495a6677d0769b41f971145ac6',
+            indexName: 'eth2-docker',
             algoliaOptions: {}
         }
     },

@@ -1,12 +1,12 @@
 ---
-id: overview
-title:  High Level Overview
-sidebar_label: overview
+id: Overview
+title:  High Level Overview2
+sidebar_label: Overview
 ---
 
 An Ethereum 2.0 node has many moving parts. Here's a high level, conceptual overview.
 
-![Ethereum 2.0 Node](../static/img/Ethereum-2.0.png)
+![Ethereum 2.0 Node](../../static/img/Ethereum-2.0.png)
 
 When setting up an Ethereum 2.0 node, you'll:
 

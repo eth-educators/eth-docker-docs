@@ -1,5 +1,5 @@
 ---
-id: RECOMMENDATIONS
+id: Recommendations
 title:  Recommendations
 sidebar_label: Recommendations
 ---

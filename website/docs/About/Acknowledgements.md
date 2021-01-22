@@ -1,7 +1,7 @@
 ---
-id: acknowledgements
-title:  acknowledgements
-sidebar_label: acknowledgements
+id: Acknowledgements
+title:  Acknowledgements
+sidebar_label: Acknowledgements
 ---
 
 Parts of this guide are based on the Linux [guides](https://medium.com/@SomerEsat) written by [Somer Esat](https://twitter.com/SomerEsat).
