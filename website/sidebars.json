@@ -1,9 +1,8 @@
 {
   	"docs": {
-
 		"About": [
+			"Overview",
 			"About/Acknowledgements",
-			"About/Overview",
 			"About/Clients",
 			"About/PrysmWeb",
 			"About/Changelog"
