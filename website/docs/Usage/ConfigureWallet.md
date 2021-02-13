@@ -5,7 +5,7 @@ sidebar_label: Configure Wallet
 ---
 
 You will deposit eth to the deposit contract, and receive locked eth2 in turn.<br />
-> **Vital** [Recommendations.md](../Recommendations.md) has comments on key security. If you haven't
+> **Vital** [Recommendations.md](../Support/Recommendations.md) has comments on key security. If you haven't
 read these yet, please do so now. You need to know how to guard your keystore password
 and your seed phrase (mnemonic). **Without the mnemonic, you will be unable to withdraw your funds
 after the "merge" of Ethereum 2.0 with Ethereum 1. You need the seed phrase or your eth is gone forever.**

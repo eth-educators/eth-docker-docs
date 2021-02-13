@@ -31,4 +31,4 @@ validator client and start it interactively. Determine your own risk profile.
 > once you have copied them off the node. You'll need the `deposit_data` file to
 > deposit at the launchpad. The `keystore-m` files can be safeguarded in case
 > the node needs to be rebuilt, or deleted and recreated from mnemonic if required.
-> See [Recommendations.md](../Recommendations.md) for some thoughts on key security.
+> See [Recommendations.md](../Support/Recommendations.md) for some thoughts on key security.
