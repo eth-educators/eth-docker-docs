@@ -17,10 +17,13 @@
 			"Usage/ImportKeys",
 			"Usage/StartClient",
 			"Usage/Deposit",
-			"Usage/Dashboards"
+			"Usage/Dashboards",
+			"Usage/Autostart"
 		],
-		"Extras": [
-			"Recommendations"
+		"Support" : [
+			"Support/Recommendations",
+			"Support/Addendums",
+			"Support/Tipjar"
 		]
 }
 }
