@@ -169,7 +169,7 @@ as [beaconcha.in](https://beaconcha.in) and [beaconscan](https://beaconscan.com)
 
 ## Addendum: Moving a client
 
-Please see the [moving checklist](MOVING.md)
+Please see the [moving checklist](../Support/Moving.md)
 
 ## Addendum: Troubleshooting
 

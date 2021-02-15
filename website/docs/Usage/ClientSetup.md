@@ -6,7 +6,7 @@ sidebar_label: Client Setup
 
 Next, choose a client and configure this project to use it.
 
-If you haven't already, please see [prerequisites](PREREQUISITES.md) and meet them for your OS.
+If you haven't already, please see [prerequisites](../Usage/Prerequisites.md) and meet them for your OS.
 This file steps you through client choice as well as some basic host security steps on Linux.
 
 ## Non-root user on Linux
@@ -169,7 +169,7 @@ These are the relevant ports. docker will open eth2 node ports and the grafana p
 please make sure the grafana port cannot be reached directly. If you need to get to grafana remotely,
 an [SSH tunnel](https://www.howtogeek.com/168145/how-to-use-ssh-tunneling/) is a good choice.
 
-For a VPS/cloud setup, please take a look at notes on [cloud security](CLOUD.md). You'll want to
+For a VPS/cloud setup, please take a look at notes on [cloud security](../Support/Cloud.md). You'll want to
 place ufw "in front of" Docker if you are using Grafana or a standalone eth1 (Ethereum PoW) client,
 and if your cloud provider does not offer firewall rules for the VPS.
 
@@ -212,7 +212,7 @@ ports directly via "iptables" for all ports that are public on the host.
 > reference one eth1 node: `sudo ufw allow from 172.16.0.0/12 to any port 8545` and `sudo ufw deny 8545`. 
 > The assumption here is that port `8545` is used for the connection to eth1, and that the eth2 beacons
 > are themselves inside docker containers. With this rule, traffic from other containers to eth1
-> would succeed, and traffic from "the Internet" to eth1 would not, as long as [cloud security](CLOUD.md)
+> would succeed, and traffic from "the Internet" to eth1 would not, as long as [cloud security](../Support/Cloud.md)
 > steps have also been taken.
 ## Time synchronization on Linux
 

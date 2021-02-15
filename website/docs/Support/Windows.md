@@ -1,4 +1,9 @@
-# Windows, and its challenges
+---
+id: Windows
+title:  Windows
+sidebar_label: Windows
+---
+
 
 Windows may seem like an "easy button". For eth2-docker, it is anything but, and even for
 other ways of running a client, there are multiple challenges. They can all be overcome,

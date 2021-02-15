@@ -30,7 +30,7 @@ any machine on your network via `http://NODEIP:7500`
 
 If the node is running on a cloud VPS, you'll want to open an SSH connection and tunnel the port
 used by the Web UI. For budget providers without a firewall, please also take a look at
-[cloud security](CLOUD.md) for notes on how to restrict Web UI access to only SSH tunnels.
+[cloud security](../Support/Cloud.md) for notes on how to restrict Web UI access to only SSH tunnels.
 
 Example ssh command:
 ```

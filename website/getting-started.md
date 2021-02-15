@@ -104,7 +104,7 @@ You may also want to take a look at a [guide to Linux host security](https://www
 You will need git, docker, and docker-compose. This should work on Linux, possibly MacOS.
 Running a node via this project on Windows 10 is [highly discouraged](WINDOWS.md) because of time
 synchronization concerns.
-Please see [prerequisites](PREREQUISITES.md) and then come back here.
+Please see [prerequisites](Prerequisites.md) and then come back here.
 
 ## Step 2: Choose a client, initial setup
 
@@ -613,7 +613,7 @@ You may also want to take a look at a [guide to Linux host security](https://www
 You will need git, docker, and docker-compose. This should work on Linux, possibly MacOS.
 Running a node via this project on Windows 10 is [highly discouraged](WINDOWS.md) because of time
 synchronization concerns.
-Please see [prerequisites](PREREQUISITES.md) and then come back here.
+Please see [prerequisites](Prerequisites.md) and then come back here.
 
 ## Step 2: Choose a client, initial setup
 

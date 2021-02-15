@@ -1,12 +1,10 @@
 ---
 id: Prerequisites
-title:  Prerequisites
+title:  Prerequisites.
 sidebar_label: Prerequisites
 ---
 
-You will need git, docker, and docker-compose. This should work on Linux, possibly MacOS.
-Running a node via this project on Windows 10 is [highly discouraged](WINDOWS.md) because of time
-synchronization concerns.
+
 
 This project relies on docker and docker-compose, and git to bring the
 project itself in. It has been tested on Linux, and is
@@ -57,7 +55,7 @@ MacOS has not been tested, if you have the ability to, please get in touch via t
 ## Windows 10 discouraged
 
 While it is technically possible to run this project, and thus a node, on Windows 10,
-I want to [discourage that idea](WINDOWS.md). Windows 10 is fine as an SSH client to connect *to*
+I want to [discourage that idea](../Support/Windows.md). Windows 10 is fine as an SSH client to connect *to*
 your Linux server, but not as a basis to run the node server itself inside Docker.
 
 The challenges inherent in running on Windows 10 are easier to solve when using the Windows-native

@@ -1,4 +1,8 @@
-# Moving a validator
+---
+id: Moving
+title:  Moving a validator.
+sidebar_label: Moving
+---
 
 When you wish to move a validator, the most important part is that you do not
 cause yourself to get slashed. "Slashing" is a large penalty and a forced

@@ -115,7 +115,7 @@ fit, and 16 GiB is recommended. Some clients such as Teku may need more RAM out
 of the box. 2 or 4 CPU cores, and an SSD for storage because the node databases
 are so IOPS-heavy. The Geth eth1 node would require around 350GiB of storage by
 itself initially, which can grow to 500 GiB over 1 year. Offline pruning is available.
-Other clients grow at different rates, see [resource use](RESOURCE-USE.md).
+Other clients grow at different rates, see [resource use](../Usage/ResourceUsage.md).
 The beacon node database is small, around 11 GiB, but we don't know what growth will
 look like once the merge with Eth1 is done.
 If you are running a slasher, that might be another 100 to 300 GiB by itself.

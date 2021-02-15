@@ -1,10 +1,8 @@
 ---
-id: RESOURCE-USE
-title:  ETH1 Resource Needs
-sidebar_label: Resource Usage
+id: ResourceUsage
+title:  Resource Usage
+sidebar_label: ResourceUsage
 ---
-
-# ETH1 Resource Needs
 
 For reference, here are disk, RAM and CPU requirements, as well as mainnet initial
 synchronization times, for different Ethereum 1 clients.

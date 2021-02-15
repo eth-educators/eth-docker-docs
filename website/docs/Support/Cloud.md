@@ -1,4 +1,8 @@
-# Running eth2-docker in the cloud
+---
+id: Cloud
+title:  Running eth2-docker in the cloud.
+sidebar_label: Cloud
+---
 
 For the most part, nothing special needs to be done to run eth2-docker on a VPS. However, budget VPS providers do not
 filter the traffic that can reach the machine: This is definitely not desirable for unsecured ports like Grafana

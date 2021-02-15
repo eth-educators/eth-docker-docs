@@ -1,3 +1,9 @@
+---
+id: Testing
+title:  Testing
+sidebar_label: Testing
+---
+
 In the absence of a proper test script, a few quick notes on a test sequence that
 should show functionality.
 
