@@ -40,7 +40,7 @@ They go into `.eth2/validator_keys` in this project directory, not directly unde
 Update validator_start_index, num_validators, and chain to match your settings above.
 
 ```
-mkdir -seed_checker
+mkdir seed_checker
 deposit existing-mnemonic --validator_start_index 0 --num_validators 3 --chain mainnet --folder seed_checker
 ```
 
