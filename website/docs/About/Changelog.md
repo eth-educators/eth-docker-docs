@@ -171,7 +171,7 @@ directory (`cd ~/eth2-docker` by default):
 
 ## v0.1.7 2020-10-15
 
-* Added "validator-voluntary-exit" to Prysm, see [readme](README.md#addendum-voluntary-client-exit)
+* Added "validator-voluntary-exit" to Prysm, see [Addendums](../Support/Addendums.md#addendum-voluntary-client-exit)
 * Default restart policy is now "unless-stopped" and can be changed via `.env`
 * Preliminary work to support Prysm Web UI, not yet functional
 * Changed testnet parameter for Prysm to conform with alpha.29
