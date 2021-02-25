@@ -21,6 +21,15 @@ directory (`cd ~/eth2-docker` by default):
 * !! If coming from Prysm alpha.29 or earlier, make changes as per notes for [v0.1.7](#v017-2020-10-15)
 * `sudo docker-compose up -d eth2`
 
+## v0.2.6.1 2021-02-08
+
+* Nethermind pruning on by default
+* Nimbus ENR IP auto-update on by default
+
+## v0.2.6 2021-01-26
+
+* Added alert manager code. Thanks to @DarrenMa!
+
 ## v0.2.5.4 2021-01-21
 
 * Support for new Lighthouse Validator Monitor Grafana Dashboard
@@ -162,7 +171,7 @@ directory (`cd ~/eth2-docker` by default):
 
 ## v0.1.7 2020-10-15
 
-* Added "validator-voluntary-exit" to Prysm, see [Addendums](../Support/Addendums.md#addendum-voluntary-client-exit)
+* Added "validator-voluntary-exit" to Prysm, see [readme](README.md#addendum-voluntary-client-exit)
 * Default restart policy is now "unless-stopped" and can be changed via `.env`
 * Preliminary work to support Prysm Web UI, not yet functional
 * Changed testnet parameter for Prysm to conform with alpha.29
