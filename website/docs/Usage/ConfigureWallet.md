@@ -35,3 +35,23 @@ This is also where you'd place your own keystore files if you already have some 
 ### You brought your own keys
 
 They go into `.eth2/validator_keys` in this project directory, not directly under `$HOME`.
+
+### Test your Seed Phrase
+Update validator_start_index, num_validators, and chain to match your settings above.
+
+```
+mkdir -seed_checker
+deposit existing-mnemonic --validator_start_index 0 --num_validators 3 --chain mainnet --folder seed_checker
+```
+
+type your seed, and password
+
+compare the deposit_data to ensure the files are identical.
+```
+diff -s .eth2/validator_keys/deposit_data*.json seed_checker/deposit_data*.json
+```
+
+Cleanup duplicate deposit_data.
+```
+rm -rf seed_checker
+```
