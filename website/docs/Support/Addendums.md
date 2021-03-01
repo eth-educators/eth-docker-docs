@@ -147,8 +147,8 @@ deposit_data-1605672506.json  keystore-m_12381_3600_0_0_0-1605672506.json
 yorick@ethlinux:~/eth2-pyrmont$ sudo docker-compose run --rm validator-voluntary-exit /var/lib/lighthouse/validator_keys/keystore-m_12381_3600_0_0_0-1605672506.json
 Starting eth2-pyrmont_beacon_1 ... done
 Running account manager for pyrmont testnet
-validator-dir path: "/var/lib/lighthouse/validators"
-Enter the keystore password for validator in "/var/lib/lighthouse/validator_keys/keystore-m_12381_3600_0_0_0-1605672506.json":
+validator-dir path: "/var/lib/lighthouse/validators" 
+Enter the keystore password for validator in "/var/lib/lighthouse/validator_keys/keystore-m_12381_3600_0_0_0-1605672506.json"  
 ```
 
 ### Nimbus
