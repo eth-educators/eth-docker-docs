@@ -39,9 +39,11 @@ They go into `.eth2/validator_keys` in this project directory, not directly unde
 ### Test your Seed Phrase
 Update validator_start_index, num_validators, and chain to match your settings above.
 
+From the project directory...
+
 ```
 mkdir seed_checker
-deposit existing-mnemonic --validator_start_index 0 --num_validators 3 --chain mainnet --folder seed_checker
+sudo docker-compose run --rm deposit-cli existing-mnemonic --validator_start_index 0 --num_validators 3 --chain mainnet --folder seed_checker
 ```
 
 type your seed, and password
