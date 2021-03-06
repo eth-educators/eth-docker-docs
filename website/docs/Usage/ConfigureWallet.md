@@ -43,7 +43,7 @@ From the project directory...
 
 ```
 mkdir seed_checker
-sudo docker-compose run --rm deposit-cli existing-mnemonic --validator_start_index 0 --num_validators 3 --chain mainnet --folder seed_checker
+sudo docker run -it eth2.0-deposit-cli existing-mnemonic --validator_start_index 0 --num_validators 3 --chain mainnet --folder seed_checker
 ```
 
 type your seed, and password
