@@ -37,13 +37,14 @@ This is also where you'd place your own keystore files if you already have some 
 They go into `.eth2/validator_keys` in this project directory, not directly under `$HOME`.
 
 ### Test your Seed Phrase
-Update validator_start_index, num_validators, and chain to match your settings above.
+*introduced in releases post 3/9/2020. Update if your on an older version.*
 
-From the project directory...
+
+From the project directory...  
 
 ```
 mkdir seed_checker
-sudo docker-compose run --rm deposit-cli existing-mnemonic --validator_start_index 0 --num_validators 3 --chain mainnet --folder seed_checker
+sudo docker-compose run --rm deposit-cli-add-recover --folder seed_check
 ```
 
 type your seed, and password
