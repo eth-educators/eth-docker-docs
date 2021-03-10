@@ -9,18 +9,24 @@ sidebar_label: Changelog
 To update the components of the project, run from within the project
 directory (`cd ~/eth2-docker` by default):
 
-* `git pull`
-* `cp .env .env.bak && cp default.env .env`
-* Adjust contents of new `.env`, use `.env.bak` for guidance (LOCAL_UID
-  and COMPOSE_FILE are the most common variables that may need to be adjusted)
-* `sudo docker-compose build --pull` if you are using binary builds, the default
-* `sudo docker-compose build --pull --no-cache beacon` **only** if you are using source builds, then
-  run `sudo docker-compose build --pull` to update the rest of the "stack"
-* `sudo docker-compose down`
-* !! If coming from Lighthouse v0.2.x, make changes as per notes for [v0.1.6](#v016-2020-10-09)
-* !! If coming from Prysm alpha.29 or earlier, make changes as per notes for [v0.1.7](#v017-2020-10-15)
-* `sudo docker-compose up -d eth2`
+* `git pull` - get the new eth2-docker version
+* Optional: `cp .env .env.bak && cp default.env .env` - get the new default.env contents
+* If you got the new `default.env` in the previous step, adjust contents of new `.env`, use `.env.bak` for guidance.
+  You can `diff .env .env.bak` to see the differences.
+  The most common variables to be adjusted are `LOCAL_UID`, `COMPOSE_FILE`, `ETH1_NODE` (and its fallback
+  if Prysm), `GRAFFITI`, `NETWORK` and `ETH1_NETWORK`. If you made changes to peers or ports, recreate those as well.
+* `sudo docker-compose build --pull` if you are using binary builds, the default. This fetches new client versions.
+* **Only** if you are using source builds: `sudo docker-compose build --pull --no-cache beacon`, and
+  for Prysm source build **only** also `sudo docker-compose build --pull --no-cache validator`.
+  Then `sudo docker-compose build --pull` to update the rest of the "stack"
+* `sudo docker-compose down && sudo docker-compose up -d eth2` - use the new client version
 
+## v0.2.7 2021-03-10
+
+* Supports Prysm 1.3.3
+* Changed default for Prysm peers to 45
+* `default.env` no longer needs `GETH1_NETWORK` thanks to Geth 1.10.x
+ 
 ## v0.2.6.1 2021-02-08
 
 * Nethermind pruning on by default
