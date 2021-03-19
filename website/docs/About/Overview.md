@@ -1,6 +1,6 @@
 ---
 id: Overview
-title:  High Level Overview2
+title: High Level Overview
 sidebar_label: Overview
 ---
 
