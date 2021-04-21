@@ -4,7 +4,9 @@ title:  Client Setup
 sidebar_label: Client Setup
 ---
 
-Next, choose a client and configure this project to use it.
+# Step 2: Client Setup
+
+With prerequisites installed, choose a client and configure this project to use it.
 
 If you haven't already, please see [prerequisites](../Usage/Prerequisites.md) and meet them for your OS.
 This file steps you through client choice as well as some basic host security steps on Linux.
@@ -32,6 +34,21 @@ usermod -aG sudo USERNAME
 Optional: If you used SSH keys to connect to your Ubuntu instance via the root user you
 will need to [associate the new user with your public key(s)](#ssh-key-authentication-with-linux).
 
+## User as part of docker group
+
+Optionally, you may want to avoid needing to type `sudo` every time you run a command. In that
+case, you can make your local user part of the `docker` group.
+
+```
+usermod -aG docker USERNAME
+```
+
+followed by
+
+```
+newgrp docker
+```
+
 ## Static IP
 
 You'll want a static IP address for your server, one that doesn't change. This allows easier
@@ -45,6 +62,7 @@ How to do this depends on your router.
 In Ubuntu Desktop this is done through Network Manager from the UI, and in Ubuntu Server you'll handle it
 from CLI via netplan. Check your router configuration to see where your DHCP range is, and what
 values to use for default gateway and DNS.
+
 ## "Clone" the project
 
 From a terminal and logged in as the user you'll be using from now on, and assuming
@@ -63,6 +81,7 @@ You know this was successful when your prompt shows `user@host:~/eth2-docker`
 ## Client choice
 
 Please choose:
+
 * The eth2 client you wish to run
   * Lighthouse
   * Prysm
@@ -70,11 +89,10 @@ Please choose:
   * Nimbus
 * Your source of eth1 data
   * geth
-  * besu - has not been tested extensively by this team. Feedback welcome.
-  * nethermind - pruning in beta. Feedback welcome.
   * openethereum
+  * besu - Feedback welcome.
+  * nethermind - Feedback welcome.
   * 3rd-party
-* Whether to run a slasher (experimental for Prysm)
 * Whether to run a grafana dashboard for monitoring
 
 > Note: Teku is written in Java, which makes it memory-hungry. In its default configuration, you may
@@ -109,38 +127,60 @@ blocks you combine: One ethereum 2 client, optionally one ethereum 1 node, optio
   would use a local eth1 first, and fail back to Alchemy when it does not respond.
 - Adjust ports if you are going to need custom ports instead of the defaults. These are the ports
 exposed to the host, and for the P2P ports to the Internet via your firewall/router.
-- Set the `NETWORK` variable to either "mainnet" or a test network such as "pyrmont"
-- If using geth as the eth1 node, comment out the `GETH1_NETWORK` variable, to use the main net, or set it to a test network such as "--goerli",
-  with the two dashes.
-- With other eth1 nodes, the `ETH1_NETWORK` variable serves the same function. It can be set to `mainnet` to use the main eth1 network.
+- Set the `NETWORK` variable to either "mainnet" or a test network such as "prater"
+- If you are running your own eth1 node, set the `ETH1_NETWORK` variable to `mainnet` or `goerli`
 - Set the `GRAFFITI` string if you want a specific string.
 
 ### Client compose files
 
 Set the `COMPOSE_FILE` string depending on which client you are going to use. Add optional services like
 geth with `:` between the file names.
+
+Choose one eth2 beacon client:
+
 - `lh-base.yml` - Lighthouse
 - `prysm-base.yml` - Prysm
 - `teku-base.yml` - Teku
 - `nimbus-base.yml` - Nimbus
+
+Optionally, choose one eth1 node, unless you are using a 3rd-party provider:
+
 - `geth.yml` - local geth eth1 chain node
 - `besu.yml` - local besu eth1 chain node - has not been tested extensively by this team. Feedback welcome.
 - `nm.yml` - local nethermind eth1 chain node - pruning in beta. Feedback welcome.
 - `oe.yml` - local openethereum eth1 chain node
-- `eth1-shared.yml` - makes the RPC port of the eth1 node available from the host, for using the eth1 node with other nodes or with Metamask. To be used alongside one of the eth1 yml files. **Not encrypted**, do not expose to Internet.
-- `eth1-standalone.yml` - like eth1-shared but for running *just* eth1, instead of running it alongside a beacon node in the same "stack". To be used alongside one of the eth1 yml files. Also not encrypted, not meant for a fully distributed setup quite yet.
-- `prysm-slasher.yml` - Prysm experiment../Usage/Prerequisites.mdd may result in additional earnings. The experimental slasher can lead to missed attestations due to the additional resource demand.
+
+Optionally, choose a reporting package:
+
 - `lh-grafana.yml` - grafana dashboard for Lighthouse
-- `prysm-grafana.yml` - grafana dashboard for Prysm. Not encrypted, do not expose to Internet.
-- `prysm-web.yml` - Prysm Web UI. Not encrypted, do not expose to Internet. If you also want Grafana, add `prysm-grafana.yml`
+- `prysm-grafana.yml` - grafana dashboard for Prysm.
+- `prysm-web.yml` - Prysm Web UI. If you also want Grafana, add `prysm-grafana.yml`
 - `nimbus-grafana.yml` - grafana dashboard for Nimbus
 - `teku-grafana.yml` - grafana dashboard for Teku
-- `geth-grafana.yml` - grafana dashboard for Geth, to be combined with one of the client dashboards: Does not work standalone currently. Example `COMPOSE_FILE=lh-base.yml:geth.yml:lh-grafana.yml:geth-grafana.yml`
+- `geth-grafana.yml` - grafana dashboard for Geth, to be combined with one of the client dashboards: Does not work standalone currently. Example `COMPOSE_FILE=lh-base.yml:geth.yml:lh-grafana.yml:geth-grafana.yml:grafana-insecure.yml`
+- `grafana-insecure.yml` - to map the Grafana port (default: 3000) to the host. This is not encrypted and should not be exposed to the Internet.
+- `prysm-web-insecure.yml` - to map the Prysm web port (default: 3500) to the host. This is not encrypted and should not be exposed to the Internet.
+
+> See [Prysm Web](../Usage/PrysmWeb.md) for notes on using the Prysm Web UI
+
+Optionally, add encryption to the reporting dashboard:
+
+- `traefik-cf.yml` - use encrypting reverse proxy and use CloudFlare for DNS management
+- `traefik-aws.yml` - use encrypting reverse proxy and use AWS Route53 for DNS management
+
+With these, you wouldn't use the `-insecure.yml` files. Please see [Reverse Proxy Instructions](../Usage/ReverseProxy.md) for setup instructions for either option.
 
 For example, Lighthouse with local geth and grafana:
-`COMPOSE_FILE=lh-base.yml:geth.yml:lh-grafana.yml`
+`COMPOSE_FILE=lh-base.yml:geth.yml:lh-grafana.yml:grafana-insecure.yml`
 
-> See [Prysm Web](../About/PrysmWeb.md) for notes on using the Prysm Web UI
+Advanced options:
+
+- `eth1-traefik.yml` - reverse-proxies and encrypts both the RPC and WS ports of your eth1 node, as https:// and wss:// ports respectively. To be used alongside one of the eth1 yml files.
+- `eth1-shared.yml` - as an insecure alternative to eth1-traefik, makes the RPC and WS ports of the eth1 node available from the host. To be used alongside one of the eth1 yml files. **Not encrypted**, do not expose to Internet.
+
+- `prysm-slasher.yml` - Prysm experimental slasher. The experimental slasher can lead to missed attestations due to the additional resource demand.
+
+### Multiple nodes on one host
 
 In this setup, clients are isolated from each other. Each run their own validator client, and if eth1
 is in use, their own eth1 node. This is perfect for running a single client, or multiple isolated
@@ -149,12 +189,10 @@ clients each in their own directory.
 If you want to run multiple isolated clients, just clone this project into a new directory for
 each. This is great for running testnet and mainnet in parallel, for example.
 
-> Nimbus and Nethermind/Besu have interop issues as of 11/24/2020 when using eth2-docker. Use Geth or OpenEthereum instead for now.
-> Help with tracking root cause down greatly appreciated.
-
 ### Prysm Slasher   
+
 Running [slasher](https://docs.prylabs.network/docs/prysm-usage/slasher/) is an optional client compose file, but helps secure the chain and may result in additional earnings,
-though the chance of additional earnings is low initially whistleblower rewards have not been implemented yet.
+though the chance of additional earnings is low initially, as whistleblower rewards have not been implemented yet.
 
 > Slasher can be a huge resource hog during times of no chain finality, which can manifest as massive RAM usage. Please make sure you understand the risks of this, 
 > especially if you want high uptime for your beacon nodes. Slasher places significant stress on beacon nodes when the chain has no finality, and might be the reason
@@ -191,8 +229,10 @@ to your node if behind a home router, or allowed in via the VPS firewall.
 - 22/tcp - SSH. Only open to Internet if this is a remote server (VPS). If open to Internet, configure
   SSH key authentication.
 
-On Ubuntu, the host firewall `ufw` can be used to allow SSH traffic. docker bypasses ufw and opens additional
-ports directly via "iptables" for all ports that are public on the host.
+On Ubuntu, the host firewall `ufw` can be used to allow SSH traffic. 
+
+Docker bypasses ufw and opens additional ports directly via "iptables" for all ports that are public on the host,
+which means that the P2P ports need not be explicitly listed in ufw.
 
 * Allow SSH in ufw so you can still get to your server, while relying on the default "deny all" rule.
   * `sudo ufw allow OpenSSH` will allow ssh inbound on the default port. Use your specific port if you changed
@@ -208,12 +248,9 @@ ports directly via "iptables" for all ports that are public on the host.
 > There is one exception to the rule that Docker opens ports automatically: Traffic that targets a port
 > mapped by Docker, where the traffic originates somewhere on the same machine the container runs on,
 > and not from a machine somewhere else, will not be automatically handled by the Docker firewall rules, 
-> and will require an explicit ufw rule. For example, if the intent is to have multiple eth2 beacons 
-> reference one eth1 node: `sudo ufw allow from 172.16.0.0/12 to any port 8545` and `sudo ufw deny 8545`. 
-> The assumption here is that port `8545` is used for the connection to eth1, and that the eth2 beacons
-> are themselves inside docker containers. With this rule, traffic from other containers to eth1
-> would succeed, and traffic from "the Internet" to eth1 would not, as long as [cloud security](../Support/Cloud.md)
-> steps have also been taken.
+> and will require an explicit ufw rule. 
+> Steps to allow for this scenario are in [cloud security](../Support/Cloud.md)
+
 ## Time synchronization on Linux
 
 The blockchain requires precise time-keeping. You can use systemd-timesyncd if your system offers it,
@@ -318,6 +355,7 @@ to my email address, and so didn't.
 
 This step is highly hardware-dependent. If you went with a server that has IPMI/BMC - out of band management of
 the hardware - then you'll want to configure IPMI to email you on error.
-## Continue with README file
+
+## Continue with the next step
 
 You are now ready to build and run your eth2 client.
