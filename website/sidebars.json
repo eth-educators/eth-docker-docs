@@ -4,7 +4,7 @@
 			"About/Overview",
 			"About/Acknowledgements",
 			"About/Clients",
-			"About/Changelog",
+			"About/Changelog"
 		],
 		
 		"Usage": [
@@ -20,8 +20,8 @@
 			"Usage/Dashboards",
 			"Usage/PrysmWeb",
 			"Usage/Autostart",
-			"Usage/ReverseProxy",
-			"Usage/ResourceUsage",
+			"Usage/Reverse Proxy",
+			"Usage/ResourceUsage"
 
 		],
 		"Support" : [
@@ -31,7 +31,7 @@
 			"Support/Addendums",
 			"Support/Moving",
 			"Support/Tipjar",
-			"Support/Testing",
+			"Support/Testing"
 		]
 }
 }

@@ -23,4 +23,4 @@ Currently supported optional components:
 - slasher, Running slasher is optional, but helps secure the chain and may result in additional earnings.
 - Grafana dashboard
 
-Please see [Prysm Web](../About/PrysmWeb.md) for experimental Web UI support on Prysm, and use the Web instead of validator-import to import keys.
+Please see [Prysm Web](../Usage/PrysmWeb.md) for experimental Web UI support on Prysm, and use the Web instead of validator-import to import keys.
