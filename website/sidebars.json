@@ -4,14 +4,13 @@
 			"About/Overview",
 			"About/Acknowledgements",
 			"About/Clients",
-			"About/PrysmWeb",
 			"About/Changelog"
 		],
 		
 		"Usage": [
 			"Usage/BeforeYouStart",
+			"Usage/Hardware",
 			"Usage/Prerequisites",
-			"Usage/ResourceUsage",
 			"Usage/ClientSetup",
 			"Usage/BuildClient",
 			"Usage/ConfigureWallet",
@@ -19,16 +18,20 @@
 			"Usage/StartClient",
 			"Usage/Deposit",
 			"Usage/Dashboards",
-			"Usage/Autostart"
+			"Usage/PrysmWeb",
+			"Usage/Autostart",
+			"Usage/ReverseProxy",
+			"Usage/ResourceUsage"
+
 		],
 		"Support" : [
 			"Support/Recommendations",
 			"Support/Cloud",
-			"Support/Testing",
 			"Support/Windows",
 			"Support/Addendums",
 			"Support/Moving",
-			"Support/Tipjar"
+			"Support/Tipjar",
+			"Support/Testing"
 		]
 }
 }

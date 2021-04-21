@@ -20,6 +20,3 @@ You may also want to take a look at a [guide to Linux host security](https://www
 8. A baseline set of Grafana dashboards are included, see step 8.  Feel free to add more, or submit a PR with your favorite dashboards.
 9. Configure your system to start the eth2 node on boot (optional)
 
-## Step 1: Install prerequisites
-
-You will need git, docker, and docker-compose. This should work on Linux, possibly MacOS.
