@@ -1,7 +1,7 @@
 ---
 id: ResourceUsage
-title:  Resource Usage
-sidebar_label: Resource Usage
+title:  Eth1 Resource Usage
+sidebar_label: Eth1 Resource Usage
 ---
 
 For reference, here are disk, RAM and CPU requirements, as well as mainnet initial
@@ -17,7 +17,7 @@ SSD, RAM and CPU use is after initial sync, when keeping up with head. 100% CPU 
 |--------|---------|----  |----------|-----------|-----|-----|-------|
 | OpenEthereum | Nov 2020 | 3.1.0rc1 | ~380 GiB | ~ 3.5 GiB / week | 1 GiB | 100-300% | DB grows with chain, prunes itself |
 | Geth   | 1.10.1 | Mar 2021 | ~350 GiB | ~ 10 GiB / week | 9 GiB | 100-400% | DB size can be reduced by offline(!) prune with `docker-compose run --rm eth1 snapshot prune-state` |
-| Nethermind | 1.10.46 | Mar 2021 | ~170 GiB | TBD | 14 GiB | 100-400% | memory use w/ pruning and prune-cache 2048; initial size lower bcs of ancient barrier |
+| Nethermind | 1.10.51 | Mar 2021 | ~170 GiB | ~17 GiB / week | 9 GiB | 100-400% | memory use w/ pruning and prune-cache 4096; initial size lower bcs of ancient barrier |
 | Besu | v20.10.2 | Dec 2020 | ~420 GiB | ~ 78 GiB / week | 6 - 9 GiB | 200-300% | |
 
 ## Test Systems
