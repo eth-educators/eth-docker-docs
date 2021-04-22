@@ -23,7 +23,13 @@ directory (`cd ~/eth2-docker` by default):
 
 ## v0.3.0 2021-04-21
 
-* Added Traefik reverse proxy for secure access to Grafana and Prysm Web, even eth1 clients.
+*This is an optional upgrade, that adds new features*
+
+* Added Traefik reverse proxy for secure access to Grafana and Prysm Web, even eth1 clients. Note this is
+  a breaking change for existing Grafana, Prysm Web and shared/standalone eth1 clients. You will need to
+  add `grafana-insecure.yml`, `prysm-web-insecure.yml`, `eth1-insecure.yml`, depending on service you use,
+  to your `COMPOSE_FILE` inside `.env`. Alternatively and recommended, add `traefik-cf.yml` or `traefik-aws.yml`
+  and start using secure https:// ! Please see [reverse proxy instructions](../Usage/ReverseProxy.md).
 * Added wizard.sh shell script for quick initial setup
 * Added node reporter Grafana dashboard to alert on low CPU, Memory or Disk Space
 
