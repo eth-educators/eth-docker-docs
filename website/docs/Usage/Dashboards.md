@@ -16,6 +16,13 @@ A baseline set of dashboards has been included.
 - [Geth Dashboard JSON](https://gist.githubusercontent.com/karalabe/e7ca79abdec54755ceae09c08bd090cd/raw/3a400ab90f9402f2233280afd086cb9d6aac2111/dashboard.json)
 - [Node Dashboard JSON](https://raw.githubusercontent.com/eth2-educators/eth2-docker/master/grafana/node-exporter_dashboard.json)
 
+
+## Monitoring Requirments with Node Dashboard  
+
+The following [Dashboard](https://raw.githubusercontent.com/eth2-educators/eth2-docker/master/grafana/node-exporter_dashboard.json) is included with the eth2-docker grafana default config.  Using it you can monitor Disk, CPU and Memory usage by you node.  Furthermore you can configure the alerts to notify you via discord, telegram or anywhere else grafana supports.  Check this [link](https://grafana.com/docs/grafana/latest/alerting/notifications/) for more information.
+
+![MarineGEO circle logo](./../../static/img/node_alerts.png "MarineGEO logo")
+
 Connect to https://grafana.yourdomain.com/ (or http://YOURSERVERIP:3000/ if not using the reverse proxy), log in as admin/admin, and set a new password.
 
 > If you run Grafana over http without encryption, do not expose the Grafana port to the Internet. You can

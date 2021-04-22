@@ -1,6 +1,6 @@
 ---
 id: ResourceUsage
-title:  Eth1 Resource Usage.
+title:  Eth1 Resource Usage
 sidebar_label: Eth1 Resource Usage
 ---
 
@@ -8,13 +8,6 @@ For reference, here are disk, RAM and CPU requirements, as well as mainnet initi
 synchronization times, for different Ethereum 1 clients.
 
 PRs to add to this information welcome.
-
-## Monitoring Requirments with Node Dashboard  
-
-The following [Dashboard](https://raw.githubusercontent.com/eth2-educators/eth2-docker/master/grafana/node-exporter_dashboard.json) is included with the eth2-docker grafana default config.  Using it you can monitor Disk, CPU and Memory usage by you node.  Furthermore you can configure the alerts to notify you via discord, telegram or anywhere else grafana supports.  Check this [link](https://grafana.com/docs/grafana/latest/alerting/notifications/) for more information.
-
-![MarineGEO circle logo](./../../static/img/node_alerts.png "MarineGEO logo")
-
 
 ## Disk, RAM, CPU requirements
 
