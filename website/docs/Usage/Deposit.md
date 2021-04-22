@@ -1,10 +1,8 @@
 ---
 id: Deposit
-title:  Deposit to Launchpad
+title: "Step 6: Deposit ETH to Launchpad"
 sidebar_label: Deposit to Launchpad
 ---
-
-# Step 6: Finalize your deposit
 
 **Caution**: You may wish to wait until the beacon node is fully synchronized before you deposit. Check
 its logs with `sudo docker-compose logs -f beacon`. This safe-guards against the validator being

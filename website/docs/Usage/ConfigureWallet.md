@@ -1,10 +1,8 @@
 ---
 id: ConfigureWallet
-title:  Configure Wallet
+title: "Step 3: Generate an eth2 wallet and key files"
 sidebar_label: Configure Wallet
 ---
-
-# Step 3: Generate an eth2 wallet and key files
 
 You will deposit ETH to the deposit contract, and receive staking rewards on this locked ETH in turn.<br />
 > **Vital** [Recommendations.md](../Support/Recommendations.md) has comments on key security. If you haven't

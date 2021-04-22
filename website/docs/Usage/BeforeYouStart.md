@@ -1,6 +1,6 @@
 ---
 id: BeforeYouStart
-title:  Before you start
+title:  Before you start.
 sidebar_label: Before you start
 ---
 
@@ -21,6 +21,6 @@ It is recommended to follow the manual steps to fully customize your eth2-docker
 4. Import the validator keystore files generated in the previous step
 5. Run the client
 6. Finalize the deposit. This is not done within this project
-7. A baseline set of Grafana dashboards are included, see step 8.  Feel free to add more, or submit a PR with your favorite dashboards.
+7. A baseline set of Grafana dashboards are included.  Feel free to add more, or submit a PR with your favorite dashboards.
 8. Configure your system to start the eth2 node on boot (optional)
 

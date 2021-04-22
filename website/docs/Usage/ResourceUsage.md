@@ -1,6 +1,6 @@
 ---
 id: ResourceUsage
-title:  Eth1 Resource Usage
+title:  Eth1 Resource Usage.
 sidebar_label: Eth1 Resource Usage
 ---
 

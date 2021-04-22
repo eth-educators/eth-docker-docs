@@ -49,34 +49,34 @@ First, you'll want to bring down the old client and make sure it can't come back
 
 In the directory of the old client:
 
-[ ] `sudo docker-compose down`
-[ ] `sudo docker volume ls` - find the volume for the validator
-[ ] `sudo docker volume rm VOLUMENAME` - remove the volume for the validator
+- [ ] `sudo docker-compose down`
+- [ ] `sudo docker volume ls` - find the volume for the validator
+- [ ] `sudo docker volume rm VOLUMENAME` - remove the volume for the validator
 
 ### Verify
 
 Verify that you removed the right client:
 
-[ ] `sudo docker-compose run validator` - confirm that it complains it cannot find its keys. If it still
+- [ ] `sudo docker-compose run validator` - confirm that it complains it cannot find its keys. If it still
   finds validator keys, do not proceed until you fixed that and it doesn't.
   > For Nimbus and Teku, the command is `sudo docker-compose run beacon` instead
-[ ] Look at https://beaconcha.in/ and verify that the validator(s) you just removed are now
+- [ ] Look at https://beaconcha.in/ and verify that the validator(s) you just removed are now
   missing an attestation.
-[ ] Allow 10 minutes to go by before taking the next step
+- [ ] Allow 10 minutes to go by before taking the next step
 
 ### Import keys into new client
 
-[ ] SCP (or USB sneaker-net) the keys to `.eth2/validator_keys` in the project directory
-[ ] Run `sudo docker-compose run --rm validator-import` and import the keys
-[ ] Verify **once more** that all your validator(s) have been down long
+- [ ] SCP (or USB sneaker-net) the keys to `.eth2/validator_keys` in the project directory
+- [ ] Run `sudo docker-compose run --rm validator-import` and import the keys
+- [ ] Verify **once more** that all your validator(s) have been down long
   enough to miss an attestion
-[ ] Verify **once more** that trying to start the validator on the old client
+- [ ] Verify **once more** that trying to start the validator on the old client
   has it complaining it can't find keys, so that there is **no way** it
   could run in two places.
-[ ] If you are absolutely positively sure that the old validator client cannot
+- [ ] If you are absolutely positively sure that the old validator client cannot
   start attesting again and 10 minutes have passed / **all** validators
   have missed an attestion, then and only then:
-[ ] Start the new client with `sudo docker-compose up -d eth2`
+- [ ] Start the new client with `sudo docker-compose up -d eth2`
 
 ### Variant: DR beacon
 

@@ -1,10 +1,8 @@
 ---
 id: StartClient
-title:  Start the Client
+title: "Step 5: Start the client"
 sidebar_label: Start the Client
 ---
-
-# Step 5: Start the client
 
 To start the client:
 ```

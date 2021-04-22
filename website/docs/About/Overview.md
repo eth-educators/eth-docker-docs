@@ -1,10 +1,10 @@
 ---
 id: Overview
-title: High Level Overview
+title: High Level Overview.
 sidebar_label: Overview
 ---
 
-# This project
+## This project
 
 eth2-docker aims to make running an Ethereum staking node simpler than setting everything up manually,
 while allowing the user choice when it comes to the exact client mix they wish to run.
@@ -13,7 +13,7 @@ Recommended hardware, whether your own hardware or a VPS, is:
 - 16 GiB of RAM
 - 4 CPU cores
 - 1TB SSD
-# Node components
+## Node components
 
 An Ethereum 2.0 node has many moving parts. Here's a high level, conceptual overview.
 
@@ -52,7 +52,7 @@ Here's what then happens:
 - If all of the above was so much Gobbledegook, you may want to read the [Ethereum 2.0 primer](https://ethos.dev/beacon-chain/) and come
   back to it every time you have questions. 
 
-# Guiding principles:
+## Guiding principles:
 
 - Reduce the attack surface of the client as much as feasible.
 - Guide users to good key management as much as possible

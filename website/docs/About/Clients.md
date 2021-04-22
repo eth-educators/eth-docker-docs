@@ -1,6 +1,6 @@
 ---
 id: Clients
-title:  Supported Clients
+title:  Supported Clients.
 sidebar_label: Clients
 ---
 
