@@ -4,6 +4,8 @@ title:  Import Validator Keys
 sidebar_label: Import Validator Keys
 ---
 
+# Step4: Import validator keys to the client
+
 **Warning** Import your validator key(s) to only *one* client.
 
 > If you use the [Prysm Web](../Usage/PrysmWeb.md), you can use it

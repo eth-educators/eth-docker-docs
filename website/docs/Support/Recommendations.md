@@ -30,11 +30,12 @@ you will need to open in `ufw` depend on the client you choose.
 eth1: 30303 tcp/udp, forwarded to your server<br />
 lighthouse: 9000 tcp/udp, forwarded to your server<br />
 prysm: 13000 tcp and 12000 udp, forwarded to your server<br />
-grafana: 3000 tcp, open on ufw but not forwarded to your server.<br />
-> The grafana port is insecure http:// and should only be accessed locally.
-> For cloud-hosted instances, a reverse proxy such as nginx or
-> traefik can be used. An [SSH tunnel](https://www.howtogeek.com/168145/how-to-use-ssh-tunneling/)
-> is also a great option.
+grafana/web UI: 443 tcp, forwarded to your server, assuming you are using the reverse proxy.<br />
+
+> The grafana port is insecure http:// if no reverse proxy is in use,
+> and should then only be access locally.
+> An [SSH tunnel](https://www.howtogeek.com/168145/how-to-use-ssh-tunneling/)
+> is also a great option if you do not want to use the reverse proxy.
 
 ## Before depositing
 

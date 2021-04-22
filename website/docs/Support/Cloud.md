@@ -1,13 +1,17 @@
 ---
 id: Cloud
-title:  Running eth2-docker in the cloud.
-sidebar_label: Cloud
+title:  Securing a cloud VPS
+sidebar_label: Cloud Security
 ---
 
 For the most part, nothing special needs to be done to run eth2-docker on a VPS. However, budget VPS providers do not
 filter the traffic that can reach the machine: This is definitely not desirable for unsecured ports like Grafana
 or eth1, if the shared/standalone option is being used. All that should be reachable are the P2P ports.
 
+The arguably best way to secure Grafana, Web UI and eth1 ports is via encryption. For this, please see the [reverse proxy](../Usage/ReverseProxy.md)
+instructions.
+
+If you prefer to keep the ports unencrypted and wish to secure them via ufw, please read on.
 ## Securing Grafana and eth1 via ufw
 
 While Docker automatically opens the Linux firewall for ports it "maps" to the host, it also

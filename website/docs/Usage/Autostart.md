@@ -4,6 +4,8 @@ title:  Autostart the client on boot.
 sidebar_label: Autostart
 ---
 
+# Step 8: Create a service to autostart the node (optional)
+
 If you are using the "unless-stopped" restart policy, docker will start the 
 client for you. That said, you may wish to make sure this happens on
 startup even if the client was stopped. In that case, create a service

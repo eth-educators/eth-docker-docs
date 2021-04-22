@@ -4,7 +4,9 @@ title:  Configure Wallet
 sidebar_label: Configure Wallet
 ---
 
-You will deposit eth to the deposit contract, and receive locked eth2 in turn.<br />
+# Step 3: Generate an eth2 wallet and key files
+
+You will deposit ETH to the deposit contract, and receive staking rewards on this locked ETH in turn.<br />
 > **Vital** [Recommendations.md](../Support/Recommendations.md) has comments on key security. If you haven't
 read these yet, please do so now. You need to know how to guard your keystore password
 and your seed phrase (mnemonic). **Without the mnemonic, you will be unable to withdraw your funds
@@ -36,25 +38,25 @@ This is also where you'd place your own keystore files if you already have some 
 
 They go into `.eth2/validator_keys` in this project directory, not directly under `$HOME`.
 
+> You can transfer files from your PC to the node using scp. A graphical
+> tool such as WinSCP will work, or you can use [command line scp](https://linuxize.com/post/how-to-use-scp-command-to-securely-transfer-files/).
 ### Test your Seed Phrase
-*introduced in releases post 3/9/2020. Update if your on an older version.*
+*introduced in releases post 3/9/2020. Update if you are on an older version.*
 
-
-From the project directory...  
+From the project directory:
 
 ```
-mkdir seed_checker
 sudo docker-compose run --rm deposit-cli-add-recover --folder seed_check
 ```
 
-type your seed, and password
+Type your seed, and any password you like, as you'll throw away the duplicate `keystore-m` files.
 
-compare the deposit_data to ensure the files are identical.
+Compare the `deposit_data` JSON files to ensure the files are identical.
 ```
-diff -s .eth2/validator_keys/deposit_data*.json seed_checker/deposit_data*.json
+diff -s .eth2/validator_keys/deposit_data*.json .eth2/seed_check/deposit_data*.json
 ```
 
 Cleanup duplicate deposit_data.
 ```
-rm -rf seed_checker
+rm ./eth2/seed_check/*
 ```

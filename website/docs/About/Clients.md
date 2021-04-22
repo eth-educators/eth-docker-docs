@@ -15,12 +15,16 @@ Currently supported clients:
 
 Currently supported optional components:
 - geth, local eth1 node
-- besu, local eth1 node - has not been tested extensively by this team. Feedback welcome.
-- nethermind, local eth1 node - pruning in beta. Feedback welcome.
-- openethereum, local eth1 node - testing mainly, DB corruption resolved.
+- openethereum, local eth1 node
+- besu, local eth1 node - Feedback welcome.
+- nethermind, local eth1 node - Feedback welcome.
+
 > Use one of the local eth1 node options or a 3rd-party provider of eth1 chain data to "feed"
 > your eth2 beacon node, so you can [propose](https://ethos.dev/beacon-chain/) blocks.
-- slasher, Running slasher is optional, but helps secure the chain and may result in additional earnings.
-- Grafana dashboard
 
-Please see [Prysm Web](../Usage/PrysmWeb.md) for experimental Web UI support on Prysm, and use the Web instead of validator-import to import keys.
+- Grafana dashboard
+- Prysm Web UI
+
+- slasher - running slasher is optional, but helps secure the chain
+
+Please see [Prysm Web](../Usage/PrysmWeb.md) for experimental Web UI support on Prysm.
