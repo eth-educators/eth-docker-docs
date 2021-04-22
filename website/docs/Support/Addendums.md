@@ -61,6 +61,11 @@ Once your stack is down, to run an image and get into a shell, without executing
 You'd then run Linux commands manually in there, you could start components of the client manually. There is one image per client.<br />
 `sudo docker images` will show you all images.
 
+## Addendum: Using eth2-docker with a VPN on the node
+
+VPNs typically need IP addressing in the RFC1918 (private) range, and docker by default will utilize the entire range, leaving the VPN to not find a free prefix.
+This can be solved by [changing the configuration of Docker](https://docs.storagemadeeasy.com/appliance/docker_networking) to use only a portion of RFC1918 for its address pool.
+
 ## Addendum: Additional resources
 
 [Youtube Channel](https://www.youtube.com/c/YorickDowne)

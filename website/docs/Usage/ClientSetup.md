@@ -205,7 +205,21 @@ though the chance of additional earnings is low initially, as whistleblower rewa
 > especially if you want high uptime for your beacon nodes. Slasher places significant stress on beacon nodes when the chain has no finality, and might be the reason
 > why your validators are underperforming if your beacon node is under this much stress.
 
-## Firewalling
+## Build the client
+
+> **Important** Before you build, verify once more that `LOCAL_UID` in `.env`
+> is the UID of your user (check with `echo $UID`), and that the file `.env`
+> (dot env) is called exactly that, and contains the parameters you expect.
+> You will get errors about missing permissions, during Step 3, if the UID is wrong.
+
+Build all required images. If building from source, this may take 20-30 minutes. Assuming
+you cloned the project into `eth2-docker`:
+```
+cd ~/eth2-docker && sudo docker-compose build
+```
+
+## Additional and recommended Linux security steps
+### Firewalling
 
 You'll want to enable a host firewall. You can also forward the P2P ports of your eth1 and eth2
 nodes for faster peer acquisition.
@@ -260,7 +274,91 @@ which means that the P2P ports need not be explicitly listed in ufw, and the sam
 > and will require an explicit ufw rule. 
 > Steps to allow for this scenario are in [cloud security](../Support/Cloud.md)
 
-## Time synchronization on Linux
+### SSH key authentication with Linux
+
+This step is vital if your node's SSH port is reachable via the Internet, for example, because
+it runs on a VPS. This step is recommended if the SSH port is not reachable via the Internet. 
+
+For security reasons, you want some form of two-factor authentication for SSH login, particularly if SSH
+is exposed to the Internet. These instructions accomplish that by creating an SSH key with passphrase.
+Alternatively or in addition, you could set up [two-factor authentication with one-time passwords](https://www.coincashew.com/coins/overview-eth/guide-or-security-best-practices-for-a-eth2-validator-beaconchain-node#setup-two-factor-authentication-for-ssh-optional).
+
+To switch to SSH key authentication instead of password authentication, you will start
+on the machine you are logging in from, whether that is Windows 10, MacOS or Linux, and then
+make changes to the server you are logging in to.
+
+On Windows 10, you expect the [OpenSSH client](https://winaero.com/blog/enable-openssh-client-windows-10/)
+to already be installed. If it isn't, follow that link and install it.
+
+From your MacOS/Linux Terminal or Windows Powershell, check whether you have an ssh key. You expect an id_TYPE.pub
+file when running `ls ~/.ssh`.
+
+#### Create an SSH key pair
+
+Create a key if you need to, or if you don't have `id_ed25519.pub` but prefer that cipher:<br />
+`ssh-keygen -t ed25519`. Set a strong passphrase for the key.
+> Bonus: On Linux, you can also include a timestamp with your key, like so:<br />
+> `ssh-keygen -t ed25519 -C "$(whoami)@$(hostname)-$(date -I)" -f ~/.ssh/id_ed25519`
+
+#### MacOS/Linux, copy public key
+
+ If you are on MacOS or Linux, you can then copy this new public key to the Linux server:<br />
+`ssh-copy-id USERNAME@HOST`
+
+#### Windows 10, copy public key
+
+On Windows 10, or if that command is not available, output the contents of your public key file
+to terminal and copy, here for `id_ed25519.pub`:<br />
+`cat ~/.ssh/id_ed25519.pub`
+
+On your Linux server, logged in as your non-root user, add this public key to your account:<br />
+```
+mkdir ~/.ssh
+nano ~/.ssh/authorized_keys
+```
+And paste in the public key.
+
+#### Test login and turn off password authentication
+
+Test your login. `ssh user@serverIP` from your client's MacOS/Linux Terminal or Windows Powershell should log you in
+directly, prompting for your key passphrase, but not the user password.
+
+If you are still prompted for a password, resolve that first. Your ssh client should show you errors in that case. You
+can run `ssh -v user@serverIP` to get more detailed output on what went wrong.
+
+On Windows 10 in particular, if the ssh client complains about the "wrong permissions" on the `.ssh` directory or
+`.ssh/config` file, go into Explorer, find the `C:\Users\USERNAME\.ssh` directory, edit its Properties->Security, click
+Advanced, then make your user the owner with Full Access, while removing access rights to anyone else, such as SYSTEM
+and Administrators. Check "Replace all child object permissions", and click OK. That should solve the issues the
+OpenSSH client had.
+
+Lastly, once key authentication has been tested, turn off password authentication. On your Linux server:<br />
+`sudo nano /etc/ssh/sshd_config`
+
+Find the line that reads `#PasswordAuthentication yes` and remove the comment character `#` and change it to `PasswordAuthentication no`.
+
+And restart the ssh service, for Ubuntu you'd run `sudo systemctl restart ssh`.
+
+### Set Linux to auto-update
+
+Since this system will be running 24/7 for the better part of 2 years, it's a good idea to have it patch itself.
+Enable [automatic updates](https://libre-software.net/ubuntu-automatic-updates/) and install software so the
+server can [email you](https://www.havetheknowhow.com/Configure-the-server/Install-ssmtp.html).
+
+For automatic updates, `"only-on-error"` mail reports make sense once you know email reporting is working and
+if you choose automatic reboots, trusting that your services will all come back up on reboot. If you'd like
+to keep a closer eye or schedule reboots yourself, `"on-change"` MailReport is a better choice.
+
+For ssmtp, I followed the instructions as-is with one change: I do not see the sense of changing the `hostname`
+to my email address, and so didn't.
+
+If you are using Ubuntu, you may also want to look into [Ubuntu Livepatch](https://ubuntu.com/security/livepatch), which reduces the frequency of
+reboots on update and is free for up to 3 machines. Do make a note to disable Livepatch again before decommissioning 
+the machine, as it can only be disabled from the machine it is enabled on. This keeps your 3 free instances available.
+
+### Time synchronization on Linux
+
+The default time sync setting on Ubuntu will work. If you'd like to explore alternatives, please read on.
 
 The blockchain requires precise time-keeping. You can use systemd-timesyncd if your system offers it,
 or [ntpd](https://en.wikipedia.org/wiki/Network_Time_Protocol) to synchronize time on your Linux server.
@@ -285,95 +383,8 @@ IP addresses in their `refid`, and several servers with a refid of `.POOL.`
 > `timedatectl`, and switch it on with `sudo timedatectl set-ntp yes` if it isn't. You can check
 > time sync with `timedatectl timesync-status --all`.
 
-## SSH key authentication with Linux
-
-For security reasons, you want some form of two-factor authentication for SSH login, particularly if SSH
-is exposed to the Internet. These instructions accomplish that by creating an SSH key with passphrase.
-Alternatively or in addition, you could set up [two-factor authentication with one-time passwords](https://www.coincashew.com/coins/overview-eth/guide-or-security-best-practices-for-a-eth2-validator-beaconchain-node#setup-two-factor-authentication-for-ssh-optional).
-
-To switch to SSH key authentication instead of password authentication, you will start
-on the machine you are logging in from, whether that is Windows 10, MacOS or Linux, and then
-make changes to the server you are logging in to.
-
-On Windows 10, you expect the [OpenSSH client](https://winaero.com/blog/enable-openssh-client-windows-10/)
-to already be installed. If it isn't, follow that link and install it.
-
-From your MacOS/Linux Terminal or Windows Powershell, check whether you have an ssh key. You expect an id_TYPE.pub
-file when running `ls ~/.ssh`.
-
-### Create an SSH key pair
-
-Create a key if you need to, or if you don't have `id_ed25519.pub` but prefer that cipher:<br />
-`ssh-keygen -t ed25519`. Set a strong passphrase for the key.
-> Bonus: On Linux, you can also include a timestamp with your key, like so:<br />
-> `ssh-keygen -t ed25519 -C "$(whoami)@$(hostname)-$(date -I)" -f ~/.ssh/id_ed25519`
-
-### MacOS/Linux, copy public key
-
- If you are on MacOS or Linux, you can then copy this new public key to the Linux server:<br />
-`ssh-copy-id USERNAME@HOST`
-
-### Windows 10, copy public key
-
-On Windows 10, or if that command is not available, output the contents of your public key file
-to terminal and copy, here for `id_ed25519.pub`:<br />
-`cat ~/.ssh/id_ed25519.pub`
-
-On your Linux server, logged in as your non-root user, add this public key to your account:<br />
-```
-mkdir ~/.ssh
-nano ~/.ssh/authorized_keys
-```
-And paste in the public key.
-
-### Test login and turn off password authentication
-
-Test your login. `ssh user@serverIP` from your client's MacOS/Linux Terminal or Windows Powershell should log you in
-directly, prompting for your key passphrase, but not the user password.
-
-If you are still prompted for a password, resolve that first. Your ssh client should show you errors in that case. You
-can run `ssh -v user@serverIP` to get more detailed output on what went wrong.
-
-On Windows 10 in particular, if the ssh client complains about the "wrong permissions" on the `.ssh` directory or
-`.ssh/config` file, go into Explorer, find the `C:\Users\USERNAME\.ssh` directory, edit its Properties->Security, click
-Advanced, then make your user the owner with Full Access, while removing access rights to anyone else, such as SYSTEM
-and Administrators. Check "Replace all child object permissions", and click OK. That should solve the issues the
-OpenSSH client had.
-
-Lastly, once key authentication has been tested, turn off password authentication. On your Linux server:<br />
-`sudo nano /etc/ssh/sshd_config`
-
-Find the line that reads `#PasswordAuthentication yes` and remove the comment character `#` and change it to `PasswordAuthentication no`.
-
-And restart the ssh service, for Ubuntu you'd run `sudo systemctl restart ssh`.
-
-## Set Linux to auto-update
-
-Since this system will be running 24/7 for the better part of 2 years, it's a good idea to have it patch itself.
-Enable [automatic updates](https://libre-software.net/ubuntu-automatic-updates/) and install software so the
-server can [email you](https://www.havetheknowhow.com/Configure-the-server/Install-ssmtp.html).
-
-For automatic updates, `"only-on-error"` mail reports make sense once you know email reporting is working and
-if you choose automatic reboots, trusting that your services will all come back up on reboot. If you'd like
-to keep a closer eye or schedule reboots yourself, `"on-change"` MailReport is a better choice.
-
-For ssmtp, I followed the instructions as-is with one change: I do not see the sense of changing the `hostname`
-to my email address, and so didn't.
-
-## Set up IPMI
+### Set up IPMI
 
 This step is highly hardware-dependent. If you went with a server that has IPMI/BMC - out of band management of
 the hardware - then you'll want to configure IPMI to email you on error.
 
-## Build the client
-
-> **Important** Before you build, verify once more that `LOCAL_UID` in `.env`
-> is the UID of your user (check with `echo $UID`), and that the file `.env`
-> (dot env) is called exactly that, and contains the parameters you expect.
-> You will get errors about missing permissions, during Step 3, if the UID is wrong.
-
-Build all required images. If building from source, this may take 20-30 minutes. Assuming
-you cloned the project into `eth2-docker`:
-```
-cd ~/eth2-docker && sudo docker-compose build
-```
