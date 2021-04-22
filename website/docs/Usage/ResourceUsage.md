@@ -16,9 +16,9 @@ SSD, RAM and CPU use is after initial sync, when keeping up with head. 100% CPU 
 | Client | Version | Date | DB Size  | DB Growth | RAM | CPU | Notes |
 |--------|---------|----  |----------|-----------|-----|-----|-------|
 | OpenEthereum | Nov 2020 | 3.1.0rc1 | ~380 GiB | ~ 3.5 GiB / week | 1 GiB | 100-300% | DB grows with chain, prunes itself |
-| Geth   | 1.10.1 | Mar 2021 | ~350 GiB | ~ 10 GiB / week | 9 GiB | 100-400% | DB size can be reduced by offline(!) prune with `docker-compose run --rm eth1 snapshot prune-state` |
+| Geth   | 1.10.1 | Mar 2021 | ~350 GiB | ~ 10 GiB / week | 9 GiB | 100-400% | DB size can be reduced by [offline(!) prune](../Support/GethPrune.md) |
 | Nethermind | 1.10.51 | Mar 2021 | ~170 GiB | ~17 GiB / week | 9 GiB | 100-400% | memory use w/ pruning and prune-cache 4096; initial size lower bcs of ancient barrier |
-| Besu | v20.10.2 | Dec 2020 | ~420 GiB | ~ 78 GiB / week | 6 - 9 GiB | 200-300% | |
+| Besu | v20.10.2 | Dec 2020 | ~420 GiB | ~ 78 GiB / week | 6 - 9 GiB | 200-300% | keep an eye on Besu's bonsai trie work, DB growth may become more reasonable |
 
 ## Test Systems
 
@@ -50,3 +50,4 @@ node will "catch up" and get in sync.
 | Nethermind | 1.10.44 | Mar 2021 | Homebrew Xeon | ~ 27 hours | default | |
 | Nethermind | 1.10.9 | Jan 2021 | Netcup VPS 2000 G9 | ~ 20 hours | default | |
 | Besu | 20.10.4 | Jan 2020 | Homebrew Xeon | ~ 6 days 8 hours | default | |
+| OpenEthereum | 3.2.4 | April 2021 | Netcup VPS 3000 G9 | ~ 5 days | 4096 | |
