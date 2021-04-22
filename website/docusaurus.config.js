@@ -1,7 +1,7 @@
 module.exports = {
     title: 'eth2-docker',
     tagline: 'Ethereum 2 Docker Client',
-    url: 'https://github.com/eth2-educators/eth2-docker',
+    url: 'https://github.com/eth2-educators/eth2-docker-docs',
     baseUrl: '/',
     onBrokenLinks: 'throw',
     favicon: 'img/Moby-logo.png',
@@ -20,7 +20,7 @@ module.exports = {
             },
             items: [
                 {
-                    href: 'https://github.com/eth2-educators/eth2-docker',
+                    href: 'https://github.com/eth2-educators/eth2-docker-docs',
                     label: 'Get Started',
                     position: 'right',
                 }
@@ -32,7 +32,7 @@ module.exports = {
                 href: '/',
                 src: 'img/Moby-logo.png',
             },
-            copyright: `Copyright © ${new Date().getFullYear()} Prysmatic Labs, LLC., Validator Deposit Contract 0x00000000219ab540356cbb839cbe05303d7705fa`,
+            copyright: `Copyright © ${new Date().getFullYear()} eth2-docker contributors`,
             links: [],
         },
         algolia: {
@@ -49,7 +49,7 @@ module.exports = {
                     path: './docs',
                     routeBasePath: 'docs',
                     sidebarPath: require.resolve('./sidebars.json'),
-                    editUrl: 'https://github.com/prysmaticlabs/documentation/edit/master/website/',
+                    editUrl: 'https://github.com/eth2-educators/eth2-docker-docs/edit/main/website/',
                 },
                 // theme: {
                 //     customCss: require.resolve('./src/css/custom.css'),
