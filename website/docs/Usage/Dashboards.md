@@ -12,8 +12,11 @@ A baseline set of dashboards has been included.
 - [Prysm Dashboard JSON for more than 10 validators](https://raw.githubusercontent.com/GuillaumeMiralles/prysm-grafana-dashboard/master/more_10_validators.json)
 - [Lighthouse Beacon Dashboard JSON](https://raw.githubusercontent.com/sigp/lighthouse-metrics/master/dashboards/Summary.json)
 - [Lighthouse Validator Client Dashboard JSON](https://raw.githubusercontent.com/sigp/lighthouse-metrics/master/dashboards/ValidatorClient.json)
+- [Lighthouse Yoldark34 Dashboard JSON](https://raw.githubusercontent.com/Yoldark34/lighthouse-staking-dashboard/main/Yoldark_ETH_staking_dashboard.json)
 - [Nimbus Dashboard JSON](https://raw.githubusercontent.com/status-im/nimbus-eth2/master/grafana/beacon_nodes_Grafana_dashboard.json)
-- [Teku Dashboard](https://grafana.com/api/dashboards/12199/revisions/1/download)
+- [Teku Dashboard JSON](https://grafana.com/api/dashboards/12199/revisions/1/download)
+- [Geth Dashboard JSON](https://gist.githubusercontent.com/karalabe/e7ca79abdec54755ceae09c08bd090cd/raw/3a400ab90f9402f2233280afd086cb9d6aac2111/dashboard.json)
+- [Node Dashboard JSON](https://raw.githubusercontent.com/eth2-educators/eth2-docker/master/grafana/node-exporter_dashboard.json)
 
 Connect to https://grafana.yourdomain.com/ (or http://YOURSERVERIP:3000/ if not using the reverse proxy), log in as admin/admin, and set a new password.
 

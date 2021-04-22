@@ -10,6 +10,11 @@ staked funds *cannot* be withdrawn.
 
 You may also want to take a look at a [guide to Linux host security](https://www.coincashew.com/coins/overview-eth/guide-or-security-best-practices-for-a-eth2-validator-beaconchain-node#setup-two-factor-authentication-for-ssh-optional).
 
+## eth2-docker QuickStart Shell
+It is recommended to follow the manual steps to fully customize your eth2-docker instance, but to get a quick standard build feel free to use the included `wizard.sh`.  Simply choose the [UID](https://www.carnaghan.com/knowledge-base/how-to-find-your-uiduserid-and-gidgroupid-in-linux-via-the-command-line/) for your linux user, the ETH1 Client, ETH2 Client, If you want to use Grafana, and which network your on.
+
+## eth2-docker Manual Install
+
 1. Install prerequisites
 2. Choose a client and do initial security setup.
 3. Generate deposit files and an eth2 wallet. This can be done within this project, or outside of it
