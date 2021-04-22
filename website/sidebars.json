@@ -6,13 +6,11 @@
 			"About/Clients",
 			"About/Changelog"
 		],
-		
 		"Usage": [
 			"Usage/BeforeYouStart",
 			"Usage/Hardware",
 			"Usage/Prerequisites",
 			"Usage/ClientSetup",
-			"Usage/BuildClient",
 			"Usage/ConfigureWallet",
 			"Usage/ImportKeys",
 			"Usage/StartClient",
@@ -26,12 +24,15 @@
 		],
 		"Support" : [
 			"Support/Recommendations",
+			"Support/Update",
+			"Support/AddValidator",		
 			"Support/Cloud",
-			"Support/Windows",
-			"Support/Addendums",
 			"Support/Moving",
+			"Support/Exit",
+			"Support/Addendums",
+			"Support/Windows",
 			"Support/Tipjar",
 			"Support/Testing"
 		]
-}
+	}	
 }

@@ -4,6 +4,8 @@ title:  Start the Client
 sidebar_label: Start the Client
 ---
 
+# Step 5: Start the client
+
 To start the client:
 ```
 sudo docker-compose up -d eth2

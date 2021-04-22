@@ -1,19 +1,19 @@
 ---
 id: ClientSetup
-title:  Client Setup
+title:  Client Setup and Linux security
 sidebar_label: Client Setup
 ---
 
 # Step 2: Client Setup
 
-With prerequisites installed, choose a client and configure this project to use it.
+With prerequisites installed, choose a client and configure this project to use it. This document also steps
+you through some essential Linux security settings.
 
 If you haven't already, please see [prerequisites](../Usage/Prerequisites.md) and meet them for your OS.
-This file steps you through client choice as well as some basic host security steps on Linux.
 
 ## Non-root user on Linux
 
-If you are logged in as root and do not have a non-root user already, create a non-root user 
+If you are logged in as user `root` and do not have a non-root user already, create a non-root user 
 with your `USERNAME` of choice to log in as, and give it sudo rights. `sudo` allows you to 
 run commands `as root` while logged in as a non-root user. 
 
@@ -31,13 +31,17 @@ administrative rights by adding it to the `sudo` group.
 usermod -aG sudo USERNAME
 ```
 
-Optional: If you used SSH keys to connect to your Ubuntu instance via the root user you
+Optional: If you used SSH keys to connect to your Ubuntu instance via the `root` user you
 will need to [associate the new user with your public key(s)](#ssh-key-authentication-with-linux).
 
-## User as part of docker group
+## Optional: User as part of docker group
 
 Optionally, you may want to avoid needing to type `sudo` every time you run a command. In that
 case, you can make your local user part of the `docker` group.
+
+> Please note that a user that is part of the docker group has `root` privileges through docker,
+> even without the use of `sudo`. You may not want this convenience trade-off and choose to
+> explicitly use `sudo` with all docker commands instead.
 
 ```
 usermod -aG docker USERNAME
@@ -50,6 +54,8 @@ newgrp docker
 ```
 
 ## Static IP
+
+With a VPS, you have a static IP by default. In your home network, that is typically not the case.
 
 You'll want a static IP address for your server, one that doesn't change. This allows easier
 port-forwarding for your Ethereum client peering, and easier management and remote access for you:
@@ -96,8 +102,8 @@ Please choose:
 * Whether to run a grafana dashboard for monitoring
 
 > Note: Teku is written in Java, which makes it memory-hungry. In its default configuration, you may
-> want a machine with 24 GiB of RAM or more. See `.env` for a parameter to restrict Teku to 6 GiB of heap. It
-> may still take more than 6 GiB of RAM in total.
+> want a machine with 24 GiB of RAM or more. See `.env` for a parameter to restrict Teku to 4 GiB of heap. It
+> may still take more than 4 GiB of RAM in total.
 
 First, copy the environment file.<br />
 `cp default.env .env`
@@ -120,16 +126,19 @@ has that functionality built-in.
 
 - Set the `COMPOSE_FILE` entry depending on the client you are going to run,
 and with which options. See below for available compose files. Think of this as
-blocks you combine: One ethereum 2 client, optionally one ethereum 1 node, optionally reporting.
+blocks you combine: One ethereum 2 client, optionally one ethereum 1 node, optionally reporting,
+optionally a reverse proxy for https:// access to reporting.
 - If you are going to use a 3rd-party provider as your eth1 chain source, set `ETH1_NODE` to that URL.
   Look into [Alchemy](https://alchemyapi.io) or see [how to create your own Infura account](https://status-im.github.io/nimbus-eth2/infura-guide)
 - For Lighthouse, you can set `ETH1_NODE` to a comma-separated list, for example `http://eth1:8545,https://<alchemy-url>`
   would use a local eth1 first, and fail back to Alchemy when it does not respond.
-- Adjust ports if you are going to need custom ports instead of the defaults. These are the ports
-exposed to the host, and for the P2P ports to the Internet via your firewall/router.
+- For Prysm and Nimbus, you can set `ETH1_FALLBACK_NODE1` and `ETH1_FALLBACK_NODE2` to be your first and second fallback,
+respectively.
 - Set the `NETWORK` variable to either "mainnet" or a test network such as "prater"
 - If you are running your own eth1 node, set the `ETH1_NETWORK` variable to `mainnet` or `goerli`
 - Set the `GRAFFITI` string if you want a specific string.
+- Adjust ports if you are going to need custom ports instead of the defaults. These are the ports
+exposed to the host, and for the P2P ports to the Internet via your firewall/router.
 
 ### Client compose files
 
@@ -208,7 +217,7 @@ please make sure the grafana port cannot be reached directly. If you need to get
 an [SSH tunnel](https://www.howtogeek.com/168145/how-to-use-ssh-tunneling/) is a good choice.
 
 For a VPS/cloud setup, please take a look at notes on [cloud security](../Support/Cloud.md). You'll want to
-place ufw "in front of" Docker if you are using Grafana or a standalone eth1 (Ethereum PoW) client,
+place ufw "in front of" Docker if you are using Grafana or a standalone eth1 (Ethereum PoW) client without a reverse proxy,
 and if your cloud provider does not offer firewall rules for the VPS.
 
 Ports that I mention can be "Open to Internet" can be either forwarded
@@ -219,20 +228,22 @@ to your node if behind a home router, or allowed in via the VPS firewall.
 > that you are [not behind CGNAT](https://winbuzzer.com/2020/05/29/windows-10-how-to-tell-if-your-isp-uses-carrier-grade-nat-cg-nat-xcxwbt/).
 > Then look at [port-forwarding instructions](https://portforward.com/) for your specific router/firewall. 
 
+Open only the ports that you actually use, depending on your client choices.
+
 - 30303 tcp/udp - local eth1 node P2P. Open to Internet.
 - 9000 tcp/udp - Lighthouse beacon node P2P. Open to Internet.
 - 13000/tcp - Prysm beacon node P2P. Open to Internet.
 - 12000/udp - Prysm beacon node P2P. Open to Internet.
 - 9000 tcp/udp - Teku beacon node P2P. Open to Internet. Note this is the same default port as Lighthouse.
 - 9000 tcp/udp - Nimbus beacon node P2P. Open to Internet. Note this is the same default port as Lighthouse.
-- 3000/tcp - Grafana. **Not** open to Internet, allow locally only. It is insecure http.
-- 22/tcp - SSH. Only open to Internet if this is a remote server (VPS). If open to Internet, configure
+- 443 tcp - https:// access to Grafana and Prysm Web UI via traefik. Open to Internet.
+- 22/tcp - SSH. Only open to Internet if you want to access the server remotely. If open to Internet, configure
   SSH key authentication.
 
 On Ubuntu, the host firewall `ufw` can be used to allow SSH traffic. 
 
 Docker bypasses ufw and opens additional ports directly via "iptables" for all ports that are public on the host,
-which means that the P2P ports need not be explicitly listed in ufw.
+which means that the P2P ports need not be explicitly listed in ufw, and the same is true for the r.
 
 * Allow SSH in ufw so you can still get to your server, while relying on the default "deny all" rule.
   * `sudo ufw allow OpenSSH` will allow ssh inbound on the default port. Use your specific port if you changed
@@ -356,6 +367,15 @@ to my email address, and so didn't.
 This step is highly hardware-dependent. If you went with a server that has IPMI/BMC - out of band management of
 the hardware - then you'll want to configure IPMI to email you on error.
 
-## Continue with the next step
+## Build the client
 
-You are now ready to build and run your eth2 client.
+> **Important** Before you build, verify once more that `LOCAL_UID` in `.env`
+> is the UID of your user (check with `echo $UID`), and that the file `.env`
+> (dot env) is called exactly that, and contains the parameters you expect.
+> You will get errors about missing permissions, during Step 3, if the UID is wrong.
+
+Build all required images. If building from source, this may take 20-30 minutes. Assuming
+you cloned the project into `eth2-docker`:
+```
+cd ~/eth2-docker && sudo docker-compose build
+```

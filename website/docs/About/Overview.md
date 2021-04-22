@@ -4,6 +4,17 @@ title: High Level Overview
 sidebar_label: Overview
 ---
 
+# This project
+
+eth2-docker aims to make running an Ethereum staking node simpler than setting everything up manually,
+while allowing the user choice when it comes to the exact client mix they wish to run.
+
+Recommended hardware, whether your own hardware or a VPS, is:
+- 16 GiB of RAM
+- 4 CPU cores
+- 1TB SSD
+# Node components
+
 An Ethereum 2.0 node has many moving parts. Here's a high level, conceptual overview.
 
 ![Ethereum 2.0 Node](../../static/img/Ethereum-2.0.png)
@@ -17,7 +28,7 @@ When setting up an Ethereum 2.0 node, you'll:
   machine used to run the node, for security reasons.
 - Import validator keys into the validator client, each validator key activates one validator
 - Once the Ethereum 1 and Ethereum 2.0 nodes are fully synced with the chain, deposit Ethereum
-  at the launchpad, 32 eth per validator key. That Ethereum is now locked up until the "merge" 
+  at the launchpad, 32 ETH per validator key. That Ethereum is now locked up until after the "merge" 
   of Ethereum 2.0 with Ethereum 1.
 
 Here's what then happens:
@@ -38,5 +49,11 @@ Here's what then happens:
   described as "Leaking" instead. The most likely mistake that gets you slashed is to run a validator key
   in two separate validator clients simultaneously. The initial slashing penalty on main net has been reduced
   to 1/4th of its eventual value.
-- If all of the above was so much Gobbledegook, you need to read the [Ethereum 2.0 primer](https://ethos.dev/beacon-chain/) and come
+- If all of the above was so much Gobbledegook, you may want to read the [Ethereum 2.0 primer](https://ethos.dev/beacon-chain/) and come
   back to it every time you have questions. 
+
+# Guiding principles:
+
+- Reduce the attack surface of the client as much as feasible.
+- Guide users to good key management as much as possible
+- Create something that makes for a good user experience and guides people new to docker and Linux as much as feasible

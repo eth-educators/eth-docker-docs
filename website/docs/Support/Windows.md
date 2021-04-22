@@ -4,10 +4,10 @@ title:  Windows
 sidebar_label: Windows
 ---
 
-
 Windows may seem like an "easy button". For eth2-docker, it is anything but, and even for
 other ways of running a client, there are multiple challenges. They can all be overcome,
-and, I have yet to see a comprehensive document that addresses all of them.
+and the [eth2 validator wizard project](https://github.com/stake-house/eth2-validator-wizard) aims
+to do just that.
 
 Things to think about with Windows:
 
@@ -17,7 +17,7 @@ Things to think about with Windows:
     - In `Computer\HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\w32time\Config`, set `MaxPollInterval` to hex `c`, decimal `12`.
     - Check `Computer\HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\w32time\Parameters\NtpServer`. If it ends in `0x9` you are done. If it ends in `0x1` you need to adjust `SpecialPollInterval` in `Computer\HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\w32time\TimeProviders\NtpClient` to read `3600`
   - Reboot, then from Powershell run `w32tm /query /status /verbose` to verify that w32time service did start. If it didn't, check triggers again. If all else fails, set it to Automatic Delayed startup
-- Time sync in WSL2 requires a kernel fix, which should be available around April 2021. Windows 10 20H2 or newer is required.
+- Time sync in WSL2 requires a kernel fix, which should be available around H2 2021. Windows 10 20H2 or newer is required.
 - Your node needs to run as a service for 24/7 uptime and security - user should not need to be logged in for node to run. How to differs between Docker Desktop
   and other ways of running. You'd be looking into Windows Task Scheduler.
 - Client diversity. Prysm does Windows-native, Lighthouse may as well. The other two would rely on a setup that runs them in Docker Desktop and WSL2,
@@ -28,7 +28,5 @@ Things to think about with Windows:
 - I've had Docker Desktop fail to start, rarely. It appears to be related to when there is an update available, which would typically be the case
   upon restart of the host. This needs to be solved, I am not sure how.
 
-The best bet for Windows is likely to run Prysm or Lighthouse natively, with Geth, some way of starting them as a service without a user needing to be logged
+The best bet for Windows is likely to run Prysm or Teku natively, with Geth, some way of starting them as a service without a user needing to be logged
 in (Task Scheduler), and improved time sync.
-
-That is absolutely doable. If you document this, please let me know and I will link it from here.
