@@ -16,7 +16,7 @@ module.exports = {
             title: "eth2-docker Docs",
             logo: {
                 alt: "eth2-docker logo",
-		href: '/',
+                href: '/',
                 src: 'img/eth2-moby-logo.png',
             },
             items: [
