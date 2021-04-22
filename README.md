@@ -1,4 +1,4 @@
-# Prysm Documentation Portal
+# eth2-docker Documentation Portal
 
 This repository houses all the documentation pertaining to the eth2-docker tool. It is generated with [Docusaurus](https://github.com/facebook/docusaurus). 
 
