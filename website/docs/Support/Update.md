@@ -1,10 +1,9 @@
 ---
 id: Update
-title:  Client Updates
+title:  Updating the software.
+
 sidebar_label: Client Updates
 ---
-
-# Updating the software
 
 This project does not monitor client versions. It is up to you to decide that you
 are going to update a component. When you are ready to do so, the below instructions
@@ -14,7 +13,7 @@ You can find the current version of your client by running `sudo docker-compose 
 assuming the node is up and running.
 
 
-### The eth2-docker tool itself
+## The eth2-docker tool itself
 
 Inside the project directory, run:<br />
 `git pull`
@@ -25,7 +24,7 @@ the way you need them, with `.env.bak` as a guide.
 Updating the tool itself is not always necessary. Please refer to the [Changelog](../About/Changelog.md) to see
 whether changes have been made that you may want to use.
 
-### The client "stack"
+## The client "stack"
 
 If you are using binary build files - the default - you can update everything
 in the client "stack" with `sudo docker-compose build --pull`. If you
@@ -39,7 +38,7 @@ Then verify that the components are coming up okay again by looking at logs:
 - `sudo docker-compose logs -f validator` for the validator, if using Lighthouse or Prysm
 - `sudo docker-compose logs -f eth1` for the eth1 node, if you are running one locally
 
-### Optional: Just Eth1, instead of the entire "stack"
+## Optional: Just Eth1, instead of the entire "stack"
 
 Run:<br />
 `sudo docker-compose build --no-cache --pull eth1`

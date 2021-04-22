@@ -1,10 +1,8 @@
 ---
 id: ImportKeys
-title:  Import Validator Keys
+title: "Step 4: Import validator keys to the client."
 sidebar_label: Import Validator Keys
 ---
-
-# Step4: Import validator keys to the client
 
 **Warning** Import your validator key(s) to only *one* client.
 

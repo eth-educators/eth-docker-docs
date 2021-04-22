@@ -1,10 +1,8 @@
 ---
 id: Dashboards
-title:  Dashboards
+title: "Step 7: Choose a Grafana dashboard (optional)"
 sidebar_label: Dashboards
 ---
-
-# Step 7: Choose a Grafana dashboard (optional)
 
 A baseline set of dashboards has been included.  
 - [Metanull's Prysm Dashboard JSON](https://raw.githubusercontent.com/metanull-operator/eth2-grafana/master/eth2-grafana-dashboard-single-source-beacon_node.json)

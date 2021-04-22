@@ -1,10 +1,8 @@
 ---
 id: Prerequisites
-title:  Prerequisites.
+title: "Step 1: Install Prerequisites."
 sidebar_label: Prerequisites
 ---
-
-# Step 1: Install Prerequisites
 
 This project relies on docker and docker-compose, and git to bring the
 project itself in. It has been tested on Linux, and is expected to work on MacOS.

@@ -1,10 +1,8 @@
 ---
 id: AddValidator
-title:  Add or recover validators
+title:  Add or recover validators.
 sidebar_label: Add Validators
 ---
-
-# Add or recover validators
 
 You can use eth2.0-deposit-cli to either recover validator signing keys or add
 additional ones, if you wish to deposit more validators against the same mnemonic.

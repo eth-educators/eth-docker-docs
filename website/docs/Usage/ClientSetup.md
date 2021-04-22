@@ -1,10 +1,8 @@
 ---
 id: ClientSetup
-title:  Client Setup and Linux security
+title: "Step 2: Client Setup and Linux security"
 sidebar_label: Client Setup
 ---
-
-# Step 2: Client Setup
 
 With prerequisites installed, choose a client and configure this project to use it. This document also steps
 you through some essential Linux security settings.

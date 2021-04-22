@@ -26,6 +26,7 @@ directory (`cd ~/eth2-docker` by default):
 * Added Traefik reverse proxy for secure access to Grafana and Prysm Web, even eth1 clients.
 * Added wizard.sh shell script for quick initial setup
 * Added node reporter Grafana dashboard to alert on low CPU, Memory or Disk Space
+
 ## v0.2.7 2021-03-10
 
 * Supports Prysm 1.3.3

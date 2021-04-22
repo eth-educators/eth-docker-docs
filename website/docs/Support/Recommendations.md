@@ -1,6 +1,6 @@
 ---
 id: Recommendations
-title:  Recommendations
+title:  Recommendations.
 sidebar_label: Recommendations
 ---
 

@@ -1,6 +1,6 @@
 ---
 id: Testing
-title:  Testing
+title:  Testing.
 sidebar_label: Testing
 ---
 

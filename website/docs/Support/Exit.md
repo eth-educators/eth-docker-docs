@@ -1,11 +1,8 @@
-
 ---
 id: Exit
-title:  Voluntary validator exit
+title:  Voluntary validator exit.
 sidebar_label: Voluntary exit
 ---
-
-# Voluntary validator exit
 
 Ethereum 2.0 has a concept of "voluntary validator exit", which will remove the
 validator from attesting duties. Locked Eth could be withdrawn after the "merge"

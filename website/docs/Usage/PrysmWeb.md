@@ -1,6 +1,6 @@
 ---
 id: PrysmWeb
-title:  Prysm Web
+title:  Prysm Web UI.
 sidebar_label: Prysm Web
 ---
 
