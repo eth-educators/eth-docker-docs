@@ -31,8 +31,7 @@ to Cloudflare's servers. How this is done depends on your domain registrar.
 With NameCheap, "Manage" your domain from the Dashboard, then change "NameServers" to "Custom DNS", add the
 CloudFlare servers, and finally hit the green checkmark next to "Custom DNS".
 
-You will need a "scoped API token" from CloudFlare's [API page](https://dash.cloudflare.com/profile/api-tokens). Create a token with `Zone.DNS:Edit`, `Zone.Zone:Read` and `Zone.Zone Settings:Read` permissions,
-for the zone (domain) you are going to use. Make a note of the Token secret, it will only be shown to you once.
+You will need a "scoped API token" from CloudFlare's [API page](https://dash.cloudflare.com/profile/api-tokens). Create a token with `Zone.DNS:Edit`, `Zone.Zone:Read` and `Zone.Zone Settings:Read` permissions, for all zones. This will not work if it is issued for a specific zone only. Make a note of the Token secret, it will only be shown to you once.
 
 With that, in the `.env` file:
 - Set `CF_EMAIL` to your CloudFlare login email
