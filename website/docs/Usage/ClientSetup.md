@@ -128,12 +128,12 @@ blocks you combine: One ethereum 2 client, optionally one ethereum 1 node, optio
 optionally a reverse proxy for https:// access to reporting.
 - If you are going to use a 3rd-party provider as your eth1 chain source, set `ETH1_NODE` to that URL.
   Look into [Alchemy](https://alchemyapi.io) or see [how to create your own Infura account](https://status-im.github.io/nimbus-eth2/infura-guide)
-- For Lighthouse, you can set `ETH1_NODE` to a comma-separated list, for example `http://eth1:8545,https://<alchemy-url>`
+- For Teku, Lighthouse and Nimbus, you can set `ETH1_NODE` to a comma-separated list, for example `http://eth1:8545,https://<alchemy-url>`
   would use a local eth1 first, and fail back to Alchemy when it does not respond.
-- For Prysm and Nimbus, you can set `ETH1_FALLBACK_NODE1` and `ETH1_FALLBACK_NODE2` to be your first and second fallback,
+- For Prysm, you can set `ETH1_FALLBACK_NODE1` and `ETH1_FALLBACK_NODE2` to be your first and second fallback,
 respectively.
 - Set the `NETWORK` variable to either "mainnet" or a test network such as "prater"
-- If you are running your own eth1 node, set the `ETH1_NETWORK` variable to `mainnet` or `goerli`
+- If you are running your own eth1 node, set the `ETH1_NETWORK` variable to `mainnet` or `goerli` testnet
 - Set the `GRAFFITI` string if you want a specific string.
 - Adjust ports if you are going to need custom ports instead of the defaults. These are the ports
 exposed to the host, and for the P2P ports to the Internet via your firewall/router.

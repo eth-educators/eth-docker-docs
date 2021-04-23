@@ -21,6 +21,12 @@ directory (`cd ~/eth2-docker` by default):
   Then `sudo docker-compose build --pull` to update the rest of the "stack"
 * `sudo docker-compose down && sudo docker-compose up -d eth2` - use the new client version
 
+## v0.3.1 2021-04-22
+
+*This is an optional upgrade, that adds new features*
+
+* Added support for new Teku 21.4.1 features: eth1 failover endpoints, and rapid weak subjectivity sync from infura eth2 project
+
 ## v0.3.0 2021-04-21
 
 *This is an optional upgrade, that adds new features*
