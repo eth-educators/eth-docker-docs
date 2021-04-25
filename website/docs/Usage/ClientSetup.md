@@ -165,8 +165,8 @@ Optionally, choose a reporting package:
 - `nimbus-grafana.yml` - grafana dashboard for Nimbus
 - `teku-grafana.yml` - grafana dashboard for Teku
 - `geth-grafana.yml` - grafana dashboard for Geth, to be combined with one of the client dashboards: Does not work standalone currently. Example `COMPOSE_FILE=lh-base.yml:geth.yml:lh-grafana.yml:geth-grafana.yml:grafana-insecure.yml`
-- `grafana-insecure.yml` - to map the Grafana port (default: 3000) to the host. This is not encrypted and should not be exposed to the Internet.
-- `prysm-web-insecure.yml` - to map the Prysm web port (default: 3500) to the host. This is not encrypted and should not be exposed to the Internet.
+- `grafana-insecure.yml` - to map the Grafana port (default: 3000) to the host. This is not encrypted and should not be exposed to the Internet. Used *in addition* to `CLIENT-grafana.yml`, not instead. Using encryption instead via `traefik-*.yml` is recommended.
+- `prysm-web-insecure.yml` - to map the Prysm web port (default: 3500) to the host. This is not encrypted and should not be exposed to the Internet. Used *in addition* to `prysm-web.yml`, not instead. Using encryption instead via `traefik-*.yml` is recommended.
 
 > See [Prysm Web](../Usage/PrysmWeb.md) for notes on using the Prysm Web UI
 
