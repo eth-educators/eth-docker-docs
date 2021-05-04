@@ -51,10 +51,10 @@ Type your seed, and any password you like, as you'll throw away the duplicate `k
 
 Compare the `deposit_data` JSON files to ensure the files are identical.
 ```
-diff -s .eth2/validator_keys/deposit_data*.json .eth2/seed_check/deposit_data*.json
+diff -s .eth2/validator_keys/deposit_data*.json .eth2/seed_check/validator_keys/deposit_data*.json
 ```
 
 Cleanup duplicate deposit_data.
 ```
-rm ./eth2/seed_check/*
+rm .eth2/seed_check/validator_keys/*
 ```
