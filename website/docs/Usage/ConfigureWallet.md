@@ -22,8 +22,16 @@ make sure that `COMPOSE_FILE` contains `deposit-cli.yml`
 
 Make sure you're in the project directory, `cd ~/eth2-docker` by default.
 
+When creating keys, you can specify an Ethereum address that a future
+withdrawal will be paid to. If you have a hardware wallet that withdrawals
+should go to, this is a good option.
+> Make sure the Ethereum address is correct, you cannot change it
+> after you deposit. You can also remove that parameter, in which
+> case withdrawals would be done with the mnemonic seed, not against
+> a fixed address
+
 This command will create the keys to deposit Eth against:<br />
-`sudo docker-compose run --rm deposit-cli-new --uid $(id -u)`
+`sudo docker-compose run --rm deposit-cli-new --eth1_withdrawal_address YOURHARDWAREWALLETADDRESS --uid $(id -u)`
 > Specifying the uid is optional. If this is not done,
 > the generated files will be owned by the user with uid `1000`
 
@@ -50,7 +58,7 @@ They go into `.eth2/validator_keys` in this project directory, not directly unde
 From the project directory:
 
 ```
-sudo docker-compose run --rm deposit-cli-existing --folder seed_check --uid $(id -u)
+sudo docker-compose run --rm deposit-cli-existing --folder seed_check ---eth1_withdrawal_address YOURHARDWAREWALLETADDRESS -uid $(id -u)
 ```
 > Specifying the uid is optional. If this is not done,
 > the generated files will be owned by the user with uid `1000`

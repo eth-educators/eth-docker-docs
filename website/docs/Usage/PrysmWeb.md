@@ -49,7 +49,7 @@ command line.
 
 # Import keys
 
-Assuming you have some `keystore-m` JSON files from `sudo docker-compose run deposit-cli` or some other way
+Assuming you have some `keystore-m` JSON files from `sudo docker-compose run --rm deposit-cli-new --eth1_withdrawal_address YOURHARDWAREWALLETADDRESS` or some other way
 of creating Launchpad compatible keys, click on "Create a Wallet".
 
 > These files are in `.eth2/validator_keys` if you used the `deposit-cli` workflow. You'll want to
