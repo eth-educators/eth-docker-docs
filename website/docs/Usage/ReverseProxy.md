@@ -1,10 +1,10 @@
 ---
 id: ReverseProxy
-title: "Additional security: Reverse Proxy"
-sidebar_label: Reverse Proxy
+title: "Additional security: Secure Web Proxy"
+sidebar_label: Secure Web Proxy
 ---
 
-You can use the "[traefik](https://traefik.io/)" reverse proxy to get to the Grafana Dashboard and Prysm Web UI via https:// instead
+You can use the "[traefik](https://traefik.io/)" secure web proxy to get to the Grafana Dashboard and Prysm Web UI via https:// instead
 of insecure http://. It can also be used to encrypt the RPC and WS ports of your eth1 node, so they are reachable via
 https:// and wss:// respectively.
 

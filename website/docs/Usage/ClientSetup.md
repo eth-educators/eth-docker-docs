@@ -111,16 +111,6 @@ First, copy the environment file.<br />
 > which this project does not use.
  
 Then, adjust the contents of `.env`. On Ubuntu Linux, you can run `nano .env`.
-- If you are on Linux, **adjust `LOCAL_UID` to the UID of the logged-in user**. 
-`echo $UID` will show it to you. It is highly recommended to run as a non-root
-user on Linux. On [Debian](https://devconnected.com/how-to-add-a-user-to-sudoers-on-debian-10-buster/)
-you may need to install `sudo` and add your user to the `sudoers` group. Ubuntu
-has that functionality built-in.
-
-> **Important**: The step above needs to be completed before the client is
-> built. Use the same user to configure, build and run the client. If the
-> UID in `.env` does not match the UID of the user, then you will get
-> permissions errors during use.
 
 - Set the `COMPOSE_FILE` entry depending on the client you are going to run,
 and with which options. See below for available compose files. Think of this as
@@ -170,12 +160,16 @@ Optionally, choose a reporting package:
 
 > See [Prysm Web](../Usage/PrysmWeb.md) for notes on using the Prysm Web UI
 
+Optionally, make the eth2.0-deposit-cli available:
+
+- `deposit-cli.yml` - Used to generate mnemonics and signing keys. Consider running key generation offline, instead, and copying the generated `keystore-m` files into this tool 
+
 Optionally, add encryption to the reporting dashboard:
 
 - `traefik-cf.yml` - use encrypting reverse proxy and use CloudFlare for DNS management
 - `traefik-aws.yml` - use encrypting reverse proxy and use AWS Route53 for DNS management
 
-With these, you wouldn't use the `-insecure.yml` files. Please see [Reverse Proxy Instructions](../Usage/ReverseProxy.md) for setup instructions for either option.
+With these, you wouldn't use the `-insecure.yml` files. Please see [Secure Web Proxy Instructions](../Usage/ReverseProxy.md) for setup instructions for either option.
 
 For example, Lighthouse with local geth and grafana:
 `COMPOSE_FILE=lh-base.yml:geth.yml:lh-grafana.yml:grafana-insecure.yml`
@@ -207,15 +201,10 @@ though the chance of additional earnings is low initially, as whistleblower rewa
 
 ## Build the client
 
-> **Important** Before you build, verify once more that `LOCAL_UID` in `.env`
-> is the UID of your user (check with `echo $UID`), and that the file `.env`
-> (dot env) is called exactly that, and contains the parameters you expect.
-> You will get errors about missing permissions, during Step 3, if the UID is wrong.
-
-Build all required images. If building from source, this may take 20-30 minutes. Assuming
+Build all required images. If building from source, this may take up to an hour. Assuming
 you cloned the project into `eth2-docker`:
 ```
-cd ~/eth2-docker && sudo docker-compose build
+cd ~/eth2-docker && sudo docker-compose build --pull
 ```
 
 ## Additional and recommended Linux security steps
