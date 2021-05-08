@@ -13,13 +13,37 @@ directory (`cd ~/eth2-docker` by default):
 * Optional: `cp .env .env.bak && cp default.env .env` - get the new default.env contents
 * If you got the new `default.env` in the previous step, adjust contents of new `.env`, use `.env.bak` for guidance.
   You can `diff .env .env.bak` to see the differences.
-  The most common variables to be adjusted are `LOCAL_UID`, `COMPOSE_FILE`, `ETH1_NODE` (and its fallback
+  The most common variables to be adjusted are `COMPOSE_FILE`, `ETH1_NODE` (and its fallback
   if Prysm), `GRAFFITI`, `NETWORK` and `ETH1_NETWORK`. If you made changes to peers or ports, recreate those as well.
 * `sudo docker-compose build --pull` if you are using binary builds, the default. This fetches new client versions.
-* **Only** if you are using source builds: `sudo docker-compose build --pull --no-cache beacon`, and
-  for Prysm source build **only** also `sudo docker-compose build --pull --no-cache validator`.
-  Then `sudo docker-compose build --pull` to update the rest of the "stack"
+* **Only** if you are using source builds: `sudo docker-compose build --pull --no-cache`
 * `sudo docker-compose down && sudo docker-compose up -d eth2` - use the new client version
+
+## v1.0.0 2021-05-06
+
+*This is an optional upgrade, that contains bugfixes and new features*
+
+With funding from the Ethereum Foundation, we are at v1.0.0! This update makes significant changes to
+the way permissions are handled. While this should improve your experience, please be aware that your `.env` file
+should likely be re-created with a fresh copy of `default.env`, and your specific changes copied in. See above for
+instructions.
+
+* `LOCAL_UID` is no longer being used in `.env`
+* Beacon and Ethereum node containers now run with a "high" user ID, not the user ID of the logged-in user. In
+  order to make this seamless, they use a docker-entrypoint script that changes permissions of existing setups
+  on the fly
+* PLEASE UPDATE BEFORE October 2021. The entrypoint script will be removed again at that point, and
+  any setups that haven't updated by then would have permissions issues when they do update.
+* Prysm now runs on the Prater testnet without the need to manually pass in the genesis state
+* Source builds for Nimbus, Prysm have been fixed; all source builds tested
+* `docker-compose build --pull` is now much faster
+* deposit-cli has been removed from the `CLIENT-base.yml` files. If you do wish to use it, rather than
+  generating keys offline, please add `deposit-cli.yml` to `COMPOSE_FILE`
+* deposit-cli services have been renamed to `deposit-cli-new` and `deposit-cli-existing`
+* The `validator-voluntary-exit` service has been renamed to just `validator-exit`
+* Support for voluntary validator exit when using Teku
+* Preliminary beta configuration script, run `./eth2d.sh` for a quick setup
+
 
 ## v0.3.1 2021-04-22
 

@@ -29,7 +29,7 @@ a new one elsewhere, you may need to know how to move your key(s) safely.
 
 - [ ] Your signing keys in keystore-m JSON format, and the password for them
 >  If you do not have these any more, you can recreate them with the `existing-mnemonic`
->  workflow of deposit-cli, `sudo docker-compose run --rm deposit-cli-add-recover` in
+>  workflow of deposit-cli, `sudo docker-compose run --rm deposit-cli-existing` in
 >  this project, or offline to be very secure.
 - [ ] Ideally, an export of the slashing protection DB. This is a work in progress by
   the client teams.

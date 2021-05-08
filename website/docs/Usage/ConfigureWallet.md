@@ -17,10 +17,23 @@ after the "merge" of Ethereum 2.0 with Ethereum 1. You need the seed phrase or y
 > copy them to the machine the node will run on, and continue from
 > "You brought your own keys", below.
 
+If you are going to use the deposit-cli that is bundled with eth2-docker, please
+make sure that `COMPOSE_FILE` contains `deposit-cli.yml`
+
 Make sure you're in the project directory, `cd ~/eth2-docker` by default.
 
+When creating keys, you can specify an Ethereum address that a future
+withdrawal will be paid to. If you have a hardware wallet that withdrawals
+should go to, this is a good option.
+> Make sure the Ethereum address is correct, you cannot change it
+> after you deposit. You can also remove that parameter, in which
+> case withdrawals would be done with the mnemonic seed, not against
+> a fixed address
+
 This command will create the keys to deposit Eth against:<br />
-`sudo docker-compose run --rm deposit-cli`
+`sudo docker-compose run --rm deposit-cli-new --eth1_withdrawal_address YOURHARDWAREWALLETADDRESS --uid $(id -u)`
+> Specifying the uid is optional. If this is not done,
+> the generated files will be owned by the user with uid `1000`
 
 Choose the number of validators you wish to create.
 > A validator is synonymous to one 32 Ethereum stake. Multiple validators
@@ -38,23 +51,26 @@ They go into `.eth2/validator_keys` in this project directory, not directly unde
 
 > You can transfer files from your PC to the node using scp. A graphical
 > tool such as WinSCP will work, or you can use [command line scp](https://linuxize.com/post/how-to-use-scp-command-to-securely-transfer-files/).
+
 ### Test your Seed Phrase
 *introduced in releases post 3/9/2020. Update if you are on an older version.*
 
 From the project directory:
 
 ```
-sudo docker-compose run --rm deposit-cli-add-recover --folder seed_check
+sudo docker-compose run --rm deposit-cli-existing --folder seed_check ---eth1_withdrawal_address YOURHARDWAREWALLETADDRESS -uid $(id -u)
 ```
+> Specifying the uid is optional. If this is not done,
+> the generated files will be owned by the user with uid `1000`
 
 Type your seed, and any password you like, as you'll throw away the duplicate `keystore-m` files.
 
 Compare the `deposit_data` JSON files to ensure the files are identical.
 ```
-diff -s .eth2/validator_keys/deposit_data*.json .eth2/seed_check/validator_keys/deposit_data*.json
+diff -s .eth2/validator_keys/deposit_data*.json .eth2/seed_check/deposit_data*.json
 ```
 
 Cleanup duplicate deposit_data.
 ```
-rm .eth2/seed_check/validator_keys/*
+rm ./eth2/seed_check/*
 ```
