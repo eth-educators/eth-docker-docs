@@ -19,6 +19,17 @@ directory (`cd ~/eth2-docker` by default):
 * **Only** if you are using source builds: `sudo docker-compose build --pull --no-cache`
 * `sudo docker-compose down && sudo docker-compose up -d eth2` - use the new client version
 
+## v1.1.0 2021-05-12
+
+*This is an optional upgrade, that contains new features*
+
+* Validator-only option for Teku and Lighthouse!
+* Teku as the default choice in `default.env`, now that its out-of-the-box RAM use is < 5 GiB
+
+* If you are using any version prior to v1.0.0 released 2021-05-06: PLEASE UPDATE BEFORE October 2021.
+  The script that adjusts permissions for existing setups will be removed again at that point, and
+  any setups that haven't updated by then would have permissions issues when they do update.
+
 ## v1.0.0 2021-05-06
 
 *This is an optional upgrade, that contains bugfixes and new features*

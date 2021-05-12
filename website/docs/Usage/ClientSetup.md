@@ -87,9 +87,9 @@ You know this was successful when your prompt shows `user@host:~/eth2-docker`
 Please choose:
 
 * The eth2 client you wish to run
+  * Teku
   * Lighthouse
   * Prysm
-  * Teku
   * Nimbus
 * Your source of eth1 data
   * geth
@@ -98,10 +98,6 @@ Please choose:
   * nethermind - Feedback welcome.
   * 3rd-party
 * Whether to run a grafana dashboard for monitoring
-
-> Note: Teku is written in Java, which makes it memory-hungry. In its default configuration, you may
-> want a machine with 24 GiB of RAM or more. See `.env` for a parameter to restrict Teku to 4 GiB of heap. It
-> may still take more than 4 GiB of RAM in total.
 
 First, copy the environment file.<br />
 `cp default.env .env`
@@ -125,6 +121,8 @@ respectively.
 - Set the `NETWORK` variable to either "mainnet" or a test network such as "prater"
 - If you are running your own eth1 node, set the `ETH1_NETWORK` variable to `mainnet` or `goerli` testnet
 - Set the `GRAFFITI` string if you want a specific string.
+- If you are going to run a validator client only, no beacon node, set `BN_NODE` to the URL of your eth2 Infura project, and
+  choose one of the `CLIENT-validator.yml` entries in `COMPOSE_FILE`.
 - Adjust ports if you are going to need custom ports instead of the defaults. These are the ports
 exposed to the host, and for the P2P ports to the Internet via your firewall/router.
 
@@ -139,6 +137,17 @@ Choose one eth2 beacon client:
 - `prysm-base.yml` - Prysm
 - `teku-base.yml` - Teku
 - `nimbus-base.yml` - Nimbus
+
+If you'd rather just run a validator client, and back-end to an Infura eth2 beacon:
+
+- `lh-validator.yml` - Lighthouse validator only
+- `teku-validator.yml` - Teku validator only
+
+> The `BN_NODE` variable in `.env` will need to be set to the URL your
+> Infura eth2 project shows you.
+
+> Grafana is expected to not work with this option, as there is no beacon
+> to get data from. You can use https://beaconcha.in/ instead.
 
 Optionally, choose one eth1 node, unless you are using a 3rd-party provider:
 

@@ -9,8 +9,8 @@ Recommended hardware profile:
 * Quad Core CPU
 * 1TB "mainstream" SSD - neither QLC nor DRAMless
 
-Generally, 8 GiB of RAM is a tight fit, and 16 GiB is recommended. Some clients
-such as Teku may need more RAM out of the box.
+Generally, 8 GiB of RAM is a tight fit, and 16 GiB is recommended.
+
 
 2 or 4 CPU cores, and an SSD for storage because the node databases
 are so IOPS-heavy. The Geth eth1 node would require around 350GiB of storage by
