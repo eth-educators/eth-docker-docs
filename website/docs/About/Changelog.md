@@ -23,6 +23,11 @@ directory (`cd ~/eth2-docker` by default):
 
 *This is an optional upgrade, that contains new features*
 
+
+* This release contains breaking changes to `.env`. Please recreate it from `default.env`, see above.
+* All v1.x releases change the docker images used to run your node. Please be sure to `docker-compose build --pull`
+  before (re)starting your node software.
+
 * Validator-only option for Teku and Lighthouse!
 * Teku as the default choice in `default.env`, now that its out-of-the-box RAM use is < 5 GiB
 
