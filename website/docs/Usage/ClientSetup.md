@@ -82,7 +82,13 @@ You know this was successful when your prompt shows `user@host:~/eth2-docker`
 > All commands that have you interact with the "dockerized" client will
 > be carried out from within that directory.
 
-## Client choice
+## eth2-docker QuickStart Shell
+
+To fully customize your eth2-docker instance, follow the manual steps. To get a quick standard build you can use the included `./ethd config` config wizard.  Simply choose the ETH2 Client, ETH1 Client, whether you want to use a Grafana dashboard, and which network you'll be running on.
+
+The same script can also be used to stop, start and update the node. Run `./ethd` for a help screen.
+
+## Client choice - manual setup
 
 Please choose:
 
