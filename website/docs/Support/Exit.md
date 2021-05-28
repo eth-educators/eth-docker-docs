@@ -4,11 +4,11 @@ title:  Voluntary validator exit.
 sidebar_label: Voluntary exit
 ---
 
-Ethereum 2.0 has a concept of "voluntary validator exit", which will remove the
-validator from attesting duties. Locked Eth could be withdrawn after the "merge"
+Ethereum PoS has a concept of "voluntary validator exit", which will remove the
+validator from attesting duties. Locked ETH could be withdrawn after the "merge"
 of the Proof-of-Work and Proof-of-Stake Ethereum chains, and not sooner.
 
-Exiting a validator requires a fully synced beacon node.
+Exiting a validator requires a fully synced consensus client.
 
 ## Teku
 
@@ -24,20 +24,20 @@ prompts.
 
 The exit procedure for lighthouse is not very refined, yet.
 
-- Copy the `keystore-m` JSON files into `.eth2/validator_keys/` in this project
+- Copy the `keystore-m` JSON files into `.eth/validator_keys/` in this project
   directory.
 - Run `sudo docker-compose run --rm validator-exit /keys/<name-of-keystore-file>`,
   once for each keystore (validator) you wish to exit.
 - Follow prompts.
 
-> The directory `.eth2/validator_keys` is passed through to docker as `/keys`. Lighthouse
+> The directory `.eth/validator_keys` is passed through to docker as `/keys`. Lighthouse
 > expects you to explicitly name the `keystore-m` file for which you wish to process an exit. Because this can
 > be confusing, here's an example:
 ```
-yorick@ethlinux:~/eth2-pyrmont$ ls .eth2/validator_keys/
+yorick@ethlinux:~/eth-pyrmont$ ls .eth/validator_keys/
 deposit_data-1605672506.json  keystore-m_12381_3600_0_0_0-1605672506.json
-yorick@ethlinux:~/eth2-pyrmont$ sudo docker-compose run --rm validator-exit /keys/keystore-m_12381_3600_0_0_0-1605672506.json
-Starting eth2-pyrmont_beacon_1 ... done
+yorick@ethlinux:~/eth-pyrmont$ sudo docker-compose run --rm validator-exit /keys/keystore-m_12381_3600_0_0_0-1605672506.json
+Starting eth-pyrmont_consensus_1 ... done
 Running account manager for pyrmont testnet
 validator-dir path: "/keys" 
 Enter the keystore password for validator in "/keys/keystore-m_12381_3600_0_0_0-1605672506.json"  

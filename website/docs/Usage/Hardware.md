@@ -58,9 +58,9 @@ For a small uATX form factor, consider Silverstone ML04B.
 [Joe's hardware roundup](https://github.com/jclapis/rocketpool.github.io/blob/main/src/guides/local/hardware.md) has additional build ideas.
 
 On SSD size, 1TB is conservative and assumes you are running
-an eth1 node as well, which currently takes about 350 GiB and keeps
-growing. The eth2 db is expected to be far smaller, though exact figures
-won't be seen until the merge with eth1 is complete.
+an execution client as well, which currently takes about 350 GiB and keeps
+growing. The consensus client db is expected to be far smaller, though exact figures
+won't be seen until the merge with Ethereum PoW is complete.
 
 You'll want decent write endurance. The two models mentioned here have 600TB
 write endurance each.<br />

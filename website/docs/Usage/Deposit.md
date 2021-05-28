@@ -4,12 +4,12 @@ title: "Step 6: Deposit ETH to Launchpad"
 sidebar_label: Deposit to Launchpad
 ---
 
-**Caution**: You may wish to wait until the beacon node is fully synchronized before you deposit. Check
-its logs with `sudo docker-compose logs -f beacon`. This safe-guards against the validator being
-marked offline if your validator is activated before the beacon syncs.
+**Caution**: You may wish to wait until the consensus client is fully synchronized before you deposit. Check
+its logs with `sudo docker-compose logs -f consensus`. This safe-guards against the validator being
+marked offline if your validator is activated before the consensus client syncs.
 
 Once you are ready, you can send eth to the deposit contract by using
-the `.eth2/validator_keys/deposit_data-TIMESTAMP.json` file at the [Prater launchpad](https://prater.launchpad.ethereum.org/)
+the `.eth/validator_keys/deposit_data-TIMESTAMP.json` file at the [Prater launchpad](https://prater.launchpad.ethereum.org/)
 or [Mainnet launchpad](https://launchpad.ethereum.org). This file was created in Step 3.
 
 > You can transfer files from your node to a machine with a browser using scp. A graphical

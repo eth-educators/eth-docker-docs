@@ -4,7 +4,7 @@ title:  Windows
 sidebar_label: Windows
 ---
 
-Windows may seem like an "easy button". For eth2-docker, it is anything but, and even for
+Windows may seem like an "easy button". For eth-docker, it is anything but, and even for
 other ways of running a client, there are multiple challenges. They can all be overcome,
 and the [eth2 validator wizard project](https://github.com/stake-house/eth2-validator-wizard) aims
 to do just that.
@@ -22,7 +22,7 @@ Things to think about with Windows:
   and other ways of running. You'd be looking into Windows Task Scheduler.
 - Client diversity. Prysm does Windows-native, Lighthouse may as well. The other two would rely on a setup that runs them in Docker Desktop and WSL2,
   thus Linux, afaik.
-- eth1 node - Prysm sidesteps this with 3rd-party, and Geth runs natively. For other clients, you're looking at Docker Desktop again.
+- execution client - Prysm sidesteps this with 3rd-party, and Geth runs natively. For other clients, you're looking at Docker Desktop again.
 - Remote administration - SSH? RDP? If RDP, do you need a "proper" cert to encrypt?
 - If using Docker Desktop and WSL2, consider that WSL2 runs as a virtual network. Work-around is to run a Powerscript that addresses needed port-forwarding.
 - I've had Docker Desktop fail to start, rarely. It appears to be related to when there is an update available, which would typically be the case

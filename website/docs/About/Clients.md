@@ -14,13 +14,12 @@ Currently supported clients:
 - Nimbus
 
 Currently supported optional components:
-- geth, local eth1 node
-- openethereum, local eth1 node
-- besu, local eth1 node - Feedback welcome.
-- nethermind, local eth1 node - Feedback welcome.
+- geth, local execution client
+- besu, local execution client - Feedback welcome.
+- nethermind, local execution client - Feedback welcome.
 
-> Use one of the local eth1 node options or a 3rd-party provider of eth1 chain data to "feed"
-> your eth2 beacon node, so you can [propose](https://ethos.dev/beacon-chain/) blocks.
+> Use one of the local execution client options or a 3rd-party provider of Ethereum chain data to "feed"
+> your consensus client, so you can [propose](https://ethos.dev/beacon-chain/) blocks.
 
 - Grafana dashboard
 - Prysm Web UI

@@ -5,15 +5,15 @@ sidebar_label: Secure Web Proxy
 ---
 
 You can use the "[traefik](https://traefik.io/)" secure web proxy to get to the Grafana Dashboard and Prysm Web UI via https:// instead
-of insecure http://. It can also be used to encrypt the RPC and WS ports of your eth1 node, so they are reachable via
+of insecure http://. It can also be used to encrypt the RPC and WS ports of your execution client, so they are reachable via
 https:// and wss:// respectively.
 
 You will require a domain name for this to work. Where you buy it is up to you. One option is NameCheap.
 
 As a 450m overview, traefik will be reachable via port 443 / https from the Internet (configurable, could be 8443 if you prefer). All
 browsing attempts to it will be checked by traefik for their hostname, and it steers traffic to the right container thereby: To Grafana, to Prysm Web UI,
-and to eth1. Grafana and Prysm Web UI are reachable via traefik automatically if you have them and traefik enabled at the same time; eth1 reachability
-requires an additional `eth1-traefik.yml`, since having it reachable is not a standard use case.
+and to the execution client. Grafana and Prysm Web UI are reachable via traefik automatically if you have them and traefik enabled at the same time; execution client reachability
+requires an additional `ec-traefik.yml`, since having it reachable is not a standard use case.
 
 For example, say I have a domain `example.com`, left the `_HOST` and port settings in `.env` at default, and am running Prysm with Grafana and Web UI.
 `https://grafana.example.com/` will get me to my Grafana dashboard, and `https://prysm.example.com` to my Prysm Web UI.
@@ -47,8 +47,8 @@ default names in `.env`, set the CNAMEs for only the services you use:
 
 - `grafana` CNAME to `@`, proxied, for the Grafana dashboard
 - `prysm` CNAME to `@`, proxied, for the Prysm Web UI
-- `eth1` CNAME to `@`, DNS only, for the eth1 RPC https:// port
-- `eth1ws` CNAME to `@`, DNS only, for the eth1 WS wss:// port
+- `ec` CNAME to `@`, DNS only, for the execution client RPC https:// port
+- `ecws` CNAME to `@`, DNS only, for the execution client WS wss:// port
 
 If you are using CloudFlare to proxy Grafana / Prysm web, you'll also want to set these:
 
@@ -74,7 +74,7 @@ Assuming you use the default names in `.env`:
 
 - An A record for your first service such as `grafana.example.com`, or on the domain itself `example.com` to use for CNAMEs. The A record will be the IP
   address of your node
-- Optionally, additional CNAMEs for `grafana`, `prysm`, `eth1` and `eth1ws`, depending on which services you want to reverse-proxy on the node
+- Optionally, additional CNAMEs for `grafana`, `prysm`, `ec` and `ecws`, depending on which services you want to reverse-proxy on the node
 
 ## Traefik common settings
 
@@ -85,8 +85,8 @@ Two settings in `.env` are required, and a few are optional.
 
 Optionally, you can change the names that services are reachable under, and adjust CNAMEs to match. These are the `_HOST` variables.
 
-## Separating beacon and validator client
+## Separating consensus client and validator client
 
-Traefik, or the Let's Encrypt certificate it generates, could be used to separate beacon and validator client: The beacon would be reachable, TLS-encrypted,
+Traefik, or the Let's Encrypt certificate it generates, could be used to separate consensus client and validator client: The consensus client would be reachable, TLS-encrypted,
 over the Internet, and the validator client would be on a separate machine. This is not a typical solo staking setup, and so this has not been implemented
-in eth2-docker. If even a single person can benefit from this setup, we will support it. Please get in touch via [Discord](https://discord.gg/fWRKvtrm9X) if that's you.
+in eth-docker. If even a single person can benefit from this setup, we will support it. Please get in touch via [Discord](https://discord.gg/fWRKvtrm9X) if that's you.
