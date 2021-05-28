@@ -20,7 +20,7 @@ the Web UI Wallet Creation.
 > This password needs to be at least 8 characters long and contain both a number and a special
 > character. The script that stores the password here does not enforce that, but the Web UI does.
 
-Either way, once you are done, run `sudo docker-compose up -d eth2` to start the Prysm beacon
+Either way, once you are done, run `sudo docker-compose up -d eth` to start the Prysm consensus client
 and validator.
 
 ## Connect to the Web UI
@@ -52,7 +52,7 @@ command line.
 Assuming you have some `keystore-m` JSON files from `sudo docker-compose run --rm deposit-cli-new --eth1_withdrawal_address YOURHARDWAREWALLETADDRESS` or some other way
 of creating Launchpad compatible keys, click on "Create a Wallet".
 
-> These files are in `.eth2/validator_keys` if you used the `deposit-cli` workflow. You'll want to
+> These files are in `.eth/validator_keys` if you used the `deposit-cli` workflow. You'll want to
 > move them to the machine you are running the browser on.
 
 Choose to create an "Imported Wallet" and enter `/var/lib/prysm` as the wallet directory.
@@ -73,7 +73,7 @@ If you chose to start the validator with a stored wallet password, verify that i
 correctly by running these commands, one at a time:
 
 ```
-sudo docker-compose down && sudo docker-compose up -d eth2
+sudo docker-compose down && sudo docker-compose up -d eth
 sudo docker-compose logs -f validator
 ```
 

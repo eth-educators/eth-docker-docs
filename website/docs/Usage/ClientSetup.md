@@ -73,18 +73,18 @@ From a terminal and logged in as the user you'll be using from now on, and assum
 you'll be storing the project in your `$HOME`, run:
 
 ```
-cd ~ && git clone https://github.com/eth2-educators/eth2-docker.git && cd eth2-docker
+cd ~ && git clone https://github.com/eth2-educators/eth-docker.git && cd eth-docker
 ```
 
-You know this was successful when your prompt shows `user@host:~/eth2-docker`
+You know this was successful when your prompt shows `user@host:~/eth-docker`
 
-> Note: All work will be done from within the `~/eth2-docker` directory.
+> Note: All work will be done from within the `~/eth-docker` directory.
 > All commands that have you interact with the "dockerized" client will
 > be carried out from within that directory.
 
-## eth2-docker QuickStart Shell
+## eth-docker QuickStart Shell
 
-To fully customize your eth2-docker instance, follow the manual steps. To get a quick standard build you can use the included `./ethd config` config wizard.  Simply choose the ETH2 Client, ETH1 Client, whether you want to use a Grafana dashboard, and which network you'll be running on.
+To fully customize your eth-docker instance, follow the manual steps. To get a quick standard build you can use the included `./ethd config` config wizard.  Simply choose the Consensus Client, Execution Client, whether you want to use a Grafana dashboard, and which network you'll be running on.
 
 The same script can also be used to stop, start and update the node. Run `./ethd` for a help screen.
 
@@ -92,14 +92,13 @@ The same script can also be used to stop, start and update the node. Run `./ethd
 
 Please choose:
 
-* The eth2 client you wish to run
+* The consensus client you wish to run
   * Teku
   * Lighthouse
   * Prysm
   * Nimbus
-* Your source of eth1 data
+* Your source of Ethereum PoW chain data
   * geth
-  * openethereum
   * besu - Feedback welcome.
   * nethermind - Feedback welcome.
   * 3rd-party
@@ -116,18 +115,18 @@ Then, adjust the contents of `.env`. On Ubuntu Linux, you can run `nano .env`.
 
 - Set the `COMPOSE_FILE` entry depending on the client you are going to run,
 and with which options. See below for available compose files. Think of this as
-blocks you combine: One ethereum 2 client, optionally one ethereum 1 node, optionally reporting,
+blocks you combine: One consensus client, optionally one execution client, optionally reporting,
 optionally a reverse proxy for https:// access to reporting.
-- If you are going to use a 3rd-party provider as your eth1 chain source, set `ETH1_NODE` to that URL.
-  Look into [Alchemy](https://alchemyapi.io) or see [how to create your own Infura account](https://status-im.github.io/nimbus-eth2/infura-guide)
-- For Teku, Lighthouse and Nimbus, you can set `ETH1_NODE` to a comma-separated list, for example `http://eth1:8545,https://<alchemy-url>`
-  would use a local eth1 first, and fail back to Alchemy when it does not respond.
-- For Prysm, you can set `ETH1_FALLBACK_NODE1` and `ETH1_FALLBACK_NODE2` to be your first and second fallback,
+- If you are going to use a 3rd-party provider as your Ethereum PoW chain source, set `EC_NODE` to that URL.
+  See [how to create your own Infura account](https://status-im.github.io/nimbus-eth2/infura-guide) or look into [Alchemy](https://alchemyapi.io)
+- For Teku, Lighthouse and Nimbus, you can set `EC_NODE` to a comma-separated list, for example `http://execution:8545,https://<infura-url>`
+  would use a local execution client first, and fail back to Infura when it does not respond.
+- For Prysm, you can set `EC_FALLBACK_NODE1` and `EC_FALLBACK_NODE2` to be your first and second fallback,
 respectively.
 - Set the `NETWORK` variable to either "mainnet" or a test network such as "prater"
-- If you are running your own eth1 node, set the `ETH1_NETWORK` variable to `mainnet` or `goerli` testnet
+- If you are running your own execution client, set the `EC_NETWORK` variable to `mainnet` or `goerli` testnet
 - Set the `GRAFFITI` string if you want a specific string.
-- If you are going to run a validator client only, no beacon node, set `BN_NODE` to the URL of your eth2 Infura project, and
+- If you are going to run a validator client only, no beacon node, set `CC_NODE` to the URL of your Ethereum PoS beacon/eth2 Infura project, and
   choose one of the `CLIENT-validator.yml` entries in `COMPOSE_FILE`.
 - Adjust ports if you are going to need custom ports instead of the defaults. These are the ports
 exposed to the host, and for the P2P ports to the Internet via your firewall/router.
@@ -137,11 +136,11 @@ exposed to the host, and for the P2P ports to the Internet via your firewall/rou
 Set the `COMPOSE_FILE` string depending on which client you are going to use. Add optional services like
 geth with `:` between the file names.
 
-Choose one eth2 beacon client:
+Choose one consensus client:
 
+- `teku-base.yml` - Teku
 - `lh-base.yml` - Lighthouse
 - `prysm-base.yml` - Prysm
-- `teku-base.yml` - Teku
 - `nimbus-base.yml` - Nimbus
 
 If you'd rather just run a validator client, and back-end to an Infura eth2 beacon:
@@ -149,26 +148,25 @@ If you'd rather just run a validator client, and back-end to an Infura eth2 beac
 - `lh-validator.yml` - Lighthouse validator only
 - `teku-validator.yml` - Teku validator only
 
-> The `BN_NODE` variable in `.env` will need to be set to the URL your
-> Infura eth2 project shows you.
+> The `CC_NODE` variable in `.env` will need to be set to the URL your
+> Infura eth2/beacon project shows you.
 
 > Grafana is expected to not work with this option, as there is no beacon
 > to get data from. You can use https://beaconcha.in/ instead.
 
-Optionally, choose one eth1 node, unless you are using a 3rd-party provider:
+Optionally, choose one execution client, unless you are using a 3rd-party provider:
 
-- `geth.yml` - local geth eth1 chain node
-- `besu.yml` - local besu eth1 chain node - has not been tested extensively by this team. Feedback welcome.
-- `nm.yml` - local nethermind eth1 chain node - pruning in beta. Feedback welcome.
-- `oe.yml` - local openethereum eth1 chain node
+- `geth.yml` - local geth execution client
+- `besu.yml` - local besu execution client - has not been tested extensively by this team. Feedback welcome.
+- `nm.yml` - local nethermind execution client - feedback welcome.
 
 Optionally, choose a reporting package:
 
+- `teku-grafana.yml` - grafana dashboard for Teku
 - `lh-grafana.yml` - grafana dashboard for Lighthouse
 - `prysm-grafana.yml` - grafana dashboard for Prysm.
 - `prysm-web.yml` - Prysm Web UI. If you also want Grafana, add `prysm-grafana.yml`
 - `nimbus-grafana.yml` - grafana dashboard for Nimbus
-- `teku-grafana.yml` - grafana dashboard for Teku
 - `geth-grafana.yml` - grafana dashboard for Geth, to be combined with one of the client dashboards: Does not work standalone currently. Example `COMPOSE_FILE=lh-base.yml:geth.yml:lh-grafana.yml:geth-grafana.yml:grafana-insecure.yml`
 - `grafana-insecure.yml` - to map the Grafana port (default: 3000) to the host. This is not encrypted and should not be exposed to the Internet. Used *in addition* to `CLIENT-grafana.yml`, not instead. Using encryption instead via `traefik-*.yml` is recommended.
 - `prysm-web-insecure.yml` - to map the Prysm web port (default: 3500) to the host. This is not encrypted and should not be exposed to the Internet. Used *in addition* to `prysm-web.yml`, not instead. Using encryption instead via `traefik-*.yml` is recommended.
@@ -191,15 +189,15 @@ For example, Lighthouse with local geth and grafana:
 
 Advanced options:
 
-- `eth1-traefik.yml` - reverse-proxies and encrypts both the RPC and WS ports of your eth1 node, as https:// and wss:// ports respectively. To be used alongside one of the eth1 yml files.
-- `eth1-shared.yml` - as an insecure alternative to eth1-traefik, makes the RPC and WS ports of the eth1 node available from the host. To be used alongside one of the eth1 yml files. **Not encrypted**, do not expose to Internet.
+- `ec-traefik.yml` - reverse-proxies and encrypts both the RPC and WS ports of your execution client, as https:// and wss:// ports respectively. To be used alongside one of the execution client yml files.
+- `ec-shared.yml` - as an insecure alternative to ec-traefik, makes the RPC and WS ports of the execution client available from the host. To be used alongside one of the execution client yml files. **Not encrypted**, do not expose to Internet.
 
 - `prysm-slasher.yml` - Prysm experimental slasher. The experimental slasher can lead to missed attestations due to the additional resource demand.
 
 ### Multiple nodes on one host
 
-In this setup, clients are isolated from each other. Each run their own validator client, and if eth1
-is in use, their own eth1 node. This is perfect for running a single client, or multiple isolated
+In this setup, clients are isolated from each other. Each run their own validator client, and if an execution client
+is in use, their own execution client. This is perfect for running a single client, or multiple isolated
 clients each in their own directory.
 
 If you want to run multiple isolated clients, just clone this project into a new directory for
@@ -217,9 +215,9 @@ though the chance of additional earnings is low initially, as whistleblower rewa
 ## Build the client
 
 Build all required images. If building from source, this may take up to an hour. Assuming
-you cloned the project into `eth2-docker`:
+you cloned the project into `eth-docker`:
 ```
-cd ~/eth2-docker && sudo docker-compose build --pull
+cd ~/eth-docker && sudo docker-compose build --pull
 ```
 
 ## Additional and recommended Linux security steps
@@ -246,12 +244,12 @@ to your node if behind a home router, or allowed in via the VPS firewall.
 
 Open only the ports that you actually use, depending on your client choices.
 
-- 30303 tcp/udp - local eth1 node P2P. Open to Internet.
-- 9000 tcp/udp - Lighthouse beacon node P2P. Open to Internet.
-- 13000/tcp - Prysm beacon node P2P. Open to Internet.
-- 12000/udp - Prysm beacon node P2P. Open to Internet.
-- 9000 tcp/udp - Teku beacon node P2P. Open to Internet. Note this is the same default port as Lighthouse.
-- 9000 tcp/udp - Nimbus beacon node P2P. Open to Internet. Note this is the same default port as Lighthouse.
+- 30303 tcp/udp - local execution client P2P. Open to Internet.
+- 9000 tcp/udp - Lighthouse consensus client P2P. Open to Internet.
+- 13000/tcp - Prysm consensus client P2P. Open to Internet.
+- 12000/udp - Prysm consensus client P2P. Open to Internet.
+- 9000 tcp/udp - Teku consensus client P2P. Open to Internet. Note this is the same default port as Lighthouse.
+- 9000 tcp/udp - Nimbus consensus client P2P. Open to Internet. Note this is the same default port as Lighthouse.
 - 443 tcp - https:// access to Grafana and Prysm Web UI via traefik. Open to Internet.
 - 22/tcp - SSH. Only open to Internet if you want to access the server remotely. If open to Internet, configure
   SSH key authentication.

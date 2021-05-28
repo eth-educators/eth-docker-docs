@@ -6,7 +6,7 @@ sidebar_label: Addendums
 
 ## Addendum: Remove all traces of the client
 
-This project uses docker volumes to store the Ethereum 1 and Ethereum 2.0 databases, as
+This project uses docker volumes to store the Ethereum PoW and PoS databases, as
 well as validator keys for the validator client. You can see these volumes with
 `sudo docker volume ls` and remove them with `sudo docker volume rm`, as long as they are
 not in use.
@@ -36,21 +36,21 @@ The `-d` means "detached", not connected to your input session.<br />
 key sequence to detach from it again.
 
 `sudo docker ps` lists all running services, with the container name to the right.<br />
-`sudo docker logs containername` shows logs for a container, `sudo docker logs -f containername` scrolls them.<br />
-`sudo docker-compose logs servicename` shows logs for a service, `sudo docker-compose logs -f servicename` scrolls them.<br />
+`sudo docker logs containername` shows logs for a container, `sudo docker logs -f --tail 500 containername` scrolls them.<br />
+`sudo docker-compose logs servicename` shows logs for a service, `sudo docker-compose logs -f --tail 500 servicename` scrolls them.<br />
 `sudo docker exec -it containername /bin/bash` will connect you to a running service in a bash shell. The eth1 service doesn't have a shell
 if using geth.<br />
 
 You may start a service with `sudo docker-compose up -d servicename` and then find it's not in `sudo docker ps`. That means it terminated while
 trying to start. To investigate, you could leave the `-d` off so you see logs on command line:<br />
-`sudo docker-compose up beacon`, for example.<br />
-You could also run `sudo docker-compose logs beacon` to see the last logs of that service and the reason it terminated.<br />
+`sudo docker-compose up consensus`, for example.<br />
+You could also run `sudo docker-compose logs consensus` to see the last logs of that service and the reason it terminated.<br />
 
 If a service is not starting and you want to bring up its container manually, so you can investigate, first bring everything down:<br />
 `sudo docker-compose down`, tear down everything first.<br />
 `sudo docker ps`, make sure everything is down.<br />
 
-If you need to see the files that are being stored by services such as beacon, validator, eth1 node, grafana, &c, in Ubuntu Linux you can find
+If you need to see the files that are being stored by services such as consensus, validator, execution, grafana, &c, in Ubuntu Linux you can find
 those in /var/lib/docker/volumes. `sudo bash` to invoke a shell that has access.
 
 **HERE BE DRAGONS** You can totally run N copies of an image manually and then successfully start a validator in each and get yourself slashed.
@@ -61,7 +61,7 @@ Once your stack is down, to run an image and get into a shell, without executing
 You'd then run Linux commands manually in there, you could start components of the client manually. There is one image per client.<br />
 `sudo docker images` will show you all images.
 
-## Addendum: Using eth2-docker with a VPN on the node
+## Addendum: Using eth-docker with a VPN on the node
 
 VPNs typically need IP addressing in the RFC1918 (private) range, and docker by default will utilize the entire range, leaving the VPN to not find a free prefix.
 This can be solved by [changing the configuration of Docker](https://docs.storagemadeeasy.com/appliance/docker_networking) to use only a portion of RFC1918 for its address pool.

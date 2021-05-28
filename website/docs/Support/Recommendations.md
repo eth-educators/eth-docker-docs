@@ -13,10 +13,10 @@ and key security.
 You'd get yourself slashed, and no-one wants that. Protecting you from this
 is a work in progress. Choose one client, and one client only, and run that.
 
-**You need an eth1 source**<br />
-This project assumes you'll use openethereum or geth. It doesn't have to be that, it can
-be a 3rd party. You need some source for eth1, so that your validator can
-successfully propose blocks.
+**You need an Ethereum PoW chain source**<br />
+This project assumes you'll use geth. It doesn't have to be that, it can
+be a 3rd party. You need some source for Ethereum PoW chain data, so that your validator can
+successfully propose blocks that contain deposits.
 
 ## Host Security
 
@@ -27,7 +27,7 @@ you will need to open in `ufw` depend on the client you choose.
 
 ## Firewalling
 
-eth1: 30303 tcp/udp, forwarded to your server<br />
+execution client: 30303 tcp/udp, forwarded to your server<br />
 lighthouse: 9000 tcp/udp, forwarded to your server<br />
 prysm: 13000 tcp and 12000 udp, forwarded to your server<br />
 grafana/web UI: 443 tcp, forwarded to your server, assuming you are using the reverse proxy.<br />
@@ -39,10 +39,9 @@ grafana/web UI: 443 tcp, forwarded to your server, assuming you are using the re
 
 ## Before depositing
 
-You likely want to wait to deposit your eth until you can see in the logs
-that the eth1 node (e.g. openethereum) is synchronized and the eth2 beacon node
-is fully synchronized, which happens after that. This takes hours on
-testnet and could take days on mainnet.
+You likely want to wait to deposit your ETH until you can see in the logs
+that the execution client (e.g. geth) is synchronized and the consensus client
+is fully synchronized. This takes hours on testnet and could take days on mainnet.
 
 If you deposit before your client stack is fully synchronized and running,
 you risk getting penalized for being offline. The offline penalty during
@@ -58,7 +57,7 @@ When you create the deposit and keystore files, write down your wallet mnemonic 
 choose a cryptographically strong password for your keystores. Something long
 and not used anywhere else, ideally randomized by a generator.
 
-The directory `.eth2/validator_keys` will contain the `deposit_data-TIMESTAMP.json` and `keystore-m_ID.json`
+The directory `.eth/validator_keys` will contain the `deposit_data-TIMESTAMP.json` and `keystore-m_ID.json`
 files created by eth2.0-deposit-cli.
 
 Use `deposit_data-TIMESTAMP.json` for your initial deposit. After that, it can be disposed of.
@@ -75,7 +74,7 @@ these files secure as well, for example in a local (not cloud-connected) passwor
 on a PC that is not on the network, or at the very least not used for online access.
 
 Once you have the keystore files secure and they've been imported to the validator client container
-on your server, you should delete them from the `.eth2` directory.
+on your server, you should delete them from the `.eth` directory.
 
 These files will be needed in case you need to restore your validator(s).
 

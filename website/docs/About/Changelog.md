@@ -7,18 +7,33 @@ sidebar_label: Changelog
 ## Updating the project
 
 To update the components of the project, run from within the project
-directory (`cd ~/eth2-docker` by default):
+directory (`cd ~/eth-docker` by default):
 
-* `git pull` - get the new eth2-docker version
+* `git pull` - get the new eth-docker version
 * Optional: `cp .env .env.bak && cp default.env .env` - get the new default.env contents
 * If you got the new `default.env` in the previous step, adjust contents of new `.env`, use `.env.bak` for guidance.
   You can `diff .env .env.bak` to see the differences.
-  The most common variables to be adjusted are `COMPOSE_FILE`, `ETH1_NODE` (and its fallback
-  if Prysm), `GRAFFITI`, `NETWORK` and `ETH1_NETWORK`. If you made changes to peers or ports, recreate those as well.
+  The most common variables to be adjusted are `COMPOSE_FILE`, `EC_NODE` (and its fallback
+  if Prysm), `GRAFFITI`, `NETWORK` and `EC_NETWORK`. If you made changes to peers or ports, recreate those as well.
 * `sudo docker-compose build --pull` if you are using binary builds, the default. This fetches new client versions.
 * **Only** if you are using source builds: `sudo docker-compose build --pull --no-cache`
-* `sudo docker-compose down && sudo docker-compose up -d eth2` - use the new client version
+* `sudo docker-compose down && sudo docker-compose up -d eth` - use the new client version
 
+## v1.2.0 2021-05-28
+
+*This is an optional upgrade, that contains new features*
+
+* This release contains breaking changes to `.env`. Please recreate it from `default.env`, see above.
+* All v1.x releases change the docker images used to run your node. Please be sure to `docker-compose build --pull`
+  before (re)starting your node software.
+
+* Renamed all eth1/beacon references to execution/consensus, to fit with the new naming conventions
+put forth by the Ethereum developers
+* Note this change will cause warning messages, as both `ETH1_` and `EC_` variable names are supported. This
+backwards compatibility will be removed after "Altair", expected August 2021
+
+* Removed OpenEthereum from `./ethd config` as a choice. OpenEthereum will remain a supported execution
+client until Shanghai, to give users time to migrate.
 ## v1.1.0 2021-05-12
 
 *This is an optional upgrade, that contains new features*

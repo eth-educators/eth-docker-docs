@@ -11,7 +11,7 @@ exit of the validator.
 The first slashings on mainnet occured because someone was running a validator in
 two places at once. **Don't be that person.**
 
-Read the [beacon chain primer](https://ethos.dev/beacon-chain/) to understand how
+Read the [Ethereum PoS primer](https://ethos.dev/beacon-chain/) to understand how
 a validator can get slashed. The most common way is to simply run two copies of it
 at once.
 
@@ -59,14 +59,14 @@ Verify that you removed the right client:
 
 - [ ] `sudo docker-compose run validator` - confirm that it complains it cannot find its keys. If it still
   finds validator keys, do not proceed until you fixed that and it doesn't.
-  > For Nimbus and Teku, the command is `sudo docker-compose run beacon` instead
+  > For Nimbus and Teku, the command is `sudo docker-compose run consensus` instead
 - [ ] Look at https://beaconcha.in/ and verify that the validator(s) you just removed are now
   missing an attestation.
 - [ ] Allow 10 minutes to go by before taking the next step
 
 ### Import keys into new client
 
-- [ ] SCP (or USB sneaker-net) the keys to `.eth2/validator_keys` in the project directory
+- [ ] SCP (or USB sneaker-net) the keys to `.eth/validator_keys` in the project directory
 - [ ] Run `sudo docker-compose run --rm validator-import` and import the keys
 - [ ] Verify **once more** that all your validator(s) have been down long
   enough to miss an attestion
@@ -76,9 +76,9 @@ Verify that you removed the right client:
 - [ ] If you are absolutely positively sure that the old validator client cannot
   start attesting again and 10 minutes have passed / **all** validators
   have missed an attestion, then and only then:
-- [ ] Start the new client with `sudo docker-compose up -d eth2`
+- [ ] Start the new client with `sudo docker-compose up -d eth`
 
-### Variant: DR beacon
+### Variant: DR consensus client
 
 You can keep a client fully synchronized without keys. No keys "ready
 to be imported" on the node, and no keys imported. That way, if and
