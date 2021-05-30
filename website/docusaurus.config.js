@@ -1,21 +1,21 @@
 module.exports = {
-    title: 'eth2-docker',
-    tagline: 'Ethereum 2 Docker Client',
+    title: 'eth-docker',
+    tagline: 'Ethereum  Docker Client',
     url: 'https://github.com/eth2-educators/eth2-docker-docs',
     baseUrl: '/',
     onBrokenLinks: 'throw',
     favicon: 'img/eth2-moby-logo.png',
-    organizationName: 'Eth2 Docker',
-    projectName: 'eth2-docker',
+    organizationName: 'Eth Docker',
+    projectName: 'eth-docker',
     customFields: {
         image: 'img/eth2-moby-logo.png',
     },
     scripts: ['https://buttons.github.io/buttons.js'],
     themeConfig: {
         navbar: {
-            title: "eth2-docker Docs",
+            title: "eth-docker Docs",
             logo: {
-                alt: "eth2-docker logo",
+                alt: "eth-docker logo",
                 href: '/docs/About/Overview',
                 src: 'img/eth2-moby-logo.png',
             },
@@ -29,16 +29,16 @@ module.exports = {
         },
         footer: {
             logo: {
-                alt: "eth2-docker logo",
+                alt: "eth-docker logo",
                 href: '/',
                 src: 'img/eth2-moby-logo.png',
             },
-            copyright: `Copyright © ${new Date().getFullYear()} eth2-docker contributors`,
+            copyright: `Copyright © ${new Date().getFullYear()} eth-docker contributors`,
             links: [],
         },
         algolia: {
             apiKey: '1cfe22495a6677d0769b41f971145ac6',
-            indexName: 'eth2-docker',
+            indexName: 'eth-docker',
             algoliaOptions: {}
         }
     },
