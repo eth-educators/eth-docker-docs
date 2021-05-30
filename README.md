@@ -1,6 +1,6 @@
-# eth2-docker Documentation Portal
+# eth-docker Documentation Portal
 
-This repository houses all the documentation pertaining to the eth2-docker tool. It is generated with [Docusaurus](https://github.com/facebook/docusaurus). 
+This repository houses all the documentation pertaining to the eth-docker tool. It is generated with [Docusaurus](https://github.com/facebook/docusaurus). 
 
 Below are steps for initialising and reproducing this portal for development.
 
