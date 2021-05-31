@@ -1,6 +1,6 @@
 ---
 id: ConfigureWallet
-title: "Step 3: Generate an eth2 wallet and key files"
+title: "Step 3: Generate an Ethereum PoS wallet and key files"
 sidebar_label: Configure Wallet
 ---
 
@@ -10,14 +10,14 @@ read these yet, please do so now. You need to know how to guard your keystore pa
 and your seed phrase (mnemonic). **Without the mnemonic, you will be unable to withdraw your funds
 after the "merge" of Ethereum PoS with Ethereum PoW. You need the seed phrase or your ETH is gone forever.**
 
-> You can create the keys using eth2-docker. For mainnet, you may want to create
+> You can create the keys using eth-docker. For mainnet, you may want to create
 > the keys on a machine that is not connected to the Internet, and will be wiped
 > afterwards. This can be done by using an [Ubuntu Live USB](https://agstakingco.gitbook.io/eth-2-0-key-generation-ubuntu-live-usb/)
 > with [eth2.0-deposit-cli](https://github.com/ethereum/eth2.0-deposit-cli), then
 > copy them to the machine the node will run on, and continue from
 > "You brought your own keys", below.
 
-If you are going to use the deposit-cli that is bundled with eth2-docker, please
+If you are going to use the deposit-cli that is bundled with eth-docker, please
 make sure that `COMPOSE_FILE` contains `deposit-cli.yml`
 
 Make sure you're in the project directory, `cd ~/eth-docker` by default.

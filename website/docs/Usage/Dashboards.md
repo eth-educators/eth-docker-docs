@@ -17,7 +17,7 @@ A baseline set of dashboards has been included.
 - [Node Dashboard JSON](https://raw.githubusercontent.com/eth2-educators/eth2-docker/master/grafana/node-exporter_dashboard.json)
 
 
-## Monitoring Requirments with Node Dashboard  
+## Monitoring Requirements with Node Dashboard  
 
 The following [Dashboard](https://raw.githubusercontent.com/eth2-educators/eth2-docker/master/grafana/node-exporter_dashboard.json) is included with the eth-docker grafana default config.  Using it you can monitor Disk, CPU and Memory usage by you node.  Furthermore you can configure the alerts to notify you via discord, telegram or anywhere else grafana supports.  Check this [link](https://grafana.com/docs/grafana/latest/alerting/notifications/) for more information.
 

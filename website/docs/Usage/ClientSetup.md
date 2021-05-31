@@ -126,7 +126,7 @@ respectively.
 - Set the `NETWORK` variable to either "mainnet" or a test network such as "prater"
 - If you are running your own execution client, set the `EC_NETWORK` variable to `mainnet` or `goerli` testnet
 - Set the `GRAFFITI` string if you want a specific string.
-- If you are going to run a validator client only, no beacon node, set `CC_NODE` to the URL of your Ethereum PoS beacon/eth2 Infura project, and
+- If you are going to run a validator client only, without a consensus client, set `CC_NODE` to the URL of your Ethereum PoS beacon/eth2 Infura project, and
   choose one of the `CLIENT-validator.yml` entries in `COMPOSE_FILE`.
 - Adjust ports if you are going to need custom ports instead of the defaults. These are the ports
 exposed to the host, and for the P2P ports to the Internet via your firewall/router.
@@ -143,7 +143,7 @@ Choose one consensus client:
 - `prysm-base.yml` - Prysm
 - `nimbus-base.yml` - Nimbus
 
-If you'd rather just run a validator client, and back-end to an Infura eth2 beacon:
+If you'd rather just run a validator client, and back-end to an Infura eth2/beacon project:
 
 - `lh-validator.yml` - Lighthouse validator only
 - `teku-validator.yml` - Teku validator only
@@ -151,7 +151,7 @@ If you'd rather just run a validator client, and back-end to an Infura eth2 beac
 > The `CC_NODE` variable in `.env` will need to be set to the URL your
 > Infura eth2/beacon project shows you.
 
-> Grafana is expected to not work with this option, as there is no beacon
+> Grafana is expected to not work with this option, as there is no consensus client
 > to get data from. You can use https://beaconcha.in/ instead.
 
 Optionally, choose one execution client, unless you are using a 3rd-party provider:
@@ -209,8 +209,8 @@ Running [slasher](https://docs.prylabs.network/docs/prysm-usage/slasher/) is an 
 though the chance of additional earnings is low initially, as whistleblower rewards have not been implemented yet.
 
 > Slasher can be a huge resource hog during times of no chain finality, which can manifest as massive RAM usage. Please make sure you understand the risks of this, 
-> especially if you want high uptime for your beacon nodes. Slasher places significant stress on beacon nodes when the chain has no finality, and might be the reason
-> why your validators are underperforming if your beacon node is under this much stress.
+> especially if you want high uptime for your Ethereum staking full node. Slasher places significant stress on the consensus client when the chain has no finality, and might be the reason
+> why your validators are underperforming if your consensus client is under this much stress.
 
 ## Build the client
 
@@ -223,15 +223,15 @@ cd ~/eth-docker && sudo docker-compose build --pull
 ## Additional and recommended Linux security steps
 ### Firewalling
 
-You'll want to enable a host firewall. You can also forward the P2P ports of your eth1 and eth2
-nodes for faster peer acquisition.
+You'll want to enable a host firewall. You can also forward the P2P ports of your execution and consensus
+clients for faster peer acquisition.
 
-These are the relevant ports. docker will open eth2 node ports and the grafana port automatically,
+These are the relevant ports. Docker will open execution and consensuns client P2P (Peer to Peer) ports and the grafana port automatically,
 please make sure the grafana port cannot be reached directly. If you need to get to grafana remotely,
 an [SSH tunnel](https://www.howtogeek.com/168145/how-to-use-ssh-tunneling/) is a good choice.
 
 For a VPS/cloud setup, please take a look at notes on [cloud security](../Support/Cloud.md). You'll want to
-place ufw "in front of" Docker if you are using Grafana or a standalone eth1 (Ethereum PoW) client without a reverse proxy,
+place ufw "in front of" Docker if you are using Grafana or a standalone execution client without a reverse proxy,
 and if your cloud provider does not offer firewall rules for the VPS.
 
 Ports that I mention can be "Open to Internet" can be either forwarded

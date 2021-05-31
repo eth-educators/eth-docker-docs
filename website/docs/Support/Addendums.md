@@ -38,8 +38,7 @@ key sequence to detach from it again.
 `sudo docker ps` lists all running services, with the container name to the right.<br />
 `sudo docker logs containername` shows logs for a container, `sudo docker logs -f --tail 500 containername` scrolls them.<br />
 `sudo docker-compose logs servicename` shows logs for a service, `sudo docker-compose logs -f --tail 500 servicename` scrolls them.<br />
-`sudo docker exec -it containername /bin/bash` will connect you to a running service in a bash shell. The eth1 service doesn't have a shell
-if using geth.<br />
+`sudo docker exec -it containername /bin/bash` will connect you to a running service in a bash shell.
 
 You may start a service with `sudo docker-compose up -d servicename` and then find it's not in `sudo docker ps`. That means it terminated while
 trying to start. To investigate, you could leave the `-d` off so you see logs on command line:<br />

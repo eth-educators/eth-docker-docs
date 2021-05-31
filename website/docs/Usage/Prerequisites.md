@@ -43,7 +43,7 @@ work for docker with this project, as it does not (yet) use AppArmor.
 ## MacOS Prerequisites
 
 > The following prerequisites apply if you are going to use MacOS as a server
-> to run an eth2 node. If you use MacOS to connect *to* a node server, all
+> to run an Ethereum staking full node. If you use MacOS to connect *to* a node server, all
 > you need is an SSH client.
 
 Install [Docker Desktop](https://www.docker.com/products/docker-desktop), [git](https://git-scm.com/download/mac) and [Python 3](https://www.python.org/downloads/mac-osx/).

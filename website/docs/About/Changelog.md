@@ -19,6 +19,12 @@ directory (`cd ~/eth-docker` by default):
 * **Only** if you are using source builds: `sudo docker-compose build --pull --no-cache`
 * `sudo docker-compose down && sudo docker-compose up -d eth` - use the new client version
 
+## v1.2.1 2021-05-31
+
+*This is an optional upgrade, that contains new features*
+
+* `./ethd config` now supports setting a fallback execution client
+* Fixed an issue with `--folder` option when using deposit-cli
 ## v1.2.0 2021-05-28
 
 *This is an optional upgrade, that contains new features*
