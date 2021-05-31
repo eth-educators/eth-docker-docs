@@ -13,13 +13,13 @@ Generally, 8 GiB of RAM is a tight fit, and 16 GiB is recommended.
 
 
 2 or 4 CPU cores, and an SSD for storage because the node databases
-are so IOPS-heavy. The Geth eth1 node would require around 350GiB of storage by
+are so IOPS-heavy. The Geth execution client would require around 350GiB of storage by
 itself initially, which can fill a 1TB SSD within 6 months. Offline pruning is available.
 
-Other eth1 clients grow at different rates, see [resource use](../Usage/ResourceUsage.md).
+Other execution clients grow at different rates, see [resource use](../Usage/ResourceUsage.md).
 
-The beacon node database is small, around 11 GiB, but we don't know what growth will
-look like once the merge with Eth1 is done.
+The consensus client database is small, around 11 GiB, but we don't know what growth will
+look like once the merge with PoW is done.
 
 If you are running a slasher, that might be another 100 to 300 GiB by itself.
 
@@ -71,7 +71,7 @@ You may also consider getting two SSDs and running them in a software mirror
 chain databases, reducing potential down time because of hardware issues.
 
 Why ECC? This is a personal preference. The cost difference is minimal,
-and the potential time savings huge. An eth2 client does not require
+and the potential time savings huge. An Ethereum staking full node does not require
 ECC RAM; I maintain it is very nice to have regardless.
 
 With non-ECC RAM, if your RAM goes bad, you will be troubleshooting server

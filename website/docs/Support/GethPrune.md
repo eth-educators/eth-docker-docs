@@ -8,7 +8,7 @@ The Geth DB will [grow over time](../Usage/ResourceUsage.md), and may fill a 1TB
 about 6 months.
 
 You can offline prune Geth, bringing it back down close to its initial DB size. You may
-want [a failover execution client](../Usage/ClientSetup.md) configured for your beacon node.
+want [a failover execution client](../Usage/ClientSetup.md) configured for your consensus client.
 
 The prerequisites for offline pruning Geth are:
 * The volume Geth stores its DB on has 50 GiB of free space or more. We know 25 GiB is not enough, and may corrupt the DB.

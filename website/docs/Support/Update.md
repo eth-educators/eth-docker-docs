@@ -12,7 +12,7 @@ show you how to.
 You can find the current version of your client by running `sudo docker-compose logs consensus | head -100 | less`,
 assuming the node is up and running.
 
-## The eth2-docker tool itself
+## The eth-docker tool itself
 
 Inside the project directory, run:<br />
 `git pull`

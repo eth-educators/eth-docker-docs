@@ -25,5 +25,5 @@ The same script can also be used to stop, start and update the node. Run `./ethd
 5. Run the client
 6. Finalize the deposit. This is not done within this project
 7. A baseline set of Grafana dashboards are included.  Feel free to add more, or submit a PR with your favorite dashboards.
-8. Configure your system to start the eth2 node on boot (optional)
+8. Configure your system to start the Ethereum staking full node on boot (optional)
 

@@ -51,7 +51,7 @@ week.
 ## Wallet and key security
 
 The security of the wallet mnemonic you create is **critical**. If it is compromised, you will lose
-your balance. Please make sure you understand eth2 staking before you use this project.
+your balance. Please make sure you understand Ethereum staking before you use this project.
 
 When you create the deposit and keystore files, write down your wallet mnemonic and
 choose a cryptographically strong password for your keystores. Something long
@@ -88,7 +88,7 @@ For more on validator key security, read this article: https://www.attestant.io/
 
 **Critical**<br />
 When you ran eth2.0-deposit-cli, a 24-word mnemonic was created. This mnemonic
-will be used for eth2 withdrawals in the future. It must be securely kept offline.
+will be used for Ethereum PoS (Proof-of-Stake) withdrawals in the future. It must be securely kept offline.
 Without this mnemonic, there is **no** way to withdraw your funds.
 
 Precise methods are beyond this README, but consider something as simple as

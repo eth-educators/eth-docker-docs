@@ -64,7 +64,7 @@ Set a web password. For security reasons this should be different from the web p
 Set the wallet password.  If you chose to store the wallet password with the validator in a previous step,
 make sure it matches here: This is the step where you actually create the wallet with that password.
 
-Continue and you will find yourself inside the Web UI, which will show you the beacon syncing. Once sync is
+Continue and you will find yourself inside the Web UI, which will show you the consensus client syncing. Once sync is
 complete, you will also see validator information.
 
 # Optional: Verify that wallet password was stored correctly
