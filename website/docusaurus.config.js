@@ -37,9 +37,9 @@ module.exports = {
             links: [],
         },
         algolia: {
-            apiKey: '1cfe22495a6677d0769b41f971145ac6',
+            apiKey: 'a51366ded1891d634408de0e1e4cf1c5',
             indexName: 'eth-docker',
-            algoliaOptions: {}
+            algoliaOptions: { 'facetFilters': ["type:content", "version:current"] }
         }
     },
     presets: [
