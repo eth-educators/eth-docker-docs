@@ -99,6 +99,7 @@ Please choose:
   * Nimbus
 * Your source of Ethereum PoW chain data
   * geth
+  * erigon - Feedback welcome
   * besu - Feedback welcome.
   * nethermind - Feedback welcome.
   * 3rd-party
@@ -157,17 +158,23 @@ If you'd rather just run a validator client, and back-end to an Infura eth2/beac
 Optionally, choose one execution client, unless you are using a 3rd-party provider:
 
 - `geth.yml` - local geth execution client
-- `besu.yml` - local besu execution client - has not been tested extensively by this team. Feedback welcome.
+- `erigon.yml` - local erigon execution client - feedback welcome.
+- `besu.yml` - local besu execution client - feedback welcome.
 - `nm.yml` - local nethermind execution client - feedback welcome.
 
 Optionally, choose a reporting package:
 
+- `prysm-stats.yml` - send stats to https://beaconcha.in, requires API key
+- `lh-stats.yml` - send stats to https://beaconcha.in, requires API key
+
+- `prysm-web.yml` - Prysm Web UI.
+
 - `teku-grafana.yml` - grafana dashboard for Teku
 - `lh-grafana.yml` - grafana dashboard for Lighthouse
 - `prysm-grafana.yml` - grafana dashboard for Prysm.
-- `prysm-web.yml` - Prysm Web UI. If you also want Grafana, add `prysm-grafana.yml`
 - `nimbus-grafana.yml` - grafana dashboard for Nimbus
 - `geth-grafana.yml` - grafana dashboard for Geth, to be combined with one of the client dashboards: Does not work standalone currently. Example `COMPOSE_FILE=lh-base.yml:geth.yml:lh-grafana.yml:geth-grafana.yml:grafana-insecure.yml`
+
 - `grafana-insecure.yml` - to map the Grafana port (default: 3000) to the host. This is not encrypted and should not be exposed to the Internet. Used *in addition* to `CLIENT-grafana.yml`, not instead. Using encryption instead via `traefik-*.yml` is recommended.
 - `prysm-web-insecure.yml` - to map the Prysm web port (default: 3500) to the host. This is not encrypted and should not be exposed to the Internet. Used *in addition* to `prysm-web.yml`, not instead. Using encryption instead via `traefik-*.yml` is recommended.
 
@@ -177,15 +184,15 @@ Optionally, make the eth2.0-deposit-cli available:
 
 - `deposit-cli.yml` - Used to generate mnemonics and signing keys. Consider running key generation offline, instead, and copying the generated `keystore-m` files into this tool 
 
-Optionally, add encryption to the reporting dashboard:
+Optionally, add encryption to the Grafana and/or Prysm Web pages:
 
-- `traefik-cf.yml` - use encrypting reverse proxy and use CloudFlare for DNS management
-- `traefik-aws.yml` - use encrypting reverse proxy and use AWS Route53 for DNS management
+- `traefik-cf.yml` - use encrypting secure web proxy and use CloudFlare for DNS management
+- `traefik-aws.yml` - use encrypting secure web proxy and use AWS Route53 for DNS management
 
 With these, you wouldn't use the `-insecure.yml` files. Please see [Secure Web Proxy Instructions](../Usage/ReverseProxy.md) for setup instructions for either option.
 
-For example, Lighthouse with local geth and grafana:
-`COMPOSE_FILE=lh-base.yml:geth.yml:lh-grafana.yml:grafana-insecure.yml`
+For example, Lighthouse with local geth and beaconcha.in stats:
+`COMPOSE_FILE=lh-base.yml:geth.yml:lh-stats.yml`
 
 Advanced options:
 
