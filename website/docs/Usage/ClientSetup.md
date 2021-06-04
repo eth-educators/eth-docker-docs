@@ -99,7 +99,7 @@ Please choose:
   * Nimbus
 * Your source of Ethereum PoW chain data
   * geth
-  * erigon - Feedback welcome
+  * erigon - alpha, source build only. Feedback welcome
   * besu - Feedback welcome.
   * nethermind - Feedback welcome.
   * 3rd-party

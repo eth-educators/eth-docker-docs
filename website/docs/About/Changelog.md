@@ -20,13 +20,8 @@ To update the components of the project, run from within the project
 directory (`cd ~/eth-docker` by default):
 
 * `git pull` - get the new eth-docker version
-* Optional: `cp .env .env.bak && cp default.env .env` - get the new default.env contents
-* If you got the new `default.env` in the previous step, adjust contents of new `.env`, use `.env.bak` for guidance.
-  You can `diff .env .env.bak` to see the differences.
-  You could quick-start with `./ethd config` and then make further adjustments from there if needed.
-  The most common variables to be adjusted are `COMPOSE_FILE`, `EC_NODE` (and its fallback
-  if Prysm), `GRAFFITI`, `NETWORK` and `EC_NETWORK`. If you made changes to peers or ports, recreate those as well.
-* `./ethd update` if you are using binary builds, the default. This fetches new client versions.
+* `./ethd update`. This fetches new client versions and updates `.env`, keeping your modifications. If you
+  made changes to the source or binary build targets, those changes will need to be manually recreated.
 * **Only** if you are using source builds: `sudo docker-compose build --pull --no-cache`
 * `./ethd restart` - use the new client version
 
@@ -41,9 +36,15 @@ directory (`cd ~/eth-docker` by default):
   backwards compatibility will be removed after "Altair", expected August 2021. PLEASE RECREATE your `.env` from
   `default.env` before this date. `./ethd config` can be a good quickstart.
 
+## v1.1.3 2021-06-04
+
+*This is an optional upgrade, that contains new features*
+
+* `./ethd update` now migrates `.env` variables
+
 ## v1.2.2 2021-06-03
 
-* This is an optional upgrade, that contains new features
+*This is an optional upgrade, that contains new features*
 
 * Initial support for erigon via `erigon.yml`. Source build only.
 * Support for sending stats to https://beaconcha.in from Prysm >= 1.3.10 via `prysm-stats.yml`. Source build only.

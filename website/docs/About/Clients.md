@@ -15,7 +15,7 @@ Currently supported clients:
 
 Currently supported optional clients:
 - geth, local execution client
-- erigon, local execution client - Feedback welcome.
+- erigon, local execution client - alpha, source build only. Feedback welcome.
 - besu, local execution client - Feedback welcome.
 - nethermind, local execution client - Feedback welcome.
 
