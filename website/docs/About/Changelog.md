@@ -4,6 +4,16 @@ title:  Changelog
 sidebar_label: Changelog
 ---
 
+## Updating the project branch
+
+If updating eth-docker from a version prior to 2021-05-31, please run these commands
+to rename your local `master` branch to `main`:
+
+```
+git pull origin main
+./ethd update
+```
+
 ## Updating the project
 
 To update the components of the project, run from within the project
