@@ -13,17 +13,19 @@ Currently supported clients:
 - Teku
 - Nimbus
 
-Currently supported optional components:
+Currently supported optional clients:
 - geth, local execution client
+- erigon, local execution client - Feedback welcome.
 - besu, local execution client - Feedback welcome.
 - nethermind, local execution client - Feedback welcome.
 
 > Use one of the local execution client options or a 3rd-party provider of Ethereum chain data to "feed"
 > your consensus client, so you can [propose](https://ethos.dev/beacon-chain/) blocks.
 
-- Grafana dashboard
+- Sending stats to https://beaconcha.in
 - Prysm Web UI
+- Grafana dashboard
 
-- slasher - running slasher is optional, but helps secure the chain
+- slasher - running slasher is optional and requires additional resources
 
 Please see [Prysm Web](../Usage/PrysmWeb.md) for experimental Web UI support on Prysm.
