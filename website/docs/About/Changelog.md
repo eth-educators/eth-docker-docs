@@ -13,11 +13,31 @@ directory (`cd ~/eth-docker` by default):
 * Optional: `cp .env .env.bak && cp default.env .env` - get the new default.env contents
 * If you got the new `default.env` in the previous step, adjust contents of new `.env`, use `.env.bak` for guidance.
   You can `diff .env .env.bak` to see the differences.
+  You could quick-start with `./ethd config` and then make further adjustments from there if needed.
   The most common variables to be adjusted are `COMPOSE_FILE`, `EC_NODE` (and its fallback
   if Prysm), `GRAFFITI`, `NETWORK` and `EC_NETWORK`. If you made changes to peers or ports, recreate those as well.
-* `sudo docker-compose build --pull` if you are using binary builds, the default. This fetches new client versions.
+* `./ethd update` if you are using binary builds, the default. This fetches new client versions.
 * **Only** if you are using source builds: `sudo docker-compose build --pull --no-cache`
-* `sudo docker-compose down && sudo docker-compose up -d eth` - use the new client version
+* `./ethd restart` - use the new client version
+
+## Upgrading from releases prior to 2021-05-06
+
+* All v1.x releases change the docker images used to run your node. Please be sure to `./ethd update`
+  before (re)starting your node software.
+* Any releases prior to 2021-05-06: PLEASE UPDATE BEFORE October 2021.
+  The script that adjusts permissions for existing setups will be removed again at that point, and
+  any setups that haven't updated by then would have permissions issues when they do update.
+* Releases from 2021-05-08 on cause warning messages, as both `ETH1_` and `EC_` variable names are supported. This
+  backwards compatibility will be removed after "Altair", expected August 2021. PLEASE RECREATE your `.env` from
+  `default.env` before this date. `./ethd config` can be a good quickstart.
+
+## v1.2.2 2021-06-03
+
+* This is an optional upgrade, that contains new features
+
+* Initial support for erigon via `erigon.yml`. Source build only.
+* Support for sending stats to https://beaconcha.in from Prysm >= 1.3.10 via `prysm-stats.yml`. Source build only.
+* Support for sending stats to https://beaconcha.in from Lighthouse >= 1.4.0 via `lh-stats.yml`. Binary and source builds.
 
 ## v1.2.1 2021-05-31
 
@@ -25,6 +45,7 @@ directory (`cd ~/eth-docker` by default):
 
 * `./ethd config` now supports setting a fallback execution client
 * Fixed an issue with `--folder` option when using deposit-cli
+
 ## v1.2.0 2021-05-28
 
 *This is an optional upgrade, that contains new features*
@@ -40,14 +61,12 @@ backwards compatibility will be removed after "Altair", expected August 2021
 
 * Removed OpenEthereum from `./ethd config` as a choice. OpenEthereum will remain a supported execution
 client until Shanghai, to give users time to migrate.
+
 ## v1.1.0 2021-05-12
 
 *This is an optional upgrade, that contains new features*
 
-
 * This release contains breaking changes to `.env`. Please recreate it from `default.env`, see above.
-* All v1.x releases change the docker images used to run your node. Please be sure to `docker-compose build --pull`
-  before (re)starting your node software.
 
 * Validator-only option for Teku and Lighthouse!
 * Teku as the default choice in `default.env`, now that its out-of-the-box RAM use is < 5 GiB
@@ -80,7 +99,6 @@ instructions.
 * The `validator-voluntary-exit` service has been renamed to just `validator-exit`
 * Support for voluntary validator exit when using Teku
 * Preliminary beta configuration script, run `./eth2d.sh` for a quick setup
-
 
 ## v0.3.1 2021-04-22
 
