@@ -36,7 +36,7 @@ directory (`cd ~/eth-docker` by default):
   backwards compatibility will be removed after "Altair", expected August 2021. PLEASE RECREATE your `.env` from
   `default.env` before this date. `./ethd config` can be a good quickstart.
 
-## v1.1.3 2021-06-04
+## v1.2.3 2021-06-04
 
 *This is an optional upgrade, that contains new features*
 
