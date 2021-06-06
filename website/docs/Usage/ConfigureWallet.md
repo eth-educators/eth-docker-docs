@@ -58,7 +58,7 @@ They go into `.eth/validator_keys` in this project directory, not directly under
 From the project directory:
 
 ```
-sudo docker-compose run --rm deposit-cli-existing --folder seed_check ---eth1_withdrawal_address YOURHARDWAREWALLETADDRESS -uid $(id -u)
+sudo docker-compose run --rm deposit-cli-existing --folder seed_check --eth1_withdrawal_address YOURHARDWAREWALLETADDRESS --uid $(id -u)
 ```
 > Specifying the uid is optional. If this is not done,
 > the generated files will be owned by the user with uid `1000`
