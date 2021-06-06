@@ -6,7 +6,7 @@ sidebar_label: Changelog
 
 ## Updating the project branch
 
-If updating eth-docker from a version prior to 2021-05-31, please run these commands
+If updating eth-docker from a version prior to 1.2.1 (2021-May-31), please run these commands
 to rename your local `master` branch to `main`:
 
 ```
@@ -22,21 +22,29 @@ sudo ./ethd update
 To update the components of the project, run from within the project
 directory (`cd ~/eth-docker` by default):
 
+* If updating from a version prior to 1.2.5 (2021-June-05): `git pull`
 * `sudo ./ethd update`. This fetches new client version(s), a new eth-docker, and updates `.env`, keeping your modifications. If you
   made changes to the source or binary build targets, those changes will need to be manually recreated.
 * **Only** if you are using source builds: `sudo docker-compose build --pull --no-cache`
 * `sudo ./ethd restart` - use the new client version(s)
 
-## Upgrading from releases prior to 2021-05-06
+## Upgrading from releases prior to 1.0.0 (2021-May-06)
 
 * All v1.x releases change the docker images used to run your node. Please be sure to `./ethd update`
   before (re)starting your node software.
-* Any releases prior to 2021-05-06: PLEASE UPDATE BEFORE October 2021.
+* PLEASE UPDATE BEFORE October 2021.
   The script that adjusts permissions for existing setups will be removed again at that point, and
   any setups that haven't updated by then would have permissions issues when they do update.
-* Releases from 2021-05-08 on cause warning messages, as both `ETH1_` and `EC_` variable names are supported. This
+* Releases from 2021-May-08 on cause warning messages, as both `ETH1_` and `EC_` variable names are supported. This
   backwards compatibility will be removed after "Altair", expected August 2021. PLEASE RECREATE your `.env` from
   `default.env` before this date. `./ethd config` can be a good quickstart, or `sudo ./ethd update` does it for you.
+
+## v1.2.5.1 2021-06-06
+
+*This is a bugfix upgrade*
+
+* `./ethd` help screen works again
+* `./ethd terminate` command introduced
 
 ## v1.2.5 2021-06-05
 
