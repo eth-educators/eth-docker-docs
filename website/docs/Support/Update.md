@@ -12,7 +12,17 @@ show you how to.
 You can find the current version of your client by running `sudo docker-compose logs consensus | head -100 | less`,
 assuming the node is up and running.
 
-## The eth-docker tool itself
+## Automated update
+
+Inside the project directory, run:<br />
+`sudo ./ethd update`
+
+This will update eth-docker, all Ethereum clients, and migrate your `.env` settings over to a fresh copy
+from `default.env`.
+
+Restart the "stack" with `sudo ./ethd restart`
+
+## Optional: Manually update eth-docker
 
 Inside the project directory, run:<br />
 `git pull`
@@ -23,7 +33,7 @@ the way you need them, with `.env.bak` as a guide.
 Updating the tool itself is not always necessary. Please refer to the [Changelog](../About/Changelog.md) to see
 whether changes have been made that you may want to use.
 
-## The client "stack"
+## Optional: Manually update the client "stack"
 
 If you are using binary build files - the default - you can update everything
 in the client "stack" with `sudo docker-compose build --pull`. If you
