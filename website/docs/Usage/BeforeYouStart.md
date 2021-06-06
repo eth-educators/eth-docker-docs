@@ -27,3 +27,6 @@ The same script can also be used to stop, start and update the node. Run `./ethd
 7. A baseline set of Grafana dashboards are included.  Feel free to add more, or submit a PR with your favorite dashboards.
 8. Configure your system to start the Ethereum staking full node on boot (optional)
 
+> The documentation uses `sudo` throughout to run commands that interact with docker. If your
+> user is part of the `docker` group, you can leave this out. For example, `sudo ./ethd restart` would
+> become `./ethd restart`

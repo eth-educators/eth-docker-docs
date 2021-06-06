@@ -11,19 +11,21 @@ to rename your local `master` branch to `main`:
 
 ```
 git pull origin main
-./ethd update
+sudo ./ethd update
 ```
+
+> `sudo` for ethd and docker-compose commands is only necessary if your user
+> is *not* part of the `docker` group
 
 ## Updating the project
 
 To update the components of the project, run from within the project
 directory (`cd ~/eth-docker` by default):
 
-* `git pull` - get the new eth-docker version
-* `./ethd update`. This fetches new client versions and updates `.env`, keeping your modifications. If you
+* `sudo ./ethd update`. This fetches new client version(s), a new eth-docker, and updates `.env`, keeping your modifications. If you
   made changes to the source or binary build targets, those changes will need to be manually recreated.
 * **Only** if you are using source builds: `sudo docker-compose build --pull --no-cache`
-* `./ethd restart` - use the new client version
+* `sudo ./ethd restart` - use the new client version(s)
 
 ## Upgrading from releases prior to 2021-05-06
 
@@ -34,7 +36,21 @@ directory (`cd ~/eth-docker` by default):
   any setups that haven't updated by then would have permissions issues when they do update.
 * Releases from 2021-05-08 on cause warning messages, as both `ETH1_` and `EC_` variable names are supported. This
   backwards compatibility will be removed after "Altair", expected August 2021. PLEASE RECREATE your `.env` from
-  `default.env` before this date. `./ethd config` can be a good quickstart.
+  `default.env` before this date. `./ethd config` can be a good quickstart, or `sudo ./ethd update` does it for you.
+
+## v1.2.5 2021-06-05
+
+*This is an optional upgrade, that contains new features*
+
+* Erigon (still in alpha) now syncs a pruned DB
+* `./ethd config` now queries the user for desired Graffiti
+* `./ethd update` now does a root-safe `git pull` to update eth-docker itself, and uses a different mechanism to redirect error messages for `docker-compose pull`, so it can update components like `node-exporter` with good UX.
+
+## v1.2.4 2021-06-05
+
+*This is a bugfix upgrade*
+
+* `./ethd update` no longer attempts to `docker-compose pull` or `git pull`. In some instances the expected error messages from `docker-compose pull` were not redirected to `/dev/null`, and updating ancillary components while throwing a bevy of error messages is terrible UX.
 
 ## v1.2.3 2021-06-04
 
