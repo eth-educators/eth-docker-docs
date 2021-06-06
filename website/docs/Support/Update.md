@@ -14,6 +14,15 @@ assuming the node is up and running.
 
 ## Automated update
 
+### If updating from a version prior to 1.2.5 (2021-June-05)
+
+Inside the project directory, run:<br />
+`git pull origin main`
+
+and then continue below
+
+### For all versions
+
 Inside the project directory, run:<br />
 `sudo ./ethd update`
 
