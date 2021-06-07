@@ -39,6 +39,12 @@ directory (`cd ~/eth-docker` by default):
   backwards compatibility will be removed after "Altair", expected August 2021. PLEASE RECREATE your `.env` from
   `default.env` before this date. `./ethd config` can be a good quickstart, or `sudo ./ethd update` does it for you.
 
+## v1.2.5.2 2021-06-07
+
+*This is a bugfix upgrade*
+
+* `./ethd config` can correctly configure Teku Rapid Sync again
+
 ## v1.2.5.1 2021-06-06
 
 *This is a bugfix upgrade*
