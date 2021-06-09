@@ -39,6 +39,12 @@ directory (`cd ~/eth-docker` by default):
   backwards compatibility will be removed after "Altair", expected August 2021. PLEASE RECREATE your `.env` from
   `default.env` before this date. `./ethd config` can be a good quickstart, or `sudo ./ethd update` does it for you.
 
+## v1.3.0 2021-06-09
+
+*This is an optional upgrade, that contains new features*
+
+* `sudo ./ethd prune-geth` simplifies pruning Geth
+* Separating consensus client and validator client is now supported for Teku, Lighthouse and Prysm. Please see the [Secure Web Proxy](../Usage/ReverseProxy.md) instructions.
 ## v1.2.5.2 2021-06-07
 
 *This is a bugfix upgrade*
@@ -50,7 +56,7 @@ directory (`cd ~/eth-docker` by default):
 *This is a bugfix upgrade*
 
 * `./ethd` help screen works again
-* `./ethd terminate` command introduced
+* `sudo ./ethd terminate` command introduced
 
 ## v1.2.5 2021-06-05
 
@@ -58,7 +64,7 @@ directory (`cd ~/eth-docker` by default):
 
 * Erigon (still in alpha) now syncs a pruned DB
 * `./ethd config` now queries the user for desired Graffiti
-* `./ethd update` now does a root-safe `git pull` to update eth-docker itself, and uses a different mechanism to redirect error messages for `docker-compose pull`, so it can update components like `node-exporter` with good UX.
+* `sudo ./ethd update` now does a root-safe `git pull` to update eth-docker itself, and uses a different mechanism to redirect error messages for `docker-compose pull`, so it can update components like `node-exporter` with good UX.
 
 ## v1.2.4 2021-06-05
 

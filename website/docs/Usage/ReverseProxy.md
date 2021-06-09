@@ -6,7 +6,7 @@ sidebar_label: Secure Web Proxy
 
 You can use the "[traefik](https://traefik.io/)" secure web proxy to get to the Grafana Dashboard and Prysm Web UI via https:// instead
 of insecure http://. It can also be used to encrypt the RPC and WS ports of your execution client, so they are reachable via
-https:// and wss:// respectively.
+https:// and wss:// respectively. In addition, it can be used to separate the consensus client and validator client to different machines.
 
 You will require a domain name for this to work. Where you buy it is up to you. One option is NameCheap.
 
@@ -87,6 +87,30 @@ Optionally, you can change the names that services are reachable under, and adju
 
 ## Separating consensus client and validator client
 
-Traefik, or the Let's Encrypt certificate it generates, could be used to separate consensus client and validator client: The consensus client would be reachable, TLS-encrypted,
-over the Internet, and the validator client would be on a separate machine. This is not a typical solo staking setup, and so this has not been implemented
-in eth-docker. If even a single person can benefit from this setup, we will support it. Please get in touch via [Discord](https://discord.gg/fWRKvtrm9X) if that's you.
+eth-docker supports separating the consensus client and validator client on different machines, with TLS encryption between them.
+
+### Consensus client machine
+
+On the machine that runs the consensus client, you'll need `CLIENT-consensus.yml` with `CLIENT` one of `teku`, `lh` or `prysm`, as well as one of the `traefik-XXX.yml` files. For example, with Lighthouse and CloudFlare: `COMPOSE_FILE=lh-consensus.yml:traefik-cf.yml`.
+
+Traefik needs to be configured as per the above. Make sure you have a DNS entry for the machine, something like `cc.example.com` if `CC_HOST` is at default and your `DOMAIN` is `example.com`. For Lighthouse and Teku with CloudFlare, you can proxy this entry; for Prysm,
+make sure it is set to DNS without proxy.
+
+For Teku and Lighthouse, make sure port 443/tcp is reachable from the outside.
+
+For Prysm, make sure port 4000/tcp is reachable from the outside.
+
+In both cases it is prudent to restrict communications to just the IP address of the validator client machine.
+
+### Validator client machine
+
+On the machine that runs the validator client, you'll need `CLIENT-validator.yml` with `CLIENT` one of `teku`, `lh` or `prysm`. For example, for Lighthouse: `COMPOSE_FILE=lh-validator.yml`
+
+Teku and Lighthouse are interoperable; Prysm only works with a Prysm consensus client.
+
+The `CC_NODE` variable needs to be set to point to the consensus client.
+
+For Teku and Lighthouse: `CC_NODE=https://cc.example.com` , assuming you left the `CC_HOST` variable at default on the consensus client, the Traefik port at default, and your domain is `example.com`.
+Lighthouse also supports a failover node, which means you could configure `CC_NODE=https://cc.example.com,https://MY_INFURA_BEACON_PROJECT_URL`.
+
+For Prysm: `CC_NODE=cc.example.com:4000`, assuming you left the `CC_HOST` variable at default on the consensus client, and your domain is `example.com`.

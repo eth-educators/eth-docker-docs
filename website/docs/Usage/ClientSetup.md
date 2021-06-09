@@ -129,6 +129,8 @@ respectively.
 - Set the `GRAFFITI` string if you want a specific string.
 - If you are going to run a validator client only, without a consensus client, set `CC_NODE` to the URL of your Ethereum PoS beacon/eth2 Infura project, and
   choose one of the `CLIENT-validator.yml` entries in `COMPOSE_FILE`.
+- If you are going to send statistics to https://beaconcha.in, set `BEACON_STATS_API` to your API key
+- If you intend to use Teku and want to sync quickly, set `TEKU_RAPID_SYNC` to your Infura beacon project
 - Adjust ports if you are going to need custom ports instead of the defaults. These are the ports
 exposed to the host, and for the P2P ports to the Internet via your firewall/router.
 
@@ -198,6 +200,8 @@ Advanced options:
 
 - `ec-traefik.yml` - reverse-proxies and encrypts both the RPC and WS ports of your execution client, as https:// and wss:// ports respectively. To be used alongside one of the execution client yml files.
 - `ec-shared.yml` - as an insecure alternative to ec-traefik, makes the RPC and WS ports of the execution client available from the host. To be used alongside one of the execution client yml files. **Not encrypted**, do not expose to Internet.
+
+- `lh-consensus.yml`, `teku-consensus.yml`, `prysm-consensus.yml` - for running a [distributed consensus client and validator client](../Usage/ReverseProxy.md) setup.
 
 - `prysm-slasher.yml` - Prysm experimental slasher. The experimental slasher can lead to missed attestations due to the additional resource demand.
 

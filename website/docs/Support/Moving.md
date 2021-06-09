@@ -62,6 +62,7 @@ Verify that you removed the right client:
   > For Nimbus and Teku, the command is `sudo docker-compose run consensus` instead
 - [ ] Look at https://beaconcha.in/ and verify that the validator(s) you just removed are now
   missing an attestation.
+- [ ] Verify that both machines are synchronized to time and are using NTP
 - [ ] Allow 10 minutes to go by before taking the next step
 
 ### Import keys into new client
