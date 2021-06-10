@@ -39,6 +39,13 @@ directory (`cd ~/eth-docker` by default):
   backwards compatibility will be removed after "Altair", expected August 2021. PLEASE RECREATE your `.env` from
   `default.env` before this date. `./ethd config` can be a good quickstart, or `sudo ./ethd update` does it for you.
 
+## v1.3.2 2021-06-10
+
+*This is an optional upgrade, that contains new features*
+
+* Added Grafana metrics for Erigon
+* Grafana metrics for standalone Erigon/Geth via `blank-grafana.yml`
+
 ## v1.3.0 2021-06-09
 
 *This is an optional upgrade, that contains new features*
