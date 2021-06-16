@@ -39,6 +39,14 @@ directory (`cd ~/eth-docker` by default):
   backwards compatibility will be removed after "Altair", expected August 2021. PLEASE RECREATE your `.env` from
   `default.env` before this date. `./ethd config` can be a good quickstart, or `sudo ./ethd update` does it for you.
 
+## v1.3.3.2 2021-06-16
+
+*This is a bugfix update*
+
+* Fixed ec-traefik.yml
+* Fixed Grafana to use the new consensus name, thanks crymo99!
+* Teku can now run on machines with 8 GiB of RAM, with max heap 4G and soft max heap 2G.
+
 ## v1.3.2 2021-06-10
 
 *This is an optional upgrade, that contains new features*
