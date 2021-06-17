@@ -42,7 +42,7 @@ case, you can make your local user part of the `docker` group.
 > explicitly use `sudo` with all docker commands instead.
 
 ```
-usermod -aG docker USERNAME
+sudo usermod -aG docker USERNAME
 ```
 
 followed by
