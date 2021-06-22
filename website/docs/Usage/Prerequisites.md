@@ -19,7 +19,7 @@ sudo apt update && sudo apt dist-upgrade
 ```
 and install prerequisites
 ```
-sudo apt install -y docker docker-compose git
+sudo apt install -y docker.io docker-compose git
 ```
 then enable the docker service
 ```
