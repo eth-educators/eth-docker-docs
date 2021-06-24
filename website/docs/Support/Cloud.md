@@ -55,6 +55,7 @@ stop)
     iptables -F DOCKER-USER || true
     iptables -A DOCKER-USER -j RETURN || true
     iptables -X ufw-user-input || true
+    ;;
 ```
 
 Then, make it executable: `sudo chmod 750 /etc/ufw/before.init`
