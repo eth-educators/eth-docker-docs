@@ -25,7 +25,7 @@ Import the validator key(s) to the validator client:
 
 If you choose to save the password during import, it'll be available to the client every
 time it starts. If you do not, you'll need to be present to start the
-validator client and start it interactively. Determine your own risk profile.
+validator client and start it interactively. 
 
 > After import, the files in `.eth/validator_keys` can be safely removed from the node,
 > once you have copied them off the node. You'll need the `deposit_data` file to
