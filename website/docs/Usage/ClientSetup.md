@@ -125,9 +125,9 @@ blocks you combine: One consensus client, optionally one execution client, optio
 optionally a reverse proxy for https:// access to reporting.
 - If you are going to use a 3rd-party provider as your Ethereum PoW chain source, set `EC_NODE` to that URL.
   See [how to create your own Infura account](https://status-im.github.io/nimbus-eth2/infura-guide) or look into [Alchemy](https://alchemyapi.io)
-- For Teku, Lighthouse and Nimbus, you can set `EC_NODE` to a comma-separated list, for example `http://execution:8545,https://<infura-url>`
+- For Teku and Lighthouse, you can set `EC_NODE` to a comma-separated list, for example `http://execution:8545,https://<infura-url>`
   would use a local execution client first, and fail back to Infura when it does not respond.
-- For Prysm, you can set `EC_FALLBACK_NODE1` and `EC_FALLBACK_NODE2` to be your first and second fallback,
+- For Prysm or Nimbus, you can set `EC_FALLBACK_NODE1` and `EC_FALLBACK_NODE2` to be your first and second fallback,
 respectively.
 - Set the `NETWORK` variable to either "mainnet" or a test network such as "prater"
 - If you are running your own execution client, set the `EC_NETWORK` variable to `mainnet` or `goerli` testnet
