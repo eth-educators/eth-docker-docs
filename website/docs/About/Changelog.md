@@ -39,6 +39,12 @@ directory (`cd ~/eth-docker` by default):
   backwards compatibility will be removed after "Altair", expected August 2021. PLEASE RECREATE your `.env` from
   `default.env` before this date. `./ethd config` can be a good quickstart, or `sudo ./ethd update` does it for you.
 
+## v1.4.0.1 2021-07-13
+
+*This is a bugfix update*
+
+* Fixed fallback execution client for Nimbus
+
 ## v1.4.0 2021-07-13
 
 *This is an optional upgrade, that contains new features*
