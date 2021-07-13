@@ -90,6 +90,10 @@ The same script can also be used to stop, start and update the node. Run `./ethd
 
 ## Client choice - manual setup
 
+> You can refer back to the [Overview](../About/Overview.md) to get a sense of how the
+> validator client, consensus client and execution client are
+> connected to each other, and which role each plays.
+
 Please choose:
 
 * The consensus client you wish to run
