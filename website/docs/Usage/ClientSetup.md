@@ -101,11 +101,12 @@ Please choose:
   * Lighthouse
   * Prysm
   * Nimbus
+  * Lodestar - alpha. Feedback welcome
 * Your source of Ethereum PoW chain data
-  * geth
-  * erigon - alpha, source build only. Feedback welcome
-  * besu - Feedback welcome.
-  * nethermind - Feedback welcome.
+  * Geth
+  * Erigon - alpha, source build only. Feedback welcome
+  * Besu - Feedback welcome.
+  * Nethermind - Feedback welcome.
   * 3rd-party
 * Whether to run a grafana dashboard for monitoring
 
@@ -149,6 +150,7 @@ Choose one consensus client:
 - `lh-base.yml` - Lighthouse
 - `prysm-base.yml` - Prysm
 - `nimbus-base.yml` - Nimbus
+- `lodestar-base.yml` - Lodestar, alpha release
 
 If you'd rather just run a validator client, and back-end to an Infura eth2/beacon project:
 
