@@ -12,12 +12,13 @@ Currently supported clients:
 - Prysm
 - Teku
 - Nimbus
+- Lodestar (alpha release)
 
 Currently supported optional clients:
-- geth, local execution client
-- erigon, local execution client - alpha, source build only. Feedback welcome.
-- besu, local execution client - Feedback welcome.
-- nethermind, local execution client - Feedback welcome.
+- Geth, local execution client
+- Erigon, local execution client - alpha, source build only. Feedback welcome.
+- Besu, local execution client - Feedback welcome.
+- Nethermind, local execution client - Feedback welcome.
 
 > Use one of the local execution client options or a 3rd-party provider of Ethereum chain data to "feed"
 > your consensus client, so you can [propose](https://ethos.dev/beacon-chain/) blocks.
