@@ -39,6 +39,12 @@ directory (`cd ~/eth-docker` by default):
   backwards compatibility will be removed after "Altair", expected August 2021. PLEASE RECREATE your `.env` from
   `default.env` before this date. `./ethd config` can be a good quickstart, or `sudo ./ethd update` does it for you.
 
+## v1.4.2 2021-07-21
+
+*This is an optional update, that adds new features*
+
+* Support the changed beaconcha.in stats API URL
+
 ## v1.4.1.2 2021-07-21
 
 *This is a bugfix update*
