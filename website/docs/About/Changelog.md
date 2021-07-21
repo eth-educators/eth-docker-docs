@@ -39,6 +39,14 @@ directory (`cd ~/eth-docker` by default):
   backwards compatibility will be removed after "Altair", expected August 2021. PLEASE RECREATE your `.env` from
   `default.env` before this date. `./ethd config` can be a good quickstart, or `sudo ./ethd update` does it for you.
 
+## v1.4.1.2 2021-07-21
+
+*This is a bugfix update*
+
+* Fixed Teku rapid sync when using grafana
+* Teku now doesn't show initial error messages when using an Infura execution client
+* Created "no timezone" options for teku files, for use with Amazon AMI
+
 ## v1.4.1.1 2021-07-21
 
 *This is a bugfix update*
