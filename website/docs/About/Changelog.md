@@ -39,6 +39,13 @@ directory (`cd ~/eth-docker` by default):
   backwards compatibility will be removed after "Altair", expected August 2021. PLEASE RECREATE your `.env` from
   `default.env` before this date. `./ethd config` can be a good quickstart, or `sudo ./ethd update` does it for you.
 
+## v1.4.2.3 2021-07-22
+
+*This is an optional update, that changes behavior*
+
+* `./ethd update` now migrates `.env` first, then builds new client images. This means that people who change build targets
+will need to build again after running an update.
+
 ## v1.4.2.2 2021-07-22
 
 *This is a bugfix update*
