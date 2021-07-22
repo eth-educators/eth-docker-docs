@@ -39,6 +39,15 @@ directory (`cd ~/eth-docker` by default):
   backwards compatibility will be removed after "Altair", expected August 2021. PLEASE RECREATE your `.env` from
   `default.env` before this date. `./ethd config` can be a good quickstart, or `sudo ./ethd update` does it for you.
 
+## v1.4.2.1 2021-07-22
+
+*This is an optional update, that adds new features*
+
+* Support for the new Erigon `--prune` flag
+* Support for Erigon binary builds
+* **NB** A future release of eth-docker will change the pruning defaults of the Erigon DB, which will require a resync
+from scratch of the DB.
+
 ## v1.4.2 2021-07-21
 
 *This is an optional update, that adds new features*
