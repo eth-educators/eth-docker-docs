@@ -39,6 +39,13 @@ directory (`cd ~/eth-docker` by default):
   backwards compatibility will be removed after "Altair", expected August 2021. PLEASE RECREATE your `.env` from
   `default.env` before this date. `./ethd config` can be a good quickstart, or `sudo ./ethd update` does it for you.
 
+## v1.4.2.4 2021-07-29
+
+*This is a bugfix update*
+
+* Work around a bug in Prysm that kept key import from working
+* Added shared traefik as an advanced option
+
 ## v1.4.2.3 2021-07-22
 
 *This is an optional update, that changes behavior*
