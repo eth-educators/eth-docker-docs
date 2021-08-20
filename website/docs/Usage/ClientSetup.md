@@ -104,7 +104,7 @@ Please choose:
   * Lodestar - alpha. Feedback welcome
 * Your source of Ethereum PoW chain data
   * Geth
-  * Erigon - alpha, source build only. Feedback welcome
+  * Erigon - alpha. Feedback welcome
   * Besu - Feedback welcome.
   * Nethermind - Feedback welcome.
   * 3rd-party
@@ -169,6 +169,14 @@ Optionally, choose one execution client, unless you are using a 3rd-party provid
 - `erigon.yml` - local erigon execution client - feedback welcome.
 - `besu.yml` - local besu execution client - feedback welcome.
 - `nm.yml` - local nethermind execution client - feedback welcome.
+
+> Erigon is configured to fully prune itself. This does work with a consensus client, but requires that
+> the consensus client get initial deposit data from another source, such as Infura. There are
+> two ways to make this happen. Either set an Infura failover client and sync the consensus client
+> and Erigon at the same time. Because Erigon will take longer to sync, the Infura failover will be used.
+> Or, alternatively, if the consensus client needs to be re-synced while Erigon is already synced,
+> you can set `EC_NODE` to be Infura, sync the consensus client, *then* configure it for Erigon with
+> an Infura failover.
 
 Optionally, choose a reporting package:
 

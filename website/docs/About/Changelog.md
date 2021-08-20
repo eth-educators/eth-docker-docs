@@ -39,6 +39,16 @@ directory (`cd ~/eth-docker` by default):
   backwards compatibility will be removed after "Altair", expected August 2021. PLEASE RECREATE your `.env` from
   `default.env` before this date. `./ethd config` can be a good quickstart, or `sudo ./ethd update` does it for you.
 
+## v1.5.0 2021-08-19
+
+*This is an optional update, that contains new features*
+
+- **Breaking change** The old `ETH1_*` and `BN_*` variables have been removed. Please make sure your `.env` no longer uses them. `./ethd update` will convert `.env` for you.
+- Teku validator-only setup now works better with load-balanced consensus clients such as Infura
+- Erigon now fully prunes, please see Client Setup documentation as to what that means for consensus client initial sync
+- Initial support for ARM64 setups such as Mac M1, Raspberry Pi4, AWS t4g. This has not been extensively tested, feedback very welcome.
+- `./auto-prune.sh` script that can be run in crontab and will prune Geth when disk space is below 100 GiB free or below 10% free. Requires the `bc` package.
+
 ## v1.4.2.4 2021-07-29
 
 *This is a bugfix update*
