@@ -35,9 +35,12 @@ directory (`cd ~/eth-docker` by default):
 * PLEASE UPDATE BEFORE October 2021.
   The script that adjusts permissions for existing setups will be removed again at that point, and
   any setups that haven't updated by then would have permissions issues when they do update.
-* Releases from 2021-May-08 on cause warning messages, as both `ETH1_` and `EC_` variable names are supported. This
-  backwards compatibility will be removed after "Altair", expected August 2021. PLEASE RECREATE your `.env` from
-  `default.env` before this date. `./ethd config` can be a good quickstart, or `sudo ./ethd update` does it for you.
+
+## v1.5.1 2021-08-23
+
+*This is an optional update, that contains new features*
+
+* Enabled Lighthouse doppelganger protection by default
 
 ## v1.5.0 2021-08-19
 
