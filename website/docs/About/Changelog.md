@@ -4,6 +4,20 @@ title:  Changelog
 sidebar_label: Changelog
 ---
 
+## Updating the project
+
+> `sudo` for ethd and docker-compose commands is only necessary if your user
+> is *not* part of the `docker` group
+
+To update the components of the project, run from within the project
+directory (`cd ~/eth-docker` by default):
+
+* If updating from a version prior to 1.2.5 (2021-June-05): `git pull`
+* `sudo ./ethd update`. This fetches new client version(s), a new eth-docker, and updates `.env`, keeping your modifications. If you
+  made changes to the source or binary build targets, run `sudo ./ethd update --keep-targets` instead.
+* **Only** if you are using source builds: `sudo docker-compose build --pull --no-cache`
+* `sudo ./ethd restart` - use the new client version(s)
+
 ## Updating the project branch
 
 If updating eth-docker from a version prior to 1.2.1 (2021-May-31), please run these commands
@@ -14,27 +28,23 @@ git pull origin main
 sudo ./ethd update
 ```
 
-> `sudo` for ethd and docker-compose commands is only necessary if your user
-> is *not* part of the `docker` group
-
-## Updating the project
-
-To update the components of the project, run from within the project
-directory (`cd ~/eth-docker` by default):
-
-* If updating from a version prior to 1.2.5 (2021-June-05): `git pull`
-* `sudo ./ethd update`. This fetches new client version(s), a new eth-docker, and updates `.env`, keeping your modifications. If you
-  made changes to the source or binary build targets, those changes will need to be manually recreated.
-* **Only** if you are using source builds: `sudo docker-compose build --pull --no-cache`
-* `sudo ./ethd restart` - use the new client version(s)
-
 ## Upgrading from releases prior to 1.0.0 (2021-May-06)
 
 * All v1.x releases change the docker images used to run your node. Please be sure to `./ethd update`
   before (re)starting your node software.
-* PLEASE UPDATE BEFORE October 2021.
+* PLEASE UPDATE BEFORE November 2021.
   The script that adjusts permissions for existing setups will be removed again at that point, and
   any setups that haven't updated by then would have permissions issues when they do update.
+
+## v1.5.2 2021-09-23
+
+*This is an optional update, that contains new features*
+
+* Erigon now uses `prune.r.before` for a PoS-friendly pruned DB. **This is a breaking change for existing Erigon DBs, you'd need to resync**
+* `./ethd config` sets Geth and Erigon Grafana
+* Erigon available as a choice in `./ethd config`
+* New `--dry-run` flag for `auto-prune.sh`
+* New `--keep-targets` flag for `./ethd update`
 
 ## v1.5.1 2021-08-23
 
