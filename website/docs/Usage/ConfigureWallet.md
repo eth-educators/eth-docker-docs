@@ -72,5 +72,5 @@ diff -s .eth/validator_keys/deposit_data*.json .eth/seed_check/deposit_data*.jso
 
 Cleanup duplicate deposit_data.
 ```
-rm ./eth/seed_check/*
+rm .eth/seed_check/*
 ```
