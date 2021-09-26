@@ -8,10 +8,10 @@ This project builds from client teams' official docker images or from official s
 directly from docker hub or github, respectively. In most cases, binary is the default.
 
 Currently supported clients:
-- Lighthouse
-- Prysm
 - Teku
+- Lighthouse
 - Nimbus
+- Prysm - client has close to a supermajority, it is recommended to choose any other
 - Lodestar (alpha release)
 
 Currently supported optional clients:

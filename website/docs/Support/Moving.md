@@ -49,7 +49,7 @@ First, you'll want to bring down the old client and make sure it can't come back
 
 In the directory of the old client:
 
-- [ ] `sudo docker-compose down`
+- [ ] `sudo ./ethd down`
 - [ ] `sudo docker volume ls` - find the volume for the validator
 - [ ] `sudo docker volume rm VOLUMENAME` - remove the volume for the validator
 
@@ -57,9 +57,9 @@ In the directory of the old client:
 
 Verify that you removed the right client:
 
-- [ ] `sudo docker-compose run validator` - confirm that it complains it cannot find its keys. If it still
+- [ ] `sudo docker-compose run --rm validator` - confirm that it complains it cannot find its keys. If it still
   finds validator keys, do not proceed until you fixed that and it doesn't.
-  > For Nimbus and Teku, the command is `sudo docker-compose run consensus` instead
+  > For Nimbus and Teku, the command is `sudo docker-compose run --rm consensus` instead
 - [ ] Look at https://beaconcha.in/ and verify that the validator(s) you just removed are now
   missing an attestation.
 - [ ] Verify that both machines are synchronized to time and are using NTP
@@ -77,7 +77,7 @@ Verify that you removed the right client:
 - [ ] If you are absolutely positively sure that the old validator client cannot
   start attesting again and 10 minutes have passed / **all** validators
   have missed an attestion, then and only then:
-- [ ] Start the new client with `sudo docker-compose up -d eth`
+- [ ] Start the new client with `sudo ./ethd start`
 
 ### Variant: DR consensus client
 

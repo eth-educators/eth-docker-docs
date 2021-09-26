@@ -20,9 +20,6 @@ net, however.
 > to wait 10 minutes before importing validator key(s) and starting it again.
 > The slashing protection DB will be gone, and you risk slashing your validator(s)
 > otherwise.
-## Addendum: Moving a client
-
-Please see the [moving checklist](../Support/Moving.md)
 
 ## Addendum: Troubleshooting
 
