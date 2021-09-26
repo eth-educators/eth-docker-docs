@@ -9,7 +9,15 @@ project itself in. It has been tested on Linux, and is expected to work on MacOS
 
 ## Ubuntu Prerequisites
 
-> Note: The following prerequisites will be installed on the Linux server you
+> [!WARNING]
+> Ubuntu Desktop can be installed with the Docker snap package, which can cause
+> issues including complete data loss on upgrade. We highly recommend removing this
+> via `sudo snap remove --purge docker`. Note this action will delete all data kept
+> in docker. If you are running the snap Docker package and have data you need to keep,
+> please ask for help in the ethstaker Discord.
+
+> [!NOTE]
+> The following prerequisites will be installed on the Linux server you
 > will run your node on. The machine you use to connect *to* the Linux server
 > only requires an SSH client.
 
@@ -39,6 +47,7 @@ git, docker, and docker-compose.
 On Linux, docker-compose runs as root by default. The individual containers do not,
 they run as local users inside the containers. "Rootless mode" is expected to
 work for docker with this project, as it does not (yet) use AppArmor.
+
 
 ## MacOS Prerequisites
 

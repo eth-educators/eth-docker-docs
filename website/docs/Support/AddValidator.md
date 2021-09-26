@@ -23,7 +23,7 @@ and are now recreating.
 
 In order to add additional validator signing keys, likewise run `sudo docker-compose run --rm deposit-cli-existing --eth1_withdrawal_address YOURHARDWAREWALLETADDRESS --uid $(id -u)`
 and provide your mnemonic, but this time set the index to the number of validator keys you had created previously,
-for example, `4`. New validators will be created after this point. You will receive new `keystore-m` signing keys
+for example, `4`. Specify how many *new, additional* validators you want to create. You will receive new `keystore-m` signing keys
 and a new `deposit_data` JSON.
 > This example assumes that you want to fix withdrawals to an Ethereum address you control,
 > ideally a hardware wallet. You can leave the `--eth1_withdrawal_address` parameter out

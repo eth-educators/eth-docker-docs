@@ -148,8 +148,8 @@ Choose one consensus client:
 
 - `teku-base.yml` - Teku
 - `lh-base.yml` - Lighthouse
-- `prysm-base.yml` - Prysm
 - `nimbus-base.yml` - Nimbus
+- `prysm-base.yml` - Prysm - client has close to a supermajority, consider choosing any other
 - `lodestar-base.yml` - Lodestar, alpha release
 
 If you'd rather just run a validator client, and back-end to an Infura eth2/beacon project:
@@ -180,15 +180,15 @@ Optionally, choose one execution client, unless you are using a 3rd-party provid
 
 Optionally, choose a reporting package:
 
-- `prysm-stats.yml` - send stats to https://beaconcha.in, requires API key
 - `lh-stats.yml` - send stats to https://beaconcha.in, requires API key
+- `prysm-stats.yml` - send stats to https://beaconcha.in, requires API key. Source build only as of Sept 2021.
 
 - `prysm-web.yml` - Prysm Web UI.
 
 - `teku-grafana.yml` - grafana dashboard for Teku
 - `lh-grafana.yml` - grafana dashboard for Lighthouse
-- `prysm-grafana.yml` - grafana dashboard for Prysm.
 - `nimbus-grafana.yml` - grafana dashboard for Nimbus
+- `prysm-grafana.yml` - grafana dashboard for Prysm.
 - `geth-grafana.yml` - grafana dashboard for Geth, to be combined with one of the client dashboards, or with `blank-grafana.yml` if standalone. Example `COMPOSE_FILE=lh-base.yml:geth.yml:lh-grafana.yml:geth-grafana.yml:grafana-insecure.yml`
 - `erigon-grafana.yml` - grafana dashboard for Erigon, to be combined with one of the client dashboards, or with `blank-grafana.yml` if standalone. Example `COMPOSE_FILE=lh-base.yml:erigon.yml:lh-grafana.yml:erigon-grafana.yml:grafana-insecure.yml`
 

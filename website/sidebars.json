@@ -28,6 +28,7 @@
 			"Support/AddValidator",		
 			"Support/Cloud",
 			"Support/Moving",
+                        "Support/SwitchClient",
 			"Support/Exit",
 			"Support/GethPrune",
 			"Support/Addendums",
