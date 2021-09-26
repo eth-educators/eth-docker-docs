@@ -20,13 +20,13 @@ Choose any consensus client and any execution client you'd like to use, and then
 
 ## Switching clients if you are already using eth-docker
 
-1. Create free Infura projects
+### 1. Create free Infura projects
 
 If you do not already have an Ethereum project with Infura: Create an account with [Infura](https://infura.io/), and log in. From the Dashboard, choose "Ethereum" and "Create New Project". Give it a name. This will be your remote execution client ("eth1").
 
 If you are going to use a consensus client with rapid sync capability (as of September 2021, Teku): From the Dashboard, choose "ETH 2" and "Create New Project". Give it a name. This will be your remote consensus client ("beacon").
 
-2. Switch the existing setup to use Infura
+### 2. Switch the existing setup to use Infura
 
 Skip this step if you are already using Infura instead of your own execution client such as Geth.
 
@@ -38,10 +38,9 @@ Save the file and `sudo ./ethd restart`, then confirm that the consensus and val
 
 Lastly, remove the execution client database volume: `docker volume ls` followed by `sudo docker volume rm ECVOLUME`, e.g. for Geth `sudo docker volume rm eth-docker_geth-eth1-data`.
 
-> [!TIP]
 > As always, `sudo` commands for docker are only necessary if your user is not part of the `docker` group. If `docker ps` succeeds, you do not need to use `sudo` for `./ethd` or `docker` or `docker-compose`.
 
-3. Create a new client stack
+### 3. Create a new client stack
 
 We'll be running a second copy of eth-docker in its own directory. For example, if the new directory is going to be `~/eth-staker`: `cd ~ && git clone https://github.com/eth2-educators/eth-docker.git eth-staker && cd eth-staker` .
 
@@ -51,20 +50,20 @@ Configure the new stack. Make sure to choose an Infura failover for your executi
 
 Observe the consensus client, and take the next step once it is fully synced: `sudo ./ethd logs -f consensus`. This can take a few days.
 
-4. Move your validators
+### 4. Move your validators
 
 **Exercise extreme caution. Running your validators in two locations at once would lead to slashing**
 
 Follow the [moving a validator](../Support/Moving.md) instructions. You'll be inside the old directory, e.g. `~/eth-docker`, for the first part where you delete the keys and make sure they are gone, and inside the new directory, e.g. `~/eth-staker`, for
 the second part where you import the keys again.
 
-5. Shut down the old client and remove its storage
+### 5. Shut down the old client and remove its storage
 
 Inside the directory for the old client, e.g. `cd ~/eth-docker`, stop the client: `sudo ./ethd stop`. Then find its volumes via `sudo docker volume ls`, they will all start with the name of the directory. And `sudo docker volume rm VOLUMENAME` those.
 
 Finally, you can remove the directory itself: For example, if it was `~/eth-docker`, `cd ~ && rm -rf eth-docker`.
 
-6. Change startup service and auto-prune crontab
+### 6. Change startup service and auto-prune crontab
 
 These are optional components that you may not be using.
 
@@ -73,7 +72,7 @@ and new directory `eth-staker`, you'd change it from `WorkingDirectory=/home/ubu
 
 - If you are using the `auto-prune.sh` script in crontab, change where crontab looks for it: `crontab -e` and adjust the path to the new directory.
 
-7. Get with Superphiz and claim your POAP
+### 7. Get with Superphiz and claim your POAP
 
 [TBD](https://twitter.com/superphiz/status/1442043723790102528?s=19) and, this is really an excellent idea.
 
@@ -81,17 +80,17 @@ and new directory `eth-staker`, you'd change it from `WorkingDirectory=/home/ubu
 
 If you are using systemd with guides from Somer Esat, Coincashew or Metanull, and want to give eth-docker's automation a whirl, these instructions will show you how to make the switch.
 
-1. Create free Infura projects
+### 1. Create free Infura projects
 
 If you do not already have an Ethereum project with Infura: Create an account with [Infura](https://infura.io/), and log in. From the Dashboard, choose "Ethereum" and "Create New Project". Give it a name. This will be your remote execution client ("eth1").
 
 If you are going to use a consensus client with rapid sync capability (as of September 2021, Teku): From the Dashboard, choose "ETH 2" and "Create New Project". Give it a name. This will be your remote consensus client ("beacon").
 
-2. Switch the existing setup to use Infura
+### 2. Switch the existing setup to use Infura
 
 Skip this step if you are already using Infura instead of your own execution client such as Geth.
 
-### Somer Esat's guide
+#### Somer Esat's guide
 
 `sudo nano /etc/systemd/system/prysmbeacon.service` and change `--http-web3provider=` in `ExecStart` to the Infura URL, which you can see in the Settings of your Infura project. E.g. `ExecStart=/usr/local/bin/beacon-chain --datadir=/var/lib/prysm/beacon --http-web3provider=https://mainnet.infura.io/v3/MYINFURAID --accept-terms-of-use`.
 
@@ -99,7 +98,7 @@ Skip this step if you are already using Infura instead of your own execution cli
 
 Disable the Geth service and remove its database: `sudo systemctl disable geth` and `sudo rm -rf /var/lib/goethereum`.
 
-### Metanull's guide
+#### Metanull's guide
 
 `sudo -u beacon nano /home/beacon/prysm-beacon.yaml` and change `http-web3provider:` to the Infura URL, which you can see in the Settings of your Infura project. E.g. `http-web3provider: "https://mainnet.infura.io/v3/MYINFURAID"`.
 
@@ -107,7 +106,7 @@ Disable the Geth service and remove its database: `sudo systemctl disable geth` 
 
 Disable the Geth service and remove its database: `sudo systemctl disable geth` and `sudo rm -rf /home/geth/*`.
 
-### Coincashew's guide
+#### Coincashew's guide
 
 `sudo nano /etc/systemd/system/beacon-chain.service` and change `--http-web3provider=` in `ExecStart` to the Infura URL, which you can see in the Settings of your Infura project. E.g. `ExecStart=/home/MYUSER/prysm/prysm.sh beacon-chain --p2p-host-ip=${ClientIP} --monitoring-host="0.0.0.0" --http-web3provider=https://mainnet.infura.io/v3/MYINFURAID --accept-terms-of-use`.
 
@@ -115,7 +114,7 @@ Disable the Geth service and remove its database: `sudo systemctl disable geth` 
 
 Disable the Geth service and remove its database: `sudo systemctl disable eth1` and `sudo rm -rf ~/.ethereum`.
 
-3. Create a new eth-docker client stack
+### 3. Create a new eth-docker client stack
 
 Install prerequisites: `sudo snap remove --purge docker` just in case a snap docker is installed, then `sudo apt update && sudo apt install -y git docker.io docker-compose`.
 
@@ -129,16 +128,15 @@ Configure the client stack. Make sure to choose an Infura failover for your exec
 
 Observe the consensus client, and take the next step once it is fully synced: `sudo ./ethd logs -f consensus`. This can take a few days.
 
-> [!TIP]
 > `sudo` commands for docker are only necessary if your user is not part of the `docker` group. If `docker ps` succeeds, you do not need to use `sudo` for `./ethd` or `docker` or `docker-compose`.
 
-4. Move your validators
+### 4. Move your validators
 
 **Exercise extreme caution. Running your validators in two locations at once would lead to slashing**
 
 Make sure you have your `keystore-m_ETC.json` files and the password for them.
 
-### Somer Esat's guide
+#### Somer Esat's guide
 
 First, remove the validator keys from the existing setup. `sudo systemctl stop prysmvalidator`. Remove the keys: `sudo rm -rf /var/lib/prysm/validator`. 
 
@@ -148,7 +146,7 @@ Verify that the validator can't find them: `sudo systemctl start prysmvalidator`
 
 Follow the [moving a validator](../Support/Moving.md) instructions. You already removed the keys: Wait 10 minutes after that, then import them again from inside the `~/eth-docker` directory.
 
-### Metanull's guide
+#### Metanull's guide
 
 First, remove the validator keys from the existing setup. `sudo systemctl stop validator`. Remove the keys: `sudo rm -rf /home/validator/.eth2validators`
 
@@ -158,7 +156,7 @@ Verify that the validator can't find them: `sudo systemctl start validator` and 
 
 Follow the [moving a validator](../Support/Moving.md) instructions. You already removed the keys: Wait 10 minutes after that, then import them again from inside the `~/eth-docker` directory.
 
-### Coincashew's guide
+#### Coincashew's guide
 
 First, remove the validator keys from the existing setup. `sudo systemctl stop validator`. Remove the keys: `sudo rm -rf ~/.eth2validators`.
 
@@ -168,11 +166,11 @@ Verify that the validator can't find them: `sudo systemctl start validator` and 
 
 Follow the [moving a validator](../Support/Moving.md) instructions. You already removed the keys: Wait 10 minutes after that, then import them again from inside the `~/eth-docker` directory.
 
-5. Remove old beacon database
+### 5. Remove old beacon database
 
 We can remove the old beacon chain database and disable the service.
 
-### Somer Esat's guide
+#### Somer Esat's guide
 
 `sudo systemctl stop prysmbeacon && sudo systemctl disable prysmbeacon` and `sudo rm -rf /var/lib/prysm`.
 
@@ -181,7 +179,7 @@ Optionally, remove the goeth and prysm users: `sudo deluser goeth && sudo deluse
 Optionally, remove the old executables: `sudo apt remove -y geth && sudo apt -y auto-remove && sudo rm /usr/local/bin/validator && sudo rm /usr/local/bin/beacon-chain`.
 
 
-### Metanull's guide
+#### Metanull's guide
 
 `sudo systemctl stop beacon-chain && sudo systemctl disable beacon-chain` and `sudo rm -rf /home/beacon/*`.
 
@@ -189,16 +187,17 @@ Optionally, remove the geth and prysm users: `sudo deluser --remove-home geth &&
 
 Optionally, remove the old Geth package: `sudo apt remove -y ethereum && sudo apt -y auto-remove`.
 
-### Coincashew's guide
+#### Coincashew's guide
 
 `sudo systemctl stop beacon-chain && sudo systemctl disable beacon-chain` and `sudo rm -rf ~/prysm`.
 
 Optionally, remove the old Geth package: `sudo apt remove -y ethereum && sudo apt -y auto-remove`.
 
-6. Set an auto-prune crontab
+### 6. Set an auto-prune crontab
 
 This is an optional component for [auto-pruning Geth](../Support/GethPrune.md#fully-automated-geth-prune).
 
-7. Get with Superphiz and claim your POAP
+### 7. Get with Superphiz and claim your POAP
 
 [TBD](https://twitter.com/superphiz/status/1442043723790102528?s=19) and, this is really an excellent idea.
+
