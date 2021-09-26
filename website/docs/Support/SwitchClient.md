@@ -1,7 +1,7 @@
 ---
 id: SwitchClient
 title:  Switching client(s).
-sidebar_label: SwitchClient
+sidebar_label: Switch Clients
 ---
 
 ## Overview
