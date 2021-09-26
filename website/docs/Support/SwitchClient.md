@@ -140,7 +140,7 @@ Make sure you have your `keystore-m_ETC.json` files and the password for them.
 
 First, remove the validator keys from the existing setup. `sudo systemctl stop prysmvalidator`. Remove the keys: `sudo rm -rf /var/lib/prysm/validator`. 
 
-Verify that the validator can't find them: `sudo systemctl start prysmvalidator` and `journalctl -fu prysmvalidator`, observe that it complains it cannot find its keys. **Do not proceed if the keys are still accesible to the validator**
+Verify that the validator can't find them: `sudo systemctl start prysmvalidator` and `journalctl -fu prysmvalidator`, observe that it complains it cannot find its keys. **Do not proceed if the keys are still accessible to the validator**
 
 `sudo systemctl stop prysmvalidator` and `sudo systemctl disable prysmvalidator` to shut it down for good.
 
@@ -150,7 +150,7 @@ Follow the [moving a validator](../Support/Moving.md) instructions. You already 
 
 First, remove the validator keys from the existing setup. `sudo systemctl stop validator`. Remove the keys: `sudo rm -rf /home/validator/.eth2validators`
 
-Verify that the validator can't find them: `sudo systemctl start validator` and `journalctl -fu validator`, observe that it complains it cannot find its keys. **Do not proceed if the keys are still accesible to the validator**
+Verify that the validator can't find them: `sudo systemctl start validator` and `journalctl -fu validator`, observe that it complains it cannot find its keys. **Do not proceed if the keys are still accessible to the validator**
 
 `sudo systemctl stop validator` and `sudo systemctl disable validator` to shut it down for good.
 
@@ -160,7 +160,7 @@ Follow the [moving a validator](../Support/Moving.md) instructions. You already 
 
 First, remove the validator keys from the existing setup. `sudo systemctl stop validator`. Remove the keys: `sudo rm -rf ~/.eth2validators`.
 
-Verify that the validator can't find them: `sudo systemctl start validator` and `journalctl -fu validator`, observe that it complains it cannot find its keys. **Do not proceed if the keys are still accesible to the validator**
+Verify that the validator can't find them: `sudo systemctl start validator` and `journalctl -fu validator`, observe that it complains it cannot find its keys. **Do not proceed if the keys are still accessible to the validator**
 
 `sudo systemctl stop validator` and `sudo systemctl disable validator` to shut it down for good.
 
