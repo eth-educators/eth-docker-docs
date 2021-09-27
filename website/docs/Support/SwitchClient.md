@@ -30,13 +30,15 @@ If you are going to use a consensus client with rapid sync capability (as of Sep
 
 Skip this step if you are already using Infura instead of your own execution client such as Geth.
 
+Stop the execution client, e.g. Geth, in case you want to re-use its database: `sudo docker-compose rm -sf execution`
+
 Edit the `.env` file, for example `cd ~/eth-docker && nano .env`. Remove `geth.yml` and, if you use it, `geth-grafana.yml` from the `COMPOSE_FILE` line. Similarly for other clients such as Erigon, Nethermind and Besu, if you are using those instead.
 
 Change `EC_NODE` to use the Infura URL, which you can see in the Settings of your Infura project.
 
 Save the file and `sudo ./ethd restart`, then confirm that the consensus and validator client are up and running correctly: `sudo ./ethd logs -f consensus` and `sudo ./ethd logs -f validator`
 
-Lastly, remove the execution client database volume: `docker volume ls` followed by `sudo docker volume rm ECVOLUME`, e.g. for Geth `sudo docker volume rm eth-docker_geth-eth1-data`.
+You'll be setting up a new execution client in step 3. Optionally, you can move the execution client DB to the new location, and avoid a resync. If you are going to fresh sync, then remove the execution client database volume: `docker volume ls` followed by `sudo docker volume rm ECVOLUME`, e.g. for Geth `sudo docker volume rm eth-docker_geth-eth1-data`.
 
 > As always, `sudo` commands for docker are only necessary if your user is not part of the `docker` group. If `docker ps` succeeds, you do not need to use `sudo` for `./ethd` or `docker` or `docker-compose`.
 
@@ -49,6 +51,22 @@ Configure the new stack. Make sure to choose an Infura failover for your executi
 **Do not** import validator keys yet. Your validators are still running on your old client, and moving them over needs to be done with care to avoid running them in two places and getting yourself slashed.
 
 Observe the consensus client, and take the next step once it is fully synced: `sudo ./ethd logs -f consensus`. This can take a few days.
+
+### 3a. Optional: Move the existing execution client database to its new location
+
+This avoids a fresh sync of the execution client database in the new location. Note you might want to fresh sync if your DB has grown to the point where starting over is beneficial.
+
+In the location for the new client stack, e.g. `~/eth-staker`, stop the stack: `./ethd stop`
+
+`docker volume ls` to see the volume names of the old and new execution client. For Geth, you might see `eth-docker_geth-eth1-data` and `eth-staker_geth-eth1-data`.
+
+Remove the partially synced contents of the **new** database location: `sudo rm -rf /var/lib/docker/volumes/NEWVOLUME/_data`, e,g. for Geth `sudo rm -rf /var/lib/docker/volumes/eth-staker_geth-eth1-data/_data`
+
+Move the `_data` directory in the **old** volume to the new database location: `sudo mv /var/lib/docker/volumes/OLDVOLUME/_data -t /var/lib/docker/volumes/NEWVOLUME`. For Geth this might be `sudo mv /var/lib/docker/volumes/eth-docker_geth-eth1-data/_data -t /var/lib/docker/volumes/eth-staker_geth-eth1-data`
+
+Start the new stack again: `./ethd start`, then observe that your execution client is running well and is synced to head: `./ethd logs -f execution`.
+
+Finally, remove the old volume: `sudo docker volume rm OLDVOLUME`, e.g. for Geth `sudo docker volume rm eth-docker_geth-eth1-data`.
 
 ### 4. Move your validators
 
