@@ -61,9 +61,10 @@ Verify that you removed the right client:
   finds validator keys, do not proceed until you fixed that and it doesn't.
   > For Nimbus and Teku, the command is `sudo docker-compose run --rm consensus` instead
 - [ ] Look at https://beaconcha.in/ and verify that the validator(s) you just removed are now
-  missing an attestation.
-- [ ] Verify that both machines are synchronized to time and are using NTP
-- [ ] Allow 10 minutes to go by before taking the next step
+  missing an attestation. Take a note of the epoch the last successful attestion was in.
+- [ ] Verify that both machines are synchronized to time and are using NTP.
+- [ ] Allow 15 minutes to go by and verify that the last successful attestation's epoch is now
+  finalized. Only then take the next step.
 
 ### Import keys into new client
 
@@ -75,8 +76,8 @@ Verify that you removed the right client:
   has it complaining it can't find keys, so that there is **no way** it
   could run in two places.
 - [ ] If you are absolutely positively sure that the old validator client cannot
-  start attesting again and 10 minutes have passed / **all** validators
-  have missed an attestion, then and only then:
+  start attesting again and 15 minutes have passed / **all** validators'
+  last successful attestation is in a finalized epoch, then and only then:
 - [ ] Start the new client with `sudo ./ethd start`
 
 ### Variant: DR consensus client
