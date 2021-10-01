@@ -1,13 +1,22 @@
 ---
 id: ResourceUsage
-title:  Execution Client Resource Usage
-sidebar_label: Execution Client Resource Usage
+title:  Client Resource Usage
+sidebar_label: Client Resource Usage
 ---
+
+# Consensus Clients
+
+| Client | Version | Date | DB Size  |  RAM | CPU | Notes |
+|--------|---------|----  |----------|------|-----|-------|
+| Teku   | 21.9.2  | Sept 2021 | ~20 GiB | ~4 GiB | 100-200% | |
+| Lighthouse | 1.5.2  | Sept 2021 | ~55 GiB | ~1 GiB | 100-200% | |
+| Nimbus | | | ? | ~1 Gib | 100% | single-threaded |
+| Prysm | | | ? | ~4 GiB | ? | |
+
+# Execution clients
 
 For reference, here are disk, RAM and CPU requirements, as well as mainnet initial
 synchronization times, for different Ethereum execution clients.
-
-PRs to add to this information welcome.
 
 ## Disk, RAM, CPU requirements
 
@@ -15,10 +24,10 @@ SSD, RAM and CPU use is after initial sync, when keeping up with head. 100% CPU 
 
 | Client | Version | Date | DB Size  | DB Growth | RAM | CPU | Notes |
 |--------|---------|----  |----------|-----------|-----|-----|-------|
-| Geth   | 1.10.1 | Mar 2021 | ~350 GiB | ~ 10 GiB / week | 9 GiB | 100-400% | DB size can be reduced by [offline(!) prune](../Support/GethPrune.md) |
+| Geth   | 1.10.9 | Sept 2021 | ~350 GiB | ~ 12 GiB / week | 9 GiB | 100-400% | DB size can be reduced by [offline(!) prune](../Support/GethPrune.md) |
 | Nethermind | 1.10.51 | Mar 2021 | ~170 GiB | ~17 GiB / week | 9 GiB | 100-400% | memory use w/ pruning and prune-cache 4096; initial size lower bcs of ancient barrier |
 | Besu | v20.10.2 | Dec 2020 | ~420 GiB | ~ 78 GiB / week | 6 - 9 GiB | 200-300% | keep an eye on Besu's bonsai trie work, DB growth may become more reasonable |
-| Erigon | 2021-08-02 alpha | August 2021 | ~ 750 GiB | ~ 15 GiB / week | 1 GiB | 50-100% | Erigon will use up to 16 GiB of RAM during initial sync. It will have the OS use all available RAM as a DB cache during post-sync operation, but this RAM is free to be used by other programs as needed |
+| Erigon | 2021-09-05 alpha | Sept 2021 | ~ 635 GiB | ? | 1 GiB | 50-100% | Erigon will use up to 16 GiB of RAM during initial sync. It will have the OS use all available RAM as a DB cache during post-sync operation, but this RAM is free to be used by other programs as needed |
 
 ## Test Systems
 
@@ -48,3 +57,4 @@ node will "catch up" and get in sync.
 | Nethermind | 1.10.44 | Mar 2021 | Homebrew Xeon | ~ 27 hours | default | |
 | Nethermind | 1.10.9 | Jan 2021 | Netcup VPS 2000 G9 | ~ 20 hours | default | |
 | Besu | 20.10.4 | Jan 2020 | Homebrew Xeon | ~ 6 days 8 hours | default | |
+| Erigon | 2021-09-05 alpha | Sept 2021 | Homebrew Xeon | ~ 6 days | default | |

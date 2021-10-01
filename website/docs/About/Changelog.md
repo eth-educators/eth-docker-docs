@@ -36,6 +36,13 @@ sudo ./ethd update
   The script that adjusts permissions for existing setups will be removed again at that point, and
   any setups that haven't updated by then would have permissions issues when they do update.
 
+## v1.5.3 2021-10-01
+
+*This is an optional update, that contains new features*
+
+* Support for Lighthouse's new checkpoint sync. Requires LH v2.0.0
+* Support for RocketPool and eth-docker side-by-side, using the consensus client and execution client in eth-docker for both 
+
 ## v1.5.2 2021-09-23
 
 *This is an optional update, that contains new features*
