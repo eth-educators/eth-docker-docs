@@ -36,6 +36,12 @@ sudo ./ethd update
   The script that adjusts permissions for existing setups will be removed again at that point, and
   any setups that haven't updated by then would have permissions issues when they do update.
 
+## v1.5.5 2021-10-06
+
+*This is a bugfix update*
+
+* Removed doppelganger protection from `lh-validator.yml`, because it does not play well with Teku/Infura
+
 ## v1.5.4 2021-10-06
 
 *This is an optional update, that contains new features*
