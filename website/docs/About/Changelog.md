@@ -36,6 +36,13 @@ sudo ./ethd update
   The script that adjusts permissions for existing setups will be removed again at that point, and
   any setups that haven't updated by then would have permissions issues when they do update.
 
+## v1.5.4 2021-10-06
+
+*This is an optional update, that contains new features*
+
+* Support for Prym's new slasher and Lighthouse's slasher
+* Optional `notz` files for Lighthouse and Teku, for use with Amazon Linux 2 or similar
+
 ## v1.5.3 2021-10-01
 
 *This is an optional update, that contains new features*

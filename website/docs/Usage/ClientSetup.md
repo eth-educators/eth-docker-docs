@@ -219,6 +219,7 @@ Advanced options:
 - `lh-consensus.yml`, `teku-consensus.yml`, `prysm-consensus.yml` - for running a [distributed consensus client and validator client](../Usage/ReverseProxy.md) setup.
 
 - `prysm-slasher.yml` - Prysm experimental slasher. The experimental slasher can lead to missed attestations due to the additional resource demand.
+- `lh-slasher.yml` - Lighthouse experimental slasher. The experimental slasher can lead to missed attestations due to the additional resource demand.
 
 ### Multiple nodes on one host
 
