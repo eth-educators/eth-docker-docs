@@ -135,7 +135,7 @@ respectively.
 - If you are going to run a validator client only, without a consensus client, set `CC_NODE` to the URL of your Ethereum PoS beacon/eth2 Infura project, and
   choose one of the `CLIENT-validator.yml` entries in `COMPOSE_FILE`.
 - If you are going to send statistics to https://beaconcha.in, set `BEACON_STATS_API` to your API key
-- If you intend to use Teku and want to sync quickly, set `TEKU_RAPID_SYNC` to your Infura beacon project
+- If you intend to use Teku or Lighthouse and want to sync quickly, set `TEKU_RAPID_SYNC` or `LH_RAPID_SYNC` to your Infura beacon project
 - Adjust ports if you are going to need custom ports instead of the defaults. These are the ports
 exposed to the host, and for the P2P ports to the Internet via your firewall/router.
 
@@ -230,7 +230,7 @@ clients each in their own directory.
 If you want to run multiple isolated clients, just clone this project into a new directory for
 each. This is great for running testnet and mainnet in parallel, for example.
 
-### Prysm Slasher   
+### Prysm or Lighthouse Slasher   
 
 Running [slasher](https://docs.prylabs.network/docs/prysm-usage/slasher/) is an optional client compose file, but helps secure the chain and may result in additional earnings,
 though the chance of additional earnings is low initially, as whistleblower rewards have not been implemented yet.
