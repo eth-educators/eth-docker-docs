@@ -31,18 +31,19 @@ SSD, RAM and CPU use is after initial sync, when keeping up with head. 100% CPU 
 
 ## Test Systems
 
-IOPS is random read-write IOPS [measured by fio with "typical" DB parameters](https://arstech.net/how-to-measure-disk-performance-iops-with-fio-in-linux/), 4G and 100G file.
-Servers have been configured with [noatime](https://www.howtoforge.com/reducing-disk-io-by-mounting-partitions-with-noatime) and [no swap](https://www.geeksforgeeks.org/how-to-permanently-disable-swap-in-linux/) to improve available IOPS.
+IOPS is random read-write IOPS [measured by fio with "typical" DB parameters](https://arstech.net/how-to-measure-disk-performance-iops-with-fio-in-linux/), 4G and 150G file.
+Servers have been configured with [noatime](https://www.howtoforge.com/reducing-disk-io-by-mounting-partitions-with-noatime) and [no swap](https://www.geeksforgeeks.org/how-to-permanently-disable-swap-in-linux/) to improve available IOPS. read and write latencies are measured
+with `sudo iostat -mdx` during Geth sync, look at `r_await` and `w_await`.
 
 A note on Contabo: Stability of their service [is questionable](https://www.reddit.com/r/ethstaker/comments/l5d69l/if_youre_struggling_with_contabo/).
 
-| Name                 | RAM    | SSD Size | CPU        | r/w IOPS | Notes |
-|----------------------|--------|----------|------------|------|-------|
-| Homebrew Xeon        | 32 GiB | 700 GiB  | Intel Quad | 18k/6k (4G file) | Xeon E3-2225v6 |
-| Dell R420            | 32 GiB | 1 TB     | Dual Intel Octo | 28.9k/9.6k (4G file) | Xeon E5-2450 |
-| Contabo M/L VPS        | 16/30 GiB | 400/800 GiB  | Intel Hexa/Octa  | 3k/1k (4G file) | Xeon E5-2630 v4 - some Contabo VPS are AMD |
-| [Netcup](https://netcup.eu) VPS 2000/3000 G9   | 16/24 GiB | 320/600 GiB  | AMD Quad/Hexa | 15k/5k (4G file) 3k/1k (100G file) | |
-| OVH Baremetal NVMe   | 32 GiB | 1.9 TB  | Intel Hexa | 267k/89k (4G file) 186k/62k (100G file) | |
+| Name                 | RAM    | SSD Size | CPU        | r/w IOPS | r/w latency | Notes |
+|----------------------|--------|----------|------------|------|-------|--------|
+| Homebrew Xeon        | 32 GiB | 700 GiB  | Intel Quad | 18k/6k (4G file) | | Xeon E3-2225v6 |
+| Dell R420            | 32 GiB | 1 TB     | Dual Intel Octo | 28.9k/9.6k (4G file) | | Xeon E5-2450 |
+| Contabo M/L VPS        | 16/30 GiB | 400/800 GiB  | Intel Hexa/Octa  | 3k/1k (4G file) | | Xeon E5-2630 v4 - some Contabo VPS are AMD |
+| [Netcup](https://netcup.eu) VPS 2000/3000 G9   | 16/24 GiB | 320/600 GiB  | AMD Quad/Hexa | 15k/5k (4G file) 3k/1k (150G file) | 2.25/6 ms | |
+| OVH Baremetal NVMe   | 32 GiB | 1.9 TB  | Intel Hexa | 267k/89k (4G file) 177k/59k (150G file) | 0.08/3.5 ms | |
 
 ## Initial sync times
 
