@@ -24,23 +24,25 @@ SSD, RAM and CPU use is after initial sync, when keeping up with head. 100% CPU 
 
 | Client | Version | Date | DB Size  | DB Growth | RAM | CPU | Notes |
 |--------|---------|----  |----------|-----------|-----|-----|-------|
-| Geth   | 1.10.9 | Sept 2021 | ~350 GiB | ~ 12 GiB / week | 9 GiB | 100-400% | DB size can be reduced by [offline(!) prune](../Support/GethPrune.md) |
+| Geth   | 1.10.9 | Sept 2021 | ~430 GiB | ~ 12 GiB / week | 9 GiB | 100-400% | DB size can be reduced by [offline(!) prune](../Support/GethPrune.md) |
 | Nethermind | 1.10.51 | Mar 2021 | ~170 GiB | ~17 GiB / week | 9 GiB | 100-400% | memory use w/ pruning and prune-cache 4096; initial size lower bcs of ancient barrier |
 | Besu | v20.10.2 | Dec 2020 | ~420 GiB | ~ 78 GiB / week | 6 - 9 GiB | 200-300% | keep an eye on Besu's bonsai trie work, DB growth may become more reasonable |
 | Erigon | 2021-09-05 alpha | Sept 2021 | ~ 635 GiB | ? | 1 GiB | 50-100% | Erigon will use up to 16 GiB of RAM during initial sync. It will have the OS use all available RAM as a DB cache during post-sync operation, but this RAM is free to be used by other programs as needed |
 
 ## Test Systems
 
-IOPS is random read-write IOPS [measured by fio with "typical" DB parameters](https://arstech.net/how-to-measure-disk-performance-iops-with-fio-in-linux/).
+IOPS is random read-write IOPS [measured by fio with "typical" DB parameters](https://arstech.net/how-to-measure-disk-performance-iops-with-fio-in-linux/), 4G and 100G file.
+Servers have been configured with [noatime](https://www.howtoforge.com/reducing-disk-io-by-mounting-partitions-with-noatime) and [no swap](https://www.geeksforgeeks.org/how-to-permanently-disable-swap-in-linux/) to improve available IOPS.
 
 A note on Contabo: Stability of their service [is questionable](https://www.reddit.com/r/ethstaker/comments/l5d69l/if_youre_struggling_with_contabo/).
 
-| Name                 | RAM    | SSD Size | CPU        | IOPS | Notes |
+| Name                 | RAM    | SSD Size | CPU        | r/w IOPS | Notes |
 |----------------------|--------|----------|------------|------|-------|
-| Homebrew Xeon        | 32 GiB | 700 GiB  | Intel Quad | 18.3k read / 6.1k write | Xeon E3-2225v6 |
-| Dell R420            | 32 GiB | 1 TB     | Dual Intel Octo | 28.9k read / 9.6k write | Xeon E5-2450 |
-| Contabo M/L VPS        | 16/30 GiB | 400/800 GiB  | Intel Hexa/Octa  | 3k read / 1k write | Xeon E5-2630 v4 - some Contabo VPS are AMD |
-| [Netcup](https://netcup.eu) VPS 2000/3000 G9   | 16/24 GiB | 320/600 GiB  | AMD Quad/Hexa | 46.4k read / 15.5k write | |
+| Homebrew Xeon        | 32 GiB | 700 GiB  | Intel Quad | 18k/6k (4G file) | Xeon E3-2225v6 |
+| Dell R420            | 32 GiB | 1 TB     | Dual Intel Octo | 28.9k/9.6k (4G file) | Xeon E5-2450 |
+| Contabo M/L VPS        | 16/30 GiB | 400/800 GiB  | Intel Hexa/Octa  | 3k/1k (4G file) | Xeon E5-2630 v4 - some Contabo VPS are AMD |
+| [Netcup](https://netcup.eu) VPS 2000/3000 G9   | 16/24 GiB | 320/600 GiB  | AMD Quad/Hexa | 15k/5k (4G file) 3k/1k (100G file) | |
+| OVH Baremetal NVMe   | 32 GiB | 1.9 TB  | Intel Hexa | 267k/89k (4G file) 186k/62k (100G file) | |
 
 ## Initial sync times
 
@@ -50,11 +52,15 @@ operation, which is why HDD cannot be used for a node. For Nethermind, seeing "b
 after state root changes with "Setting sync state root to" is normal and expected. With sufficient IOPS, the
 node will "catch up" and get in sync.
 
-| Client | Version | Date | Test System | Time Taken | Cache Size | Notes |
-|--------|---------|------|-------------|------------|------------|-------|
-| Geth   | 1.10.1  | Mar 2021 | Homebrew Xeon | ~ 10 hours | default  | snapshot sync; 3.5 days to generate snapshot; 3 hours to offline prune |
-| Nethermind | 1.10.7-beta | Jan 2021 | Contabo L VPS | Never | default | VPS IOPS too low to finish Nethermind sync |
-| Nethermind | 1.10.44 | Mar 2021 | Homebrew Xeon | ~ 27 hours | default | |
-| Nethermind | 1.10.9 | Jan 2021 | Netcup VPS 2000 G9 | ~ 20 hours | default | |
-| Besu | 20.10.4 | Jan 2020 | Homebrew Xeon | ~ 6 days 8 hours | default | |
-| Erigon | 2021-09-05 alpha | Sept 2021 | Homebrew Xeon | ~ 6 days | default | |
+Cache size default in all tests.
+
+| Client | Version | Date | Test System | Time Taken |  Notes |
+|--------|---------|------|-------------|------------|--------|
+| Geth   | 1.10.1  | Mar 2021 | Homebrew Xeon | ~ 10 hours | |
+| Geth   | 1.10.9  | Oct 2021 | OVH Baremetal | ~ 4.5 hours | |
+| Geth   | 1.10.9  | Oct 2021 | Netcup VPS3000 | ~ 13 hours | |
+| Nethermind | 1.10.7-beta | Jan 2021 | Contabo L VPS | Never | VPS IOPS too low to finish Nethermind sync |
+| Nethermind | 1.10.44 | Mar 2021 | Homebrew Xeon | ~ 27 hours | |
+| Nethermind | 1.10.9 | Jan 2021 | Netcup VPS 2000 G9 | ~ 20 hours | |
+| Besu | 20.10.4 | Jan 2021 | Homebrew Xeon | ~ 6 days 8 hours | |
+| Erigon | 2021-09-05 alpha | Sept 2021 | Homebrew Xeon | ~ 6 days | |
