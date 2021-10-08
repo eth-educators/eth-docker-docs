@@ -36,6 +36,12 @@ sudo ./ethd update
   The script that adjusts permissions for existing setups will be removed again at that point, and
   any setups that haven't updated by then would have permissions issues when they do update.
 
+## v1.5.6 2021-10-08
+
+*This is a bugfix update*
+
+* `lh-stats.yml` is now compatible with `LH_RAPID_SYNC`.
+
 ## v1.5.5 2021-10-06
 
 *This is a bugfix update*
