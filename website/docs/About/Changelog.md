@@ -36,6 +36,12 @@ sudo ./ethd update
   The script that adjusts permissions for existing setups will be removed again at that point, and
   any setups that haven't updated by then would have permissions issues when they do update.
 
+## v1.5.7 2021-10-09
+
+*This is a bugfix update*
+
+* `./ethd prune-geth` no longer tries to allocate a TTY, which could cause it to fail.
+
 ## v1.5.6 2021-10-08
 
 *This is a bugfix update*
