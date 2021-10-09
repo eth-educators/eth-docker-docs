@@ -36,6 +36,12 @@ sudo ./ethd update
   The script that adjusts permissions for existing setups will be removed again at that point, and
   any setups that haven't updated by then would have permissions issues when they do update.
 
+## v1.5.8 2021-10-09
+
+*This is a bugfix update*
+
+* beacon-chain stats work with the split consensus/validator Lighthouse. Thanks to Faisal Moledina.
+
 ## v1.5.7 2021-10-09
 
 *This is a bugfix update*
