@@ -36,6 +36,14 @@ sudo ./ethd update
   The script that adjusts permissions for existing setups will be removed again at that point, and
   any setups that haven't updated by then would have permissions issues when they do update.
 
+## v1.5.9 2021-10-11
+
+*This is an optional update, that contains new features*
+
+* New docker logging configuration - now when you run out of space, it'll be Geth, not Traefik debug logs
+* Support for Lodestar's checkpoint sync via `LS_RAPID_SYNC`
+* Fixed Lodestar's binary and source builds: The location of the binary changed
+
 ## v1.5.8 2021-10-09
 
 *This is a bugfix update*
