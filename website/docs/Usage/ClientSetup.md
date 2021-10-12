@@ -232,8 +232,8 @@ each. This is great for running testnet and mainnet in parallel, for example.
 
 ### Prysm or Lighthouse Slasher   
 
-Running [slasher](https://docs.prylabs.network/docs/prysm-usage/slasher/) is an optional client compose file, but helps secure the chain and may result in additional earnings,
-though the chance of additional earnings is low initially, as whistleblower rewards have not been implemented yet.
+Running [slasher](https://docs.prylabs.network/docs/prysm-usage/slasher/) is an optional client compose file, but helps secure the chain. There are [no additional earnings](https://github.com/ethereum/consensus-specs/issues/1631)
+from running a slasher: Whistleblower rewards are not implemented, and may not ever be implemented.
 
 > Slasher can be a huge resource hog during times of no chain finality, which can manifest as massive RAM usage. Please make sure you understand the risks of this, 
 > especially if you want high uptime for your Ethereum staking full node. Slasher places significant stress on the consensus client when the chain has no finality, and might be the reason
