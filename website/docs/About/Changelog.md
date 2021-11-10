@@ -36,6 +36,17 @@ sudo ./ethd update
   The script that adjusts permissions for existing setups will be removed again at that point, and
   any setups that haven't updated by then would have permissions issues when they do update.
 
+## v1.5.10 2021-11-10
+
+*This is an optional update, that contains new features and bug fixes*
+
+* Besu defaults to Bonsai tries. This will require a complete resync.
+* Teku validator client uses `--network=auto` flag
+* Besu allows Metamask connection
+* Added `./ethd rocketeer` to change RocketPool config when running hybrid mode
+* Auto-prune permissions issue resolved
+* `./ethd update` keeps `LS_RAPID_SYNC`
+
 ## v1.5.9 2021-10-11
 
 *This is an optional update, that contains new features*

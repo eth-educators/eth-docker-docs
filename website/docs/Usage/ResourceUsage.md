@@ -26,8 +26,8 @@ SSD, RAM and CPU use is after initial sync, when keeping up with head. 100% CPU 
 |--------|---------|----  |----------|-----------|-----|-----|-------|
 | Geth   | 1.10.9 | Sept 2021 | ~430 GiB | ~ 12 GiB / week | 9 GiB | 100-400% | DB size can be reduced by [offline(!) prune](../Support/GethPrune.md) |
 | Nethermind | 1.10.51 | Mar 2021 | ~170 GiB | ~17 GiB / week | 9 GiB | 100-400% | memory use w/ pruning and prune-cache 4096; initial size lower bcs of ancient barrier |
-| Besu | v20.10.2 | Dec 2020 | ~420 GiB | ~ 78 GiB / week | 6 - 9 GiB | 200-300% | keep an eye on Besu's bonsai trie work, DB growth may become more reasonable |
-| Erigon | 2021-09-05 alpha | Sept 2021 | ~ 635 GiB | ? | 1 GiB | 50-100% | Erigon will use up to 16 GiB of RAM during initial sync. It will have the OS use all available RAM as a DB cache during post-sync operation, but this RAM is free to be used by other programs as needed |
+| Besu | v21.10.0 | Nov 2021 | ~550 GiB | ~ 7 GiB / week | 8 - 9 GiB | 50-100% | with Bonsai tries |
+| Erigon | 2021-09-05 alpha | Sept 2021 | ~ 635 GiB | ~ 1 GiB / week | 1 GiB | 50-100% | Erigon will use up to 16 GiB of RAM during initial sync. It will have the OS use all available RAM as a DB cache during post-sync operation, but this RAM is free to be used by other programs as needed |
 
 ## Test Systems
 
@@ -62,6 +62,6 @@ Cache size default in all tests.
 | Geth   | 1.10.9  | Oct 2021 | Netcup VPS3000 | ~ 13 hours | |
 | Nethermind | 1.10.7-beta | Jan 2021 | Contabo L VPS | Never | VPS IOPS too low to finish Nethermind sync |
 | Nethermind | 1.10.44 | Mar 2021 | Homebrew Xeon | ~ 27 hours | |
-| Nethermind | 1.10.9 | Jan 2021 | Netcup VPS 2000 G9 | ~ 20 hours | |
-| Besu | 20.10.4 | Jan 2021 | Homebrew Xeon | ~ 6 days 8 hours | |
+| Nethermind | 1.10.9 | Jan 2021 | Netcup VPS 2000 | ~ 20 hours | |
+| Besu | 20.11.0 | Nov 2021 | Netcup VPS 3000 | ~ 4 days 8 hours | |
 | Erigon | 2021-09-05 alpha | Sept 2021 | Homebrew Xeon | ~ 6 days | |
