@@ -32,9 +32,21 @@ sudo ./ethd update
 
 * All v1.x releases change the docker images used to run your node. Please be sure to `./ethd update`
   before (re)starting your node software.
-* PLEASE UPDATE BEFORE November 2021.
-  The script that adjusts permissions for existing setups will be removed again at that point, and
+* If you had not updated before November the 20th 2021
+  The script that adjusts permissions for existing setups was removed at that point, and
   any setups that haven't updated by then would have permissions issues when they do update.
+  Please manually chmod -R the files in the docker volumes if you have permission issues. 
+  Execution client expects 10001, consensus client 10002 and validator client 10000. 
+  The ethstaker Discord can render assistance.
+
+## v1.6 2021-11-20
+
+*This is an optional update, that contains new features and bug fixes*
+
+* Support the latest Besu release
+* All intermediary scripts that migrate from pre-v1.x setups have been removed. This is a breaking change
+  if you are coming from a v0.x release.
+* `-shared.yml` files for consensus clients, just for 0neInfra :)
 
 ## v1.5.10 2021-11-10
 

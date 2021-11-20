@@ -25,8 +25,8 @@ SSD, RAM and CPU use is after initial sync, when keeping up with head. 100% CPU 
 | Client | Version | Date | DB Size  | DB Growth | RAM | CPU | Notes |
 |--------|---------|----  |----------|-----------|-----|-----|-------|
 | Geth   | 1.10.9 | Sept 2021 | ~430 GiB | ~ 12 GiB / week | 9 GiB | 100-400% | DB size can be reduced by [offline(!) prune](../Support/GethPrune.md) |
-| Nethermind | 1.10.51 | Mar 2021 | ~170 GiB | ~17 GiB / week | 9 GiB | 100-400% | memory use w/ pruning and prune-cache 4096; initial size lower bcs of ancient barrier |
-| Besu | v21.10.0 | Nov 2021 | ~550 GiB | ~ 7 GiB / week | 8 - 9 GiB | 50-100% | with Bonsai tries |
+| Nethermind | 1.11.7 | Nov 2021 | ~310 GiB | ~16 GiB / week | 13 GiB | 100-400% | memory use w/ pruning and prune-cache 4096; initial size lower bcs of ancient barrier |
+| Besu | v21.10.0 | Nov 2021 | ~550 GiB | ~ 8 GiB / week | 8 - 9 GiB | 50-100% | with Bonsai tries |
 | Erigon | 2021-09-05 alpha | Sept 2021 | ~ 635 GiB | ~ 1 GiB / week | 1 GiB | 50-100% | Erigon will use up to 16 GiB of RAM during initial sync. It will have the OS use all available RAM as a DB cache during post-sync operation, but this RAM is free to be used by other programs as needed |
 
 ## Test Systems
