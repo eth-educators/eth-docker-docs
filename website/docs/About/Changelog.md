@@ -32,12 +32,21 @@ sudo ./ethd update
 
 * All v1.x releases change the docker images used to run your node. Please be sure to `./ethd update`
   before (re)starting your node software.
-* If you had not updated before November the 20th 2021
+* If you had not updated to a v1.x release before November the 20th 2021
   The script that adjusts permissions for existing setups was removed at that point, and
   any setups that haven't updated by then would have permissions issues when they do update.
   Please manually chmod -R the files in the docker volumes if you have permission issues. 
   Execution client expects 10001, consensus client 10002 and validator client 10000. 
   The ethstaker Discord can render assistance.
+
+## v1.6.1 2021-11-27
+
+*This is an optional update, that contains new features*
+
+* Added `nimbus-consensus.yml` to run Nimbus as a remote consensus client
+* Changed `prysm-consensus.yml` to expose the standard REST API via https://
+* Changed Nethermind source compile to use .NET 6.0
+* Restricted Besu Java heap to 4 GiB
 
 ## v1.6 2021-11-20
 
