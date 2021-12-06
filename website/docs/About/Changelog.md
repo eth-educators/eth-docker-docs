@@ -39,6 +39,13 @@ sudo ./ethd update
   Execution client expects 10001, consensus client 10002 and validator client 10000. 
   The ethstaker Discord can render assistance.
 
+## v1.6.2 2021-12-06
+
+*This is an optional update, that contains new features and bug fixes*
+
+* Fixed a permissions bug with `prysm-web.yml` introduced in 1.6
+* Consensus REST API consistently on port 5052 for compatibility with RocketPool
+
 ## v1.6.1 2021-11-27
 
 *This is an optional update, that contains new features*
