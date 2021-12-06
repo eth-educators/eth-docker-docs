@@ -85,8 +85,7 @@ Cache size default in all tests.
 ## Getting better IOPS
 
 For cloud providers, you "just" need storage with sufficient IOPS. AWS, that's likely gp3 with provisioned IOPS.
-Linode block storage, make sure to get NVMe-backed storage. Netcup is sufficient as of late 2021; Contabo SSD isn't.
-Contabo NVMe should work, if it can be ordered with enough storage space.
+Linode block storage, make sure to get NVMe-backed storage. Netcup is sufficient as of late 2021; Contabo VPS SSD isn't.
 
 For own hardware, we've seen three causes of low IOPS:
 - Overheating of the SSD. Check `smartctl -x`. You want the SSD to be at or below 40 degrees Celsius.
