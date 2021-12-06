@@ -39,6 +39,15 @@ sudo ./ethd update
   Execution client expects 10001, consensus client 10002 and validator client 10000. 
   The ethstaker Discord can render assistance.
 
+## v1.6.3 2021-12-06
+
+*This is an optional update, that contains new features and bug fixes*
+
+* Fixed a bug in `lh-validator.yml` that would prevent the image building
+* Move LodeStar source build to node.js 16
+* Support for LodeStar consensus client only and LodeStar validator client only
+* Lodestar REST API also on port 5052
+
 ## v1.6.2 2021-12-06
 
 *This is an optional update, that contains new features and bug fixes*
