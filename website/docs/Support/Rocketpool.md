@@ -4,9 +4,6 @@ title: Integration with Rocketpool.
 sidebar_label: Integration with Rocketpool
 ---
 
-
-# Overview
-
 RocketPool node and eth-docker solo staking, it's like peanut butter and jelly. Both use docker, and they integrate seamlessly.
 
 I'll be showing two configurations: Chain databases in Rocketpool, and chain databases in eth-docker.
