@@ -31,6 +31,7 @@
                         "Support/SwitchClient",
 			"Support/Exit",
 			"Support/GethPrune",
+			"Support/Rocketpool",
 			"Support/Addendums",
 			"Support/Windows",
 			"Support/Testing"
