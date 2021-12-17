@@ -39,6 +39,14 @@ sudo ./ethd update
   Execution client expects 10001, consensus client 10002 and validator client 10000. 
   The ethstaker Discord can render assistance.
 
+## v1.6.4 2021-12-17
+
+*This is an optional update, that contains new features*
+
+* Prep for Nimbus rapid sync
+* `./ethd config` now queries for rapid sync on Lighthouse
+* Erigon supports `eth_sendRawTransaction`
+
 ## v1.6.3 2021-12-06
 
 *This is an optional update, that contains new features and bug fixes*

@@ -55,6 +55,7 @@ A note on Contabo: Stability of their service [is questionable](https://www.redd
 | [Netcup](https://netcup.eu) VPS 3000 G9   | 24 GiB | 600 GiB  | AMD Hexa | 25.8k/8.6k (4G file) 11.2k/3.7k (150G file) | 2.25/6 ms | |
 | OVH Baremetal NVMe   | 32 GiB | 1.9 TB  | Intel Hexa | 267k/89k (4G file) 177k/59k (150G file) | 0.08/3.5 ms | |
 | AWS io1 w/ 10K IOPS  | NA     | NA      | NA         | 7.7k/2.6k (4G file) 7.6k/2.5k (150G file) | | This was not sufficient to sync Geth |
+| AWS gp3 w/ 16K IOPS  | 8 GiB  | NA      | Intel Dual | 12.5k/4.2k (4G file) 12.2k/4.1k (150G file) | | t2.large |
 
 ## Initial sync times
 
@@ -84,7 +85,7 @@ Cache size default in all tests.
 
 ## Getting better IOPS
 
-For cloud providers, you "just" need storage with sufficient IOPS. AWS, that's likely gp3 with provisioned IOPS.
+For cloud providers, you "just" need storage with sufficient IOPS. AWS, gp3 with 16k provisioned IOPS.
 Linode block storage, make sure to get NVMe-backed storage. Netcup is sufficient as of late 2021; Contabo VPS SSD isn't.
 
 For own hardware, we've seen three causes of low IOPS:
