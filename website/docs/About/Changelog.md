@@ -39,6 +39,13 @@ sudo ./ethd update
   Execution client expects 10001, consensus client 10002 and validator client 10000. 
   The ethstaker Discord can render assistance.
 
+## v1.6.5 2021-12-22
+
+*This is an optional update, that contains new features*
+
+* `./ethd config` now supports Lodestar
+* Source builds for Geth and Erigon switched to Go 1.17 from Go 1.16
+
 ## v1.6.4 2021-12-17
 
 *This is an optional update, that contains new features*
