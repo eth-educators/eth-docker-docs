@@ -54,8 +54,8 @@ A note on Contabo: Stability of their service [is questionable](https://www.redd
 | Contabo L VPS SSD  | 30 GiB | 800 GiB | Intel Octa  | 3.1k/1k (4G file) 2.5k/800 (150G file) | | This was not sufficient to sync Geth |
 | [Netcup](https://netcup.eu) VPS 3000 G9   | 24 GiB | 600 GiB  | AMD Hexa | 25.8k/8.6k (4G file) 11.2k/3.7k (150G file) | 2.25/6 ms | |
 | OVH Baremetal NVMe   | 32 GiB | 1.9 TB  | Intel Hexa | 267k/89k (4G file) 177k/59k (150G file) | 0.08/3.5 ms | |
-| AWS io1 w/ 10K IOPS  | NA     | NA      | NA         | 7.7k/2.6k (4G file) 7.6k/2.5k (150G file) | | This was not sufficient to sync Geth |
-| AWS gp3 w/ 16K IOPS  | 8 GiB  | NA      | Intel Dual | 12.5k/4.2k (4G file) 12.2k/4.1k (150G file) | | t2.large |
+| AWS io1 w/ 10K IOPS  | 8 GiB  | NA      | Intel Dual | 7.7k/2.6k (4G file) 7.6k/2.5k (150G file) | | t2.large, could not sync Geth. Note t2 throttles CPU |
+| AWS gp3 w/ 16K IOPS  | 16 GiB | NA      | Intel Quad | 12.5k/4.2k (4G file) 12.2k/4.1k (150G file) | | m6i.xlarge |
 
 ## Initial sync times
 
