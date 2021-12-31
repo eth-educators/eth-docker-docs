@@ -85,8 +85,15 @@ Cache size default in all tests.
 
 ## Getting better IOPS
 
-For cloud providers, you "just" need storage with sufficient IOPS. AWS, gp3 with 16k provisioned IOPS.
-Linode block storage, make sure to get NVMe-backed storage. Netcup is sufficient as of late 2021; Contabo VPS SSD isn't.
+Geth needs a decent amount of IOPS, as do Besu and Nethermind. Erigon can run on very low IOPS, even two HDD in RAID-0.
+
+For cloud providers, here are some results for syncing Geth. 
+- AWS, gp2 or gp3 with provisioned IOPS have both been tested successfully.
+- Linode block storage, make sure to get NVMe-backed storage. 
+- Netcup is sufficient as of late 2021.
+- Contabo VPS SSD cannot sync Geth as of late 2021.
+- There are reports that Digital Ocean block storage is too slow, as of late 2021. 
+- Strato V-Server is too slow as of late 2021.
 
 For own hardware, we've seen three causes of low IOPS:
 - Overheating of the SSD. Check `smartctl -x`. You want the SSD to be at or below 40 degrees Celsius.
