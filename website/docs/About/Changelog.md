@@ -39,6 +39,13 @@ sudo ./ethd update
   Execution client expects 10001, consensus client 10002 and validator client 10000. 
   The ethstaker Discord can render assistance.
 
+## v1.6.7 2022-01-02
+
+*This is an optional update, that contains new features and bug fixes*
+
+* Doppelganger protection turned off by default
+* Lighthouse Rapid Sync now works with Grafana enabled
+
 ## v1.6.5 2021-12-22
 
 *This is an optional update, that contains new features*
