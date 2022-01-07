@@ -39,6 +39,14 @@ sudo ./ethd update
   Execution client expects 10001, consensus client 10002 and validator client 10000. 
   The ethstaker Discord can render assistance.
 
+## v1.6.8 2022-01-07
+
+*This is an optional update, that contains new features and bug fixes*
+
+* Traefik web proxy no longer uses wild card certs
+* Nimbus no longer uses `--subscribe-all-subnets` when run as a consensus client only
+* Fixed a permissions issue with `./ethd prune-geth`
+
 ## v1.6.7 2022-01-02
 
 *This is an optional update, that contains new features and bug fixes*
