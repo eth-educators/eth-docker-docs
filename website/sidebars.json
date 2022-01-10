@@ -32,6 +32,7 @@
 			"Support/Exit",
 			"Support/GethPrune",
 			"Support/Rocketpool",
+			"Support/BloxSSV",
 			"Support/Addendums",
 			"Support/Windows",
 			"Support/Testing"

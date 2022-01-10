@@ -39,6 +39,12 @@ sudo ./ethd update
   Execution client expects 10001, consensus client 10002 and validator client 10000. 
   The ethstaker Discord can render assistance.
 
+## v1.6.9 2022-01-10
+
+*This is an optional update, that contains new features*
+
+* Support running blox-ssv node via eth-docker
+
 ## v1.6.8 2022-01-07
 
 *This is an optional update, that contains new features and bug fixes*
