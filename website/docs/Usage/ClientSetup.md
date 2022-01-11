@@ -184,16 +184,10 @@ Optionally, choose a reporting package:
 - `prysm-stats.yml` - send stats to https://beaconcha.in, requires API key. Source build only as of Sept 2021.
 
 - `prysm-web.yml` - Prysm Web UI.
+- `grafana.yml` - Enable Grafana dashboards
 
-- `teku-grafana.yml` - grafana dashboard for Teku
-- `lh-grafana.yml` - grafana dashboard for Lighthouse
-- `nimbus-grafana.yml` - grafana dashboard for Nimbus
-- `prysm-grafana.yml` - grafana dashboard for Prysm.
-- `geth-grafana.yml` - grafana dashboard for Geth, to be combined with one of the client dashboards, or with `blank-grafana.yml` if standalone. Example `COMPOSE_FILE=lh-base.yml:geth.yml:lh-grafana.yml:geth-grafana.yml:grafana-insecure.yml`
-- `erigon-grafana.yml` - grafana dashboard for Erigon, to be combined with one of the client dashboards, or with `blank-grafana.yml` if standalone. Example `COMPOSE_FILE=lh-base.yml:erigon.yml:lh-grafana.yml:erigon-grafana.yml:grafana-insecure.yml`
-
-- `grafana-insecure.yml` - to map the Grafana port (default: 3000) to the host. This is not encrypted and should not be exposed to the Internet. Used *in addition* to `CLIENT-grafana.yml`, not instead. Using encryption instead via `traefik-*.yml` is recommended.
-- `prysm-web-insecure.yml` - to map the Prysm web port (default: 3500) to the host. This is not encrypted and should not be exposed to the Internet. Used *in addition* to `prysm-web.yml`, not instead. Using encryption instead via `traefik-*.yml` is recommended.
+- `grafana-shared.yml` - to map the Grafana port (default: 3000) to the host. This is not encrypted and should not be exposed to the Internet. Used *in addition* to `grafana.yml`, not instead. Using encryption instead via `traefik-*.yml` is recommended.
+- `prysm-web-shared.yml` - to map the Prysm web port (default: 3500) to the host. This is not encrypted and should not be exposed to the Internet. Used *in addition* to `prysm-web.yml`, not instead. Using encryption instead via `traefik-*.yml` is recommended.
 
 > See [Prysm Web](../Usage/PrysmWeb.md) for notes on using the Prysm Web UI
 
@@ -206,7 +200,7 @@ Optionally, add encryption to the Grafana and/or Prysm Web pages:
 - `traefik-cf.yml` - use encrypting secure web proxy and use CloudFlare for DNS management
 - `traefik-aws.yml` - use encrypting secure web proxy and use AWS Route53 for DNS management
 
-With these, you wouldn't use the `-insecure.yml` files. Please see [Secure Web Proxy Instructions](../Usage/ReverseProxy.md) for setup instructions for either option.
+With these, you wouldn't use the `-shared.yml` files. Please see [Secure Web Proxy Instructions](../Usage/ReverseProxy.md) for setup instructions for either option.
 
 For example, Lighthouse with local geth and beaconcha.in stats:
 `COMPOSE_FILE=lh-base.yml:geth.yml:lh-stats.yml`
