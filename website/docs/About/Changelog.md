@@ -39,6 +39,12 @@ sudo ./ethd update
   Execution client expects 10001, consensus client 10002 and validator client 10000. 
   The ethstaker Discord can render assistance.
 
+## v1.7.0 2022-01-11
+
+*This is an optional update, that contains new features*
+
+* Overhauled the Grafana dashboards. Please report issues.
+
 ## v1.6.9 2022-01-10
 
 *This is an optional update, that contains new features*
