@@ -162,7 +162,7 @@ Verify that the validator can't find them: `sudo systemctl start prysmvalidator`
 
 `sudo systemctl stop prysmvalidator` and `sudo systemctl disable prysmvalidator` to shut it down for good.
 
-Follow the [moving a validator](../Support/Moving.md) instructions. You already removed the keys: Wait 15 minutes after that, then import them again from inside the `~/eth-docker` directory.
+Follow the [moving a validator](../Support/Moving.md#import-keys-into-new-client) instructions. You already removed the keys: Wait 15 minutes after that, then import them again from inside the `~/eth-docker` directory.
 
 #### Metanull's guide
 
@@ -172,7 +172,7 @@ Verify that the validator can't find them: `sudo systemctl start validator` and 
 
 `sudo systemctl stop validator` and `sudo systemctl disable validator` to shut it down for good.
 
-Follow the [moving a validator](../Support/Moving.md) instructions. You already removed the keys: Wait 15 minutes after that, then import them again from inside the `~/eth-docker` directory.
+Follow the [moving a validator](../Support/Moving.md#import-keys-into-new-client) instructions. You already removed the keys: Wait 15 minutes after that, then import them again from inside the `~/eth-docker` directory.
 
 #### Coincashew's guide
 
@@ -182,7 +182,7 @@ Verify that the validator can't find them: `sudo systemctl start validator` and 
 
 `sudo systemctl stop validator` and `sudo systemctl disable validator` to shut it down for good.
 
-Follow the [moving a validator](../Support/Moving.md) instructions. You already removed the keys: Wait 15 minutes after that, then import them again from inside the `~/eth-docker` directory.
+Follow the [moving a validator](../Support/Moving.md#import-keys-into-new-client) instructions. You already removed the keys: Wait 15 minutes after that, then import them again from inside the `~/eth-docker` directory.
 
 ### 5. Remove old beacon database
 

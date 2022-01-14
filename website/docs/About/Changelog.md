@@ -12,32 +12,16 @@ sidebar_label: Changelog
 To update the components of the project, run from within the project
 directory (`cd ~/eth-docker` by default):
 
-* If updating from a version prior to 1.2.5 (2021-June-05): `git pull`
 * `sudo ./ethd update`. This fetches new client version(s), a new eth-docker, and updates `.env`, keeping your modifications. If you
   made changes to the source or binary build targets, run `sudo ./ethd update --keep-targets` instead.
 * **Only** if you are using source builds: `sudo docker-compose build --pull --no-cache`
 * `sudo ./ethd restart` - use the new client version(s)
 
-## Updating the project branch
+## v1.7.2.1 2022-01-14
 
-If updating eth-docker from a version prior to 1.2.1 (2021-May-31), please run these commands
-to rename your local `master` branch to `main`:
+*This is an optional update, that contains new features*
 
-```
-git pull origin main
-sudo ./ethd update
-```
-
-## Upgrading from releases prior to 1.0.0 (2021-May-06)
-
-* All v1.x releases change the docker images used to run your node. Please be sure to `./ethd update`
-  before (re)starting your node software.
-* If you had not updated to a v1.x release before November the 20th 2021
-  The script that adjusts permissions for existing setups was removed at that point, and
-  any setups that haven't updated by then would have permissions issues when they do update.
-  Please manually chmod -R the files in the docker volumes if you have permission issues. 
-  Execution client expects 10001, consensus client 10002 and validator client 10000. 
-  The ethstaker Discord can render assistance.
+* Revamped `./ethd config` for easier integration with RocketPool and Blox
 
 ## v1.7.1 2022-01-12
 
