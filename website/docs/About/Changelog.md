@@ -17,6 +17,13 @@ directory (`cd ~/eth-docker` by default):
 * **Only** if you are using source builds: `sudo docker-compose build --pull --no-cache`
 * `sudo ./ethd restart` - use the new client version(s)
 
+## v1.7.2.4 2022-01-14
+
+*This is an optional update, that contains new features*
+
+* Support Nimbus validator monitor
+* Improved `./ethd config` for RocketPool
+
 ## v1.7.2.1 2022-01-14
 
 *This is an optional update, that contains new features*
