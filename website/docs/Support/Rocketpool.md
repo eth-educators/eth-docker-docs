@@ -35,9 +35,7 @@ Configure it with `./ethd config`. Make sure to choose the same Ethereum PoS net
 > Lighthouse and Teku are mutually compatible, they can be mixed and matched
 > Note that Nimbus has no standalone validator client, and Prysm support has not been tested
 
-Restart eth-docker
-
-- `./ethd restart`
+If you had previously already imported keys to eth-docker, restart eth-docker with `./ethd restart`.
 
 Optional cleanup: If you had chain databases in eth-docker previously, do a `docker volume ls` and then `docker volume rm` the consensus/beacon and eth1/ec volumes, e.g. `eth-docker_geth-eth1-data` and `eth-docker_lhbeacon-data`.
 
