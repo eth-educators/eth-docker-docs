@@ -30,15 +30,13 @@ You can continue following the Rocketpool instructions at this point.
 
 If you are not running eth-docker already, grab it with `git clone https://github.com/eth2-educators/eth-docker.git && cd eth-docker`.
 
-Configure it with `./ethd config`. Make sure to choose the same Ethereum PoS network as RocketPool, and a "validator client with remote beacon" to match the "eth2" client in RocketPool.
+Configure it with `./ethd config`. Make sure to choose the same Ethereum PoS network as RocketPool, and a "Validator client only" to match the "eth2" client in RocketPool. Choose "http://eth2:5052" as your "remote consensus client".
 
 > Lighthouse and Teku are mutually compatible, they can be mixed and matched
+> Note that Nimbus has no standalone validator client, and Prysm support has not been tested
 
-Connect eth-docker to RocketPool's docker network.
+Restart eth-docker
 
-- `./ethd update` to bring in the version that supports the interconnectivity with RocketPool
-- `nano .env` and add `:ext-network.yml` to `COMPOSE_FILE`. Also set `CC_NODE` to RocketPool's `eth2` URL, e.g. `http://eth2:5052`
-- `nano ext-network.yml` and change the line that reads `name: traefik_default` to `name: rocketpool_net`
 - `./ethd restart`
 
 Optional cleanup: If you had chain databases in eth-docker previously, do a `docker volume ls` and then `docker volume rm` the consensus/beacon and eth1/ec volumes, e.g. `eth-docker_geth-eth1-data` and `eth-docker_lhbeacon-data`.
@@ -77,11 +75,10 @@ Set up eth-docker next before following the rest of the Rocketpool instructions.
 ### Configure eth-docker
 
 If you are not running eth-docker already, grab it with `git clone https://github.com/eth2-educators/eth-docker.git && cd eth-docker`,
-and configure it with `./ethd config`. Make sure to choose the same Ethereum PoS network and consensus client as you chose in RocketPool. It *should* work with any execution client, but I've only tested it with Geth so far.
+and configure it with `./ethd config`. Choose an Ethereum node deployment. Make sure to choose the same Ethereum PoS network and consensus client as you chose in RocketPool. It *should* work with any execution client, but I've only tested it with Geth so far.
 
 Connect eth-docker to RocketPool's docker network.
 
-- `./ethd update` to bring in the version that supports the interconnectivity with RocketPool
 - `./ethd rocketeer` to change Rocketpool's `docker-compose.yml` file
 - `rocketpool service start` and Rocketpool should come up
 - `nano .env` and add `:ext-network.yml` to `COMPOSE_FILE`
