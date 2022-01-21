@@ -17,6 +17,14 @@ directory (`cd ~/eth-docker` by default):
 * **Only** if you are using source builds: `sudo docker-compose build --pull --no-cache`
 * `sudo ./ethd restart` - use the new client version(s)
 
+## v1.7.2.5 2022-01-21
+
+*This is a bugfix update, and also contains new features*
+
+* Fix Lodestar validator startup path - yep that means no-one was running it :)
+* Remove /etc/timezone throughout - the `-notz.yml` files should no longer be used on Amazon Linux 2
+* Added Nethermind as an option on arm64 
+
 ## v1.7.2.4 2022-01-14
 
 *This is an optional update, that contains new features*
