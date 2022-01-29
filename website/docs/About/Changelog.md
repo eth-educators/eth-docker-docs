@@ -17,6 +17,19 @@ directory (`cd ~/eth-docker` by default):
 * **Only** if you are using source builds: `sudo docker-compose build --pull --no-cache`
 * `sudo ./ethd restart` - use the new client version(s)
 
+> On 1/27/2022, eth-docker's repository name changed. Everything should work as it did.
+> If you do wish to manually update your local reference, run `git remote set-url origin https://github.com/eth-educators/eth-docker.git`
+
+## v1.7.3 2022-01-29
+
+*This is an optional update, that contains new features*
+
+- MacOS support. Thanks to suburbandad!
+- Nethermind no longer uses ancient barriers, so other clients can sync from it
+- CORS origin * throughout so Metamask works
+- geth-prune now wants 40GB free instead of 50GB
+- Improved Besu source build
+
 ## v1.7.2.5 2022-01-21
 
 *This is a bugfix update, and also contains new features*
