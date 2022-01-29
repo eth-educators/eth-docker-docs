@@ -9,25 +9,23 @@ project itself in. It has been tested on Linux, and is expected to work on MacOS
 
 ## Ubuntu Prerequisites
 
-> [!WARNING]
-> Ubuntu Desktop can be installed with the Docker snap package, which can cause
+> Ubuntu can be installed with the Docker snap package, which can cause
 > issues including complete data loss on upgrade. We highly recommend removing this
 > via `sudo snap remove --purge docker`. Note this action will delete all data kept
 > in docker. If you are running the snap Docker package and have data you need to keep,
 > please ask for help in the ethstaker Discord.
 
-> [!NOTE]
 > The following prerequisites will be installed on the Linux server you
 > will run your node on. The machine you use to connect *to* the Linux server
 > only requires an SSH client.
 
 Update all packages
 ```
-sudo apt update && sudo apt dist-upgrade
+sudo apt update && sudo apt -y dist-upgrade
 ```
 and install prerequisites
 ```
-sudo apt install -y docker.io docker-compose git
+sudo apt install -y docker-compose
 ```
 then enable the docker service
 ```
@@ -38,16 +36,14 @@ sudo systemctl enable --now docker
 > boot. The systemctl command above enables it.
 > Verify the status of the docker service with `sudo systemctl status docker`
 
-You know it was successful when you saw messages scrolling past that install git,
-docker and docker-compose.
+You know it was successful when you saw messages scrolling past that install docker and docker-compose.
 
 Other distributions are expected to work as long as they support
 git, docker, and docker-compose.
 
 On Linux, docker-compose runs as root by default. The individual containers do not,
 they run as local users inside the containers. "Rootless mode" is expected to
-work for docker with this project, as it does not (yet) use AppArmor.
-
+work for docker with this project, as it does not use AppArmor.
 
 ## MacOS Prerequisites
 
@@ -58,11 +54,11 @@ work for docker with this project, as it does not (yet) use AppArmor.
 - Install [Docker Desktop](https://www.docker.com/products/docker-desktop) and allocate 8GiB of RAM to it.
 - Install prerequisites via homebrew: `brew install coreutils newt`
 
-## Windows 10 discouraged
+## Windows 10/11 discouraged
 
-While it is technically possible to run this project, and thus a node, on Windows 10,
-I want to [discourage that idea](../Support/Windows.md). Windows 10 is fine as an SSH client to connect *to*
+While it is technically possible to run this project, and thus a node, on Windows 10/11,
+I want to [discourage that idea](../Support/Windows.md). Windows 10/11 is fine as an SSH client to connect *to*
 your Linux server, but not as a basis to run the node server itself inside Docker.
 
-The challenges inherent in running on Windows 10 are easier to solve when using the Windows-native
+The challenges inherent in running on Windows 10/11 are easier to solve when using the Windows-native
 versions of the clients, rather than wrapping Docker around them.
