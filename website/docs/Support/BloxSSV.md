@@ -48,3 +48,7 @@ If you are running the node in a home network, you'll want to [forward these por
 Grafana dashboards are included. Make sure to edit the dashboard, change the variables to `ssv-node` and just the non-staging explorer, then "Save" with the checkbox ticked that makes these values the default.
 
 Please see the [secure proxy](../Usage/ReverseProxy.md) docs if you'd like to run Grafana on a secured https port, rather than insecure 3000.
+
+## Updating
+
+When there is a new version of your execuction client, consensus client or of the SSV node, just run `./ethd update` inside the `ssv-node` directory, which will pull fresh images. Then when you are ready, run `./ethd restart` to start using the new version(s).
