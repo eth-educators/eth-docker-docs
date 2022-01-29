@@ -6,17 +6,28 @@ sidebar_label: Run a Blox SSV node
 
 eth-docker supports running a Blox SSV node, together with a consensus client and execution client of choice. This is expected to work with Geth, Besu and Nethermind, but not Erigon as of 1/10/2022. It's been tested with Lighthouse, Teku and Nimbus, and should work with Prysm. I recommend not using Prysm because it has close to a supermajority of validators, which carries risk for node operators as well as the chain.
 
-## Setup
+## Setup Prerequisites
+### On Linux
+- Install docker, unless you already have it
+  - Run `sudo apt update && sudo apt -y install docker-compose`
+  - Make your user part of the docker group: `sudo usermod -aG docker MYUSERNAME` and then `newgrp docker`
 
-You can run `./ethd config`, make sure to choose Prater testnet, choose your preferred consensus and execution clients, and rapid sync for the consensus client, then make some manual changes. Or you can set everything up manually.
+### On MacOS
+- Install [Docker Desktop](https://www.docker.com/products/docker-desktop) and allocate 8 GiB of RAM to it
+- Install pre-requisites via homebrew
+  - `brew install coreutils newt`
 
-You'll want to `nano .env` and change `COMPOSE_FILE` to use the `*-consensus.yml` instead of `*-base.yml` as well as `blox-ssv.yml`, e.g. with Lighthouse, Geth and Blox SSV: `COMPOSE_FILE=lh-consensus.yml:geth.yml:blox-ssv.yml:grafana.yml:grafana-shared.yml`.
+## Get eth-docker
+- Clone this tool
+  - `git clone https://github.com/eth2-educators/eth-docker.git ssv-node && cd ssv-node`
 
-Save and close the editor.
+## Setup an SSV Node
+
+Run `./ethd config`, make sure to choose Prater testnet and Blox SSV Node, choose your preferred consensus and execution clients, and rapid sync for the consensus client. Choose Grafana for visibility.
 
 Get the key for the SSV node and write it down somewhere safe: `docker-compose run --rm ssv-generate-keys`
 
-Now put that key into the config file: `cp blox-ssv-config-sample.yaml blox-ssv-config.yaml` followed by `nano blox-ssv-config.yaml` and set the `OperatorPrivateKey:` to the value you were shown for the secret key `sk`.
+Now put that key into the config file: `cp blox-ssv-config-sample.yaml blox-ssv-config.yaml` followed by `nano blox-ssv-config.yaml` and set the `OperatorPrivateKey:` to the value you were shown for the secret key `sk`, without quotes or curly braces.
 
 Finally, start everything with `./ethd up`.
 
