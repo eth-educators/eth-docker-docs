@@ -11,8 +11,8 @@ Currently supported consensus clients:
 - Teku
 - Lighthouse
 - Nimbus
+- Lodestar
 - Prysm - client has close to a supermajority, it is recommended to choose any other
-- Lodestar (alpha release)
 
 Currently supported (optional until merge) execution clients:
 - Geth, local execution client

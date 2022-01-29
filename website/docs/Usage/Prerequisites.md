@@ -55,8 +55,8 @@ work for docker with this project, as it does not (yet) use AppArmor.
 > to run an Ethereum staking full node. If you use MacOS to connect *to* a node server, all
 > you need is an SSH client.
 
-Install [Docker Desktop](https://www.docker.com/products/docker-desktop), [git](https://git-scm.com/download/mac) and [Python 3](https://www.python.org/downloads/mac-osx/).
-MacOS has not been tested, if you have the ability to, please get in touch via the ethstaker Discord.
+- Install [Docker Desktop](https://www.docker.com/products/docker-desktop) and allocate 8GiB of RAM to it.
+- Install prerequisites via homebrew: `brew install coreutils newt`
 
 ## Windows 10 discouraged
 

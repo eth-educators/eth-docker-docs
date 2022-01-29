@@ -73,7 +73,7 @@ From a terminal and logged in as the user you'll be using from now on, and assum
 you'll be storing the project in your `$HOME`, run:
 
 ```
-cd ~ && git clone https://github.com/eth2-educators/eth-docker.git && cd eth-docker
+cd ~ && git clone https://github.com/eth-educators/eth-docker.git && cd eth-docker
 ```
 
 You know this was successful when your prompt shows `user@host:~/eth-docker`
@@ -99,9 +99,9 @@ Please choose:
 * The consensus client you wish to run
   * Teku
   * Lighthouse
-  * Prysm
   * Nimbus
-  * Lodestar - alpha. Feedback welcome
+  * Lodestar
+  * Prysm - this client has a supermajority. Choosing any other is safer.
 * Your source of Ethereum PoW chain data
   * Geth
   * Erigon - alpha. Feedback welcome
