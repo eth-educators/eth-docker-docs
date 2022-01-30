@@ -12,24 +12,20 @@ You will require a domain name for this to work. Where you buy it is up to you. 
 
 As a 450m overview, traefik will be reachable via port 443 / https from the Internet (configurable, could be 8443 if you prefer). All
 browsing attempts to it will be checked by traefik for their hostname, and it steers traffic to the right container thereby: To Grafana, to Prysm Web UI,
-and to the execution client. Grafana and Prysm Web UI are reachable via traefik automatically if you have them and traefik enabled at the same time; execution client reachability
-requires an additional `ec-traefik.yml`, since having it reachable is not a standard use case.
+and to the execution client. Grafana and Prysm Web UI are reachable via traefik automatically if you have them and traefik enabled at the same time; execution client reachability requires an additional `ec-traefik.yml`, since having it reachable is not a standard use case.
 
 For example, say I have a domain `example.com`, left the `_HOST` and port settings in `.env` at default, and am running Prysm with Grafana and Web UI.
 `https://grafana.example.com/` will get me to my Grafana dashboard, and `https://prysm.example.com` to my Prysm Web UI.
+
 ## Cloudflare for DNS management
 
 With this option, CloudFlare will provide DNS management as well as DDoS protection. Traefik uses CloudFlare to issue a Let's Encrypt certificate for
-your domain. This also automatically updates the IP address of the domain, which is useful if you are on a dynamic address, such as domestic Internet. Either for
-the main domain `example.com` or if desired for a subdomain such as `grafana.example.com`.
+your domain. This also automatically updates the IP address of the domain, which is useful if you are on a dynamic address, such as domestic Internet. Either for the main domain `example.com` or if desired for a subdomain such as `grafana.example.com`.
 
-You'll add `traefik-cf.yml` to your `COMPOSE_FILE` in `.env`, for example: `lh-base.yml:geth.yml:lh-grafana.yml:traefik-cf.yml`
+You'll add `traefik-cf.yml` to your `COMPOSE_FILE` in `.env`, for example: `lh-base.yml:geth.yml:grafana.yml:traefik-cf.yml`
 
 Create a (free) CloudFlare account and set up your domain, which will require pointing nameservers for your domain 
 to Cloudflare's servers. How this is done depends on your domain registrar.
-
-With NameCheap, "Manage" your domain from the Dashboard, then change "NameServers" to "Custom DNS", add the
-CloudFlare servers, and finally hit the green checkmark next to "Custom DNS".
 
 You will need a "scoped API token" from CloudFlare's [API page](https://dash.cloudflare.com/profile/api-tokens). Create a token with `Zone.DNS:Edit`, `Zone.Zone:Read` and `Zone.Zone Settings:Read` permissions, for all zones. This will not work if it is issued for a specific zone only. Make a note of the Token secret, it will only be shown to you once.
 
@@ -57,12 +53,11 @@ If you are using CloudFlare to proxy Grafana / Prysm web, you'll also want to se
 
 ## AWS for DNS management
 
-With this option, AWS Route53 will provide DNS management. Traefik uses CloudFlare to issue a Let's Encrypt certificate for
-your domain. It does not create an A record for you, that is left up to you.
+With this option, AWS Route53 will provide DNS management, there is no DDoS protection built in. Traefik uses CloudFlare to issue a Let's Encrypt certificate for your domain. It does not create an A record for you, that is left up to you.
 
-You'll add `traefik-aws.yml` to your `COMPOSE_FILE` in `.env`, for example: `lh-base.yml:geth.yml:lh-grafana.yml:traefik-aws.yml`
+You'll add `traefik-aws.yml` to your `COMPOSE_FILE` in `.env`, for example: `lh-base.yml:geth.yml:grafana.yml:traefik-aws.yml`
 
-This setup assumes that you already have an AWS named user profile in `~/.aws` on the node itself. If not, [please create one](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-profiles.html). The IAM user will need to have the AWS-managed `AmazonRoute53DomainsFullAccess` policy [attached to it](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_manage-attach-detach.html).
+This setup assumes that you already have an [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html) named user profile in `~/.aws` on the node itself. If not, [please create one](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-profiles.html). The IAM user will need to have the AWS-managed `AmazonRoute53DomainsFullAccess` policy [attached to it](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_manage-attach-detach.html).
 
 With that, in the `.env` file:
 - Set `AWS_PROFILE` to the profile you want to use
