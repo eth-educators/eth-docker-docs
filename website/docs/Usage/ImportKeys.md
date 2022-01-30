@@ -1,17 +1,25 @@
 ---
 id: ImportKeys
-title: "Step 4: Import validator keys to the client."
+title: "Step 4: Import validator keys to the client"
 sidebar_label: Import Validator Keys
 ---
 
-**Warning** Import your validator key(s) to only *one* client.
+**Warning** Import your validator key(s) to only *one* client. If you run them in two locations at once,
+you will be slashed: Forcibly exited and assessed a penalty greater than 1 ETH.
 
 > If you use the [Prysm Web](../Usage/PrysmWeb.md), you can use it
 > or this command-line process to import keys.
 
-Import the validator key(s) to the validator client:
+Import the validator key(s) to the validator client, assuming they are in `.eth/validator_keys` inside the
+directory eth-docker is in:
 
-`sudo docker-compose run --rm validator-import`
+`./ethd keyimport`
+
+If they are in another directory, run:
+
+`./ethd keyimport --path PATHTOKEYS`
+
+replacing `PATHTOKEYS` with the actual path where they are.
 
 > #### Prysm-specific
 > - You will be asked whether you will be using the Web UI to import keys.
