@@ -1,7 +1,7 @@
 ---
 id: ConfigureWallet
-title: "Step 3: Generate an Ethereum PoS wallet and key files"
-sidebar_label: Configure Wallet
+title: "Step 3: Generate Ethereum PoS key files"
+sidebar_label: Generate keys
 ---
 
 You will deposit ETH to the deposit contract, and receive staking rewards on this locked ETH in turn.<br />
@@ -10,12 +10,21 @@ read these yet, please do so now. You need to know how to guard your keystore pa
 and your seed phrase (mnemonic). **Without the mnemonic, you will be unable to withdraw your funds
 after the "merge" of Ethereum PoS with Ethereum PoW. You need the seed phrase or your ETH is gone forever.**
 
+
+### You brought your own keys
+
+Skip right to [importing keys](../Usage/ImportKeys.md).
+
+> You can transfer files from your PC to the node using scp. A graphical
+> tool such as WinSCP will work, or you can use [command line scp](https://linuxize.com/post/how-to-use-scp-command-to-securely-transfer-files/).
+
+### You want to create keys with eth-docker
+
 > You can create the keys using eth-docker. For mainnet, you may want to create
 > the keys on a machine that is not connected to the Internet, and will be wiped
 > afterwards. This can be done by using an [Ubuntu Live USB](https://agstakingco.gitbook.io/eth-2-0-key-generation-ubuntu-live-usb/)
 > with [eth2.0-deposit-cli](https://github.com/ethereum/eth2.0-deposit-cli), then
-> copy them to the machine the node will run on, and continue from
-> "You brought your own keys", below.
+> copy them to the machine the node will run on, and continue with [key import](../Usage/ImportKeys.md).
 
 If you are going to use the deposit-cli that is bundled with eth-docker, please
 make sure that `COMPOSE_FILE` contains `deposit-cli.yml`
@@ -44,13 +53,6 @@ The created files will be in the directory `.eth/validator_keys` in this project
 > from inside the container.
  
 This is also where you'd place your own keystore files if you already have some for import.
-
-### You brought your own keys
-
-They go into `.eth/validator_keys` in this project directory, not directly under `$HOME`.
-
-> You can transfer files from your PC to the node using scp. A graphical
-> tool such as WinSCP will work, or you can use [command line scp](https://linuxize.com/post/how-to-use-scp-command-to-securely-transfer-files/).
 
 ### Test your Seed Phrase
 *introduced in releases post 3/9/2020. Update if you are on an older version.*

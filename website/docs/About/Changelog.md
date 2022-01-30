@@ -20,6 +20,15 @@ directory (`cd ~/eth-docker` by default):
 > On 1/27/2022, eth-docker's repository name changed. Everything should work as it did.
 > If you do wish to manually update your local reference, run `git remote set-url origin https://github.com/eth-educators/eth-docker.git`
 
+## v1.7.4 2022-01-30
+
+*This is an optional update, that contains new features*
+
+- Fixed Lodestar
+- Initial support for integration with Wagyu installer
+- `./ethd keyimport` command
+- Experimental support for Key Manager API on Nimbus, on `127.0.0.1:5053`
+
 ## v1.7.3 2022-01-29
 
 *This is an optional update, that contains new features*
