@@ -8,9 +8,9 @@ sidebar_label: Client Resource Usage
 
 | Client | Version | Date | DB Size  |  RAM | CPU | Notes |
 |--------|---------|----  |----------|------|-----|-------|
-| Teku   | 21.9.2  | Sept 2021 | ~20 GiB | ~4 GiB | 100-200% | |
-| Lighthouse | 1.5.2  | Sept 2021 | ~55 GiB | ~1 GiB | 100-200% | |
-| Nimbus | | | ? | ~1 Gib | 100% | single-threaded |
+| Teku   | 22.1.1  | Jan 2022 | ~30 GiB | ~9 GiB | 100-300% | |
+| Lighthouse | 2.1.1  | Jan 2022 | ~90 GiB | ~1.7 GiB | 50-200% | |
+| Nimbus | 1.6.0 | Jan 2022 | ~40 GiB | ~1.2 GiB | 50-200% | `--num-threads=0` |
 | Prysm | | | ? | ~4 GiB | ? | |
 
 # Execution clients
