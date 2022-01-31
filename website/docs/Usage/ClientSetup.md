@@ -104,7 +104,7 @@ Please choose:
   * Prysm - this client has a supermajority. Choosing any other is safer.
 * Your source of Ethereum PoW chain data
   * Geth
-  * Erigon - alpha. Feedback welcome
+  * Erigon - beta. Feedback welcome
   * Besu - Feedback welcome.
   * Nethermind - Feedback welcome.
   * 3rd-party
@@ -152,18 +152,7 @@ Choose one consensus client:
 - `prysm-base.yml` - Prysm - client has close to a supermajority, consider choosing any other
 - `lodestar-base.yml` - Lodestar, alpha release
 
-If you'd rather just run a validator client, and back-end to an Infura eth2/beacon project:
-
-- `lh-validator.yml` - Lighthouse validator only
-- `teku-validator.yml` - Teku validator only
-
-> The `CC_NODE` variable in `.env` will need to be set to the URL your
-> Infura eth2/beacon project shows you.
-
-> Grafana is expected to not work with this option, as there is no consensus client
-> to get data from. You can use https://beaconcha.in/ instead.
-
-Optionally, choose one execution client, unless you are using a 3rd-party provider:
+Choose one execution client:
 
 - `geth.yml` - local geth execution client
 - `erigon.yml` - local erigon execution client - feedback welcome.
@@ -210,7 +199,8 @@ Advanced options:
 - `ec-traefik.yml` - reverse-proxies and encrypts both the RPC and WS ports of your execution client, as https:// and wss:// ports respectively. To be used alongside one of the execution client yml files.
 - `ec-shared.yml` - as an insecure alternative to ec-traefik, makes the RPC and WS ports of the execution client available from the host. To be used alongside one of the execution client yml files. **Not encrypted**, do not expose to Internet.
 
-- `lh-consensus.yml`, `teku-consensus.yml`, `prysm-consensus.yml` - for running a [distributed consensus client and validator client](../Usage/ReverseProxy.md) setup.
+- `lh-consensus.yml`, `teku-consensus.yml`, `prysm-consensus.yml`, `lodestar-consensus.yml` - for running a [distributed consensus client and validator client](../Usage/ReverseProxy.md) setup.
+- `lh-validator.yml`, `teku-validator.yml`, `lodestar-validator.yml` - the other side of the distributed client setup.
 
 - `prysm-slasher.yml` - Prysm experimental slasher. The experimental slasher can lead to missed attestations due to the additional resource demand.
 - `lh-slasher.yml` - Lighthouse experimental slasher. The experimental slasher can lead to missed attestations due to the additional resource demand.
@@ -226,8 +216,7 @@ each. This is great for running testnet and mainnet in parallel, for example.
 
 ### Prysm or Lighthouse Slasher   
 
-Running [slasher](https://docs.prylabs.network/docs/prysm-usage/slasher/) is an optional client compose file, but helps secure the chain. There are [no additional earnings](https://github.com/ethereum/consensus-specs/issues/1631)
-from running a slasher: Whistleblower rewards are not implemented, and may not ever be implemented.
+Running [slasher](https://docs.prylabs.network/docs/prysm-usage/slasher/) is an optional client compose file, but helps secure the chain. There are [no additional earnings](https://github.com/ethereum/consensus-specs/issues/1631) from running a slasher: Whistleblower rewards are not implemented, and may not ever be implemented.
 
 > Slasher can be a huge resource hog during times of no chain finality, which can manifest as massive RAM usage. Please make sure you understand the risks of this, 
 > especially if you want high uptime for your Ethereum staking full node. Slasher places significant stress on the consensus client when the chain has no finality, and might be the reason
@@ -235,11 +224,7 @@ from running a slasher: Whistleblower rewards are not implemented, and may not e
 
 ## Build the client
 
-Build all required images. If building from source, this may take up to an hour. Assuming
-you cloned the project into `eth-docker`:
-```
-cd ~/eth-docker && sudo docker-compose build --pull
-```
+Build all required images. `./ethd cmd build --pull`
 
 ## Additional and recommended Linux security steps
 ### Firewalling
@@ -265,12 +250,8 @@ to your node if behind a home router, or allowed in via the VPS firewall.
 
 Open only the ports that you actually use, depending on your client choices.
 
-- 30303 tcp/udp - local execution client P2P. Open to Internet.
-- 9000 tcp/udp - Lighthouse consensus client P2P. Open to Internet.
-- 13000/tcp - Prysm consensus client P2P. Open to Internet.
-- 12000/udp - Prysm consensus client P2P. Open to Internet.
-- 9000 tcp/udp - Teku consensus client P2P. Open to Internet. Note this is the same default port as Lighthouse.
-- 9000 tcp/udp - Nimbus consensus client P2P. Open to Internet. Note this is the same default port as Lighthouse.
+- 30303 tcp/udp - Geth/Nethermind/Besu/Erigon execution client P2P. Open to Internet.
+- 9000 tcp/udp - Lighthouse/Teku/Nimbus/Lodestar/Prysm consensus client P2P. Open to Internet.
 - 443 tcp - https:// access to Grafana and Prysm Web UI via traefik. Open to Internet.
 - 22/tcp - SSH. Only open to Internet if you want to access the server remotely. If open to Internet, configure
   SSH key authentication.
@@ -278,7 +259,7 @@ Open only the ports that you actually use, depending on your client choices.
 On Ubuntu, the host firewall `ufw` can be used to allow SSH traffic. 
 
 Docker bypasses ufw and opens additional ports directly via "iptables" for all ports that are public on the host,
-which means that the P2P ports need not be explicitly listed in ufw, and the same is true for the r.
+which means that the P2P ports need not be explicitly listed in ufw.
 
 * Allow SSH in ufw so you can still get to your server, while relying on the default "deny all" rule.
   * `sudo ufw allow OpenSSH` will allow ssh inbound on the default port. Use your specific port if you changed
