@@ -24,7 +24,7 @@ sudo docker-compose up -d execution consensus
 sudo docker-compose run --name eth-docker_validator_1 validator
 ```
 
-Where the `--name` parameter should match the name the container would receive when using `up`, so that it is likely to inadvertently start a second copy.
+Where the `--name` parameter should match the name the container would receive when using `up`, so that it is unlikely to inadvertently start a second copy.
  
 After providing the wallet password, use the key sequence Ctrl-p Ctrl-q to detach
 from the running container.
