@@ -20,6 +20,13 @@ directory (`cd ~/eth-docker` by default):
 > On 1/27/2022, eth-docker's repository name changed. Everything should work as it did.
 > If you do wish to manually update your local reference, run `git remote set-url origin https://github.com/eth-educators/eth-docker.git`
 
+## v1.7.4.1 2022-02-01
+
+*This is a bugfix update*
+
+- Grafana dashboards retain their variables across restart
+- `./ethd config` and `./ethd update` now warn when a snap install of Docker is found
+
 ## v1.7.4 2022-01-30
 
 *This is an optional update, that contains new features*
