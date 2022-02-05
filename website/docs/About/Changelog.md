@@ -20,6 +20,15 @@ directory (`cd ~/eth-docker` by default):
 > On 1/27/2022, eth-docker's repository name changed. Everything should work as it did.
 > If you do wish to manually update your local reference, run `git remote set-url origin https://github.com/eth-educators/eth-docker.git`
 
+## v1.7.4.2 2022-02-04
+
+*This is an optional update, that contains new features*
+
+- Experimental support for the standardized key management API, exposed on localhost port `7500` with `consensus-keyapi-localport.yml` or `validator-keyapi-localport.yml`, depending on whether the specific client has a separate validator container.
+- Warn when Ubuntu "snap" docker is found
+- Default to Lighthouse `latest-modern` image
+- Nethermind no longer uses an ancient barrier. This means other clients can sync from it.
+
 ## v1.7.4.1 2022-02-01
 
 *This is a bugfix update*
