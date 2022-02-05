@@ -373,8 +373,7 @@ My recommendation is to use chrony for better accuracy.
 For Ubuntu, install the chrony package. This will automatically remove systemd-timesyncd. Chrony will start automatically.<br />
 `sudo apt update && sudo apt -y install chrony`
 
-Check that chrony is running: `systemctl status chronyd` and see that it is "active" and "enabled". Ctrl-C to
-exit that. To check that chrony is synchronized, run `chronyc tracking`.
+Check that chrony is synchronized: Run `chronyc tracking`.
 
 > If you wish to stay with systemd-timesyncd instead, check that `NTP service: active` via 
 > `timedatectl`, and switch it on with `sudo timedatectl set-ntp yes` if it isn't. You can check
