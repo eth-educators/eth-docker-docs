@@ -362,13 +362,11 @@ the machine, as it can only be disabled from the machine it is enabled on. This 
 
 ### Time synchronization on Linux
 
-The default time sync setting on Ubuntu will work. In some cases, it can however get out of sync by as much as 600ms. If you'd like to explore alternatives, please read on.
-
 The blockchain requires precise time-keeping. On Ubuntu, systemd-timesyncd is the default to synchronize time,
 and [chrony](https://en.wikipedia.org/wiki/Network_Time_Protocol) is an alternative.
 
-systemd-timesyncd uses a single ntp server as source, and chrony uses several, typically a pool.
-My recommendation is to use chrony for better accuracy.
+systemd-timesyncd uses a single ntp server as source, and chrony uses several, typically a pool. The default shipping with Ubuntu can get
+out of sync by as much as 600ms before it corrects. My recommendation is to use chrony for better accuracy.
 
 For Ubuntu, install the chrony package. This will automatically remove systemd-timesyncd. Chrony will start automatically.<br />
 `sudo apt update && sudo apt -y install chrony`
