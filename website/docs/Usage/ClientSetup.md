@@ -180,7 +180,7 @@ Optionally, choose a reporting package:
 
 > See [Prysm Web](../Usage/PrysmWeb.md) for notes on using the Prysm Web UI
 
-Optionally, make the eth2.0-deposit-cli available:
+Optionally, make the staking-deposit-cli available:
 
 - `deposit-cli.yml` - Used to generate mnemonics and signing keys. Consider running key generation offline, instead, and copying the generated `keystore-m` files into this tool 
 

@@ -4,7 +4,7 @@ title:  Add or recover validators.
 sidebar_label: Add Validators
 ---
 
-You can use eth2.0-deposit-cli to either recover validator signing keys or add
+You can use staking-deposit-cli to either recover validator signing keys or add
 additional ones, if you wish to deposit more validators against the same mnemonic.
 
 > The same cautions apply as when creating keys in the first place. You
