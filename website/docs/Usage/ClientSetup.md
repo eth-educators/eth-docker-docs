@@ -362,26 +362,19 @@ the machine, as it can only be disabled from the machine it is enabled on. This 
 
 ### Time synchronization on Linux
 
-The default time sync setting on Ubuntu will work. If you'd like to explore alternatives, please read on.
+The default time sync setting on Ubuntu will work. In some cases, it can however get out of sync by as much as 600ms. If you'd like to explore alternatives, please read on.
 
-The blockchain requires precise time-keeping. You can use systemd-timesyncd if your system offers it,
-or [ntpd](https://en.wikipedia.org/wiki/Network_Time_Protocol) to synchronize time on your Linux server.
-systemd-timesyncd uses a single ntp server as source, and ntpd uses several, typically a pool.
-My recommendation is to use ntpd for better redundancy.
+The blockchain requires precise time-keeping. On Ubuntu, systemd-timesyncd is the default to synchronize time,
+and [chrony](https://en.wikipedia.org/wiki/Network_Time_Protocol) is an alternative.
 
-For Ubuntu, first switch off the built-in, less redundant synchronization and verify it is off. 
-You should see `NTP service: inactive`.
+systemd-timesyncd uses a single ntp server as source, and chrony uses several, typically a pool.
+My recommendation is to use chrony for better accuracy.
 
-```
-sudo timedatectl set-ntp no
-timedatectl
-```
+For Ubuntu, install the chrony package. This will automatically remove systemd-timesyncd. Chrony will start automatically.<br />
+`sudo apt update && sudo apt -y install chrony`
 
-Then install the ntp package. It will start automatically.<br />
-`sudo apt update && sudo apt install ntp`
-
-Check that ntp is running correctly: Run `ntpq -p` , you expect to see a number of ntp time servers with
-IP addresses in their `refid`, and several servers with a refid of `.POOL.`
+Check that chrony is running: `systemctl status chronyd` and see that it is "active" and "enabled". Ctrl-C to
+exit that. To check that chrony is synchronized, run `chronyc tracking`.
 
 > If you wish to stay with systemd-timesyncd instead, check that `NTP service: active` via 
 > `timedatectl`, and switch it on with `sudo timedatectl set-ntp yes` if it isn't. You can check
