@@ -20,6 +20,12 @@ directory (`cd ~/eth-docker` by default):
 > On 1/27/2022, eth-docker's repository name changed. Everything should work as it did.
 > If you do wish to manually update your local reference, run `git remote set-url origin https://github.com/eth-educators/eth-docker.git`
 
+## v1.7.4.3 2022-02-05
+
+*This is an optional update, that contains new features*
+
+- Support staking-deposit-cli v2.0.0
+
 ## v1.7.4.2 2022-02-04
 
 *This is an optional update, that contains new features*
