@@ -23,7 +23,7 @@ Skip right to [importing keys](../Usage/ImportKeys.md).
 > You can create the keys using eth-docker. For mainnet, you may want to create
 > the keys on a machine that is not connected to the Internet, and will be wiped
 > afterwards. This can be done by using an [Ubuntu Live USB](https://agstakingco.gitbook.io/eth-2-0-key-generation-ubuntu-live-usb/)
-> with [eth2.0-deposit-cli](https://github.com/ethereum/eth2.0-deposit-cli), then
+> with [staking-deposit-cli](https://github.com/ethereum/eth2.0-deposit-cli), then
 > copy them to the machine the node will run on, and continue with [key import](../Usage/ImportKeys.md).
 
 If you are going to use the deposit-cli that is bundled with eth-docker, please
@@ -49,7 +49,7 @@ Choose the number of validators you wish to create.
 > can be imported to a single validator client.
 
 The created files will be in the directory `.eth/validator_keys` in this project.
-> eth2.0-deposit-cli shows you a different directory, that's because it has a view
+> staking-deposit-cli shows you a different directory, that's because it has a view
 > from inside the container.
  
 This is also where you'd place your own keystore files if you already have some for import.

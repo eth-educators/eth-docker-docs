@@ -58,7 +58,7 @@ choose a cryptographically strong password for your keystores. Something long
 and not used anywhere else, ideally randomized by a generator.
 
 The directory `.eth/validator_keys` will contain the `deposit_data-TIMESTAMP.json` and `keystore-m_ID.json`
-files created by eth2.0-deposit-cli.
+files created by staking-deposit-cli.
 
 Use `deposit_data-TIMESTAMP.json` for your initial deposit. After that, it can be disposed of.
 
@@ -87,7 +87,7 @@ For more on validator key security, read this article: https://www.attestant.io/
 ### Withdrawal Key Security
 
 **Critical**<br />
-When you ran eth2.0-deposit-cli, a 24-word mnemonic was created. This mnemonic
+When you ran staking-deposit-cli, a 24-word mnemonic was created. This mnemonic
 will be used for Ethereum PoS (Proof-of-Stake) withdrawals in the future. It must be securely kept offline.
 Without this mnemonic, there is **no** way to withdraw your funds.
 
