@@ -20,6 +20,16 @@ directory (`cd ~/eth-docker` by default):
 > On 1/27/2022, eth-docker's repository name changed. Everything should work as it did.
 > If you do wish to manually update your local reference, run `git remote set-url origin https://github.com/eth-educators/eth-docker.git`
 
+## v1.7.4.4 2022-02-08
+
+*This is an optional update, that contains new features and bug fixes*
+
+- `prysm-consensus.yml` now only exposes REST, no longer gRPC. This is a breaking change if you are using a remote Prysm validator with it!
+- Fixed Lodestar rapid sync to use the new format
+- Fixed Lodestar execution client connection to use the new format
+- Nethermind log level fixed
+- `./ethd update` no longer shows an error when coming from an older version of eth-docker
+
 ## v1.7.4.3 2022-02-05
 
 *This is an optional update, that contains new features*
