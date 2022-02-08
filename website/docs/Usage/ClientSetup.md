@@ -381,4 +381,3 @@ Check that chrony is synchronized: Run `chronyc tracking`.
 
 This step is highly hardware-dependent. If you went with a server that has IPMI/BMC - out of band management of
 the hardware - then you'll want to configure IPMI to email you on error.
-

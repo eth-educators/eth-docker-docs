@@ -10,7 +10,7 @@ sidebar_label: Client Resource Usage
 |--------|---------|----  |----------|------|-----|-------|
 | Teku   | 22.1.1  | Jan 2022 | ~30 GiB | ~9 GiB | 100-300% | |
 | Lighthouse | 2.1.1  | Jan 2022 | ~90 GiB | ~1.7 GiB | 50-200% | |
-| Nimbus | 1.6.0 | Jan 2022 | ~40 GiB | ~1.2 GiB | 50-200% | `--num-threads=0` |
+| Nimbus | 1.6.0 | Jan 2022 | ~40 GiB | ~2.3 GiB | 50-200% | `--num-threads=0` |
 | Prysm | | | ? | ~4 GiB | ? | |
 
 # Execution clients
@@ -24,12 +24,12 @@ SSD, RAM and CPU use is after initial sync, when keeping up with head. 100% CPU 
 
 | Client | Version | Date | DB Size  | DB Growth | RAM | CPU | Notes |
 |--------|---------|----  |----------|-----------|-----|-----|-------|
-| Geth   | 1.10.15 | Jan 2022 | ~480 GiB | ~ 13.5 GiB / week | 8 GiB | 100-400% | DB size can be reduced when it grew too large by [offline(!) prune](../Support/GethPrune.md) |
-| Geth   | 1.10.15 | Jan 2022 | ~480 GiB | ~ 12 GiB / week | 9-10 GiB | 100-400% | `--cache 5336`, max value at 16 GiB RAM, reduces DB growth rate |
-| Geth   | 1.10.15 | Jan 2022 | ~480 GiB | ~ 8 GiB / week | 16-19 GiB | 100-400% | `--cache 10704`, max value at 32 GiB RAM, reduces DB growth rate |
-| Nethermind | 1.11.7 | Nov 2021 | ~310 GiB | ~16 GiB / week | 13 GiB | 100-400% | memory use w/ pruning and prune-cache 4096; initial size lower bcs of ancient barrier |
-| Besu | v21.10.0 | Nov 2021 | ~550 GiB | ~ 8 GiB / week | 8 - 9 GiB | 50-100% | with Bonsai tries |
-| Erigon | 2021-09-05 alpha | Sept 2021 | ~ 635 GiB | ~ 1 GiB / week | 1 GiB | 50-100% | Erigon will use up to 16 GiB of RAM during initial sync. It will have the OS use all available RAM as a DB cache during post-sync operation, but this RAM is free to be used by other programs as needed |
+| Geth   | 1.10.15 | Jan 2022 | ~480 GiB | ~13.5 GiB / week | 8 GiB | 100-400% | DB size can be reduced when it grew too large by [offline(!) prune](../Support/GethPrune.md) |
+| Geth   | 1.10.15 | Jan 2022 | ~480 GiB | ~12 GiB / week | 9-10 GiB | 100-400% | `--cache 5336`, max value at 16 GiB RAM, reduces DB growth rate |
+| Geth   | 1.10.15 | Jan 2022 | ~480 GiB | ~8 GiB / week | 16-19 GiB | 100-400% | `--cache 10704`, max value at 32 GiB RAM, reduces DB growth rate |
+| Nethermind | 1.12.4 | Feb 2022 | ~660 GiB | ~16 GiB / week | 15-16 GiB | 50-200% | memory use w/ pruning and prune-cache 4096; 18 GiB memory and 8 cores during sync |
+| Besu | v21.10.0 | Nov 2021 | ~550 GiB | ~8 GiB / week | 8 - 9 GiB | 50-100% | with Bonsai tries |
+| Erigon | 2021-09-05 alpha | Sept 2021 | ~635 GiB | ~1 GiB / week | 1 GiB | 50-100% | Erigon will use up to 16 GiB of RAM during initial sync. It will have the OS use all available RAM as a DB cache during post-sync operation, but this RAM is free to be used by other programs as needed |
 
 ## Test Systems
 
