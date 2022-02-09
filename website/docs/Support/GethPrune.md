@@ -11,17 +11,17 @@ You can offline prune Geth, bringing it back down close to its initial DB size. 
 want [a failover execution client](../Usage/ClientSetup.md) configured for your consensus client.
 
 The prerequisites for offline pruning Geth are:
-- [ ] The volume Geth stores its DB on has 50 GiB of free space or more. We know 25 GiB is not enough, and may corrupt the DB.
+- [ ] The volume Geth stores its DB on has 40 GiB of free space or more. We know 25 GiB is not enough, and may corrupt the DB.
 - [ ] Geth 1.10.x installed
 - [ ] Geth is fully synced
 - [ ] Geth has finished creating a snapshot, and this snapshot is 128 blocks old or older
 
-You can observe Geth logs with `sudo docker-compose logs -f execution`. If it is importing (not syncing) blocks, is done with initial
+You can observe Geth logs with `sudo ./ethd logs -f execution`. If it is importing (not syncing) blocks, is done with initial
 state import, and does not show a snapshot ETA, it is fully synced and has finished the snapshot generation.
 
 To prune the Geth database semi-automatically:
 * `sudo ./ethd prune-geth`
-  
+
 To prune the Geth database manually:
 * `sudo docker-compose stop execution && sudo docker-compose rm execution` - stop Geth
 * `sudo docker-compose run --rm --name geth_prune -d execution snapshot prune-state` - start the pruning process
@@ -35,8 +35,7 @@ The script `./autoprune.sh` can be run in crontab to monitor disk space, and sta
 
 The script requires the `bc` package, install that first: `sudo apt install bc`
 
-The script needs to be able to execute docker commands. If your user is a member of the `docker` group - that is, you can run `docker ps` without needing `sudo` - then you
-can `crontab -e` to add a crontab entry. If you require `sudo` for docker commands, place the script in root's crontab instead via `sudo crontab -e`.
+The script needs to be able to execute docker commands. If your user is a member of the `docker` group - that is, you can run `docker ps` without needing `sudo` - then you can `crontab -e` to add a crontab entry. If you require `sudo` for docker commands, place the script in root's crontab instead via `sudo crontab -e`.
 
 An entry such as the following would run the script every day at 8AM local. Adjust the path to point to where your instance of eth-docker has been installed.
 
