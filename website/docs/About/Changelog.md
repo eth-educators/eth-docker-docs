@@ -20,6 +20,15 @@ directory (`cd ~/eth-docker` by default):
 > On 1/27/2022, eth-docker's repository name changed. Everything should work as it did.
 > If you do wish to manually update your local reference, run `git remote set-url origin https://github.com/eth-educators/eth-docker.git`
 
+## v1.7.6 2022-02-16
+
+*This is an optional update, that contains new features and bugfixes*
+
+- `./ethd update` no longer overwrites an empty `GRAFFITI`
+- Support for Nimbus rapid sync
+- Support for Nimbus CORS on keymanager (experimental)
+- Switched default Nimbus web3 URL from ws:// to http://
+
 ## v1.7.5.1 2022-02-09
 
 *This is an optional update, that contains new features*
