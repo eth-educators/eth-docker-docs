@@ -20,6 +20,14 @@ directory (`cd ~/eth-docker` by default):
 > On 1/27/2022, eth-docker's repository name changed. Everything should work as it did.
 > If you do wish to manually update your local reference, run `git remote set-url origin https://github.com/eth-educators/eth-docker.git`
 
+## v1.7.6.1 2022-03-05
+
+*This is an optional update, that contains new features*
+
+- New `teku-stats.yml` to support beaconcha.in stats with Teku
+- Better `tzdata` installation on Debian images
+- Logs available in Grafana via Loki
+
 ## v1.7.6 2022-02-16
 
 *This is an optional update, that contains new features and bugfixes*
