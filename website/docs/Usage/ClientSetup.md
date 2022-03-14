@@ -159,14 +159,6 @@ Choose one execution client:
 - `besu.yml` - local besu execution client - feedback welcome.
 - `nm.yml` - local nethermind execution client - feedback welcome.
 
-> Erigon is configured to fully prune itself. This does work with a consensus client, but requires that
-> the consensus client get initial deposit data from another source, such as Infura. There are
-> two ways to make this happen. Either set an Infura failover client and sync the consensus client
-> and Erigon at the same time. Because Erigon will take longer to sync, the Infura failover will be used.
-> Or, alternatively, if the consensus client needs to be re-synced while Erigon is already synced,
-> you can set `EC_NODE` to be Infura, sync the consensus client, *then* configure it for Erigon with
-> an Infura failover.
-
 Optionally, choose a reporting package:
 
 - `lh-stats.yml` - send stats to https://beaconcha.in, requires API key
