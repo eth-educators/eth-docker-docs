@@ -20,6 +20,14 @@ directory (`cd ~/eth-docker` by default):
 > On 1/27/2022, eth-docker's repository name changed. Everything should work as it did.
 > If you do wish to manually update your local reference, run `git remote set-url origin https://github.com/eth-educators/eth-docker.git`
 
+## v1.7.7 2022-03-14
+
+*This is an optional update, that contains new features*
+
+* Breaking change: prysm-consensus-rest.yml removed, and prysm-consensus.yml changed to only support REST. Remote RPC is no longer available.
+* Remove deprecated Nimbus RPC and use REST
+* Improve Nimbus source build; support building Nimbus for Gnosis Chain
+
 ## v1.7.6.1 2022-03-05
 
 *This is an optional update, that contains new features*
