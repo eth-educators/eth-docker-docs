@@ -10,9 +10,10 @@ eth-docker aims to make running an Ethereum staking full node simpler than setti
 while allowing the user choice when it comes to the exact client mix they wish to run.
 
 Recommended hardware, whether your own hardware or a VPS, is:
-- 16 GiB of RAM
+- 16 GiB+ of RAM (some client combinations benefit from 24 GiB)
 - 4 CPU cores
-- 1TB SSD
+- 2TB SSD (1TB can work with some client combinations; 2TB affords more room for growth)
+
 ## Node components
 
 An Ethereum staking full node has many moving parts. Here's a high level, conceptual overview.
