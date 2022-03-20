@@ -11,8 +11,7 @@ Recommended hardware profile:
 
 Generally, 8 GiB of RAM is a very tight fit, and 16+ GiB is recommended.
 
-
-2 or 4 CPU cores, and an SSD for storage because the node databases
+4 CPU cores are recommended to deal with spikes in processing. An SSD is required for storage because the node databases
 are so IOPS-heavy. The Geth execution client would require around 500GiB of storage by
 itself initially, which can fill a 1TB SSD within 6 months. Offline pruning is available.
 
@@ -58,7 +57,7 @@ For a small uATX form factor, consider Silverstone ML04B.
 [Joe's hardware roundup](https://github.com/jclapis/rocketpool.github.io/blob/main/src/guides/local/hardware.md) has additional build ideas.
 
 On SSD size, 2TB is conservative and assumes you are running
-an execution client as well, which currently takes about 500 GiB and keeps
+an execution client as well, which currently takes about 500-700 GiB initially depending on client chosen and keeps
 growing. The consensus client db is expected to be far smaller, though exact figures
 won't be seen until the merge with Ethereum PoW is complete.
 
