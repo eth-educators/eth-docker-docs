@@ -5,20 +5,20 @@ sidebar_label: Hardware
 ---
 
 Recommended hardware profile:
-* 16 GiB of RAM
+* 16+ GiB of RAM (some client combinations benefit from 24 GiB)
 * Quad Core CPU
-* 1TB "mainstream" SSD - neither QLC nor DRAMless
+* 2TB "mainstream" SSD - neither QLC nor DRAMless (1TB can work with some client combinations; 2TB affords more room for growth)
 
-Generally, 8 GiB of RAM is a tight fit, and 16 GiB is recommended.
+Generally, 8 GiB of RAM is a very tight fit, and 16+ GiB is recommended.
 
 
 2 or 4 CPU cores, and an SSD for storage because the node databases
-are so IOPS-heavy. The Geth execution client would require around 350GiB of storage by
+are so IOPS-heavy. The Geth execution client would require around 500GiB of storage by
 itself initially, which can fill a 1TB SSD within 6 months. Offline pruning is available.
 
 Other execution clients grow at different rates, see [resource use](../Usage/ResourceUsage.md).
 
-The consensus client database is small, around 11 GiB, but we don't know what growth will
+The consensus client database is small, around 20-100 GiB, but we don't know what growth will
 look like once the merge with PoW is done.
 
 If you are running a slasher, that might be another 100 to 300 GiB by itself.
@@ -36,8 +36,8 @@ was unable to report ECC errors via IPMI, only OS-level reporting worked.
   * SuperMicro X11SCL-F(-O) (1 NVMe) or X11SCH-F(-O) (2 NVMe)
 * Common components:
   * Intel i3-9100F or Intel Xeon E-2xxx (i5/7 do not support ECC)
-  * 16 GiB of Micron or Samsung DDR4 UDIMM ECC RAM (unbuffered, **not** registered)
-  * 1TB M.2 NVMe SSD or SATA SSD, e.g. Samsung 970 EVO or Samsung 860 EVO
+  * 16+ GiB of Micron or Samsung DDR4 UDIMM ECC RAM (unbuffered, **not** registered)
+  * 2TB M.2 NVMe SSD or SATA SSD, e.g. WD Red SN700 or Samsung 870 EVO
 
 **AMD**
 
@@ -47,8 +47,8 @@ was unable to report ECC errors via IPMI, only OS-level reporting worked.
   * AsRock Rack X470D4U or X570D4U (2 NVMe both)
 * Common components:
   * AMD Ryzen CPU, but not APU (APUs do not support ECC)
-  * 16 GiB of Micron or Samsung DDR4 UDIMM ECC RAM (unbuffered, **not** registered)
-  * 1TB M.2 NVMe SSD or SATA SSD, e.g. Samsung 970 EVO or Samsung 860 EVO
+  * 16+ GiB of Micron or Samsung DDR4 UDIMM ECC RAM (unbuffered, **not** registered)
+  * 2TB M.2 NVMe SSD or SATA SSD, e.g. WD Red SN700 or Samsung 870 EVO
 
 Plus, obviously, a case, PSU, case fans. Pick your own. Well-liked
 options are Node 304 (mITX) and Node 804 (uATX) with Seasonic PSUs,
@@ -57,14 +57,14 @@ For a small uATX form factor, consider Silverstone ML04B.
 
 [Joe's hardware roundup](https://github.com/jclapis/rocketpool.github.io/blob/main/src/guides/local/hardware.md) has additional build ideas.
 
-On SSD size, 1TB is conservative and assumes you are running
-an execution client as well, which currently takes about 350 GiB and keeps
+On SSD size, 2TB is conservative and assumes you are running
+an execution client as well, which currently takes about 500 GiB and keeps
 growing. The consensus client db is expected to be far smaller, though exact figures
 won't be seen until the merge with Ethereum PoW is complete.
 
-You'll want decent write endurance. The two models mentioned here have 600TB
-write endurance each.<br />
-Intel SSDs are also well-liked, their data center SSDs are quite reliable, if a bit pricey.
+You'll want decent write endurance. WD Red SN700 and SK Hynix Gold P31 are good NVMe choices as of early 2022,
+and Samsung 870 EVO, WD Blue 3D NAND or Crucial MX500 are good SATA 2.5" choices.
+Intel SSDs are also well-liked: Their data center SSDs are quite reliable, if a bit pricey.
 
 You may also consider getting two SSDs and running them in a software mirror
 (RAID-1) setup, in the OS. That way, data loss becomes less likely for the
