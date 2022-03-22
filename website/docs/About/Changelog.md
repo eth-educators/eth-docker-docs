@@ -20,6 +20,15 @@ directory (`cd ~/eth-docker` by default):
 > On 1/27/2022, eth-docker's repository name changed. Everything should work as it did.
 > If you do wish to manually update your local reference, run `git remote set-url origin https://github.com/eth-educators/eth-docker.git`
 
+## v1.7.7.1 2022-03-22
+
+*This is an optional update, that contains new features*
+
+- Lighthouse default peers 80 to fit new guidance
+- Bonsai tries for Besu with GA flag - thanks to @JustNotHelpful
+- Nimbus switched back to use ws:// for web3 connections
+- Prysm source build no longer attempts to build standalone slasher
+
 ## v1.7.7 2022-03-14
 
 *This is an optional update, that contains new features*
