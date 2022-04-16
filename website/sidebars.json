@@ -20,20 +20,19 @@
 			"Usage/Autostart",
 			"Usage/ReverseProxy",
 			"Usage/ResourceUsage"
-
 		],
 		"Support" : [
+			"Support/Troubleshooting",
 			"Support/Recommendations",
 			"Support/Update",
 			"Support/AddValidator",		
 			"Support/Cloud",
-			"Support/Moving",
+                        "Support/Moving",
                         "Support/SwitchClient",
 			"Support/Exit",
 			"Support/GethPrune",
 			"Support/Rocketpool",
 			"Support/BloxSSV",
-			"Support/Addendums",
 			"Support/Windows",
 			"Support/Testing"
 		]

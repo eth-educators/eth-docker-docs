@@ -20,9 +20,25 @@ directory (`cd ~/eth-docker` by default):
 > On 1/27/2022, eth-docker's repository name changed. Everything should work as it did.
 > If you do wish to manually update your local reference, run `git remote set-url origin https://github.com/eth-educators/eth-docker.git`
 
-## v1.7.7.1 2022-03-22
+## v1.7.8 2022-04-16
 
 *This is an optional update, that contains new features*
+
+- Prometheus metrics for all execution clients
+- Remove node dashboard because it had Grafana alerts
+- Update RocketPool integration for RocketPool 1.3.0
+- `*-consensus.yml` now subscribe to all subnets, which is helpful for staking at scale
+- Add `prometheus-traefik.yml` for use with federation or just to make it available via https://
+- Support Blox SSV 0.1.11 and later
+
+## v1.7.7.2 2022-03-28
+
+
+- Switch to Go 1.18 for source builds
+- Fix Nimbus Gnosis source build
+
+## v1.7.7.1 2022-03-22
+
 
 - Lighthouse default peers 80 to fit new guidance
 - Bonsai tries for Besu with GA flag - thanks to @JustNotHelpful
@@ -662,7 +678,7 @@ instructions.
 
 ## v0.1.7 2020-10-15
 
-* Added "validator-voluntary-exit" to Prysm, see [Addendums](../Support/Addendums.md#addendum-voluntary-client-exit)
+* Added "validator-voluntary-exit" to Prysm
 * Default restart policy is now "unless-stopped" and can be changed via `.env`
 * Preliminary work to support Prysm Web UI, not yet functional
 * Changed testnet parameter for Prysm to conform with alpha.29
