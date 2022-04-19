@@ -100,57 +100,31 @@ If you do not already have an Ethereum project with Infura: Create an account wi
 
 If you are going to use a consensus client with rapid sync capability (as of September 2021, Teku): From the Dashboard, choose "ETH 2" and "Create New Project". Give it a name. This will be your remote consensus client ("beacon").
 
-### 2. Switch the existing setup to use Infura
+### 2. Create a new eth-docker client stack
 
-Skip this step if you are already using Infura instead of your own execution client such as Geth.
-
-#### Somer Esat's guide
-
-`sudo nano /etc/systemd/system/prysmbeacon.service` and change `--http-web3provider=` in `ExecStart` to the Infura URL, which you can see in the Settings of your Infura project. E.g. `ExecStart=/usr/local/bin/beacon-chain --datadir=/var/lib/prysm/beacon --http-web3provider=https://mainnet.infura.io/v3/MYINFURAID --accept-terms-of-use`.
-
-`sudo systemctl daemon-reload` and `sudo systemctl restart prysmbeacon`. Verify that the beacon is still working well with `journalctl -fu prysmbeacon`.
-
-Disable the Geth service and remove its database: `sudo systemctl disable geth` and `sudo rm -rf /var/lib/goethereum`.
-
-#### Metanull's guide
-
-`sudo -u beacon nano /home/beacon/prysm-beacon.yaml` and change `http-web3provider:` to the Infura URL, which you can see in the Settings of your Infura project. E.g. `http-web3provider: "https://mainnet.infura.io/v3/MYINFURAID"`.
-
-`sudo systemctl restart beacon-chain` and verify that the beacon is still working well with `journalctl -fu beacon-chain`.
-
-Disable the Geth service and remove its database: `sudo systemctl disable geth` and `sudo rm -rf /home/geth/*`.
-
-#### Coincashew's guide
-
-`sudo nano /etc/systemd/system/beacon-chain.service` and change `--http-web3provider=` in `ExecStart` to the Infura URL, which you can see in the Settings of your Infura project. E.g. `ExecStart=/home/MYUSER/prysm/prysm.sh beacon-chain --p2p-host-ip=${ClientIP} --monitoring-host="0.0.0.0" --http-web3provider=https://mainnet.infura.io/v3/MYINFURAID --accept-terms-of-use`.
-
-`sudo systemctl daemon-reload` and `sudo systemctl restart beacon-chain`. Verify that the beacon is still working well with `journalctl -fu beacon-chain`.
-
-Disable the Geth service and remove its database: `sudo systemctl disable eth1` and `sudo rm -rf ~/.ethereum`.
-
-### 3. Create a new eth-docker client stack
-
-Install prerequisites: `sudo snap remove --purge docker` just in case a snap docker is installed, then `sudo apt update && sudo apt install -y git docker.io docker-compose`.
+Install prerequisites: `sudo snap remove --purge docker` just in case a snap docker is installed, then `sudo apt update && sudo apt install -y git docker-compose`.
 
 Optionally, make your user part of the docker group: `sudo usermod -aG docker MYUSER && newgrp docker`.
 
 Clone eth-docker, for example into `~/eth-docker`: `cd ~ && git clone https://github.com/eth2-educators/eth-docker.git && cd eth-docker` .
 
-Configure the client stack. Make sure to choose an Infura failover for your execution client, and any of the three minority consensus clients. If using Teku, "rapid sync" can let it sync in minutes. `./ethd config` followed by `sudo ./ethd start`.
+Configure the client stack. Make sure to choose an Infura failover for your execution client, and any of the four minority consensus clients. "Rapid sync" can let the consensus layer client sync in minutes. `./ethd config` followed by `./ethd start`.
 
 **Do not** import validator keys yet. Your validators are still running on your old client, and moving them over needs to be done with care to avoid running them in two places and getting yourself slashed.
 
-Observe the consensus client, and take the next step once it is fully synced: `sudo ./ethd logs -f consensus`. This can take a few days.
+Observe the consensus client, and take the next step once it is fully synced: `./ethd logs -f consensus`. This can take a few days if not using rapid sync.
 
-> `sudo` commands for docker are only necessary if your user is not part of the `docker` group. If `docker ps` succeeds, you do not need to use `sudo` for `./ethd` or `docker` or `docker-compose`.
+> `sudo` commands for docker are necessary if your user is not part of the `docker` group. If `docker ps` does not succeed, you need to use `sudo` for `./ethd` or `docker` or `docker-compose`, or make your user part of the `docker` group.
 
-### 4. Move your validators
+### 3. Move your validators
 
 **Exercise extreme caution. Running your validators in two locations at once would lead to slashing**
 
 Make sure you have your `keystore-m_ETC.json` files and the password for them.
 
-To export the slashing protection DB from Prysm, adjust this command line to your username and location eth-docker is in and run `sudo validator slashing-protection-history export --datadir=/var/lib/prysm/validator --slashing-protection-export-dir=/home/ubuntu/.eth/validator_keys`
+Stop the validator service. Somer Esat: `sudo systemctl stop prysmvalidator`. Metanull and Coincashew: `sudo systemctl stop validator`.
+
+To export the slashing protection DB from Prysm, adjust this command line to your username and location eth-docker is in and run `sudo validator slashing-protection-history export --datadir=/var/lib/prysm/validator --slashing-protection-export-dir=/home/ubuntu/eth-docker/.eth/validator_keys`
 
 To export the keys from Prysm, run `sudo validator accounts backup --wallet-dir=/var/lib/prysm/validator --backup-dir=/tmp/keys` and hen move them to the eth-docker directory, again adjusting for your username: `sudo unzip /tmp/keys/backup.zip -d /home/ubuntu/eth-docker/.eth/validator_keys`. Lastly, remove the zip file again: `sudo rm /tmp/keys/backup.zip`
  
@@ -162,7 +136,7 @@ Verify that the validator can't find them: `sudo systemctl start prysmvalidator`
 
 `sudo systemctl stop prysmvalidator` and `sudo systemctl disable prysmvalidator` to shut it down for good.
 
-Follow the [moving a validator](../Support/Moving.md#import-keys-into-new-client) instructions. You already removed the keys: Wait 15 minutes after that, then import them again from inside the `~/eth-docker` directory.
+Follow the [moving a validator](../Support/Moving.md#import-keys-into-new-client) instructions. You already removed the keys: Wait 15 minutes after that to protect against slashing, then import them again from inside the `~/eth-docker` directory.
 
 #### Metanull's guide
 
@@ -172,7 +146,7 @@ Verify that the validator can't find them: `sudo systemctl start validator` and 
 
 `sudo systemctl stop validator` and `sudo systemctl disable validator` to shut it down for good.
 
-Follow the [moving a validator](../Support/Moving.md#import-keys-into-new-client) instructions. You already removed the keys: Wait 15 minutes after that, then import them again from inside the `~/eth-docker` directory.
+Follow the [moving a validator](../Support/Moving.md#import-keys-into-new-client) instructions. You already removed the keys: Wait 15 minutes after that to protect against slashing, then import them again from inside the `~/eth-docker` directory.
 
 #### Coincashew's guide
 
@@ -182,9 +156,9 @@ Verify that the validator can't find them: `sudo systemctl start validator` and 
 
 `sudo systemctl stop validator` and `sudo systemctl disable validator` to shut it down for good.
 
-Follow the [moving a validator](../Support/Moving.md#import-keys-into-new-client) instructions. You already removed the keys: Wait 15 minutes after that, then import them again from inside the `~/eth-docker` directory.
+Follow the [moving a validator](../Support/Moving.md#import-keys-into-new-client) instructions. You already removed the keys: Wait 15 minutes after that to protect against slashing, then import them again from inside the `~/eth-docker` directory.
 
-### 5. Remove old beacon database
+### 4. Remove old beacon database
 
 We can remove the old beacon chain database and disable the service.
 
@@ -211,11 +185,7 @@ Optionally, remove the old Geth package: `sudo apt remove -y ethereum && sudo ap
 
 Optionally, remove the old Geth package: `sudo apt remove -y ethereum && sudo apt -y auto-remove`.
 
-### 6. Set an auto-prune crontab
+### 5. Set an auto-prune crontab
 
 This is an optional component for [auto-pruning Geth](../Support/GethPrune.md#fully-automated-geth-prune).
-
-### 7. Get with Superphiz and claim your POAP
-
-[TBD](https://twitter.com/superphiz/status/1442043723790102528?s=19) and, this is really an excellent idea.
 
