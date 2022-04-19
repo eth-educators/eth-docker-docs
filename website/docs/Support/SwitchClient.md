@@ -90,10 +90,6 @@ and new directory `eth-staker`, you'd change it from `WorkingDirectory=/home/ubu
 
 - If you are using the `auto-prune.sh` script in crontab, change where crontab looks for it: `crontab -e` and adjust the path to the new directory.
 
-### 7. Get with Superphiz and claim your POAP
-
-[TBD](https://twitter.com/superphiz/status/1442043723790102528?s=19) and, this is really an excellent idea.
-
 ## Switching clients from systemd to eth-docker
 
 If you are using systemd with guides from Somer Esat, Coincashew or Metanull, and want to give eth-docker's automation a whirl, these instructions will show you how to make the switch.
@@ -154,6 +150,10 @@ Observe the consensus client, and take the next step once it is fully synced: `s
 
 Make sure you have your `keystore-m_ETC.json` files and the password for them.
 
+To export the slashing protection DB from Prysm, adjust this command line to your username and location eth-docker is in and run `sudo validator slashing-protection-history export --datadir=/var/lib/prysm/validator --slashing-protection-export-dir=/home/ubuntu/.eth/validator_keys`
+
+To export the keys from Prysm, run `sudo validator accounts backup --wallet-dir=/var/lib/prysm/validator --backup-dir=/tmp/keys` and hen move them to the eth-docker directory, again adjusting for your username: `sudo unzip /tmp/keys/backup.zip -d /home/ubuntu/eth-docker/.eth/validator_keys`. Lastly, remove the zip file again: `sudo rm /tmp/keys/backup.zip`
+ 
 #### Somer Esat's guide
 
 First, remove the validator keys from the existing setup. `sudo systemctl stop prysmvalidator`. Remove the keys: `sudo rm -rf /var/lib/prysm/validator`. 
