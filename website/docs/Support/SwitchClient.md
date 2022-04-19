@@ -100,7 +100,23 @@ If you do not already have an Ethereum project with Infura: Create an account wi
 
 If you are going to use a consensus client with rapid sync capability (as of September 2021, Teku): From the Dashboard, choose "ETH 2" and "Create New Project". Give it a name. This will be your remote consensus client ("beacon").
 
-### 2. Create a new eth-docker client stack
+### 2. Shut down Geth
+
+Caution: Pre-merge, shutting down your execution client at this point is fine, and you can use an Infura failover with the new setup. Post-merge, these instructions would need to be adjusted.
+
+#### Somer Esat's guide
+ 
+Disable the Geth service and remove its database: `sudo systemctl disable geth` and `sudo rm -rf /var/lib/goethereum`.
+
+#### Metanull's guide
+
+Disable the Geth service and remove its database: `sudo systemctl disable geth` and `sudo rm -rf /home/geth/*`.
+
+#### Coincashew's guide
+
+Disable the Geth service and remove its database: `sudo systemctl disable eth1` and `sudo rm -rf ~/.ethereum`.
+
+### 3. Create a new eth-docker client stack
 
 Install prerequisites: `sudo snap remove --purge docker` just in case a snap docker is installed, then `sudo apt update && sudo apt install -y git docker-compose`.
 
@@ -108,15 +124,15 @@ Optionally, make your user part of the docker group: `sudo usermod -aG docker MY
 
 Clone eth-docker, for example into `~/eth-docker`: `cd ~ && git clone https://github.com/eth2-educators/eth-docker.git && cd eth-docker` .
 
-Configure the client stack. Make sure to choose an Infura failover for your execution client, and any of the four minority consensus clients. "Rapid sync" can let the consensus layer client sync in minutes. `./ethd config` followed by `./ethd start`.
+Configure the client stack. Make sure to choose an Infura failover for your execution client, and any of the four minority consensus clients. "Rapid sync" can let the consensus layer client sync in minutes. `./ethd config`, followed by `./ethd start`.
 
 **Do not** import validator keys yet. Your validators are still running on your old client, and moving them over needs to be done with care to avoid running them in two places and getting yourself slashed.
 
-Observe the consensus client, and take the next step once it is fully synced: `./ethd logs -f consensus`. This can take a few days if not using rapid sync.
+Observe the consensus client, and make sure it is synchronizing: `./ethd logs -f consensus`.
 
 > `sudo` commands for docker are necessary if your user is not part of the `docker` group. If `docker ps` does not succeed, you need to use `sudo` for `./ethd` or `docker` or `docker-compose`, or make your user part of the `docker` group.
 
-### 3. Move your validators
+### 4. Move your validators
 
 **Exercise extreme caution. Running your validators in two locations at once would lead to slashing**
 
@@ -158,7 +174,7 @@ Verify that the validator can't find them: `sudo systemctl start validator` and 
 
 Follow the [moving a validator](../Support/Moving.md#import-keys-into-new-client) instructions. You already removed the keys: Wait 15 minutes after that to protect against slashing, then import them again from inside the `~/eth-docker` directory.
 
-### 4. Remove old beacon database
+### 5. Remove old beacon database
 
 We can remove the old beacon chain database and disable the service.
 
@@ -185,7 +201,7 @@ Optionally, remove the old Geth package: `sudo apt remove -y ethereum && sudo ap
 
 Optionally, remove the old Geth package: `sudo apt remove -y ethereum && sudo apt -y auto-remove`.
 
-### 5. Set an auto-prune crontab
+### 6. Set an auto-prune crontab
 
 This is an optional component for [auto-pruning Geth](../Support/GethPrune.md#fully-automated-geth-prune).
 
