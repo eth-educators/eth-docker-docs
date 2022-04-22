@@ -20,6 +20,14 @@ directory (`cd ~/eth-docker` by default):
 > On 1/27/2022, eth-docker's repository name changed. Everything should work as it did.
 > If you do wish to manually update your local reference, run `git remote set-url origin https://github.com/eth-educators/eth-docker.git`
 
+## v1.8 2022-04-21
+
+*This is an optional update, that contains new features*
+
+- Close Promtail/Loki ports
+- Support Gnosis Beacon Chain with `./ethd config`
+
+
 ## v1.7.8 2022-04-16
 
 *This is an optional update, that contains new features*
