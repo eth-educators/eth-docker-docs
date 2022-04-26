@@ -98,14 +98,14 @@ Please choose:
 
 * The consensus client you wish to run
   * Teku
-  * Lighthouse
   * Nimbus
   * Lodestar
-  * Prysm - this client has a supermajority. Choosing any other is safer.
+  * Lighthouse
+  * Prysm - this client has a majority. Choosing any other is safer.
 * Your source of Ethereum PoW chain data
-  * Geth
+  * Besu
+  * Geth - this client has a majority. Choosing another is safer.
   * Erigon - beta. Feedback welcome
-  * Besu - Feedback welcome.
   * Nethermind - Feedback welcome.
   * 3rd-party
 * Whether to run a grafana dashboard for monitoring
@@ -164,7 +164,6 @@ Optionally, choose a reporting package:
 - `lh-stats.yml` - send stats to https://beaconcha.in, requires API key
 - `prysm-stats.yml` - send stats to https://beaconcha.in, requires API key. Source build only as of Sept 2021.
 
-- `prysm-web.yml` - Prysm Web UI.
 - `grafana.yml` - Enable Grafana dashboards
 
 - `grafana-shared.yml` - to map the Grafana port (default: 3000) to the host. This is not encrypted and should not be exposed to the Internet. Used *in addition* to `grafana.yml`, not instead. Using encryption instead via `traefik-*.yml` is recommended.
@@ -188,8 +187,11 @@ For example, Lighthouse with local geth and beaconcha.in stats:
 
 Advanced options:
 
-- `ec-traefik.yml` - reverse-proxies and encrypts both the RPC and WS ports of your execution client, as https:// and wss:// ports respectively. To be used alongside one of the execution client yml files.
-- `ec-shared.yml` - as an insecure alternative to ec-traefik, makes the RPC and WS ports of the execution client available from the host. To be used alongside one of the execution client yml files. **Not encrypted**, do not expose to Internet.
+Many of these advanced yml files exist only in the `rpc-nodes` branch. `git fetch origin rpc-nodes && git checkout rpc-nodes` to switch over.
+
+- `el-traefik.yml` - reverse-proxies and encrypts both the RPC and WS ports of your execution client, as https:// and wss:// ports respectively. To be used alongside one of the execution client yml files.
+- `el-shared.yml` - as an insecure alternative to ec-traefik, makes the RPC and WS ports of the execution client available from the host. To be used alongside one of the execution client yml files. **Not encrypted**, do not expose to Internet.
+- `cl-shared.yml` - as an insecure alternative to traefik-\*.yml, makes the REST port of the consensus client available from the host. To be used alongside one of the consensus client yml files. **Not encrypted**, do not expose to Internet.
 
 - `lh-consensus.yml`, `teku-consensus.yml`, `prysm-consensus.yml`, `lodestar-consensus.yml` - for running a [distributed consensus client and validator client](../Usage/ReverseProxy.md) setup.
 - `lh-validator.yml`, `teku-validator.yml`, `lodestar-validator.yml` - the other side of the distributed client setup.
