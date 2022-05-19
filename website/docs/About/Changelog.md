@@ -20,6 +20,24 @@ directory (`cd ~/eth-docker` by default):
 > On 1/27/2022, eth-docker's repository name changed. Everything should work as it did.
 > If you do wish to manually update your local reference, run `git remote set-url origin https://github.com/eth-educators/eth-docker.git`
 
+## v1.8.3 2022-05-19
+
+*This is an optional release, that contains new features and bug fixes*
+
+- Highly, highly experimental support for Akula. Do not use in production
+- A few fixes around CL/EL NewSpeak
+- Lodestar can import multiple keystores non-interactively
+- staking-deposit-cli moved to Python 3.10
+- `./ethd update` prompts for an Ethereum rewards address for priority fees and MEV, to be used post-merge. Currently only and exclusively actually being used by `lh-validator.yml`
+
+## v1.8.2 2022-05-07
+
+*This is an optional update, that contains new features*
+
+- Experimental support for Prysm rapid sync
+- Use JDK 17 to build Besu from source
+- Remove consensus-only files and keep them in `rpc-nodes` branch only. Ditto remove old grafana yml files. This is meant to make the main branch more approachable.
+
 ## v1.8.1 2022-04-26
 
 *This is an optional update, that contains new features*
