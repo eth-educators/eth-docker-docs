@@ -20,6 +20,17 @@ directory (`cd ~/eth-docker` by default):
 > On 1/27/2022, eth-docker's repository name changed. Everything should work as it did.
 > If you do wish to manually update your local reference, run `git remote set-url origin https://github.com/eth-educators/eth-docker.git`
 
+## v1.8.4 2022-05-24
+
+*This is an optional release, that contains new features and bug fixes*
+
+- **Breaking change**: OpenEthereum `oe.yml` has been removed, now that OpenEthereum is officially end of support and its repo has been archived
+- Fixed ethd to once more work on macOS
+- Besu is now offered as a choice on ARM64
+- All clients that support it now use `--suggested-fee-recipient`
+- Changed language of message box that prompts for fee recipient, to be clearer
+- Added `validator-list` command
+
 ## v1.8.3 2022-05-19
 
 *This is an optional release, that contains new features and bug fixes*
