@@ -142,7 +142,7 @@ Stop the validator service. Somer Esat: `sudo systemctl stop prysmvalidator`. Me
 
 To export the slashing protection DB from Prysm, adjust this command line to your username and location eth-docker is in and run `sudo validator slashing-protection-history export --datadir=/var/lib/prysm/validator --slashing-protection-export-dir=/home/ubuntu/eth-docker/.eth/validator_keys`
 
-To export the keys from Prysm, run `sudo validator accounts backup --wallet-dir=/var/lib/prysm/validator --backup-dir=/tmp/keys` and hen move them to the eth-docker directory, again adjusting for your username: `sudo unzip /tmp/keys/backup.zip -d /home/ubuntu/eth-docker/.eth/validator_keys`. Lastly, remove the zip file again: `sudo rm /tmp/keys/backup.zip`
+To export the keys from Prysm, run `sudo validator accounts backup --wallet-dir=/var/lib/prysm/validator --backup-dir=/tmp/keys` and then move them to the eth-docker directory, again adjusting for your username: `sudo unzip /tmp/keys/backup.zip -d /home/ubuntu/eth-docker/.eth/validator_keys`. Lastly, remove the zip file again: `sudo rm /tmp/keys/backup.zip`
  
 #### Somer Esat's guide
 
