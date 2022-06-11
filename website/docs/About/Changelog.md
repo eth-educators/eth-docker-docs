@@ -20,6 +20,27 @@ directory (`cd ~/eth-docker` by default):
 > On 1/27/2022, eth-docker's repository name changed. Everything should work as it did.
 > If you do wish to manually update your local reference, run `git remote set-url origin https://github.com/eth-educators/eth-docker.git`
 
+## v1.8.5 2022-06-11
+
+*This is an optional release, that contains new features and bug fixes*
+
+- Keep Lodestar build targets
+- Suppress Nethermind JSON RPC logs
+- Fix genesis download for Prysm on Prater
+- Change SSV node default ports
+- Hardcode `./.eth` as the directory for key files
+- Fix help URL displayed during `./ethd config`
+- Fix Lighthouse validator startup
+- Rename Prater to Görli
+- Stop tracking changes to `ext-network.yml`
+- Improve peer count adjustment, a MIN can now be set
+- Change default Teku peers to 100
+- Verify rewards address for correctness on `./ethd update`
+- Better UX / question flow during `./ethd config`
+- Clearer warning not to `./ethd restart` without a rewards address
+- Besu now defaults to snap sync
+- `CL_NODE` will now inherit the `CC_NODE` setting on `./ethd update`
+
 ## v1.8.4 2022-05-24
 
 *This is an optional release, that contains new features and bug fixes*
