@@ -24,12 +24,18 @@ SSD, RAM and CPU use is after initial sync, when keeping up with head. 100% CPU 
 
 | Client | Version | Date | DB Size  | DB Growth | RAM | CPU | Notes |
 |--------|---------|----  |----------|-----------|-----|-----|-------|
-| Geth   | 1.10.15 | Jan 2022 | ~480 GiB | ~13.5 GiB / week | 8 GiB | 100-400% | DB size can be reduced when it grew too large by [offline(!) prune](../Support/GethPrune.md) |
+| Geth   | 1.10.15 | Jan 2022 | ~480 GiB | ~13.5 GiB / week | 8 GiB | 100-400% | default cache size |
 | Geth   | 1.10.15 | Jan 2022 | ~480 GiB | ~12 GiB / week | 9-10 GiB | 100-400% | `--cache 5336`, max value at 16 GiB RAM, reduces DB growth rate |
 | Geth   | 1.10.15 | Jan 2022 | ~480 GiB | ~8 GiB / week | 16-19 GiB | 100-400% | `--cache 10704`, max value at 32 GiB RAM, reduces DB growth rate |
 | Nethermind | 1.12.4 | Feb 2022 | ~660 GiB | ~16 GiB / week | 15-16 GiB | 50-200% | memory use w/ pruning and prune-cache 4096; 18 GiB memory and 8 cores during sync |
-| Besu | v21.10.0 | Nov 2021 | ~550 GiB | ~8 GiB / week | 8 - 9 GiB | 50-100% | with Bonsai tries |
+| Besu | 22.4.1 | May 2022 | ~610 GiB | ~8 GiB / week | 8 - 9 GiB | 50-100% | with Bonsai tries |
 | Erigon | 2021-09-05 alpha | Sept 2021 | ~635 GiB | ~1 GiB / week | 1 GiB | 50-100% | Erigon will use up to 16 GiB of RAM during initial sync. It will have the OS use all available RAM as a DB cache during post-sync operation, but this RAM is free to be used by other programs as needed |
+
+Notes on disk usage
+- Geth -  DB size can be reduced when it grew too large by [offline(!) prune](../Support/GethPrune.md)
+- Nethermind - DB size can be reduced when it grow too large by online prune: Switch to full prune, manually start prune, switch back to memory prune
+- Erigon does not compress its DB, leaving that to the filesystem. With ZFS and zstd or lz4, it compresses nearly 2x. Be sure to set recordsize 16k on Erigon's dataset.
+
 
 ## Test Systems
 
@@ -83,7 +89,7 @@ Cache size default in all tests.
 | Nethermind | 1.10.7-beta | Jan 2021 | Contabo L | Never | VPS IOPS too low to finish Nethermind sync |
 | Nethermind | 1.10.44 | Mar 2021 | Homebrew Xeon | ~ 27 hours | |
 | Nethermind | 1.10.9 | Jan 2021 | Netcup VPS 2000 | ~ 20 hours | |
-| Besu | 20.11.0 | Nov 2021 | Netcup VPS 3000 | ~ 4 days 8 hours | |
+| Besu | 22.4.1 | May 2022 | OVH Baremetal NVMe | ~ 30 hours | With X_SNAP sync |
 | Erigon | 2021-09-05 alpha | Sept 2021 | Homebrew Xeon | ~ 6 days | |
 
 ## Getting better IOPS
