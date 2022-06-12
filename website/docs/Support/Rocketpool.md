@@ -45,7 +45,7 @@ pasword.
 - Copy `keystore-m` files to `.eth/validator_keys` in the eth-docker directory
 - From the eth-docker directory, stop eth-docker: `./ethd stop`
 - Make sure client images have been built: `./ethd update`
-- Import keys and follow prompts: `/.ethd keyimport`
+- Import keys and follow prompts: `./ethd keyimport`
 - Start eth-docker: `./ethd start`
 
 ### Check logs
@@ -89,7 +89,7 @@ pasword.
 - Copy `keystore-m` files to `.eth/validator_keys` in the eth-docker directory
 - From the eth-docker directory, stop eth-docker: `./ethd stop`
 - Make sure client images have been built: `./ethd update`
-- Import keys and follow prompts: `/.ethd keyimport`
+- Import keys and follow prompts: `./ethd keyimport`
 - Start eth-docker: `./ethd start`
 
 ### Check logs
