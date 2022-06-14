@@ -20,6 +20,13 @@ directory (`cd ~/eth-docker` by default):
 > On 1/27/2022, eth-docker's repository name changed. Everything should work as it did.
 > If you do wish to manually update your local reference, run `git remote set-url origin https://github.com/eth-educators/eth-docker.git`
 
+## v1.8.6 2022-06-14
+
+*This is an optional release, that contains new features and bug fixes*
+
+- `./ethd prune-geth` now correctly asks for confirmation
+- `./ethd update` will nag users about running both a CL and EL. Nag screen can be overridden via `.env` setting
+
 ## v1.8.5 2022-06-11
 
 *This is an optional release, that contains new features and bug fixes*
