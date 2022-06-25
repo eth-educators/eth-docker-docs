@@ -31,12 +31,17 @@ was unable to report ECC errors via IPMI, only OS-level reporting worked.
 
 * mITX: 
   * SuperMicro X11SCL-IF(-O) (1 NVMe)
+    * Intel i3-9100F or Intel Xeon E-21xx/22xx (i5/7 do not support ECC)
+  * SuperMicro X12STL-IF(-O) (1 NVMe)
+    * Intel Xeon E-23xx 
 * uATX:
-  * SuperMicro X11SCL-F(-O) (1 NVMe) or X11SCH-F(-O) (2 NVMe)
+  * SuperMicro X11SCL-F(-O) (1 NVMe) or X11SCH-F(-O) (2 NVMe). SCH supports an iGPU
+    * Intel i3-9100(F) or Intel Xeon E-21xx/22xx(G) (i5/7 do not support ECC)
+  * SuperMicro X12STL-F(-O) or X12STH-F(-O). STH supports an iGPU
+    * Intel Xeon E-23xx(G)
 * Common components:
-  * Intel i3-9100F or Intel Xeon E-2xxx (i5/7 do not support ECC)
-  * 16+ GiB of Micron or Samsung DDR4 UDIMM ECC RAM (unbuffered, **not** registered)
-  * 2TB M.2 NVMe SSD or SATA SSD, e.g. WD Red SN700 or Samsung 870 EVO
+  * 16 or 32 GiB of Micron or Samsung DDR4 UDIMM ECC RAM (unbuffered, **not** registered)
+  * 2TB M.2 NVMe SSD or SATA SSD, e.g. SK Hynix P31, Samsung 970 EVO Plus, WD Red SN700 or Samsung 870 EVO
 
 **AMD**
 
@@ -45,9 +50,9 @@ was unable to report ECC errors via IPMI, only OS-level reporting worked.
 * uATX:
   * AsRock Rack X470D4U or X570D4U (2 NVMe both)
 * Common components:
-  * AMD Ryzen CPU, but not APU (APUs do not support ECC)
-  * 16+ GiB of Micron or Samsung DDR4 UDIMM ECC RAM (unbuffered, **not** registered)
-  * 2TB M.2 NVMe SSD or SATA SSD, e.g. WD Red SN700 or Samsung 870 EVO
+  * AMD Ryzen CPU (Zen2/3), but not APU (APUs do not support ECC)
+  * 16 or 32 GiB of Micron or Samsung DDR4 UDIMM ECC RAM (unbuffered, **not** registered)
+  * 2TB M.2 NVMe SSD or SATA SSD, e.g. SK Hynix P31, Samsung 970 EVO Plus, WD Red SN700 or Samsung 870 EVO
 
 Plus, obviously, a case, PSU, case fans. Pick your own. Well-liked
 options are Node 304 (mITX) and Node 804 (uATX) with Seasonic PSUs,
@@ -61,8 +66,9 @@ an execution client as well, which currently takes about 500-700 GiB initially d
 growing. The consensus client db is expected to be far smaller, though exact figures
 won't be seen until the merge with Ethereum PoW is complete.
 
-You'll want decent write endurance. WD Red SN700 and SK Hynix Gold P31 are good NVMe choices as of early 2022,
-and Samsung 870 EVO, WD Blue 3D NAND or Crucial MX500 are good SATA 2.5" choices.
+You'll want decent write endurance. Samsung EVO 970 Plus, WD Red SN700 and SK Hynix Gold P31 are good NVMe choices as of early 2022,
+and Samsung 870 EVO, WD Blue 3D NAND or Crucial MX500 are good SATA 2.5" choices. You get better sync and prune performance with "mainstream" SSDs, that is, SSDs that are neither DRAMless nor use QLC Flash.
+
 Intel SSDs are also well-liked: Their data center SSDs are quite reliable, if a bit pricey.
 
 You may also consider getting two SSDs and running them in a software mirror
