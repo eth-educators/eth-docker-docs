@@ -20,6 +20,18 @@ directory (`cd ~/eth-docker` by default):
 > On 1/27/2022, eth-docker's repository name changed. Everything should work as it did.
 > If you do wish to manually update your local reference, run `git remote set-url origin https://github.com/eth-educators/eth-docker.git`
 
+## v1.8.7 2022-06-25
+
+*This is an optional release, that contains new features and bug fixes*
+
+- `./ethd update` now always runs the latest version of itself
+- `./ethd update` aborts when a user chooses "Cancel" on the fee recipient screen
+- `FEE_RECIPIENT` variable in `.env` instead of `REWARDS_TO`
+- Improve Lighthouse memory allocation defaults
+- Gracefully handle `sudo ./ethd update`
+- Automatic switch to the `rpc-nodes` branch is clearer
+- Keep Teku key management API TLS cert from being deleted all the time
+
 ## v1.8.6 2022-06-14
 
 *This is an optional release, that contains new features and bug fixes*
