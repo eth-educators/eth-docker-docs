@@ -6,15 +6,9 @@ sidebar_label: Switch Clients
 
 ## Overview
 
-It may be desirable to switch clients if you are using one that is close to a [supermajority of clients](https://twitter.com/sproulM_/status/1440512518242197516). If any one client has a supermajority of the chain, there
-is a risk that a [consensus bug could lead to a mass slashing](https://www.symphonious.net/2021/09/23/what-happens-if-beacon-chain-consensus-fails/) and validators on this client would lose 3/4th of their staked ETH in that
-worst-case scenario.  
+It may be desirable to switch clients if you are using one that is close to a supermajority of validators. If any one client has a supermajority of the chain, there is a risk that a [consensus bug could lead to a mass slashing](https://www.symphonious.net/2021/09/23/what-happens-if-beacon-chain-consensus-fails/) and validators on this client would lose 3/4th of their staked ETH in that worst-case scenario.  
 
-As of September 2021, Prysm is the client that has close to a supermajority (64.8%). While it is an excellent, high-quality client, its share of the network introduces a slashing risk that is best avoided. The other clients
-are just as robust, and we are encouraging a move to one of those, until no one client has more than around 50% of the network. An ideal distribution would see no one client with more than 25% of the network, but this is
-not a realistic goal now, and maybe ever.
-
-To make the switch operationally easy, we'll be suggesting to use Infura as an interim execution client during the switch.
+To make the switch operationally easy, we'll be suggesting to use Infura as an interim execution client during the switch. Please note this will no longer be possible after the merge.
 
 Choose any consensus client and any execution client you'd like to use, and then follow the instructions below.
 

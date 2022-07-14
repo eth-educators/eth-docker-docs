@@ -20,6 +20,14 @@ directory (`cd ~/eth-docker` by default):
 > On 1/27/2022, eth-docker's repository name changed. Everything should work as it did.
 > If you do wish to manually update your local reference, run `git remote set-url origin https://github.com/eth-educators/eth-docker.git`
 
+## v1.8.8 2022-07-13
+
+*This is an optional release, that contains new features and bug fixes*
+
+- `./ethd` now works with docker-ce and compose plugin, including on Debian 11
+- Support spaces in Graffiti
+- Fix a regression in `./ethd prune-geth`
+
 ## v1.8.7 2022-06-25
 
 *This is an optional release, that contains new features and bug fixes*
