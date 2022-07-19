@@ -10,13 +10,12 @@ sidebar_label: Client Resource Usage
 |--------|---------|----  |----------|------|-----|-------|
 | Teku   | 22.1.1  | Jan 2022 | ~30 GiB | ~9 GiB | 100-300% | |
 | Lighthouse | 2.1.1  | Jan 2022 | ~90 GiB | ~1.7 GiB | 50-200% | |
-| Nimbus | 1.6.0 | Jan 2022 | ~40 GiB | ~2.3 GiB | 50-200% | `--num-threads=0` |
+| Nimbus | 1.6.0 | Jan 2022 | ~40 GiB | ~2.3 GiB | 50-200% | |
 | Prysm | | | ? | ~4 GiB | ? | |
 
 # Execution clients
 
-For reference, here are disk, RAM and CPU requirements, as well as mainnet initial
-synchronization times, for different Ethereum execution clients.
+For reference, here are disk, RAM and CPU requirements, as well as mainnet initial synchronization times, for different Ethereum execution clients.
 
 ## Disk, RAM, CPU requirements
 
@@ -34,20 +33,16 @@ SSD, RAM and CPU use is after initial sync, when keeping up with head. 100% CPU 
 Notes on disk usage
 - Geth -  DB size can be reduced when it grew too large by [offline(!) prune](../Support/GethPrune.md)
 - Nethermind - DB size can be reduced when it grow too large by online prune: Switch to full prune, manually start prune, switch back to memory prune
-- Erigon does not compress its DB, leaving that to the filesystem. With ZFS and zstd or lz4, it compresses nearly 2x. Be sure to set recordsize 16k on Erigon's dataset.
+- Erigon does not compress its DB, leaving that to the filesystem. With ZFS and lz4, it compresses around 1.4x. Be sure to set recordsize 16k on Erigon's dataset.
 
 
 ## Test Systems
 
-IOPS is random read-write IOPS [measured by fio with "typical" DB parameters](https://arstech.net/how-to-measure-disk-performance-iops-with-fio-in-linux/), 4G and 150G file,
-without other processes running.
+IOPS is random read-write IOPS [measured by fio with "typical" DB parameters](https://arstech.net/how-to-measure-disk-performance-iops-with-fio-in-linux/), 4G and 150G file, without other processes running.
 
-Specifically `fio --randrepeat=1 --ioengine=libaio --direct=1 --gtod_reduce=1 --name=test --filename=test --bs=4k --iodepth=64 --size=4G --readwrite=randrw --rwmixread=75` followed
-by `fio --randrepeat=1 --ioengine=libaio --direct=1 --gtod_reduce=1 --name=test --filename=test --bs=4k --iodepth=64 --size=150G --readwrite=randrw --rwmixread=75`, then `rm test` to
-get rid of the 150G test file. If the 150G test shows it'd take hours to complete, feel free to cut it short once the IOPS display for the test looks steady.
+Specifically `fio --randrepeat=1 --ioengine=libaio --direct=1 --gtod_reduce=1 --name=test --filename=test --bs=4k --iodepth=64 --size=4G --readwrite=randrw --rwmixread=75` followed by `fio --randrepeat=1 --ioengine=libaio --direct=1 --gtod_reduce=1 --name=test --filename=test --bs=4k --iodepth=64 --size=150G --readwrite=randrw --rwmixread=75`, then `rm test` to get rid of the 150G test file. If the 150G test shows it'd take hours to complete, feel free to cut it short once the IOPS display for the test looks steady.
 
-150G was chosen to "break through" any caching strategems the SSD uses for bursty writes. Execution clients write steadily, and the performance of an SSD under heavy write is more
-important than its performance with bursty writes.
+150G was chosen to "break through" any caching strategems the SSD uses for bursty writes. Execution clients write steadily, and the performance of an SSD under heavy write is more important than its performance with bursty writes.
 
 Read and write latencies are measured with `sudo iostat -mdx 240 2` during Geth sync, look at `r_await` and `w_await` of the second output block.
 
@@ -67,15 +62,13 @@ A note on Contabo: Stability of their service [is questionable](https://www.redd
 
 ## Initial sync times
 
-NB: All execution clients need to [download state](https://github.com/ethereum/go-ethereum/issues/20938#issuecomment-616402016)
-after getting blocks. If state isn't "in" yet, your sync is not done. This is a heavily disk IOPS dependent
-operation, which is why HDD cannot be used for a node. 
+NB: All execution clients need to [download state](https://github.com/ethereum/go-ethereum/issues/20938#issuecomment-616402016) after getting blocks. If state isn't "in" yet, your sync is not done. This is a heavily disk IOPS dependent operation, which is why HDD cannot be used for a node. 
 
-For Nethermind, seeing "branches" percentage reset to "0.00%" after state root changes with "Setting sync state root to" is normal
-and expected. With sufficient IOPS, the node will "catch up" and get in sync.
+For Nethermind, seeing "branches" percentage reset to "0.00%" after state root changes with "Setting sync state root to" is normal and expected. With sufficient IOPS, the node will "catch up" and get in sync.
 
 For Geth, you will see "State heal in progress" after initial sync, which will persist for a few hours if IOPS are low-ish. 
-This should complete in under 4 hours. If it does not, or even goes on for a day+, you do not have sufficient IOPS for Geth to "catch up" with state.
+
+This should complete in under 4 hours. If it does not, or even goes on for a week+, you do not have sufficient IOPS for Geth to "catch up" with state.
 
 Cache size default in all tests.
 
@@ -93,7 +86,7 @@ Cache size default in all tests.
 
 ## Getting better IOPS
 
-Geth needs a decent amount of IOPS, as do Besu and Nethermind. Erigon can run on very low IOPS, even two HDD in RAID-0 or RAID-1.
+Geth needs a decent amount of IOPS, as do Besu and Nethermind. Erigon can run on very low IOPS, though should also not be used with HDD.
 
 For cloud providers, here are some results for syncing Geth. 
 - AWS, gp2 or gp3 with provisioned IOPS have both been tested successfully.
@@ -103,13 +96,11 @@ For cloud providers, here are some results for syncing Geth.
 - There are reports that Digital Ocean block storage is too slow, as of late 2021. 
 - Strato V-Server is too slow as of late 2021.
 
-Dedicated servers with SSD or NVMe will always have sufficient IOPS. Do avoid hardware RAID though, see below. OVH Advance line
-as well as Hetzner are well-liked dedicated options; Linode or Strato or any other provider will work as well.
+Dedicated servers with SSD or NVMe will always have sufficient IOPS. Do avoid hardware RAID though, see below. OVH Advance line as well as Hetzner are well-liked dedicated options; Linode or Strato or any other provider will work as well.
 
 For own hardware, we've seen three causes of low IOPS:
 - Overheating of the SSD. Check `smartctl -x`. You want the SSD to be at or below 40 degrees Celsius.
-- External SSD with a USB controller that can't keep up. Samsung T5 has been shown to work, as has Samsung T7. T7 is slower.
+- External SSD with a USB controller that can't keep up. Samsung T5 has been shown to work, as has Samsung T7 with the right firmware. T7 is slower.
 - Hardware RAID, no TRIM support. [Flash the controller](https://gist.github.com/yorickdowne/fd36009c19fdbee0337bffc0d5ad8284) to HBA and use software RAID.
 
-Very rarely, the SSD itself can't keep up, e.g. one report of this with WD Green. For the most part, even QLC/DRAMless
-SSDs are "enough". Though, given the option, you may want to choose a "mainstream" SSD for better performance.
+In some cases, the SSD itself can't keep up, e.g. reports of this with WD Green SN350, Crucial BX500. While they sync slowly, even QLC/DRAMless SSDs can be "enough" - this depends heavily on model. Given the option, you may want to [choose a "mainstream" SSD](https://gist.github.com/yorickdowne/f3a3e79a573bf35767cd002cc977b038) for better sync and pruning performance.
