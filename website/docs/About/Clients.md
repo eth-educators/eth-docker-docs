@@ -15,7 +15,7 @@ Currently supported consensus clients:
 - Prysm - client has close to a supermajority, it is recommended to choose any other
 
 Currently supported (optional until merge) execution clients:
-- Geth, local execution client
+- Geth, local execution client - client has supermajority, it is **strongly** recommended to choose any other
 - Erigon, local execution client - for testing. Feedback welcome.
 - Besu, local execution client - Feedback welcome.
 - Nethermind, local execution client - Feedback welcome.
