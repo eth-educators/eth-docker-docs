@@ -11,7 +11,7 @@ sidebar_label: Client Resource Usage
 | Teku   | 22.1.1  | Jan 2022 | ~30 GiB | ~9 GiB | 100-300% | |
 | Lighthouse | 2.1.1  | Jan 2022 | ~90 GiB | ~1.7 GiB | 50-200% | |
 | Nimbus | 1.6.0 | Jan 2022 | ~40 GiB | ~2.3 GiB | 50-200% | |
-| Prysm | | | ? | ~4 GiB | ? | |
+| Prysm | 2.1.3 | Jul 2022 | ~100 GiB | ~4 GiB | 100-300% | |
 
 # Execution clients
 
@@ -56,6 +56,7 @@ A note on Contabo: Stability of their service [is questionable](https://www.redd
 | Dell R420 w/ HBA     | 32 GiB | 1 TB | Dual Intel Octo | 44.7k/14k (4G file) 35.9k/11k (150G file) | | Xeon E5-2450 |
 | Contabo L VPS SSD  | 30 GiB | 800 GiB | Intel Octa  | 3.1k/1k (4G file) 2.5k/800 (150G file) | | This was not sufficient to sync Geth |
 | [Netcup](https://netcup.eu) VPS 3000 G9   | 24 GiB | 600 GiB  | AMD Hexa | 25.8k/8.6k (4G file) 11.2k/3.7k (150G file) | 2.25/6 ms | |
+| Netcup RS 8000 G9.5 | 64 GiB | 2 TB | AMD EPYC 7702 | 47.8k/16k (4G file) 15.6k/5k (150G file) | 3.4/1.5 ms | |
 | OVH Baremetal NVMe   | 32 GiB | 1.9 TB  | Intel Hexa | 267k/89k (4G file) 177k/59k (150G file) | 0.08/3.5 ms | |
 | AWS io1 w/ 10K IOPS  | 8 GiB  | NA      | Intel Dual | 7.7k/2.6k (4G file) 7.6k/2.5k (150G file) | | t2.large, could not sync Geth. Note t2 throttles CPU |
 | AWS gp3 w/ 16K IOPS  | 16 GiB | NA      | Intel Quad | 12.5k/4.2k (4G file) 12.2k/4.1k (150G file) | | m6i.xlarge |
