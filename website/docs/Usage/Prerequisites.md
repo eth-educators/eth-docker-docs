@@ -44,6 +44,7 @@ Ubuntu 20.04 ships with docker-compose 1.25.0, too low for eth-docker 2.x. On 20
 docker-compose manually to 1.29.2. This is *not* necessary on Ubuntu 22.04.
 
 ```
+sudo apt update && sudo install -y curl
 sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/bin/docker-compose && sudo chmod +x /usr/bin/docker-compose
 docker-compose version
 ```
