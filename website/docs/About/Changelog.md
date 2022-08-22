@@ -19,7 +19,7 @@ directory (`cd ~/eth-docker` by default):
 > On 1/27/2022, eth-docker's repository name changed. Everything should work as it did.
 > If you do wish to manually update your local reference, run `git remote set-url origin https://github.com/eth-educators/eth-docker.git`
 
-## v2.0.0 2022-08-xx
+## v2.0.0 2022-08-22
 
 *This is a mandatory release for the Ethereum Merge*
 
@@ -37,6 +37,7 @@ directory (`cd ~/eth-docker` by default):
 - Automatic `sudo` in `./ethd` if required. Thanks to joeytwiddle
 - Keymanager support for Lodestar
 - Besu defaults to checkpoint sync
+- Teku VC supports failover CLs
 
 ## v1.8.8 2022-07-13
 
