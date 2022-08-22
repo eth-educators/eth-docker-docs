@@ -47,17 +47,17 @@ First, you'll want to bring down the old client and make sure it can't come back
 
 In the directory of the old client:
 
-- [ ] `sudo ./ethd down`
-- [ ] `sudo docker volume ls` - find the volume for the validator
-- [ ] `sudo docker volume rm VOLUMENAME` - remove the volume for the validator
+- [ ] `./ethd down`
+- [ ] `docker volume ls` - find the volume for the validator
+- [ ] `docker volume rm VOLUMENAME` - remove the volume for the validator
 
 ### Verify
 
 Verify that you removed the right client:
 
-- [ ] `sudo docker-compose run --rm validator` - confirm that it complains it cannot find its keys. If it still
+- [ ] `docker-compose run --rm validator` - confirm that it complains it cannot find its keys. If it still
   finds validator keys, do not proceed until you fixed that and it doesn't.
-  > For Nimbus and Teku, the command is `sudo docker-compose run --rm consensus` instead
+  > For Nimbus and Teku, the command is `docker-compose run --rm consensus` instead
 - [ ] Look at https://beaconcha.in/ and verify that the validator(s) you just removed are now
   missing an attestation. Take a note of the epoch the last successful attestion was in.
 - [ ] Verify that both machines are synchronized to time and are using NTP.
@@ -67,7 +67,8 @@ Verify that you removed the right client:
 ### Import keys into new client
 
 - [ ] SCP (or USB sneaker-net) the keys to `.eth/validator_keys` in the project directory
-- [ ] Run `sudo docker-compose run --rm validator-import` and import the keys
+- [ ] Ideally, also copy `slashing-protection.json` to `.eth/validator_keys`
+- [ ] Run `./ethd keyimport` and import the keys
 - [ ] Verify **once more** that all your validator(s) have been down long
   enough to miss an attestion
 - [ ] Verify **once more** that trying to start the validator on the old client
@@ -76,7 +77,7 @@ Verify that you removed the right client:
 - [ ] If you are absolutely positively sure that the old validator client cannot
   start attesting again and 15 minutes have passed / **all** validators'
   last successful attestation is in a finalized epoch, then and only then:
-- [ ] Start the new client with `sudo ./ethd start`
+- [ ] Start the new client with `./ethd start`
 
 ### Variant: DR consensus client
 

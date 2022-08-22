@@ -13,7 +13,7 @@ eth-docker supports running a Blox SSV node, together with a consensus client an
   - Make your user part of the docker group: `sudo usermod -aG docker MYUSERNAME` and then `newgrp docker`
 
 ### On MacOS
-- Install [Docker Desktop](https://www.docker.com/products/docker-desktop) and allocate 8 GiB of RAM to it
+- Install [Docker Desktop](https://www.docker.com/products/docker-desktop) and allocate 16 GiB of RAM and around 1.5TB of storage to it
 - Install pre-requisites via homebrew
   - `brew install coreutils newt`
 

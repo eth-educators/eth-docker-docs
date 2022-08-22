@@ -8,7 +8,7 @@ As always, add `sudo` to these commands if your user is not part of the `docker`
 
 ## Visibility
 
-`./ethd logs -f consensus` and `./ethd logs -f execution` or more broadly `./ethd logs -f <servicename>` will show you logs. When the service has been running for a while, you may want to start at the end, like so: `./ethd logs -f --tail 50 consensus`. Note Erigon is special, here it is `./ethd logs -f erigon`.
+`./ethd logs -f consensus` and `./ethd logs -f execution` or more broadly `./ethd logs -f <servicename>` will show you logs. When the service has been running for a while, you may want to start at the end, like so: `./ethd logs -f --tail 50 consensus`.
 
 `docker ps` will show you a list of running containers and their mapped ports.
 

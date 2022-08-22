@@ -9,31 +9,29 @@ should show functionality.
 
 Prep that's not client specific:
 - `cp default.env .env`, adjust ports as needed
-- `sudo docker volume rm $(sudo docker volume ls -q | grep eth-docker)`, wipe volumes from last pass,
+- `docker volume rm $(docker volume ls -q | grep eth-docker)`, wipe volumes from last pass,
    assuming that `eth-docker` is the directory we are testing in.
 
 
 For each client:
 - Start with the most "complete" stack to test full build
-- Set `COMPOSE_FILE` in `.env` to full client stack, set `EC_NODE` to geth.
-- `sudo docker ps`, make sure nothing is left running
+- Set `COMPOSE_FILE` in `.env` to full client stack
+- `docker ps`, make sure nothing is left running
 - Build the client stack:<br />
-  `sudo docker-compose build`
+  `docker-compose build`
 - There likely is a cached version of the client, let's make sure it's the latest.
-  `sudo docker-compose build --no-cache consensus`
+  `docker-compose build --no-cache consensus`
 - Coffee, tea, hall sword fights :)
 - `rm .eth/validator_keys/*`, wipe keys from last pass
-- `sudo docker-compose run deposit-cli`, create keys
-- `sudo docker-compose run validator-import`, import keys
-- `sudo docker-compose up -d eth`, observe that they come up in order: execution->consensus->validator
+- `docker-compose run deposit-cli`, create keys
+- `./ethd keyimport`, import keys
+- `docker-compose up -d`, observe that they come up in order: execution->consensus->validator
 - Check running and logs and see that everything is chill, watch especially for missed connections:
-  - `sudo docker ps`
-  - `sudo docker-compose logs execution`
-  - `sudo docker-compose logs consensus`
-  - `sudo docker-compose logs validator`
-- `sudo docker-compose down`
-- Set `EC_NODE` to infura.io URL, remove `geth.yml` from `COMPOSE_FILE`, and test again
-  from just after validator import, just without geth.
+  - `docker ps`
+  - `docker-compose logs execution`
+  - `docker-compose logs consensus`
+  - `docker-compose logs validator`
+- `docker-compose down`
 
 Specific to systemd:
 - Start the service manually

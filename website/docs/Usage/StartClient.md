@@ -10,7 +10,7 @@ To start the client:
 ```
 or:
 ```
-docker-compose up -d eth
+docker-compose up -d
 ```
 
 > **Nimbus and Teku**: Consensus client and validator client run in the same process, there is only one container for both

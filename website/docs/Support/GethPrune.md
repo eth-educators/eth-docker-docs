@@ -12,7 +12,7 @@ want [a failover execution client](../Usage/ClientSetup.md) configured for your 
 
 ### Semi-automated Geth prune
 
-Run `sudo ./ethd prune-geth`. It will check prerequisites, prune Geth, and restart it
+Run `./ethd prune-geth`. It will check prerequisites, prune Geth, and restart it
 
 ### Fully automated Geth prune
 
@@ -43,13 +43,13 @@ Check the prerequisites for offline pruning Geth, which are:
 - [ ] Geth is fully synced
 - [ ] Geth has finished creating a snapshot, and this snapshot is 128 blocks old or older
 
-You can observe Geth logs with `sudo ./ethd logs -f execution`. If it is importing (not syncing) blocks, is done with initial
+You can observe Geth logs with `./ethd logs -f execution`. If it is importing (not syncing) blocks, is done with initial
 state import, and does not show a snapshot ETA, it is fully synced and has finished the snapshot generation.
 
 Then run these commands:
 
-* `sudo docker-compose stop execution && sudo docker-compose rm execution` - stop Geth
-* `sudo docker-compose run --rm --name geth_prune -d execution snapshot prune-state` - start the pruning process
-* Observe pruning progress with `sudo docker logs -f --tail 500 geth_prune`
-* When pruning is done: `sudo docker-compose up -d execution`
-* And observe that Geth is running correctly: `sudo docker-compose logs -f execution`
+* `docker-compose stop execution && docker-compose rm execution` - stop Geth
+* `docker-compose run --rm --name geth_prune -d execution snapshot prune-state` - start the pruning process
+* Observe pruning progress with `docker logs -f --tail 500 geth_prune`
+* When pruning is done: `docker-compose up -d execution`
+* And observe that Geth is running correctly: `docker-compose logs -f execution`

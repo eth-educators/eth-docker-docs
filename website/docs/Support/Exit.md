@@ -13,11 +13,11 @@ Exiting a validator requires a fully synced consensus client.
 ## Teku
 
 Teku will exit all validators that have been imported to it. Run
-`sudo docker-compose run --rm validator-exit` and follow the prompts.
+`docker-compose run --rm validator-exit` and follow the prompts.
 
 ## Prysm
 
-To exit, run `sudo docker-compose run --rm validator-exit` and follow the
+To exit, run `docker-compose run --rm validator-exit` and follow the
 prompts.
 
 ## Lighthouse
@@ -26,7 +26,7 @@ The exit procedure for lighthouse is not very refined, yet.
 
 - Copy the `keystore-m` JSON files into `.eth/validator_keys/` in this project
   directory.
-- Run `sudo docker-compose run --rm validator-exit /keys/<name-of-keystore-file>`,
+- Run `docker-compose run --rm validator-exit /keys/<name-of-keystore-file>`,
   once for each keystore (validator) you wish to exit.
 - Follow prompts.
 
@@ -47,9 +47,9 @@ Enter the keystore password for validator in "/keys/keystore-m_12381_3600_0_0_0-
 
 You will need to know the index of your validator as it shows on https://beaconcha.in/ or https://pyrmont.beaconcha.in/ if on Pyrmont testnet, or its public key.
 
-Run `sudo docker-compose run --rm validator-exit <INDEX or 0xPUBKEY>` and follow prompts to exit. For example:
-- If using an index, here 0, `sudo docker-compose run --rm validator-voluntary-exit 0`
-- If using a public key, you need to include "0x" in front of it, for example `sudo docker-compose run --rm validator-voluntary-exit 0xb0127e191555550fae82788061320428d2cef31b0807aa33b88f48c53682baddce6398bb737b1ba5c503ca696d0cab4a`
+Run `docker-compose run --rm validator-exit <INDEX or 0xPUBKEY>` and follow prompts to exit. For example:
+- If using an index, here 0, `docker-compose run --rm validator-voluntary-exit 0`
+- If using a public key, you need to include "0x" in front of it, for example `docker-compose run --rm validator-voluntary-exit 0xb0127e191555550fae82788061320428d2cef31b0807aa33b88f48c53682baddce6398bb737b1ba5c503ca696d0cab4a`
 
 ## Avoid penalties
 

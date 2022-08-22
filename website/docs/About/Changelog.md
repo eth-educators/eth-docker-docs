@@ -12,13 +12,31 @@ sidebar_label: Changelog
 To update the components of the project, run from within the project
 directory (`cd ~/eth-docker` by default):
 
-* `sudo ./ethd update`. This fetches new client version(s), a new eth-docker, and updates `.env`, keeping your modifications. If you
-  made changes to the source or binary build targets, run `sudo ./ethd update --keep-targets` instead.
-* **Only** if you are using source builds: `sudo docker-compose build --pull --no-cache`
-* `sudo ./ethd restart` - use the new client version(s)
+* `./ethd update`. This fetches new client version(s), a new eth-docker, and updates `.env`, keeping your modifications. If you made changes to the source or binary build targets, run `./ethd update --keep-targets` instead.
+* **Only** if you are using source builds: `docker-compose build --pull --no-cache`
+* `./ethd restart` - use the new client version(s)
 
 > On 1/27/2022, eth-docker's repository name changed. Everything should work as it did.
 > If you do wish to manually update your local reference, run `git remote set-url origin https://github.com/eth-educators/eth-docker.git`
+
+## v2.0.0 2022-08-xx
+
+*This is a mandatory release for the Ethereum Merge*
+
+- **Breaking Change** docker-compose v1.28.0 or later is required. `./ethd update` will prompt for it
+- **Breaking Change** Erigon needs to be resynced from scratch and will run on its `alpha` branch. `./ethd update` will prompt for it
+- **Breaking Change** Infura "web3" fallback for the Execution Layer connection is no longer supported
+- Many changes to `.env`. `./ethd update` will make these automatically
+- merge-ready config with Engine API and JWT secret between Consensus Layer and Execution Layer
+- Doppelganger Protection supported
+- mev-boost supported
+- New `./ethd install` command that attempts to install prerequisites on Ubuntu
+- Support Sepolia and Ropsten testnets, in addition to Goerli
+- Ability to import slashing protection DB
+- Better checks for prerequisites existing in `./ethd`. Thanks to joeytwiddle
+- Automatic `sudo` in `./ethd` if required. Thanks to joeytwiddle
+- Keymanager support for Lodestar
+- Besu defaults to checkpoint sync
 
 ## v1.8.8 2022-07-13
 

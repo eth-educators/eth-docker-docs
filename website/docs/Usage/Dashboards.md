@@ -17,11 +17,7 @@ A baseline set of dashboards has been included.
 - [Node Dashboard JSON](https://raw.githubusercontent.com/eth2-educators/eth2-docker/master/grafana/node-exporter_dashboard.json)
 
 
-## Monitoring Requirements with Node Dashboard  
-
-The following [Dashboard](https://raw.githubusercontent.com/eth2-educators/eth2-docker/master/grafana/node-exporter_dashboard.json) is included with the eth-docker grafana default config.  Using it you can monitor Disk, CPU and Memory usage by you node.  Furthermore you can configure the alerts to notify you via discord, telegram or anywhere else grafana supports.  Check this [link](https://grafana.com/docs/grafana/latest/alerting/notifications/) for more information.
-
-![MarineGEO circle logo](./../../static/img/node_alerts.png "MarineGEO logo")
+## Connecting to Grafana  
 
 Connect to https://grafana.yourdomain.com/ (or http://YOURSERVERIP:3000/ if not using the reverse proxy), log in as admin/admin, and set a new password.
 
@@ -35,3 +31,7 @@ In order to load other Dashboards, follow these instructions.
 - Click "Load"
 - If prompted for a data source choose the "prometheus" data source
 - Click "Import".
+
+## Alerting with Grafan
+
+Grafana supports setting up alerts and sending notifications to email, Slack, Discord, PagerDuty, etc. Explore the alert bell icon on the left-hand side.

@@ -19,6 +19,14 @@ project itself in. It has been tested on Linux, and is expected to work on MacOS
 > will run your node on. The machine you use to connect *to* the Linux server
 > only requires an SSH client.
 
+This project has been tested on Ubuntu 22.04 "Jammy Jellyfish" and Ubuntu 20.04 "Focal Fossa". A [LTS](https://wiki.ubuntu.com/Releases), Long Term Support, version of Ubuntu is recommended, either Ubuntu Desktop or Ubuntu Server. If installing Ubuntu Server, make doubly sure to extend the "lv", logical volume, to use your entire disk.
+
+### Automatic installation
+
+Run `./ethd install` and follow prompts
+
+### Manual installation
+
 Update all packages
 ```
 sudo apt update && sudo apt -y dist-upgrade
@@ -45,13 +53,31 @@ On Linux, docker-compose runs as root by default. The individual containers do n
 they run as local users inside the containers. "Rootless mode" is expected to
 work for docker with this project, as it does not use AppArmor.
 
-## MacOS Prerequisites
+## Debian prerequisites
 
-> The following prerequisites apply if you are going to use MacOS as a server
-> to run an Ethereum staking full node. If you use MacOS to connect *to* a node server, all
+This project has been tested on Debian 11 "bullseye". On Debian, using docker-ce instead of docker.io is recommended, as docker.io is quite old.
+
+To install docker-ce:
+
+```
+sudo apt-get update
+sudo apt-get -y install ca-certificates curl gnupg lsb-release
+sudo mkdir -p /etc/apt/keyrings
+curl -fsSL https://download.docker.com/linux/debian/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+echo \
+"deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/debian \
+$(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+sudo apt-get update
+sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-compose-plugin
+```
+
+## macOS Prerequisites
+
+> The following prerequisites apply if you are going to use macOS as a server
+> to run an Ethereum staking full node. If you use macOS to connect *to* a node server, all
 > you need is an SSH client.
 
-- Install [Docker Desktop](https://www.docker.com/products/docker-desktop) and allocate 8GiB of RAM to it.
+- Install [Docker Desktop](https://www.docker.com/products/docker-desktop) and allocate 16 GiB of RAM and 1.5TB or so of storage space to it.
 - Install prerequisites via homebrew: `brew install coreutils newt`
 
 ## Windows 10/11 discouraged
