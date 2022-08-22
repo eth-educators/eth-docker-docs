@@ -4,9 +4,7 @@ title: "Step 6: Deposit ETH to Launchpad"
 sidebar_label: Deposit to Launchpad
 ---
 
-**Caution**: You may wish to wait until the consensus client is fully synchronized before you deposit. Check
-its logs with `sudo docker-compose logs -f consensus`. This safe-guards against the validator being
-marked offline if your validator is activated before the consensus client syncs.
+**Caution**: You may wish to wait until the consensus and execution client are fully synchronized before you deposit. Check their logs with `./ethd logs -f consensus` and `./ethd logs -f execution`. This safe-guards against the validator being marked offline if your validator is activated before the consensus client syncs.
 
 Once you are ready, you can send eth to the deposit contract by using
 the `.eth/validator_keys/deposit_data-TIMESTAMP.json` file at the [Prater launchpad](https://prater.launchpad.ethereum.org/)

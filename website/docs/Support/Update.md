@@ -24,12 +24,12 @@ and then continue below
 ### For all versions
 
 Inside the project directory, run:<br />
-`sudo ./ethd update`
+`./ethd update`
 
 This will update eth-docker, all Ethereum clients, and migrate your `.env` settings over to a fresh copy
 from `default.env`.
 
-Restart the "stack" with `sudo ./ethd restart`
+Restart the "stack" with `./ethd restart`
 
 ## Optional: Manually update eth-docker
 
@@ -45,22 +45,22 @@ whether changes have been made that you may want to use.
 ## Optional: Manually update the client "stack"
 
 If you are using binary build files - the default - you can update everything
-in the client "stack" with `sudo docker-compose build --pull`. If you
+in the client "stack" with `docker-compose build --pull`. If you
 run shared components in a different directory, such as the execution client,
 you'd `cd` into those directories and run the command there.
 
-And restart the entire stack: `sudo docker-compose down && sudo docker-compose up -d eth`
+And restart the entire stack: `docker-compose down && docker-compose up -d`
 
 Then verify that the components are coming up okay again by looking at logs:
-- `sudo docker-compose logs -f consensus` for the consensus client
-- `sudo docker-compose logs -f validator` for the validator, if using Lighthouse or Prysm
-- `sudo docker-compose logs -f execution` for the execution client, if you are running one locally
+- `docker-compose logs -f consensus` for the consensus client
+- `docker-compose logs -f validator` for the validator, if using Lighthouse or Prysm
+- `docker-compose logs -f execution` for the execution client, if you are running one locally
 
 ## Optional: Update just the execution client, instead of the entire "stack"
 
 Run:<br />
-`sudo docker-compose build --pull execution`
+`docker-compose build --pull execution`
 
 Then stop, remove and start the execution client:<br />
-`sudo docker-compose stop execution && sudo docker-compose rm execution`<br />
-`sudo docker-compose up -d execution`
+`docker-compose stop execution && sudo docker-compose rm execution`<br />
+`docker-compose up -d execution`

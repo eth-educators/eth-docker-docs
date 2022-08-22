@@ -34,7 +34,7 @@ will need to [associate the new user with your public key(s)](#ssh-key-authentic
 
 ## Optional: User as part of docker group
 
-Optionally, you may want to avoid needing to type `sudo` every time you run a command. In that
+Optionally, you may want to avoid needing to type `sudo` every time you run a docker command. In that
 case, you can make your local user part of the `docker` group.
 
 > Please note that a user that is part of the docker group has `root` privileges through docker,
@@ -101,13 +101,13 @@ Please choose:
   * Nimbus
   * Lodestar
   * Lighthouse
-  * Prysm - this client has a majority. Choosing any other is safer.
-* Your source of Ethereum PoW chain data
+  * Prysm
+* Your execution client you wish to run
   * Besu
   * Geth - this client has a majority. Choosing another is safer.
-  * Erigon - beta. Feedback welcome
+  * Erigon - alpha. Feedback welcome
   * Nethermind - Feedback welcome.
-  * 3rd-party
+  * Akula - pre-alpha. May not yet be functional
 * Whether to run a grafana dashboard for monitoring
 
 First, copy the environment file.<br />
@@ -123,19 +123,12 @@ Then, adjust the contents of `.env`. On Ubuntu Linux, you can run `nano .env`.
 and with which options. See below for available compose files. Think of this as
 blocks you combine: One consensus client, optionally one execution client, optionally reporting,
 optionally a reverse proxy for https:// access to reporting.
-- If you are going to use a 3rd-party provider as your Ethereum PoW chain source, set `EC_NODE` to that URL.
-  See [how to create your own Infura account](https://status-im.github.io/nimbus-eth2/infura-guide) or look into [Alchemy](https://alchemyapi.io)
-- For Teku and Lighthouse, you can set `EC_NODE` to a comma-separated list, for example `http://execution:8545,https://<infura-url>`
-  would use a local execution client first, and fail back to Infura when it does not respond.
-- For Prysm or Nimbus, you can set `EC_FALLBACK_NODE1` and `EC_FALLBACK_NODE2` to be your first and second fallback,
-respectively.
-- Set the `NETWORK` variable to either "mainnet" or a test network such as "prater"
-- If you are running your own execution client, set the `EC_NETWORK` variable to `mainnet` or `goerli` testnet
+- Set the `NETWORK` variable to either "mainnet" or a test network such as "goerli"
 - Set the `GRAFFITI` string if you want a specific string.
-- If you are going to run a validator client only, without a consensus client, set `CC_NODE` to the URL of your Ethereum PoS beacon/eth2 Infura project, and
-  choose one of the `CLIENT-validator.yml` entries in `COMPOSE_FILE`.
+- If you are going to run a validator client only, without a consensus client, set `CL_NODE` to the URL of your Ethereum PoS beacon/eth2 Infura project, and
+  choose one of the `CLIENT-vc-only.yml` entries in `COMPOSE_FILE`.
 - If you are going to send statistics to https://beaconcha.in, set `BEACON_STATS_API` to your API key
-- If you intend to use Teku or Lighthouse and want to sync quickly, set `TEKU_RAPID_SYNC` or `LH_RAPID_SYNC` to your Infura beacon project
+- If you want to sync the consensus client quickly, set `RAPID_SYNC_URL` to your Infura "Eth2" project
 - Adjust ports if you are going to need custom ports instead of the defaults. These are the ports
 exposed to the host, and for the P2P ports to the Internet via your firewall/router.
 
@@ -147,22 +140,20 @@ geth with `:` between the file names.
 Choose one consensus client:
 
 - `teku-base.yml` - Teku
-- `lh-base.yml` - Lighthouse
+- `lighthouse-base.yml` - Lighthouse
 - `nimbus-base.yml` - Nimbus
-- `prysm-base.yml` - Prysm - client has close to a supermajority, consider choosing any other
-- `lodestar-base.yml` - Lodestar, alpha release
+- `prysm-base.yml` - Prysm
+- `lodestar-base.yml` - Lodestar
 
 Choose one execution client:
 
-- `geth.yml` - local geth execution client
-- `erigon.yml` - local erigon execution client - feedback welcome.
-- `besu.yml` - local besu execution client - feedback welcome.
-- `nm.yml` - local nethermind execution client - feedback welcome.
+- `geth.yml` - geth execution client
+- `erigon.yml` - erigon execution client - alpha release.
+- `besu.yml` - besu execution client
+- `nethermind.yml` - nethermind execution client
+- `akula.yml` - akula execution client - pre-alpha, might not work
 
 Optionally, choose a reporting package:
-
-- `lh-stats.yml` - send stats to https://beaconcha.in, requires API key
-- `prysm-stats.yml` - send stats to https://beaconcha.in, requires API key. Source build only as of Sept 2021.
 
 - `grafana.yml` - Enable Grafana dashboards
 
@@ -182,19 +173,19 @@ Optionally, add encryption to the Grafana and/or Prysm Web pages:
 
 With these, you wouldn't use the `-shared.yml` files. Please see [Secure Web Proxy Instructions](../Usage/ReverseProxy.md) for setup instructions for either option.
 
-For example, Lighthouse with local geth and beaconcha.in stats:
-`COMPOSE_FILE=lh-base.yml:geth.yml:lh-stats.yml`
+For example, Teku with Besu:
+`COMPOSE_FILE=teku-base.yml:besu.yml`
 
 Advanced options:
 
-Many of these advanced yml files exist only in the `rpc-nodes` branch. `git fetch origin rpc-nodes && git checkout rpc-nodes` to switch over.
+These are largely for running RPC nodes, instead of validator nodes. Most users will not require them.
 
 - `el-traefik.yml` - reverse-proxies and encrypts both the RPC and WS ports of your execution client, as https:// and wss:// ports respectively. To be used alongside one of the execution client yml files.
 - `el-shared.yml` - as an insecure alternative to ec-traefik, makes the RPC and WS ports of the execution client available from the host. To be used alongside one of the execution client yml files. **Not encrypted**, do not expose to Internet.
 - `cl-shared.yml` - as an insecure alternative to traefik-\*.yml, makes the REST port of the consensus client available from the host. To be used alongside one of the consensus client yml files. **Not encrypted**, do not expose to Internet.
 
-- `lh-consensus.yml`, `teku-consensus.yml`, `prysm-consensus.yml`, `lodestar-consensus.yml` - for running a [distributed consensus client and validator client](../Usage/ReverseProxy.md) setup.
-- `lh-validator.yml`, `teku-validator.yml`, `lodestar-validator.yml` - the other side of the distributed client setup.
+- `CLIENT-cl-only.yml` - for running a [distributed consensus client and validator client](../Usage/ReverseProxy.md) setup.
+- `CLIENT-vc-only.yml` - the other side of the distributed client setup.
 
 - `prysm-slasher.yml` - Prysm experimental slasher. The experimental slasher can lead to missed attestations due to the additional resource demand.
 - `lh-slasher.yml` - Lighthouse experimental slasher. The experimental slasher can lead to missed attestations due to the additional resource demand.
@@ -298,14 +289,14 @@ Create a key if you need to, or if you don't have `id_ed25519.pub` but prefer th
 > Bonus: On Linux, you can also include a timestamp with your key, like so:<br />
 > `ssh-keygen -t ed25519 -C "$(whoami)@$(hostname)-$(date -I)" -f ~/.ssh/id_ed25519`
 
-#### MacOS/Linux, copy public key
+#### macOS/Linux, copy public key
 
- If you are on MacOS or Linux, you can then copy this new public key to the Linux server:<br />
+ If you are on macOS or Linux, you can then copy this new public key to the Linux server:<br />
 `ssh-copy-id USERNAME@HOST`
 
-#### Windows 10, copy public key
+#### Windows 10/11, copy public key
 
-On Windows 10, or if that command is not available, output the contents of your public key file
+On Windows 10/11, or if that command is not available, output the contents of your public key file
 to terminal and copy, here for `id_ed25519.pub`:<br />
 `cat ~/.ssh/id_ed25519.pub`
 
@@ -341,18 +332,13 @@ And restart the ssh service, for Ubuntu you'd run `sudo systemctl restart ssh`.
 
 Since this system will be running 24/7 for the better part of 2 years, it's a good idea to have it patch itself.
 Enable [automatic updates](https://libre-software.net/ubuntu-automatic-updates/) and install software so the
-server can [email you](https://www.havetheknowhow.com/Configure-the-server/Install-ssmtp.html).
+server can [email you](https://caupo.ee/blog/2020/07/05/how-to-install-msmtp-to-debian-10-for-sending-emails-with-gmail/).
 
 For automatic updates, `"only-on-error"` mail reports make sense once you know email reporting is working and
 if you choose automatic reboots, trusting that your services will all come back up on reboot. If you'd like
 to keep a closer eye or schedule reboots yourself, `"on-change"` MailReport is a better choice.
 
-For ssmtp, I followed the instructions as-is with one change: I do not see the sense of changing the `hostname`
-to my email address, and so didn't.
-
-If you are using Ubuntu, you may also want to look into [Ubuntu Livepatch](https://ubuntu.com/security/livepatch), which reduces the frequency of
-reboots on update and is free for up to 3 machines. Do make a note to disable Livepatch again before decommissioning 
-the machine, as it can only be disabled from the machine it is enabled on. This keeps your 3 free instances available.
+For msmtp, I followed the instructions as-is.
 
 ### Time synchronization on Linux
 

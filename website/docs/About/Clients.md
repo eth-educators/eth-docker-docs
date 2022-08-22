@@ -12,16 +12,17 @@ Currently supported consensus clients:
 - Lighthouse
 - Nimbus
 - Lodestar
-- Prysm - client has close to a supermajority, it is recommended to choose any other
+- Prysm
 
 Currently supported execution clients:
-- Geth - client has a supermajority, it is **strongly** recommended to choose any other
-- Erigon
+- Geth
 - Besu
 - Nethermind
+- Erigon - alpha release
+- Akula - pre-alpha, source build only
 
-> Use one of the local execution client options to "feed"
-> your consensus client, so you can [propose](https://ethos.dev/beacon-chain/) blocks.
+> An Ethereum node has one consensus client and one execution client. eth-docker can be used to
+> split this between two machines, but that distributed setup has not yet been tested.
 
 Currently supported additional options:
 - Sending stats to https://beaconcha.in
@@ -29,4 +30,4 @@ Currently supported additional options:
 - Grafana dashboard
 - slasher - running slasher is optional and requires additional resources
 
-Please see [Prysm Web](../Usage/PrysmWeb.md) for experimental Web UI support on Prysm.
+Please see [Prysm Web](../Usage/PrysmWeb.md) for Web UI support on Prysm.

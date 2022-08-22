@@ -40,7 +40,7 @@ should go to, this is a good option.
 > a fixed address
 
 This command will create the keys to deposit Eth against:<br />
-`sudo docker-compose run --rm deposit-cli-new --eth1_withdrawal_address YOURHARDWAREWALLETADDRESS --uid $(id -u)`
+`docker-compose run --rm deposit-cli-new --eth1_withdrawal_address YOURHARDWAREWALLETADDRESS --uid $(id -u)`
 > Specifying the uid is optional. If this is not done,
 > the generated files will be owned by the user with uid `1000`
 
@@ -55,12 +55,11 @@ The created files will be in the directory `.eth/validator_keys` in this project
 This is also where you'd place your own keystore files if you already have some for import.
 
 ### Test your Seed Phrase
-*introduced in releases post 3/9/2020. Update if you are on an older version.*
 
 From the project directory:
 
 ```
-sudo docker-compose run --rm deposit-cli-existing --folder seed_check --eth1_withdrawal_address YOURHARDWAREWALLETADDRESS --uid $(id -u)
+docker-compose run --rm deposit-cli-existing --folder seed_check --eth1_withdrawal_address YOURHARDWAREWALLETADDRESS --uid $(id -u)
 ```
 > Specifying the uid is optional. If this is not done,
 > the generated files will be owned by the user with uid `1000`

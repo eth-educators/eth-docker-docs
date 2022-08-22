@@ -4,8 +4,7 @@ title: Ethereum chain merge preparation
 sidebar_label: Merge Preparation
 ---
 
-Ethereum is, as of June 2022, moving towards "The Merge", a long-awaited change to Proof-of-Stake (staking) and complete switch-off of Proof-of-Work (mining). This will require some configuration changes. If you got prompted by `./ethd update` to come
-see this page, that'd be why.
+Ethereum is moving towards "The Merge", a long-awaited change to Proof-of-Stake (staking) and complete switch-off of Proof-of-Work (mining). This will require some configuration changes. If you got prompted by `./ethd update` to come see this page, that'd be why.
 
 ## CL **and** EL both
 
@@ -39,7 +38,3 @@ to adjust `EL_NODE` in `.env`, but if it's a custom value or only points to Infu
 ## TTD override
 
 In the case that a chain requires a TTD override pre-merge, this can be set in `.env`. This would be communicated widely by the Ethereum Foundation. The TTD, Total Terminal Difficulty, tells the CL and EL clients *when* they should switch over to PoS. It is vital that your client do this at the same time as the larger chain, or it'll stop following the canonical chain.
-
-## Testing
-
-You can test what these changes will look like in the [merge-getready](https://github.com/yorickdowne/eth-docker/blob/merge-getready/MERGE-READY.md) branch of eth-docker. Please join us in [ETHStaker Discord](https://discord.io/ethstaker) with any questions.

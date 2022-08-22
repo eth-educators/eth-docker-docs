@@ -15,18 +15,18 @@ If you wish to only expose the Web UI to `localhost` and then use either a brows
 
 The Web UI can be used to import keys and create a wallet, but we also need the password for this
 wallet while starting the validator. To get around this chicken-and-egg problem, you can run
-`sudo docker-compose --rm run validator-import` now and choose the wallet password you will use during
+`./ethd keyimport` now and choose the wallet password you will use during
 the Web UI Wallet Creation.
 
 > This password needs to be at least 8 characters long and contain both a number and a special
 > character. The script that stores the password here does not enforce that, but the Web UI does.
 
-Either way, once you are done, run `sudo docker-compose up -d eth` to start the Prysm consensus client
+Either way, once you are done, run `docker-compose up -d` to start the Prysm consensus client
 and validator.
 
 ## Connect to the Web UI
 
-You need the Web UI secret first. It is shown during startup in the validator client log. You can also run `sudo docker-compose run --rm get-keyapi-token` to get it.
+You need the Web UI secret first. It is shown during startup in the validator client log. You can also run `docker-compose run --rm get-keyapi-token` to get it.
 
 The first time you connect to the Web UI, you'll want to use `http://IP:7500/initalize?token=THETOKEN`, replacing `IP` and `THETOKEN` with the actual IP address and access token.
 
@@ -51,7 +51,7 @@ command line.
 
 # Import keys
 
-Assuming you have some `keystore-m` JSON files from `sudo docker-compose run --rm deposit-cli-new --eth1_withdrawal_address YOURHARDWAREWALLETADDRESS` or some other way of creating Launchpad compatible keys, click on "Create a Wallet".
+Assuming you have some `keystore-m` JSON files from `docker-compose run --rm deposit-cli-new --eth1_withdrawal_address YOURHARDWAREWALLETADDRESS` or some other way of creating Launchpad compatible keys, click on "Create a Wallet".
 
 > These files are in `.eth/validator_keys` if you used the `deposit-cli` workflow. You'll want to
 > move them to the machine you are running the browser on.
@@ -71,8 +71,8 @@ If you chose to start the validator with a stored wallet password, verify that i
 correctly by running these commands, one at a time:
 
 ```
-sudo ./ethd restart
-sudo docker-compose logs -f validator
+./ethd restart
+docker-compose logs -f validator
 ```
 
 You'll need to navigate to the root of the Web UI and log in again after the restart.

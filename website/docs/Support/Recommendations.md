@@ -13,11 +13,6 @@ and key security.
 You'd get yourself slashed, and no-one wants that. Protecting you from this
 is a work in progress. Choose one client, and one client only, and run that.
 
-**You need an Ethereum PoW chain source**<br />
-This project assumes you'll use geth. It doesn't have to be that, it can
-be a 3rd party. You need some source for Ethereum PoW chain data, so that your validator can
-successfully propose blocks that contain deposits.
-
 ## Host Security
 
 The [bare metal installation guide](https://medium.com/@SomerEsat/guide-to-staking-on-ethereum-2-0-ubuntu-medalla-nimbus-5f4b2b0f2d7c)
@@ -89,7 +84,7 @@ For more on validator key security, read this article: https://www.attestant.io/
 **Critical**<br />
 When you ran staking-deposit-cli, a 24-word mnemonic was created. This mnemonic
 will be used for Ethereum PoS (Proof-of-Stake) withdrawals in the future. It must be securely kept offline.
-Without this mnemonic, there is **no** way to withdraw your funds.
+Without this mnemonic, unless you set an `--eth1_withdrawal_address`, there is **no** way to withdraw your funds.
 
 Precise methods are beyond this README, but consider something as simple as
 a sheet of paper kept in a fireproof envelope in a safe, or one of the [steel

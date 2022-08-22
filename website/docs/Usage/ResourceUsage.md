@@ -52,7 +52,8 @@ A note on Contabo: Stability of their service [is questionable](https://www.redd
 
 | Name                 | RAM    | SSD Size | CPU        | r/w IOPS | r/w latency | Notes |
 |----------------------|--------|----------|------------|------|-------|--------|
-| Homebrew Xeon ZFS zvol | 32 GiB | 1.2 TiB | Intel Quad | 19.3k/6.4k (4G file) 3.5k/1k (150G file) | | Xeon E3-2225v6. 16k recordsize, stripe, xfs; fio with --bs=16k |
+| Homebrew Xeon ZFS zvol | 32 GiB | 1.2 TiB | Intel Quad | 19.3k/6.4k (4G file) 3.5k/1k (150G file) | | Intel SATA SSD, 16k recordsize, stripe, xfs; fio with --bs=16k |
+| Homebrew Xeon ZFS dataset | 32 GiB | 1.2 TiB | Intel Quad | 38.1k/12.5k (4G file) 1.2k/500 (150G file) | | | Intel SATA SSD, 16k recordsize, stripe, xfs; 16G Optane SLOG |
 | Dell R420 w/ HBA     | 32 GiB | 1 TB | Dual Intel Octo | 44.7k/14k (4G file) 35.9k/11k (150G file) | | Xeon E5-2450 |
 | Contabo L VPS SSD  | 30 GiB | 800 GiB | Intel Octa  | 3.1k/1k (4G file) 2.5k/800 (150G file) | | This was not sufficient to sync Geth |
 | [Netcup](https://netcup.eu) VPS 3000 G9   | 24 GiB | 600 GiB  | AMD Hexa | 25.8k/8.6k (4G file) 11.2k/3.7k (150G file) | 2.25/6 ms | |
