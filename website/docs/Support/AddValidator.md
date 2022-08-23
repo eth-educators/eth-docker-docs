@@ -1,7 +1,7 @@
 ---
 id: AddValidator
-title:  Add or recover validators.
-sidebar_label: Add Validators
+title: Manage validator keys.
+sidebar_label: Manage validator keys
 ---
 
 You can use staking-deposit-cli to either recover validator signing keys or add
@@ -39,9 +39,28 @@ previously.
 
 ### Import new keys into existing validator client
 
-Your validator keys, each backed by 32 ETH, "live inside" the validator client. Each key represents one "validator". To add them, simply run `docker-compose run --rm validator-import`, with the new `keystore-m`
-JSON files in `.eth/validator_keys`. Whether this can be done while the validator client is running depends on the client. Most clients need to be stopped first: `./ethd stop`, then
-run the import, then `./ethd start`.   
+Your validator keys, each backed by 32 ETH, "live inside" the validator client. Each key represents one "validator". To add them, simply run `./ethd keys import`, with the new `keystore-m` JSON files in `.eth/validator_keys`. This uses the keymanager API and is done while the client is running.
 
 > **Caution** Please be sure to only import the keys into one validator client. If they are imported to multiple clients, you will slash yourself: A harsh penalty
 > and forced exit of the validator.
+
+## Delete keys and get the slashing protection database
+
+Run `./ethd keys list`, then `./ethd keys delete 0xPUBKEY` with the public key of the key you wish to delete. It will
+be remove from the validator client, and its slashing protection database written to `.eth/validator_keys`
+
+## Set individual fee recipient
+
+Run `./ethd keys list`, then `./ethd keys set-recipient 0xPUBKEY 0xADDRESS` with the public key of the key you wish to set a separate fee recipient for, and the Ethereum address fees should go to.
+
+`./ethd keys get-recipient 0XPUBKEY` shows the recipient
+
+`./ethd keys delete-recipient 0xPUBKEY` deletes the custom recipient, falling back to the default
+
+## Set individual gas limit
+
+Run `./ethd keys list`, then `./ethd keys set-gas 0xPUBKEY AMOUNT` with the public key of the key you wish to set a separate fee recipient for, and the gas limit you wish to set.
+
+`./ethd keys get-gas 0XPUBKEY` shows the gas limit
+
+`./ethd keys delete-gas 0xPUBKEY` deletes the custom gas limit, falling back to the default

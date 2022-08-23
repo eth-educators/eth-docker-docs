@@ -10,8 +10,29 @@ you will be slashed: Forcibly exited and assessed a penalty greater than 1 ETH.
 > If you use the [Prysm Web](../Usage/PrysmWeb.md), you can use it
 > or this command-line process to import keys.
 
+### Using the keymanager API to import keys
+
+#### Prysm - create a wallet
+
+Prysm requires a wallet first. Run `./ethd cmd run --rm create-wallet`, which will set up a wallet and a password for it. You can then print the password with `./ethd keys get-prysm-wallet`
+
+#### Start the client and import keys
+
+`./ethd up` to start the client and the keymanager API
+
+`./ethd keys` to see all options available to you
+
+`./ethd keys import` to import keys and their slashing protection data. This looks in `.eth/validator_keys` for `keystore*.json` files and `slashing_protection*.json` files.
+
+`./ethd keys list` to list all imported keys
+
+### Using the client CLI to import keys ... legacy
+
+> This method will remain supported until the keymanager API is stable across all clients. It may be removed
+> with the next Ethereum hardfork after merge. This is an alternative to using the keymanager API.
+
 Import the validator key(s) to the validator client, assuming they are in `.eth/validator_keys` inside the
-directory eth-docker is in:
+directory eth-docker is in. Any `slashing_protection*.json` files will also be imported:
 
 `./ethd keyimport`
 

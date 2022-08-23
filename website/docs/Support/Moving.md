@@ -31,7 +31,7 @@ a new one elsewhere, you may need to know how to move your key(s) safely.
 >  If you do not have these any more, you can recreate them with the `existing-mnemonic`
 >  workflow of deposit-cli, `sudo docker-compose run --rm deposit-cli-existing` in
 >  this project, or offline to be very secure.
-- [ ] Ideally, an export of the slashing protection DB.
+- [ ] Ideally, an export of the slashing protection DB. If you are using eth-docker, `./ethd keys delete` will export the slashing protection database.
 - [ ] A checklist, and diligence
 
 ## Checklist
@@ -47,6 +47,8 @@ First, you'll want to bring down the old client and make sure it can't come back
 
 In the directory of the old client:
 
+- [ ] `./ethd keys list`
+- [ ] `./ethd keys delete 0xPUBKEY` for each one so you get the slashing protection database
 - [ ] `./ethd down`
 - [ ] `docker volume ls` - find the volume for the validator
 - [ ] `docker volume rm VOLUMENAME` - remove the volume for the validator
@@ -67,8 +69,7 @@ Verify that you removed the right client:
 ### Import keys into new client
 
 - [ ] SCP (or USB sneaker-net) the keys to `.eth/validator_keys` in the project directory
-- [ ] Ideally, also copy `slashing-protection.json` to `.eth/validator_keys`
-- [ ] Run `./ethd keyimport` and import the keys
+- [ ] Ideally, also copy `slashing_protection*.json` to `.eth/validator_keys`
 - [ ] Verify **once more** that all your validator(s) have been down long
   enough to miss an attestion
 - [ ] Verify **once more** that trying to start the validator on the old client
@@ -78,6 +79,8 @@ Verify that you removed the right client:
   start attesting again and 15 minutes have passed / **all** validators'
   last successful attestation is in a finalized epoch, then and only then:
 - [ ] Start the new client with `./ethd start`
+- [ ] Run `./ethd keys import` and import the keys
+
 
 ### Variant: DR consensus client
 
