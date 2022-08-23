@@ -19,7 +19,6 @@
 			"Usage/Deposit",
 			"Usage/Dashboards",
 			"Usage/PrysmWeb",
-			"Usage/Autostart",
 			"Usage/ReverseProxy",
 			"Usage/ResourceUsage"
 		],
