@@ -19,6 +19,19 @@ directory (`cd ~/eth-docker` by default):
 > On 1/27/2022, eth-docker's repository name changed. Everything should work as it did.
 > If you do wish to manually update your local reference, run `git remote set-url origin https://github.com/eth-educators/eth-docker.git`
 
+## v2.0.1 2022-08-24
+
+*This is a recommended release for the Ethereum Merge*
+
+- Support Lodestar v1.0.0
+- Besu defaults to snap sync, after some issues with checkpoint sync
+- Use new engine API syntax for Prsym
+- Use fee recipient with Teku CL only
+- Use current SSV v2 repo
+- Fix Grafana for SSV v2
+- Fix default dashboard for Nimbus
+
+
 ## v2.0.0 2022-08-22
 
 *This is a mandatory release for the Ethereum Merge*
