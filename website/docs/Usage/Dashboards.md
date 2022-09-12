@@ -32,6 +32,6 @@ In order to load other Dashboards, follow these instructions.
 - If prompted for a data source choose the "prometheus" data source
 - Click "Import".
 
-## Alerting with Grafan
+## Alerting with Grafana
 
 Grafana supports setting up alerts and sending notifications to email, Slack, Discord, PagerDuty, etc. Explore the alert bell icon on the left-hand side.
