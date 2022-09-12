@@ -23,6 +23,8 @@ This project has been tested on Ubuntu 22.04 "Jammy Jellyfish" and Ubuntu 20.04 
 
 ### Automatic installation
 
+Clone the project: `git clone https://github.com/eth-educators/eth-docker.git && cd eth-docker`
+
 Run `./ethd install` and follow prompts
 
 ### Manual installation
@@ -84,23 +86,50 @@ On Linux, docker-compose runs as root by default. The individual containers do n
 they run as local users inside the containers. "Rootless mode" is expected to
 work for docker with this project, as it does not use AppArmor.
 
-## Debian prerequisites
+## Change Docker storage location
 
-This project has been tested on Debian 11 "bullseye". On Debian, using docker-ce instead of docker.io is recommended, as docker.io is quite old.
+Taken from the [RocketPool docs](https://docs.rocketpool.net/guides/node/docker.html#configuring-docker-s-storage-location)
 
-To install docker-ce:
+By default, Docker will store all of its container data on your operating system's drive. In some cases, this is **not** what you want. For example, you may have a small boot drive and a second larger SSD for the chain data.
+
+> If you just one drive and are good with the default behavior, don't make these adjustments
+
+To change the docker volume location, create a new file called /etc/docker/daemon.json as the root user:
 
 ```
-sudo apt-get update
-sudo apt-get -y install ca-certificates curl gnupg lsb-release
-sudo mkdir -p /etc/apt/keyrings
-curl -fsSL https://download.docker.com/linux/debian/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
-echo \
-"deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/debian \
-$(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
-sudo apt-get update
-sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-compose-plugin
+sudo nano /etc/docker/daemon.json
 ```
+
+Add this as the contents:
+
+```
+{
+    "data-root": "<your external mount point>/docker"
+}
+```
+
+where `<your external mount point>` is the directory that your other drive is mounted to.
+
+Next, make the folder:
+
+```
+sudo mkdir -p <your external mount point>/docker
+```
+
+If you already have existing volumes that you want to move, stop docker and move them over:
+
+```
+sudo systemctl stop docker
+sudo cp -rp /var/lib/docker <your external mount point>/
+```
+
+Now, restart the docker daemon so it picks up on the changes:
+
+```
+sudo systemctl restart docker
+```
+
+After that, Docker will store its data on your desired disk.
 
 ## macOS Prerequisites
 
