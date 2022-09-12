@@ -64,7 +64,18 @@ docker-compose run --rm deposit-cli-existing --folder seed_check --eth1_withdraw
 > Specifying the uid is optional. If this is not done,
 > the generated files will be owned by the user with uid `1000`
 
-Type your seed, and any password you like, as you'll throw away the duplicate `keystore-m` files.
+Select your language preference.
+
+Type your mnemonic seed.
+
+Enter the index (key number). 
+> If generated 1 previous validator key file and entered 1 initially, then it is index[0]. So you will enter 0. Hence, you are entering the index from which to start  generating the key file from.
+
+Enter how may new validators you with to run.
+> Enter the number of validators you entered when initially generating the key file.
+> If you are running 1 previous validator and entered 1 initially, then enter 1.
+
+Type any password you like, as you'll throw away the duplicate `keystore-m` files.
 
 Compare the `deposit_data` JSON files to ensure the files are identical.
 ```
