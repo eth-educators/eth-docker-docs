@@ -45,7 +45,7 @@ replacing `PATHTOKEYS` with the actual path where they are.
 > #### Prysm-specific
 > - You will be asked whether you will be using the Web UI to import keys.
 > Answer "y"es if you wish to use Prysm's Web UI to import keys. The Web UI
-> is enabled by adding `prysm-web.yml` to `COMPOSE_FILE`
+> is enabled by adding `prysm-web-shared.yml` to `COMPOSE_FILE`
 > - You will be asked to provide a "New wallet password", independent of the
 >   keystore password. 
 > - If you choose not to store the wallet password with the validator,
