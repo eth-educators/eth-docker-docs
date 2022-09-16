@@ -19,6 +19,27 @@ directory (`cd ~/eth-docker` by default):
 > On 1/27/2022, eth-docker's repository name changed. Everything should work as it did.
 > If you do wish to manually update your local reference, run `git remote set-url origin https://github.com/eth-educators/eth-docker.git`
 
+## v2.0.2 2022-09-16
+
+*This is a recommended release for post-merge changes*
+
+- Use current mev flag naming for Lighthouse VC
+- Improved key import
+- Fix Teku beacon stats API
+- Teku can recover from unclean shutdown
+- Add relay check to mev boost
+- Lodestar mev boost and rapid sync fixed
+- More resilient checkpoint sync for Nimbus and Lodestar
+- Use sudo automatically as and if needed
+- traefik metrics - thanks to @casualjim
+- Teku counts deposits more slowly to interop better with Besu
+- Teku -Xmx5g instead of -Xmx4g, to follow the team's recommendations
+- Teku voluntary exit works with API-imported keys
+- validator-backup command for Prysm
+- Erigon metrics fixed, thanks @casualjim
+- `MEV_NODE` and `MEV_DOCKER_TAG` survive updates
+- Config wizard no longer asks for override TTD
+
 ## v2.0.1 2022-08-24
 
 *This is a recommended release for the Ethereum Merge*
