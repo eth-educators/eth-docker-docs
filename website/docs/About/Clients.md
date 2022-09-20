@@ -18,7 +18,7 @@ Currently supported execution clients:
 - Geth
 - Besu
 - Nethermind
-- Erigon - alpha release
+- Erigon
 - Akula - pre-alpha, source build only
 
 > An Ethereum node has one consensus client and one execution client. eth-docker can be used to
