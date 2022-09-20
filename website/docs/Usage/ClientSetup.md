@@ -105,8 +105,8 @@ Please choose:
 * Your execution client you wish to run
   * Besu
   * Geth - this client has a majority. Choosing another is safer.
-  * Erigon - alpha. Feedback welcome
-  * Nethermind - Feedback welcome.
+  * Nethermind
+  * Erigon
   * Akula - pre-alpha. May not yet be functional
 * Whether to run a grafana dashboard for monitoring
 
@@ -139,11 +139,11 @@ geth with `:` between the file names.
 
 Choose one consensus client:
 
-- `teku-base.yml` - Teku
-- `lighthouse-base.yml` - Lighthouse
-- `nimbus-base.yml` - Nimbus
-- `prysm-base.yml` - Prysm
-- `lodestar-base.yml` - Lodestar
+- `teku.yml` - Teku
+- `lighthouse.yml` - Lighthouse
+- `nimbus.yml` - Nimbus
+- `prysm.yml` - Prysm
+- `lodestar.yml` - Lodestar
 
 Choose one execution client:
 
@@ -153,6 +153,10 @@ Choose one execution client:
 - `nethermind.yml` - nethermind execution client
 - `akula.yml` - akula execution client - pre-alpha, might not work
 
+Optionally, enable MEV boost:
+
+- mev-boost.yml - add the mev-boost sidecar
+
 Optionally, choose a reporting package:
 
 - `grafana.yml` - Enable Grafana dashboards
@@ -161,6 +165,10 @@ Optionally, choose a reporting package:
 - `prysm-web-shared.yml` - to map the Prysm web port (default: 3500) to the host. This is not encrypted and should not be exposed to the Internet. Used *in addition* to `prysm-web.yml`, not instead. Using encryption instead via `traefik-*.yml` is recommended.
 
 > See [Prysm Web](../Usage/PrysmWeb.md) for notes on using the Prysm Web UI
+
+Optionally, add ethdo for beacon chain queries:
+
+- ethdo.yml - add Attestant's ethdo tool for querying your consensus layer aka beacon node
 
 Optionally, make the staking-deposit-cli available:
 
@@ -183,6 +191,8 @@ These are largely for running RPC nodes, instead of validator nodes. Most users 
 - `el-traefik.yml` - reverse-proxies and encrypts both the RPC and WS ports of your execution client, as https:// and wss:// ports respectively. To be used alongside one of the execution client yml files.
 - `el-shared.yml` - as an insecure alternative to ec-traefik, makes the RPC and WS ports of the execution client available from the host. To be used alongside one of the execution client yml files. **Not encrypted**, do not expose to Internet.
 - `cl-shared.yml` - as an insecure alternative to traefik-\*.yml, makes the REST port of the consensus client available from the host. To be used alongside one of the consensus client yml files. **Not encrypted**, do not expose to Internet.
+- `ee-traefik.yml` - reverse-proxies and encrypts the engine API port of your execution client. To be used alongside one of the execution client yml files.
+- `ee-shared.yml` - as an insecure alternative to ee-traefik, makes the engine API port of the execution client available from the host. To be used alongside one of the execution client yml files. **Not encrypted**, do not expose to Internet.
 
 - `CLIENT-cl-only.yml` - for running a [distributed consensus client and validator client](../Usage/ReverseProxy.md) setup.
 - `CLIENT-vc-only.yml` - the other side of the distributed client setup.
