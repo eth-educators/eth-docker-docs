@@ -63,6 +63,7 @@ different ways.
 - You can configure your router to use a [DHCP reservation](https://homenetworkadmin.com/dhcp-reservation/).
 How to do this depends on your router.
 - You could instead choose an IP address *outside* your DHCP range and [configure it as a static IP](https://linuxhint.com/setup_static_ip_address_ubuntu/).
+
 In Ubuntu Desktop this is done through Network Manager from the UI, and in Ubuntu Server you'll handle it
 from CLI via netplan. Check your router configuration to see where your DHCP range is, and what
 values to use for default gateway and DNS.
@@ -125,17 +126,15 @@ blocks you combine: One consensus client, optionally one execution client, optio
 optionally a reverse proxy for https:// access to reporting.
 - Set the `NETWORK` variable to either "mainnet" or a test network such as "goerli"
 - Set the `GRAFFITI` string if you want a specific string.
-- If you are going to run a validator client only, without a consensus client, set `CL_NODE` to the URL of your Ethereum PoS beacon/eth2 Infura project, and
-  choose one of the `CLIENT-vc-only.yml` entries in `COMPOSE_FILE`.
+- If you are going to run a validator client only, without a consensus client, set `CL_NODE` to the URL of your Ethereum PoS beacon, and choose one of the `CLIENT-vc-only.yml` entries in `COMPOSE_FILE`.
 - If you are going to send statistics to https://beaconcha.in, set `BEACON_STATS_API` to your API key
-- If you want to sync the consensus client quickly, set `RAPID_SYNC_URL` to your Infura "Eth2" project
+- If you want to sync the consensus client quickly, set `RAPID_SYNC_URL` to a checkpoint provider such as checkpointz
 - Adjust ports if you are going to need custom ports instead of the defaults. These are the ports
 exposed to the host, and for the P2P ports to the Internet via your firewall/router.
 
 ### Client compose files
 
-Set the `COMPOSE_FILE` string depending on which client you are going to use. Add optional services like
-geth with `:` between the file names.
+Set the `COMPOSE_FILE` string depending on which client you are going to use. Add optional services with `:` between the file names.
 
 Choose one consensus client:
 
@@ -148,14 +147,14 @@ Choose one consensus client:
 Choose one execution client:
 
 - `geth.yml` - geth execution client
-- `erigon.yml` - erigon execution client - alpha release.
+- `erigon.yml` - erigon execution client
 - `besu.yml` - besu execution client
 - `nethermind.yml` - nethermind execution client
 - `akula.yml` - akula execution client - pre-alpha, might not work
 
 Optionally, enable MEV boost:
 
-- mev-boost.yml - add the mev-boost sidecar
+- `mev-boost.yml` - add the mev-boost sidecar
 
 Optionally, choose a reporting package:
 
@@ -168,7 +167,7 @@ Optionally, choose a reporting package:
 
 Optionally, add ethdo for beacon chain queries:
 
-- ethdo.yml - add Attestant's ethdo tool for querying your consensus layer aka beacon node
+- `ethdo.yml` - add Attestant's ethdo tool for querying your consensus layer aka beacon node
 
 Optionally, make the staking-deposit-cli available:
 
@@ -182,7 +181,7 @@ Optionally, add encryption to the Grafana and/or Prysm Web pages:
 With these, you wouldn't use the `-shared.yml` files. Please see [Secure Web Proxy Instructions](../Usage/ReverseProxy.md) for setup instructions for either option.
 
 For example, Teku with Besu:
-`COMPOSE_FILE=teku-base.yml:besu.yml`
+`COMPOSE_FILE=teku.yml:besu.yml`
 
 Advanced options:
 
@@ -198,7 +197,13 @@ These are largely for running RPC nodes, instead of validator nodes. Most users 
 - `CLIENT-vc-only.yml` - the other side of the distributed client setup.
 
 - `prysm-slasher.yml` - Prysm experimental slasher. The experimental slasher can lead to missed attestations due to the additional resource demand.
-- `lh-slasher.yml` - Lighthouse experimental slasher. The experimental slasher can lead to missed attestations due to the additional resource demand.
+- `lighthouse-slasher.yml` - Lighthouse experimental slasher. The experimental slasher can lead to missed attestations due to the additional resource demand.
+
+### MEV Boost
+
+Your Consensus Layer client connects to the mev-boost container. If you are running a CL in eth-docker, then in `.env` you'd add `mev-boost.yml` to `COMPOSE_FILE`, set `MEV_BOOST=true` and set `MEV_RELAYS` to the [relays you wish to use](https://ethstaker.cc/mev-relay-list/).
+
+If you are running a validator client only, such as with a RocketPool "reverse hybrid" setup, then all you need to do is to set `MEV_BOOST=true` in `.env`. `mev-boost.yml` and `MEV_RELAYS` are not needed and won't be used if they are set, as they are relevant only where the Consensus Layer client runs. See the [Overview](../About/Overview.md) drawing for how these components communicate.
 
 ### Multiple nodes on one host
 
@@ -227,16 +232,14 @@ Build all required images. `./ethd cmd build --pull`
 You'll want to enable a host firewall. You can also forward the P2P ports of your execution and consensus
 clients for faster peer acquisition.
 
-These are the relevant ports. Docker will open execution and consensuns client P2P (Peer to Peer) ports and the grafana port automatically,
-please make sure the grafana port cannot be reached directly. If you need to get to grafana remotely,
+Docker will open execution and consensuns client P2P (Peer to Peer) ports and the Grafana port automatically. Please make sure the Grafana port cannot be reached directly. If you need to get to Grafana remotely,
 an [SSH tunnel](https://www.howtogeek.com/168145/how-to-use-ssh-tunneling/) is a good choice.
 
 For a VPS/cloud setup, please take a look at notes on [cloud security](../Support/Cloud.md). You'll want to
 place ufw "in front of" Docker if you are using Grafana or a standalone execution client without a reverse proxy,
 and if your cloud provider does not offer firewall rules for the VPS.
 
-Ports that I mention can be "Open to Internet" can be either forwarded
-to your node if behind a home router, or allowed in via the VPS firewall.
+Ports that I mention can be "Open to Internet" can be either forwarded to your node if behind a home router, or allowed in via the VPS firewall.
 
 > Opening the P2P ports to the Internet is optional. It will speed up peer acquisition, which
 > can be helpful. To learn how to forward your ports in a home network, first verify
@@ -245,7 +248,7 @@ to your node if behind a home router, or allowed in via the VPS firewall.
 
 Open only the ports that you actually use, depending on your client choices.
 
-- 30303 tcp/udp - Geth/Nethermind/Besu/Erigon execution client P2P. Open to Internet.
+- 30303 tcp/udp - Geth/Nethermind/Besu/Erigon/Akula execution client P2P. Open to Internet.
 - 9000 tcp/udp - Lighthouse/Teku/Nimbus/Lodestar/Prysm consensus client P2P. Open to Internet.
 - 443 tcp - https:// access to Grafana and Prysm Web UI via traefik. Open to Internet.
 - 22/tcp - SSH. Only open to Internet if you want to access the server remotely. If open to Internet, configure
@@ -276,7 +279,9 @@ which means that the P2P ports need not be explicitly listed in ufw.
 ### SSH key authentication with Linux
 
 This step is vital if your node's SSH port is reachable via the Internet, for example, because
-it runs on a VPS. This step is recommended if the SSH port is not reachable via the Internet. 
+it runs on a VPS. 
+
+This step is still recommended if the SSH port is not reachable via the Internet. 
 
 For security reasons, you want some form of two-factor authentication for SSH login, particularly if SSH
 is exposed to the Internet. These instructions accomplish that by creating an SSH key with passphrase.
