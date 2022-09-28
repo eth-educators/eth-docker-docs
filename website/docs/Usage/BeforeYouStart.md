@@ -27,6 +27,4 @@ The same script can also be used to stop, start and update the node. Run `./ethd
 7. A baseline set of Grafana dashboards are included.  Feel free to add more, or submit a PR with your favorite dashboards.
 8. Configure your system to automatically prune Geth (optional)
 
-> The documentation does not show `sudo` for docker commands. If your
-> user is not part of the `docker` group, you will need `sudo`. For example, `sudo docker ps`
-> instead of just `docker ps`
+> The documentation does not show `sudo` for docker commands. If your user is not part of the `docker` group, you will need `sudo`. For example, `sudo docker ps` instead of just `docker ps`. This guide will shows you how to add your user account to the `docker` group in an upcoming step.
