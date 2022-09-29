@@ -19,11 +19,21 @@ directory (`cd ~/eth-docker` by default):
 > On 1/27/2022, eth-docker's repository name changed. Everything should work as it did.
 > If you do wish to manually update your local reference, run `git remote set-url origin https://github.com/eth-educators/eth-docker.git`
 
+## v2.0.4 2022-09-28
+
+*This is an optional release with new features*
+
+- Added a default dashboard for Nethermind
+- Reworked yml processing for Prometheus targets
+- Added cadvisor for Prometheus, and a dashboard for it
+- Added ethereum-metrics-exporter for Prometheus, and a dashboard for it
+- Added the ability to specify optional parameters for CL/EL/VC in `.env`
+
 ## v2.0.3 2022-09-25
 
-*This is an optional version with new features*
+*This is an optional release with new features*
 
-- Added Lodestar metrics
+- Added Lodestar metrics, and a dashboard for it
 - Added `./ethd version` command. Thanks to @PabloCastellano!
 - Teku rapid sync works with checkpointz
 - Renamed all `client-base.yml` files to `client.yml` 
