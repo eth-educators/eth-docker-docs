@@ -15,18 +15,18 @@ If you wish to only expose the Web UI to `localhost` and then use either a brows
 
 The Web UI can be used to import keys and create a wallet, but we also need the password for this
 wallet while starting the validator. To get around this chicken-and-egg problem, you can run
-`./ethd keyimport` now and choose the wallet password you will use during
+`./ethd keys import` now and choose the wallet password you will use during
 the Web UI Wallet Creation.
 
 > This password needs to be at least 8 characters long and contain both a number and a special
 > character. The script that stores the password here does not enforce that, but the Web UI does.
 
-Either way, once you are done, run `docker-compose up -d` to start the Prysm consensus client
+Either way, once you are done, run `./ethd up` to start the Prysm consensus client
 and validator.
 
 ## Connect to the Web UI
 
-You need the Web UI secret first. It is shown during startup in the validator client log. You can also run `docker-compose run --rm get-keyapi-token` to get it.
+You need the Web UI secret first. It is shown during startup in the validator client log. You can also run `./ethd keys get-api-token` to get it.
 
 The first time you connect to the Web UI, you'll want to use `http://IP:7500/initalize?token=THETOKEN`, replacing `IP` and `THETOKEN` with the actual IP address and access token.
 
@@ -56,8 +56,7 @@ Assuming you have some `keystore-m` JSON files from `docker-compose run --rm dep
 > These files are in `.eth/validator_keys` if you used the `deposit-cli` workflow. You'll want to
 > move them to the machine you are running the browser on.
 
-Choose to "Import Keystores". Select the `keystore-m` file(s), provide the password to the keystore, choose whether to import slashing
-protection data, and Continue.
+Choose to "Import Keystores". Select the `keystore-m` file(s), provide the password to the keystore, choose whether to import slashing protection data, and Continue.
 
 Set the wallet password.  If you chose to store the wallet password with the validator in a previous step,
 make sure it matches here: This is the step where you actually create the wallet with that password.
@@ -67,8 +66,7 @@ complete, you will also see validator information.
 
 # Optional: Verify that wallet password was stored correctly
 
-If you chose to start the validator with a stored wallet password, verify that it was stored
-correctly by running these commands, one at a time:
+If you chose to start the validator with a stored wallet password, verify that it was stored correctly by running these commands, one at a time:
 
 ```
 ./ethd restart

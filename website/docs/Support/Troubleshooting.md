@@ -14,7 +14,7 @@ As always, add `sudo` to these commands if your user is not part of the `docker`
 
 ## Stopping and starting, updating
 
-`./ethd stop` stops all services, `./ethd start` starts them. `./ethd restart` does both. `./ethd update` brings in updates to the clients, `./ethd update --keep-targets` does that while keeping docker tag targets in `.env` intact.
+`./ethd stop` stops all services, `./ethd up` starts them. `./ethd restart` does both. `./ethd update` brings in updates to the clients, `./ethd update --keep-targets` does that while keeping docker tag targets in `.env` intact.
 
 ## Targets, source build
 
