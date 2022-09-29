@@ -6,15 +6,13 @@ sidebar_label: Changelog
 
 ## Updating the project
 
-> `sudo` for ethd and docker-compose commands is only necessary if your user
-> is *not* part of the `docker` group
+> `sudo` for ethd and docker-compose commands is only necessary if your user is *not* part of the `docker` group
 
-To update the components of the project, run from within the project
-directory (`cd ~/eth-docker` by default):
+To update the components of the project, run from within the project directory (`cd ~/eth-docker` by default):
 
 * `./ethd update`. This fetches new client version(s), a new eth-docker, and updates `.env`, keeping your modifications. If you made changes to the source or binary build targets, run `./ethd update --keep-targets` instead.
-* **Only** if you are using source builds: `docker-compose build --pull --no-cache`
-* `./ethd restart` - use the new client version(s)
+* **Only** if you are using source builds: `./ethd cmd build --pull --no-cache`
+* `./ethd up` - use the new client version(s)
 
 > On 1/27/2022, eth-docker's repository name changed. Everything should work as it did.
 > If you do wish to manually update your local reference, run `git remote set-url origin https://github.com/eth-educators/eth-docker.git`

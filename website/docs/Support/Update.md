@@ -9,8 +9,8 @@ This project does not monitor client versions. It is up to you to decide that yo
 are going to update a component. When you are ready to do so, the below instructions
 show you how to.
 
-You can find the current version of your client by running `sudo docker-compose logs consensus | head -100 | less`,
-assuming the node is up and running.
+You can find the current version of your client by running `./ethd version`, assuming the
+node is up and running
 
 ## Automated update
 
@@ -29,7 +29,7 @@ Inside the project directory, run:<br />
 This will update eth-docker, all Ethereum clients, and migrate your `.env` settings over to a fresh copy
 from `default.env`.
 
-Restart the "stack" with `./ethd restart`
+Restart changed containers with `./ethd up`
 
 ## Optional: Manually update eth-docker
 
@@ -49,7 +49,7 @@ in the client "stack" with `docker-compose build --pull`. If you
 run shared components in a different directory, such as the execution client,
 you'd `cd` into those directories and run the command there.
 
-And restart the entire stack: `docker-compose down && docker-compose up -d`
+And restart changed containers: `docker-compose up -d`
 
 Then verify that the components are coming up okay again by looking at logs:
 - `docker-compose logs -f consensus` for the consensus client
@@ -62,5 +62,5 @@ Run:<br />
 `docker-compose build --pull execution`
 
 Then stop, remove and start the execution client:<br />
-`docker-compose stop execution && sudo docker-compose rm execution`<br />
+`docker-compose stop execution && docker-compose rm execution`<br />
 `docker-compose up -d execution`

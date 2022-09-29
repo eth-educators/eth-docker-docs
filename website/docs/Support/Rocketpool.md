@@ -69,14 +69,13 @@ Set up eth-docker next before following the rest of the Rocketpool instructions.
 
 ### Configure eth-docker
 
-If you are not running eth-docker already, grab it with `git clone https://github.com/eth2-educators/eth-docker.git && cd eth-docker`,
-and configure it with `./ethd config`. Choose an Ethereum node deployment. Make sure to choose the same Ethereum PoS network and consensus client as you chose in RocketPool. It *should* work with any execution client, but I've only tested it with Geth so far.
+If you are not running eth-docker already, grab it with `git clone https://github.com/eth2-educators/eth-docker.git && cd eth-docker`, and configure it with `./ethd config`. Choose an Ethereum node deployment. Make sure to choose the same Ethereum PoS network and consensus client as you chose in RocketPool. It *should* work with any execution client, but I've only tested it with Geth so far.
 
 Connect eth-docker to RocketPool's docker network.
 
 - `nano .env` and add `:ext-network.yml` to `COMPOSE_FILE`
 - `nano ext-network.yml` and change the line that reads `name: traefik_default` to `name: rocketpool_net`
-- `./ethd start` or, if you already have eth-docker running, `./ethd update` followed by `./ethd restart`
+- `./ethd start` or, if you already have eth-docker running, `./ethd update` followed by `./ethd up`
 - `rocketpool service start` and Rocketpool should come up
 
 You can continue following the Rocketpool instructions at this point.
