@@ -50,8 +50,7 @@ You know it was successful when you saw messages scrolling past that install doc
 
 ### Ubuntu 20.04 changes
 
-Ubuntu 20.04 ships with docker-compose 1.25.0, too low for eth-docker 2.x. On 20.04, update
-docker-compose manually to 1.29.2. This is *not* necessary on Ubuntu 22.04.
+Ubuntu 20.04 ships with docker-compose 1.25.0, too low for eth-docker 2.x. On 20.04, update docker-compose manually to 1.29.2. This is *not* necessary on Ubuntu 22.04.
 
 ```
 sudo apt update && sudo install -y curl
