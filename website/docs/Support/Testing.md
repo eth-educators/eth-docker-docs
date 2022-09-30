@@ -18,26 +18,15 @@ For each client:
 - Set `COMPOSE_FILE` in `.env` to full client stack
 - `docker ps`, make sure nothing is left running
 - Build the client stack:<br />
-  `docker-compose build`
-- There likely is a cached version of the client, let's make sure it's the latest.
-  `docker-compose build --no-cache consensus`
-- Coffee, tea, hall sword fights :)
+  `./ethd cmd build --pull`
+- `./ethd up`, observe that they come up in order: execution->consensus->validator
 - `rm .eth/validator_keys/*`, wipe keys from last pass
-- `docker-compose run deposit-cli`, create keys
-- `./ethd keyimport`, import keys
-- `docker-compose up -d`, observe that they come up in order: execution->consensus->validator
+- `./ethd cmd run --rm deposit-cli`, create keys
+- `./ethd keys import`, import keys
 - Check running and logs and see that everything is chill, watch especially for missed connections:
   - `docker ps`
-  - `docker-compose logs execution`
-  - `docker-compose logs consensus`
-  - `docker-compose logs validator`
-- `docker-compose down`
+  - `./ethd logs execution`
+  - `./ethd logs consensus`
+  - `./ethd logs validator`
+- `./ethd down`
 
-Specific to systemd:
-- Start the service manually
-- Check everything is up and happy
-- Stop the service manually
-- Check everything is down
-- Enable the service
-- Reboot
-- Check that everything came back up as expected

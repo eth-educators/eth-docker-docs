@@ -43,10 +43,9 @@ If you haven't already imported validator keys to eth-docker, do so now. You wil
 pasword.
 
 - Copy `keystore-m` files to `.eth/validator_keys` in the eth-docker directory
-- From the eth-docker directory, stop eth-docker: `./ethd stop`
-- Make sure client images have been built: `./ethd update`
-- Import keys and follow prompts: `./ethd keyimport`
-- Start eth-docker: `./ethd start`
+- From the eth-docker directory, start eth-docker: `./ethd up`
+- Import keys and follow prompts: `./ethd keys import`
+- Verify keys came in: `./ethd keys list`
 
 ### Check logs
 
@@ -83,13 +82,12 @@ You can continue following the Rocketpool instructions at this point.
 ### Import solo staking keys
 
 If you haven't already imported validator keys to eth-docker, do so now. You will need the `keystore-m` files and their
-pasword.
+password.
 
 - Copy `keystore-m` files to `.eth/validator_keys` in the eth-docker directory
-- From the eth-docker directory, stop eth-docker: `./ethd stop`
-- Make sure client images have been built: `./ethd update`
-- Import keys and follow prompts: `./ethd keyimport`
-- Start eth-docker: `./ethd start`
+- From the eth-docker directory, start eth-docker: `./ethd up`
+- Import keys and follow prompts: `./ethd keys import`
+- Verify keys came in: `./ethd keys list`
 
 ### Check logs
 

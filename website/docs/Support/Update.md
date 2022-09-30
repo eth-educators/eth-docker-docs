@@ -45,22 +45,22 @@ whether changes have been made that you may want to use.
 ## Optional: Manually update the client "stack"
 
 If you are using binary build files - the default - you can update everything
-in the client "stack" with `docker-compose build --pull`. If you
+in the client "stack" with `./ethd cmd build --pull`. If you
 run shared components in a different directory, such as the execution client,
 you'd `cd` into those directories and run the command there.
 
-And restart changed containers: `docker-compose up -d`
+And restart changed containers: `./ethd up`
 
 Then verify that the components are coming up okay again by looking at logs:
-- `docker-compose logs -f consensus` for the consensus client
-- `docker-compose logs -f validator` for the validator, if using Lighthouse or Prysm
-- `docker-compose logs -f execution` for the execution client, if you are running one locally
+- `./ethd logs -f consensus` for the consensus client
+- `./ethd logs -f validator` for the validator, if using Lighthouse or Prysm
+- `./ethd logs -f execution` for the execution client, if you are running one locally
 
 ## Optional: Update just the execution client, instead of the entire "stack"
 
 Run:<br />
-`docker-compose build --pull execution`
+`./ethd cmd build --pull execution`
 
 Then stop, remove and start the execution client:<br />
-`docker-compose stop execution && docker-compose rm execution`<br />
-`docker-compose up -d execution`
+`./ethd cmd stop execution && ./ethd cmd rm execution`<br />
+`./ethd up`

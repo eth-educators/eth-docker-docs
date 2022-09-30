@@ -50,6 +50,8 @@ This can be solved by [changing the configuration of Docker](https://docs.storag
 
 ## Interacting with Docker directly
 
+`./ethd cmd` runs `docker-compose` or `docker compose`, depending on the compose version, and will use `sudo` as required. You can also run compose commands without using the `./ethd` wrapper.
+
 `docker-compose stop servicename` brings a service down, for example `docker-compose stop validator`.<br />
 `docker-compose down` will stop the entire stack.<br />
 `docker-compose up -d servicename` starts a single service, for example `docker-compose up -d validator`.
@@ -60,19 +62,17 @@ key sequence to detach from it again.
 `docker ps` lists all running services, with the container name to the right.<br />
 `docker logs containername` shows logs for a container, `docker logs -f --tail 500 containername` scrolls them.<br />
 `docker-compose logs servicename` shows logs for a service, `docker-compose logs -f --tail 500 servicename` scrolls them.<br />
-`docker exec -it containername /bin/bash` will connect you to a running service in a bash shell.
+`docker exec -it containername bash` will connect you to a running service in a bash shell.
 
-You may start a service with `idocker-compose up -d servicename` and then find it's not in `docker ps`. That means it terminated while
-trying to start. To investigate, you could leave the `-d` off so you see logs on command line:<br />
+You may start a service with `docker-compose up -d servicename` and then find it's not in `docker ps`. That means it terminated while trying to start. To investigate, you could leave the `-d` off so you see logs on command line:<br />
 `docker-compose up consensus`, for example.<br />
-You could also run `docker-compose logs consensus` to see the last logs of that service and the reason it terminated.<br />
+You could also run `docker-compose logs --tail 100 consensus` to see the last logs of that service and the reason it terminated.<br />
 
 If a service is not starting and you want to bring up its container manually, so you can investigate, first bring everything down:<br />
 `docker-compose down`, tear down everything first.<br />
 `docker ps`, make sure everything is down.<br />
 
-If you need to see the files that are being stored by services such as consensus, validator, execution, grafana, &c, in Ubuntu Linux you can find
-those in /var/lib/docker/volumes. `sudo bash` to invoke a shell that has access.
+If you need to see the files that are being stored by services such as consensus, validator, execution, grafana, &c, in Ubuntu Linux you can find those in /var/lib/docker/volumes. `sudo bash` to invoke a shell that has access.
 
 **HERE BE DRAGONS** You can totally run N copies of an image manually and then successfully start a validator in each and get yourself slashed if the built-in database lock fails.
 Take extreme care.
