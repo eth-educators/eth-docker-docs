@@ -29,7 +29,7 @@ a new one elsewhere, you may need to know how to move your key(s) safely.
 
 - [ ] Your signing keys in keystore-m JSON format, and the password for them
 >  If you do not have these any more, you can recreate them with the `existing-mnemonic`
->  workflow of deposit-cli, `sudo docker-compose run --rm deposit-cli-existing` in
+>  workflow of deposit-cli, `./ethd cmd run --rm deposit-cli-existing` in
 >  this project, or offline to be very secure.
 - [ ] Ideally, an export of the slashing protection DB. If you are using eth-docker, `./ethd keys delete` will export the slashing protection database.
 - [ ] A checklist, and diligence
@@ -57,9 +57,9 @@ In the directory of the old client:
 
 Verify that you removed the right client:
 
-- [ ] `docker-compose run --rm validator` - confirm that it complains it cannot find its keys. If it still
+- [ ] `./ethd cmd run --rm validator` - confirm that it complains it cannot find its keys. If it still
   finds validator keys, do not proceed until you fixed that and it doesn't.
-  > For Nimbus and Teku, the command is `docker-compose run --rm consensus` instead
+  > For Nimbus and Teku, the command is `./ethd cmd run --rm consensus` instead
 - [ ] Look at https://beaconcha.in/ and verify that the validator(s) you just removed are now
   missing an attestation. Take a note of the epoch the last successful attestion was in.
 - [ ] Verify that both machines are synchronized to time and are using NTP.
@@ -78,7 +78,7 @@ Verify that you removed the right client:
 - [ ] If you are absolutely positively sure that the old validator client cannot
   start attesting again and 15 minutes have passed / **all** validators'
   last successful attestation is in a finalized epoch, then and only then:
-- [ ] Start the new client with `./ethd start`
+- [ ] Start the new client with `./ethd up`
 - [ ] Run `./ethd keys import` and import the keys
 
 

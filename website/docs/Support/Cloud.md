@@ -109,8 +109,7 @@ you started the SSH session *from*. You expect to be able to reach the Prysm Web
 
 ### Example: Shared or standalone execution client on port 8545
 
-It can be useful to have a single execution client service multiple consensus clients, for example when testing, or running a solo
-staking docker-compose stack as well as a pool docker-compose stack.
+It can be useful to have a single execution client service multiple consensus clients, for example when testing, or running a solo staking docker-compose stack as well as a pool docker-compose stack.
 
 To allow Docker traffic to the execution client while dropping all other traffic:
 - `sudo ufw allow from 172.16.0.0/12 to any port 8545`

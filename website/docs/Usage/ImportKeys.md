@@ -18,11 +18,17 @@ Prysm requires a wallet first. Run `./ethd cmd run --rm create-wallet`, which wi
 
 #### Start the client and import keys
 
-`./ethd up` to start the client and the keymanager API
+`./ethd up` to start the client and the client's keymanager API
 
 `./ethd keys` to see all options available to you
 
-`./ethd keys import` to import keys and their slashing protection data. This looks in `.eth/validator_keys` for `keystore*.json` files and `slashing_protection*.json` files.
+`./ethd keys import` to import keys and their slashing protection data. This looks in `.eth/validator_keys` for `keystore*.json` files and optionally `slashing_protection*.json` files.
+
+If the key JSON files are in another directory, run:
+
+`./ethd keys import --path PATHTOKEYS`
+
+replacing `PATHTOKEYS` with the actual path where they are.
 
 `./ethd keys list` to list all imported keys
 

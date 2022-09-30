@@ -15,7 +15,7 @@ If you wish to only expose the Web UI to `localhost` and then use either a brows
 
 The Web UI can be used to import keys and create a wallet, but we also need the password for this
 wallet while starting the validator. To get around this chicken-and-egg problem, you can run
-`./ethd keys import` now and choose the wallet password you will use during
+`./ethd cmd run --rm create-wallet` now and choose the wallet password you will use during
 the Web UI Wallet Creation.
 
 > This password needs to be at least 8 characters long and contain both a number and a special
@@ -51,10 +51,9 @@ command line.
 
 # Import keys
 
-Assuming you have some `keystore-m` JSON files from `docker-compose run --rm deposit-cli-new --eth1_withdrawal_address YOURHARDWAREWALLETADDRESS` or some other way of creating Launchpad compatible keys, click on "Create a Wallet".
+Assuming you have some `keystore-m` JSON files from `./ethd cmd run --rm deposit-cli-new --eth1_withdrawal_address YOURHARDWAREWALLETADDRESS` or some other way of creating Launchpad compatible keys, click on "Create a Wallet".
 
-> These files are in `.eth/validator_keys` if you used the `deposit-cli` workflow. You'll want to
-> move them to the machine you are running the browser on.
+> These files are in `.eth/validator_keys` if you used the `deposit-cli` workflow. You'll want to move them to the machine you are running the browser on.
 
 Choose to "Import Keystores". Select the `keystore-m` file(s), provide the password to the keystore, choose whether to import slashing protection data, and Continue.
 
@@ -70,7 +69,7 @@ If you chose to start the validator with a stored wallet password, verify that i
 
 ```
 ./ethd restart
-docker-compose logs -f validator
+./ethd logs -f validator
 ```
 
 You'll need to navigate to the root of the Web UI and log in again after the restart.

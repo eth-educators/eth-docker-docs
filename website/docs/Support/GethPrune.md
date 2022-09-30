@@ -48,8 +48,8 @@ state import, and does not show a snapshot ETA, it is fully synced and has finis
 
 Then run these commands:
 
-* `docker-compose stop execution && docker-compose rm execution` - stop Geth
-* `docker-compose run --rm --name geth_prune -d execution snapshot prune-state` - start the pruning process
+* `./ethd cmd stop execution && ./ethd cmd rm execution` - stop Geth
+* `./ethd cmd run --rm --name geth_prune -d execution snapshot prune-state` - start the pruning process
 * Observe pruning progress with `docker logs -f --tail 500 geth_prune`
-* When pruning is done: `docker-compose up -d execution`
-* And observe that Geth is running correctly: `docker-compose logs -f execution`
+* When pruning is done: `./ethd up`
+* And observe that Geth is running correctly: `./ethd logs -f execution`

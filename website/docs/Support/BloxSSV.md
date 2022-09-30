@@ -24,7 +24,7 @@ eth-docker supports running a Blox SSV node, together with a consensus client an
 
 Run `./ethd config`, make sure to choose Prater testnet and Blox SSV Node, choose your preferred consensus and execution clients, and rapid sync for the consensus client. Choose Grafana for visibility.
 
-Get the key for the SSV node and write it down somewhere safe: `docker-compose run --rm ssv-generate-keys`
+Get the key for the SSV node and write it down somewhere safe: `./ethd cmd run --rm ssv-generate-keys`
 
 Now put that key into the config file: `cp blox-ssv-config-sample.yaml blox-ssv-config.yaml` followed by `nano blox-ssv-config.yaml` and set the `OperatorPrivateKey:` to the value you were shown for the secret key `sk`, without quotes or curly braces.
 

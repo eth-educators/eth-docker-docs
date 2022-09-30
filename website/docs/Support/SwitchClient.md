@@ -14,21 +14,19 @@ Note that you either need sufficient disk space to sync two execution clients, o
 
 ## Switching clients if you are already using eth-docker
 
-### 1. Create free Infura project
-
-If you do not already have an Eth2 project with Infura: Create an account with [Infura](https://infura.io/), and log in. From the Dashboard, choose "Eth2" and "Create New Project". Give it a name. This will be your remote consensus client ("beacon") for consensus checkpoint sync.
-
-### 2. Create a new client stack
+### 1. Create a new client stack
 
 We'll be running a second copy of eth-docker in its own directory. For example, if the new directory is going to be `~/eth-staker`: `cd ~ && git clone https://github.com/eth2-educators/eth-docker.git eth-staker && cd eth-staker` .
 
-Configure the new stack. Make sure to choose "rapid sync" so the consensus client can sync in minutes. `./ethd config` followed by `sudo ./ethd start`.
+Configure the new stack. Make sure to choose "rapid sync" so the consensus client can sync in minutes. `./ethd config` followed by `./ethd up`.
 
 **Do not** import validator keys yet. Your validators are still running on your old client, and moving them over needs to be done with care to avoid running them in two places and getting yourself slashed.
 
 Observe consensus client logs with `./ethd logs -f consensus`. Once it is fully synced, you can move the execution client database if you kept the same execution client between the old and new setup.
 
-### 2a. Optional: Move the existing execution client database to its new location
+> `sudo` commands for docker are necessary if your user is not part of the `docker` group. If `docker ps` does not succeed, you need to use `sudo` for `docker` or `docker-compose`, or make your user part of the `docker` group.
+
+### 1a. Optional: Move the existing execution client database to its new location
 
 This avoids a fresh sync of the execution client database in the new location. Note you might want to fresh sync if your DB has grown to the point where starting over is beneficial.
 
@@ -40,45 +38,37 @@ Remove the partially synced contents of the **new** database location: `sudo rm 
 
 Move the `_data` directory in the **old** volume to the new database location: `sudo mv /var/lib/docker/volumes/OLDVOLUME/_data -t /var/lib/docker/volumes/NEWVOLUME`. For Geth this might be `sudo mv /var/lib/docker/volumes/eth-docker_geth-eth1-data/_data -t /var/lib/docker/volumes/eth-staker_geth-eth1-data`
 
-Start the new stack again: `./ethd start`, then observe that your execution client is running well and is synced to head: `./ethd logs -f execution`.
+Start the new stack again: `./ethd up`, then observe that your execution client is running well and is synced to head: `./ethd logs -f execution`.
 
-Finally, remove the old volume: `sudo docker volume rm OLDVOLUME`, e.g. for Geth `sudo docker volume rm eth-docker_geth-eth1-data`.
+Finally, remove the old volume: `docker volume rm OLDVOLUME`, e.g. for Geth `docker volume rm eth-docker_geth-eth1-data`.
 
-### 3. Move your validators
+### 2. Move your validators
 
 **Exercise extreme caution. Running your validators in two locations at once would lead to slashing**
 
 Follow the [moving a validator](../Support/Moving.md) instructions. You'll be inside the old directory, e.g. `~/eth-docker`, for the first part where you delete the keys and make sure they are gone, and inside the new directory, e.g. `~/eth-staker`, for the second part where you import the keys again.
 
-### 4. Shut down the old client and remove its storage
+### 3. Shut down the old client and remove its storage
 
-Inside the directory for the old client, e.g. `cd ~/eth-docker`, stop the client: `sudo ./ethd stop`. Then find its volumes via `sudo docker volume ls`, they will all start with the name of the directory. And `sudo docker volume rm VOLUMENAME` those.
+Inside the directory for the old client, e.g. `cd ~/eth-docker`, stop the client: `./ethd stop`. Then find its volumes via `docker volume ls`, they will all start with the name of the directory. And `docker volume rm VOLUMENAME` those.
 
 Finally, you can remove the directory itself: For example, if it was `~/eth-docker`, `cd ~ && rm -rf eth-docker`.
 
-### 5. Change startup service and auto-prune crontab
+### 4. Change auto-prune crontab
 
-These are optional components that you may not be using.
+These is an optional component that you may not be using.
 
-- If you are using the belt-and-suspenders approach to auto-start with a systemd service that starts eth-docker: `sudo nano /etc/systemd/system/eth.service` and change the `WorkingDirectory` line. E.g. with user `ubuntu` and old directory `eth-docker` and new directory `eth-staker`, you'd change it from `WorkingDirectory=/home/ubuntu/eth-docker` to `WorkingDirectory=/home/ubuntu/eth-staking`. Finally, tell systemd you made the change: `sudo systemctl daemon-reload`.
-
-- If you are using the `auto-prune.sh` script in crontab, change where crontab looks for it: `crontab -e` and adjust the path to the new directory.
+If you are using the `auto-prune.sh` script in crontab, change where crontab looks for it: `crontab -e` and adjust the path to the new directory.
 
 ## Switching clients from systemd to eth-docker
 
 If you are using systemd with guides from Somer Esat, Coincashew or Metanull, and want to give eth-docker's automation a whirl, these instructions will show you how to make the switch.
 
-### 1. Create free Infura projects
-
-If you do not already have an Eth2 project with Infura: Create an account with [Infura](https://infura.io/), and log in. From the Dashboard, choose "Eth2" and "Create New Project". Give it a name. This will be your remote consensus client ("beacon") for consensus checkpoint sync.
-
-### 2. Create a new eth-docker client stack
-
-Install prerequisites: `sudo snap remove --purge docker` just in case a snap docker is installed, then `sudo apt update && sudo apt install -y git docker-compose`.
-
-Optionally, make your user part of the docker group: `sudo usermod -aG docker MYUSER && newgrp docker`.
+### 1. Create a new eth-docker client stack
 
 Clone eth-docker, for example into `~/eth-docker`: `cd ~ && git clone https://github.com/eth2-educators/eth-docker.git && cd eth-docker` .
+
+Install prerequisites: `./ethd install`
 
 Configure the client stack. Make sure to choose an Infura failover for your execution client, and any of the four minority consensus clients. "Rapid sync" can let the consensus layer client sync in minutes. `./ethd config`, followed by `./ethd start`.
 
@@ -86,9 +76,9 @@ Configure the client stack. Make sure to choose an Infura failover for your exec
 
 Observe the consensus client, and make sure it is synchronizing: `./ethd logs -f consensus`.
 
-> `sudo` commands for docker are necessary if your user is not part of the `docker` group. If `docker ps` does not succeed, you need to use `sudo` for `./ethd` or `docker` or `docker-compose`, or make your user part of the `docker` group.
+> `sudo` commands for docker are necessary if your user is not part of the `docker` group. If `docker ps` does not succeed, you need to use `sudo` for `docker` or `docker-compose`, or make your user part of the `docker` group.
 
-### 2a. Optional: Move the existing execution client database to its new location
+### 1a. Optional: Move the existing execution client database to its new location
 
 This only works if you've chosen the same execution client in eth-docker as you are running in systemd. This avoids a fresh sync of the execution client database in the new location. Note you might want to fresh sync if your DB has grown to the point where starting over is beneficial.
 
@@ -116,9 +106,9 @@ Disable the Geth service and move its database: `sudo systemctl disable eth1` an
 
 Change permissions so eth-docker can access the Geth database: `sudo chown -R 10001:10001 /var/lib/docker/volumes/eth-docker_geth-eth1-data`
 
-Start the new stack again: `./ethd start`, then observe that your execution client is running well and is synced to head: `./ethd logs -f execution`.
+Start the new stack again: `./ethd up`, then observe that your execution client is running well and is synced to head: `./ethd logs -f execution`.
 
-### 2b. If you did not move with 2a: Shut down Geth
+### 1b. If you did not move Geth with 1a: Shut down Geth
 
 This will stop your validators from attesting. You will incur downtime until the new execution layer database has been fully synced.
 
@@ -134,7 +124,7 @@ Disable the Geth service and remove its database: `sudo systemctl disable geth` 
 
 Disable the Geth service and remove its database: `sudo systemctl disable eth1` and `sudo rm -rf ~/.ethereum`.
 
-### 3. Move your validators
+### 2. Move your validators
 
 **Exercise extreme caution. Running your validators in two locations at once would lead to slashing**
 
@@ -176,7 +166,7 @@ Verify that the validator can't find them: `sudo systemctl start validator` and 
 
 Follow the [moving a validator](../Support/Moving.md#import-keys-into-new-client) instructions. You already removed the keys: Wait 15 minutes after that to protect against slashing, then import them again from inside the `~/eth-docker` directory.
 
-### 4. Remove old beacon database
+### 3. Remove old beacon database
 
 We can remove the old beacon chain database and disable the service.
 
@@ -203,7 +193,7 @@ Optionally, remove the old Geth package: `sudo apt remove -y ethereum && sudo ap
 
 Optionally, remove the old Geth package: `sudo apt remove -y ethereum && sudo apt -y auto-remove`.
 
-### 5. Set an auto-prune crontab
+### 4. Set an auto-prune crontab
 
 This is an optional component for [auto-pruning Geth](../Support/GethPrune.md#fully-automated-geth-prune).
 
