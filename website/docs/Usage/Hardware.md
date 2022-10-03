@@ -5,20 +5,19 @@ sidebar_label: Hardware
 ---
 
 Recommended hardware profile:
-* 16+ GiB of RAM (some client combinations benefit from 24 GiB)
+* 16+ GiB of RAM - Nethermind recommends 32 GiB
 * Quad Core CPU
-* 2TB "mainstream" SSD - neither QLC nor DRAMless (1TB can work with some client combinations; 2TB affords more room for growth)
+* 2TB ["mainstream" SSD](https://gist.github.com/yorickdowne/f3a3e79a573bf35767cd002cc977b038) - neither QLC nor DRAMless. 1TB can work with some client combinations; 2TB affords more room for growth.
 
-Generally, 8 GiB of RAM is a very tight fit, and 16+ GiB is recommended.
+Generally, 8 GiB of RAM is a very tight fit, with only Nimbus/Geth reported to work, and 16+ GiB is recommended.
 
-4 CPU cores are recommended to deal with spikes in processing. An SSD is required for storage because the node databases
-are so IOPS-heavy. The Geth execution client would require around 500GiB of storage by
-itself initially, which can fill a 1TB SSD within 6 months. Offline pruning is available.
+4 CPU cores are recommended to deal with spikes in processing. 
+
+An SSD is required for storage because the node databases are so IOPS-heavy. The Geth execution client would require around 650GiB of storage by itself initially, which can fill a 1TB SSD within 2 months. Offline pruning is available.
 
 Other execution clients grow at different rates, see [resource use](../Usage/ResourceUsage.md).
 
-The consensus client database is small, around 20-100 GiB, but we don't know what growth will
-look like once the merge with PoW is done.
+The consensus client database is small, around 20-100 GiB, but we don't know what growth will look like after the merge of Ethereum.
 
 If you are running a slasher, that might be another 100 to 300 GiB by itself.
 
@@ -40,8 +39,8 @@ was unable to report ECC errors via IPMI, only OS-level reporting worked.
   * SuperMicro X12STL-F(-O) or X12STH-F(-O). STH supports an iGPU
     * Intel Xeon E-23xx(G)
 * Common components:
-  * 16 or 32 GiB of Micron or Samsung DDR4 UDIMM ECC RAM (unbuffered, **not** registered)
-  * 2TB M.2 NVMe SSD or SATA SSD, e.g. SK Hynix P31, Samsung 970 EVO Plus, WD Red SN700 or Samsung 870 EVO
+  * 32 GiB of Micron or Samsung DDR4 UDIMM ECC RAM (unbuffered, **not** registered)
+  * [2TB M.2 NVMe SSD](https://gist.github.com/yorickdowne/f3a3e79a573bf35767cd002cc977b038)
 
 **AMD**
 
@@ -51,8 +50,8 @@ was unable to report ECC errors via IPMI, only OS-level reporting worked.
   * AsRock Rack X470D4U or X570D4U (2 NVMe both)
 * Common components:
   * AMD Ryzen CPU (Zen2/3), but not APU (APUs do not support ECC)
-  * 16 or 32 GiB of Micron or Samsung DDR4 UDIMM ECC RAM (unbuffered, **not** registered)
-  * 2TB M.2 NVMe SSD or SATA SSD, e.g. SK Hynix P31, Samsung 970 EVO Plus, WD Red SN700 or Samsung 870 EVO
+  * 32 GiB of Micron or Samsung DDR4 UDIMM ECC RAM (unbuffered, **not** registered)
+  * [2TB M.2 NVMe SSD](https://gist.github.com/yorickdowne/f3a3e79a573bf35767cd002cc977b038)
 
 Plus, obviously, a case, PSU, case fans. Pick your own. Well-liked
 options are Node 304 (mITX) and Node 804 (uATX) with Seasonic PSUs,
@@ -61,13 +60,7 @@ For a small uATX form factor, consider Silverstone ML04B.
 
 [Joe's hardware roundup](https://github.com/jclapis/rocketpool.github.io/blob/main/src/guides/local/hardware.md) has additional build ideas.
 
-On SSD size, 2TB is conservative and assumes you are running
-an execution client as well, which currently takes about 500-700 GiB initially depending on client chosen and keeps
-growing. The consensus client db is expected to be far smaller, though exact figures
-won't be seen until the merge with Ethereum PoW is complete.
-
-You'll want decent write endurance. Samsung EVO 970 Plus, WD Red SN700 and SK Hynix Gold P31 are good NVMe choices as of early 2022,
-and Samsung 870 EVO, WD Blue 3D NAND or Crucial MX500 are good SATA 2.5" choices. You get better sync and prune performance with "mainstream" SSDs, that is, SSDs that are neither DRAMless nor use QLC Flash.
+For the SSD, you'll want decent write endurance and good IOPS. You get better sync and prune performance with ["mainstream" SSDs](https://gist.github.com/yorickdowne/f3a3e79a573bf35767cd002cc977b038), that is, SSDs that are neither DRAMless nor use QLC Flash.
 
 Intel SSDs are also well-liked: Their data center SSDs are quite reliable, if a bit pricey.
 
