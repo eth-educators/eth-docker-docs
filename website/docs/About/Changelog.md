@@ -34,10 +34,6 @@ To update the components of the project, run from within the project directory (
 - Default Besu to 5g heap, up from 4g
 - Source builds use Go 1.19
 - Add new dependency for Lighthouse source build
-- `./ethd install` installs docker-ce instead of docker.io
-- `./ethd config` offers previous values to the user
-- ELs no longer initial-start as root; all EL and CL will chown their directories and then restart with their non-root user if started as root
-- `./ethd update` warns the user if there are uncommitted local changes
 
 ## v2.1.0 2022-09-29
 
