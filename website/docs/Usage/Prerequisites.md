@@ -45,7 +45,7 @@ sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-compose-plu
 
 You know it was successful when you saw messages scrolling past that install docker and docker compose.
 
-If you like, you can also add an alias, replacing `MYUSERNAME` with your actual user name: `echo 'alias docker-compose="docker compose"' >>/home/MYUSERNAME/.profile`
+If you like, you can also add a docker-compose alias, replacing `MYUSERNAME` with your actual user name: `echo 'alias docker-compose="docker compose"' >>/home/MYUSERNAME/.profile`
 
 ## Debian 10/11
 
@@ -73,7 +73,7 @@ sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-compose-plu
 
 You know it was successful when you saw messages scrolling past that install docker and docker compose.
 
-If you like, you can also add an alias, replacing `MYUSERNAME` with your actual user name: `echo 'alias docker-compose="docker compose"' >>/home/MYUSERNAME/.profile`
+If you like, you can also add a docker-compose alias, replacing `MYUSERNAME` with your actual user name: `echo 'alias docker-compose="docker compose"' >>/home/MYUSERNAME/.profile`
 
 ## Generic Linux
 
@@ -129,11 +129,46 @@ sudo systemctl restart docker
 
 After that, Docker will store its data on your desired disk.
 
+## Switching from docker.io to docker-ce
+
+If you are currently running Canonical's docker.io and you'd like to switch to docker-ce, this is how
+
+Prepare docker-ce repo:
+
+```
+sudo apt-get update
+sudo apt-get install -y ca-certificates curl gnupg lsb-release
+
+sudo mkdir -p /etc/apt/keyrings
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu  $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list >/dev/null
+ 
+sudo apt-get update
+```
+
+Remove docker.io:
+
+```
+sudo apt-get remove --autoremove -y docker.io containerd runc docker-compose
+```
+
+Reboot - yes this is mandatory:
+
+```
+sudo reboot
+```
+
+Install docker-ce:
+
+```
+sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-compose-plugin
+```
+
+If you like, you can also add a docker-compose alias, replacing `MYUSERNAME` with your actual user name: `echo 'alias docker-compose="docker compose"' >>/home/MYUSERNAME/.profile`
+
 ## macOS Prerequisites
 
-> The following prerequisites apply if you are going to use macOS as a server
-> to run an Ethereum staking full node. If you use macOS to connect *to* a node server, all
-> you need is an SSH client.
+> The following prerequisites apply if you are going to use macOS as a server to run an Ethereum staking full node. If you use macOS to connect *to* a node server, all you need is an SSH client.
 
 - Install [Docker Desktop](https://www.docker.com/products/docker-desktop) and allocate 16 GiB of RAM and 1.5TB or so of storage space to it.
 - Install prerequisites via homebrew: `brew install coreutils newt`
