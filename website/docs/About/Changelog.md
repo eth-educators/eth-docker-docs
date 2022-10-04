@@ -17,6 +17,14 @@ To update the components of the project, run from within the project directory (
 > On 1/27/2022, eth-docker's repository name changed. Everything should work as it did.
 > If you do wish to manually update your local reference, run `git remote set-url origin https://github.com/eth-educators/eth-docker.git`
 
+## v2.1.2 2022-10-04
+
+*This is an optional release with bug fixes*
+
+- Prometheus now survives restarts 😅
+- Quiet Nethermind push failures
+- Fix `ext-network.yml` version
+
 ## v2.1.1 2022-10-02
 
 *This is an optional release with new features and bug fixes*
@@ -26,10 +34,6 @@ To update the components of the project, run from within the project directory (
 - Default Besu to 5g heap, up from 4g
 - Source builds use Go 1.19
 - Add new dependency for Lighthouse source build
-- `./ethd install` installs docker-ce instead of docker.io
-- `./ethd config` offers previous values to the user
-- ELs no longer initial-start as root; all EL and CL will chown their directories and then restart with their non-root user if started as root
-- `./ethd update` warns the user if there are uncommitted local changes
 
 ## v2.1.0 2022-09-29
 
