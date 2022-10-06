@@ -17,6 +17,17 @@ To update the components of the project, run from within the project directory (
 > On 1/27/2022, eth-docker's repository name changed. Everything should work as it did.
 > If you do wish to manually update your local reference, run `git remote set-url origin https://github.com/eth-educators/eth-docker.git`
 
+## v2.1.3 2022-10-06
+
+*This is an optional release with new features*
+
+- Erigon uses `stable` docker tag
+- Erigon uses `--batchSize 64m` in an attempt to squeeze it into 16 GiB 🐭
+- Besu defaults to `latest-openjdk-latest` and uses soft heap 3g
+- Add Nimbus vc-only yml
+- Erigon and Nimbus source builds default to latest release
+- Remove all `OVERRIDE_TTD` mentions
+
 ## v2.1.2 2022-10-04
 
 *This is an optional release with bug fixes*
