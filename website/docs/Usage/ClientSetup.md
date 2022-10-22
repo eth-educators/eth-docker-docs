@@ -196,9 +196,6 @@ These are largely for running RPC nodes, instead of validator nodes. Most users 
 - `CLIENT-cl-only.yml` - for running a [distributed consensus client and validator client](../Usage/ReverseProxy.md) setup.
 - `CLIENT-vc-only.yml` - the other side of the distributed client setup.
 
-- `prysm-slasher.yml` - Prysm experimental slasher. The experimental slasher can lead to missed attestations due to the additional resource demand.
-- `lighthouse-slasher.yml` - Lighthouse experimental slasher. The experimental slasher can lead to missed attestations due to the additional resource demand.
-
 ### MEV Boost
 
 Your Consensus Layer client connects to the mev-boost container. If you are running a CL in eth-docker, then in `.env` you'd add `mev-boost.yml` to `COMPOSE_FILE`, set `MEV_BOOST=true` and set `MEV_RELAYS` to the [relays you wish to use](https://ethstaker.cc/mev-relay-list/).
@@ -216,11 +213,11 @@ each. This is great for running testnet and mainnet in parallel, for example.
 
 ### Prysm or Lighthouse Slasher   
 
-Running [slasher](https://docs.prylabs.network/docs/prysm-usage/slasher/) is an optional client compose file, but helps secure the chain. There are [no additional earnings](https://github.com/ethereum/consensus-specs/issues/1631) from running a slasher: Whistleblower rewards are not implemented, and may not ever be implemented.
+Running [slasher](https://docs.prylabs.network/docs/prysm-usage/slasher/) is an optional setting in `.env`, and helps secure the chain. There are [no additional earnings](https://github.com/ethereum/consensus-specs/issues/1631) from running a slasher: Whistleblower rewards are not implemented, and may not ever be implemented.
 
-> Slasher can be a huge resource hog during times of no chain finality, which can manifest as massive RAM usage. Please make sure you understand the risks of this, 
-> especially if you want high uptime for your Ethereum staking full node. Slasher places significant stress on the consensus client when the chain has no finality, and might be the reason
-> why your validators are underperforming if your consensus client is under this much stress.
+> Slasher can be a huge resource hog during times of no chain finality, which can manifest as massive RAM usage. Please make sure you understand the risks of this, especially if you want high uptime for your Ethereum staking full node. Slasher places significant stress on the consensus client when the chain has no finality, and might be the reason why your validators are underperforming if your consensus client is under this much stress.
+
+To run a slasher, add the relevant command(s) to `CL_EXTRAS` in your `.env` file.
 
 ## Build the client
 
