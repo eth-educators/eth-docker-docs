@@ -5,11 +5,11 @@ sidebar_label: Hardware
 ---
 
 Recommended hardware profile:
-* 16+ GiB of RAM - Nethermind recommends 32 GiB
+* 32 GiB of RAM - 16 GiB works but can be challenging depending on client mix
 * Quad Core CPU
-* 2TB ["mainstream" SSD](https://gist.github.com/yorickdowne/f3a3e79a573bf35767cd002cc977b038) - neither QLC nor DRAMless. 1TB can work with some client combinations; 2TB affords more room for growth.
+* 2TB ["mainstream" SSD](https://gist.github.com/yorickdowne/f3a3e79a573bf35767cd002cc977b038) - neither QLC nor DRAMless. 1TB can work with some client combinations but is very tight; 2TB affords more room for growth.
 
-Generally, 8 GiB of RAM is a very tight fit, with only Nimbus/Geth reported to work, and 16+ GiB is recommended.
+Generally, 8 GiB of RAM is a very tight fit, with only Nimbus/Geth reported to work, 16 GiB can be a tight fit depending on client mix, and 32 GiB is recommended.
 
 4 CPU cores are recommended to deal with spikes in processing. 
 
