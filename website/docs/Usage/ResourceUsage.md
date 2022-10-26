@@ -28,7 +28,7 @@ SSD, RAM and CPU use is after initial sync, when keeping up with head. 100% CPU 
 | Geth   | 1.10.18 | Jun 2022 | ~560 GiB | ~8 GiB / week | 16-19 GiB | 100-400% | `--cache 10704`, max value at 32 GiB RAM, reduces DB growth rate |
 | Nethermind | 1.12.4 | Feb 2022 | ~660 GiB | ~16 GiB / week | 15-16 GiB | 50-200% | memory use w/ pruning and prune-cache 4096; 18 GiB memory and 8 cores during sync |
 | Besu | 22.4.1 | May 2022 | ~610 GiB | ~8 GiB / week | 8 - 9 GiB | 50-100% | with Bonsai tries |
-| Erigon | 2022.09.03 | Oct 2022 | ~875 GiB | TBD | See comment | 50-100% | Erigon will have the OS use all available RAM as a DB cache during post-sync operation, but this RAM is free to be used by other programs as needed. During sync, it may run out of memory on machines with less than 32 GiB |
+| Erigon | 2.28.1 | Oct 2022 | ~913 GiB | ~18 GiB / week | See comment | 50-100% | Erigon will have the OS use all available RAM as a DB cache during post-sync operation, but this RAM is free to be used by other programs as needed. During sync, it may run out of memory on machines with less than 32 GiB |
 
 Notes on disk usage
 - Geth -  DB size can be reduced when it grew too large by [offline(!) prune](../Support/GethPrune.md)
