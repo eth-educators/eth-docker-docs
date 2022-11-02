@@ -17,6 +17,26 @@ To update the components of the project, run from within the project directory (
 > On 1/27/2022, eth-docker's repository name changed. Everything should work as it did.
 > If you do wish to manually update your local reference, run `git remote set-url origin https://github.com/eth-educators/eth-docker.git`
 
+## v2.2.0 2022-11-02
+
+*This is a recommended release with new features and bug fixes*
+
+- Nethermind background pruning via `./ethd prune-nethermind`
+- Bonsai snapshots supported with Besu
+- New `grafana-cloud.yml` that uses `prometheus/custom-prom.yml`. Undocumented for now
+- Do not default to `--subscribe-all-subnets` for `cl-only.yml` files. Please add this via `CL_EXTRAS` if you need it
+- Geth always runs an `apk update` first when building the local image
+- Fix provisioning of the prysm_less_10 dashboard. Thanks @FloatingUpstream!
+- Support Teku's validator exit command for API managed keys
+- Better UX for initial Blox SSV setup
+- Add 30d retention period to Loki
+- Moved `CL_EXTRAS`, `EL_EXTRAS` and `VC-EXTRAS` into entrypoint script
+- `slasher.yml` files removed. If you used these, please use `CL_EXTRAS` instead
+- Enable pprof on Erigon and optimize for ZFS storage
+- cadvisor does housekeeping every 30s
+- Manifold removed from default relay list
+- Nimbus VC offered during `./ethd config`
+
 ## v2.1.3 2022-10-06
 
 *This is an optional release with new features*
