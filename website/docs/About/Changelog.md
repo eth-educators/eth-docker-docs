@@ -17,6 +17,16 @@ To update the components of the project, run from within the project directory (
 > On 1/27/2022, eth-docker's repository name changed. Everything should work as it did.
 > If you do wish to manually update your local reference, run `git remote set-url origin https://github.com/eth-educators/eth-docker.git`
 
+## v2.2.2 2022-11-11
+
+*This is a required release for users of Erigon, and optional for all others*
+
+- Support Erigon 2.30.0's new `--externalcl` parameter
+- Fix test for `custom-prom.yml` used in `grafana-cloud.yml`
+- Support MEV boost `-minbid`
+- Check for 125 GiB free disk space before Nethermind prune
+- Dynamic wait time when re-starting Nethermind for prune
+
 ## v2.2.1 2022-11-05
 
 *This is a required release for users of Erigon, and optional for all others*
