@@ -105,10 +105,10 @@ Please choose:
   * Prysm
 * Your execution client you wish to run
   * Besu
-  * Geth - this client has a majority. Choosing another is safer.
+  * Geth - this client has a super-majority. Choosing another is safer.
   * Nethermind
   * Erigon
-  * Akula - pre-alpha. May not yet be functional
+  * Akula - pre-alpha, archive node only. May not yet be functional
 * Whether to run a grafana dashboard for monitoring
 
 First, copy the environment file.<br />
