@@ -17,6 +17,15 @@ To update the components of the project, run from within the project directory (
 > On 1/27/2022, eth-docker's repository name changed. Everything should work as it did.
 > If you do wish to manually update your local reference, run `git remote set-url origin https://github.com/eth-educators/eth-docker.git`
 
+## v2.2.3 2022-11-13
+
+*This is an optional release containing new features*
+
+- Work around Lodestar's non-standard return codes on recipient/gas keymanager API
+- Keymanager API key import now waits up to 60s for slashing protection DB to be imported
+- Support Nethermind health checks
+- Use beaconcha.in's stat collector for Prysm and Nimbus
+
 ## v2.2.2 2022-11-11
 
 *This is a required release for users of Erigon, and optional for all others*
