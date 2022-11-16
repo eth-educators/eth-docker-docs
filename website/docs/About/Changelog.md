@@ -17,6 +17,15 @@ To update the components of the project, run from within the project directory (
 > On 1/27/2022, eth-docker's repository name changed. Everything should work as it did.
 > If you do wish to manually update your local reference, run `git remote set-url origin https://github.com/eth-educators/eth-docker.git`
 
+## v2.2.3.1 2022-11-16
+
+*This is a required release for users of Akula, and optional for all others*
+
+- Fixed Akula source build
+- Lint pass on all shell scripts
+- Added deprecation warning to `./ethd keyimport`
+- Prometheus now uses default scrape time, so that `custom-prom.yml` will work with `grafana-cloud.yml`
+
 ## v2.2.3 2022-11-13
 
 *This is an optional release containing new features*
