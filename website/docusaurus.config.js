@@ -16,12 +16,12 @@ module.exports = {
             title: "eth-docker Docs",
             logo: {
                 alt: "eth-docker logo",
-                href: '/About/Overview.md',
+                href: '/',
                 src: 'img/eth-moby-logo.png',
             },
             items: [
                 {
-                    href: '/About/Overview.md',
+                    href: '/',
                     label: 'Get Started',
                     position: 'right',
                 }
@@ -30,7 +30,7 @@ module.exports = {
         footer: {
             logo: {
                 alt: "eth-docker logo",
-                href: '/About/Overview.md',
+                href: '/',
                 src: 'img/eth-moby-logo.png',
             },
             copyright: `Copyright © ${new Date().getFullYear()} eth-docker contributors`,
