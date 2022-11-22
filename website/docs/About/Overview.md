@@ -1,5 +1,6 @@
 ---
 id: Overview
+slug: /
 title: High Level Overview.
 sidebar_label: Overview
 ---

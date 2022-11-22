@@ -3,7 +3,7 @@
     "localized-strings": {
         "next": "Next",
         "previous": "Previous",
-        "tagline": "eth2-docker.",
+        "tagline": "eth-docker.",
         "docs": {
             "About/Acknowledgements": {
                 "title": "Acknowledgements",
