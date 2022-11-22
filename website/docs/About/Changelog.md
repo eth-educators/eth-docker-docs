@@ -6,7 +6,7 @@ sidebar_label: Changelog
 
 ## Updating the project
 
-> `sudo` for ethd and docker-compose commands is only necessary if your user is *not* part of the `docker` group
+> `sudo` for docker compose commands is only necessary if your user is *not* part of the `docker` group
 
 To update the components of the project, run from within the project directory (`cd ~/eth-docker` by default):
 
@@ -16,6 +16,16 @@ To update the components of the project, run from within the project directory (
 
 > On 1/27/2022, eth-docker's repository name changed. Everything should work as it did.
 > If you do wish to manually update your local reference, run `git remote set-url origin https://github.com/eth-educators/eth-docker.git`
+
+## v2.2.4 2022-11-22
+
+*This is a required release for users of Nethermind, and optional for all others*
+
+- Support Nethermind's new engine port parameters
+- `./ethd attach-geth` command, thanks to @ldub!
+- Removed Prometheus alert manager - it had been broken since before merge, may as well remove it 😅. Use Grafana's built-in alert manager instead, please
+- Sample config file for Grafana Cloud in `prometheus/custom-prom.yml.sample`
+- Require 250GiB free disk space before starting Nethermind prune
 
 ## v2.2.3.1 2022-11-16
 
