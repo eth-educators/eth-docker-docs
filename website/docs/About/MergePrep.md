@@ -20,7 +20,7 @@ For this reason, Infura projects won't be able to be used as an EL any longer, o
 
 Please get ready for this. eth-docker will prompt you if it thinks your setup is not ready. Once merge has been announced on mainnet, eth-docker will change to hard require this setup and many of its use cases will not run without.
 
-Check the [Overview](../About/Overview.md) for hardware requirements of an Ethereum full node. You may need more disk space.
+Check the [Overview](/) for hardware requirements of an Ethereum full node. You may need more disk space.
 
 ## Fee recipient
 
