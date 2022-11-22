@@ -2,7 +2,7 @@ module.exports = {
     title: 'eth-docker',
     tagline: 'Ethereum  Docker Client',
     url: 'https://eth-docker.net',
-    baseUrl: '/About/Overview.md',
+    baseUrl: '/',
     onBrokenLinks: 'throw',
     favicon: 'img/eth-moby-logo.png',
     organizationName: 'Eth Docker',
@@ -16,12 +16,12 @@ module.exports = {
             title: "eth-docker Docs",
             logo: {
                 alt: "eth-docker logo",
-                href: '/',
+                href: '/About/Overview.md',
                 src: 'img/eth-moby-logo.png',
             },
             items: [
                 {
-                    href: '/',
+                    href: '/About/Overview.md',
                     label: 'Get Started',
                     position: 'right',
                 }
@@ -30,7 +30,7 @@ module.exports = {
         footer: {
             logo: {
                 alt: "eth-docker logo",
-                href: '/',
+                href: '/About/Overview.md',
                 src: 'img/eth-moby-logo.png',
             },
             copyright: `Copyright © ${new Date().getFullYear()} eth-docker contributors`,
