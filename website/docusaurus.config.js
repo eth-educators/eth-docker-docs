@@ -1,8 +1,8 @@
 module.exports = {
     title: 'eth-docker',
     tagline: 'Ethereum  Docker Client',
-    url: 'https://github.com',
-    baseUrl: '/eth-educators/eth-docker-docs',
+    url: 'https://eth-docker.net',
+    baseUrl: '/',
     onBrokenLinks: 'throw',
     favicon: 'img/eth-moby-logo.png',
     organizationName: 'Eth Docker',
@@ -21,7 +21,7 @@ module.exports = {
             },
             items: [
                 {
-                    href: 'https://github.com/eth-educators/eth-docker-docs',
+                    href: '/',
                     label: 'Get Started',
                     position: 'right',
                 }
