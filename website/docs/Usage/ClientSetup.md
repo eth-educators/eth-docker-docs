@@ -104,11 +104,10 @@ Please choose:
   * Lighthouse
   * Prysm
 * Your execution client you wish to run
+  * Nethermind
   * Besu
   * Geth - this client has a super-majority. Choosing another is safer.
-  * Nethermind
   * Erigon
-  * Akula - pre-alpha, archive node only. May not yet be functional
 * Whether to run a grafana dashboard for monitoring
 
 First, copy the environment file.<br />
@@ -150,7 +149,6 @@ Choose one execution client:
 - `erigon.yml` - erigon execution client
 - `besu.yml` - besu execution client
 - `nethermind.yml` - nethermind execution client
-- `akula.yml` - akula execution client - pre-alpha, might not work
 
 Optionally, enable MEV boost:
 
@@ -158,10 +156,11 @@ Optionally, enable MEV boost:
 
 Optionally, choose a reporting package:
 
-- `grafana.yml` - Enable Grafana dashboards
+- `grafana.yml` - Enable local Grafana dashboards
+- `grafana-cloud.yml` - Run a local Prometheus with support for remote-write to Grafana Cloud
 
-- `grafana-shared.yml` - to map the Grafana port (default: 3000) to the host. This is not encrypted and should not be exposed to the Internet. Used *in addition* to `grafana.yml`, not instead. Using encryption instead via `traefik-*.yml` is recommended.
-- `prysm-web-shared.yml` - to map the Prysm web port (default: 3500) to the host. This is not encrypted and should not be exposed to the Internet. Used *in addition* to `prysm-web.yml`, not instead. Using encryption instead via `traefik-*.yml` is recommended.
+- `grafana-shared.yml` - to map the local Grafana port (default: 3000) to the host. This is not encrypted and should not be exposed to the Internet. Used *in addition* to `grafana.yml`, not instead. Using encryption instead via `traefik-*.yml` is recommended.
+- `prysm-web-shared.yml` - to map the Prysm web port (default: 3500) to the host. This is not encrypted and should not be exposed to the Internet. Using encryption instead via `traefik-*.yml` is recommended.
 
 > See [Prysm Web](../Usage/PrysmWeb.md) for notes on using the Prysm Web UI
 
@@ -245,7 +244,7 @@ Ports that I mention can be "Open to Internet" can be either forwarded to your n
 
 Open only the ports that you actually use, depending on your client choices.
 
-- 30303 tcp/udp - Geth/Nethermind/Besu/Erigon/Akula execution client P2P. Open to Internet.
+- 30303 tcp/udp - Geth/Nethermind/Besu/Erigon execution client P2P. Open to Internet.
 - 9000 tcp/udp - Lighthouse/Teku/Nimbus/Lodestar/Prysm consensus client P2P. Open to Internet.
 - 443 tcp - https:// access to Grafana and Prysm Web UI via traefik. Open to Internet.
 - 22/tcp - SSH. Only open to Internet if you want to access the server remotely. If open to Internet, configure
