@@ -4,6 +4,15 @@ title: "Step 7: Choose a Grafana dashboard (optional)"
 sidebar_label: Dashboards
 ---
 
+## Choose local or cloud Grafana
+
+You have a choice of running Grafana locally, by including `grafana.yml`, or in the cloud, with `grafana-cloud.yml`. If you choose Grafana Cloud, you **must** edit `prometheus/custom-prom.yml` and add your cloud remote write credentials. Please see `prometheus/custom-prom.yml.sample` for the syntax of that addition.
+
+`grafana-cloud.yml` runs a local Prometheus but no local Grafana, and enables adding custom Prometheus config items right after the `scrape_configs:` section. This means it can also be used to add additional scrape targets,
+as well as remote writing into a central Grafana infrastructure that uses Mimir or Thanos, instead of into Grafana Cloud.
+
+## Local Grafana dashboards
+
 A baseline set of dashboards has been included.  
 - [Metanull's Prysm Dashboard JSON](https://raw.githubusercontent.com/metanull-operator/eth2-grafana/master/eth2-grafana-dashboard-single-source-beacon_node.json)
 - [Prysm Dashboard JSON](https://raw.githubusercontent.com/GuillaumeMiralles/prysm-grafana-dashboard/master/less_10_validators.json)
@@ -17,7 +26,7 @@ A baseline set of dashboards has been included.
 
 You can additional dashboards from the Grafana repository, for example `11133` as a node exporter dashboard. You can also import dashboards by their JSON, as you see fit.
 
-## Connecting to Grafana  
+## Connecting to local Grafana  
 
 Connect to https://grafana.yourdomain.com/ (or http://YOURSERVERIP:3000/ if not using the reverse proxy), log in as admin/admin, and set a new password.
 
