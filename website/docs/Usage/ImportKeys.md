@@ -70,7 +70,7 @@ validator client and start it interactively.
 
 ### Importing keys from another validator instance
 
-If you are migrating to eth-docker from another validator node that uses systemd or some other init system, please see [SwitchClient.md](../Support/SwitchClient.md) for advice. Ultimately, you'll likely need to move files manually to your docker volume mount. 
+If you are migrating to eth-docker from another validator node that uses systemd or some other init system, please see [SwitchClient.md](../Support/SwitchClient.md) and [Moving.md](../Support/Moving.md) for advice. Ultimately, you'll likely need to move files manually to your docker volume mount. 
 
 For exmample, for moving from a system+prysm setup, you'll either need to use prysm's export+import functionality, or you'll need to locate your `all-accounts.keystore.json` and `wallet-password.txt` files and move them manually to `/var/lib/docker/volumes/eth-docker_prysmvalidator-data/_data/`. 
 
