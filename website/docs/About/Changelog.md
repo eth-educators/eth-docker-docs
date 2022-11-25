@@ -17,6 +17,16 @@ To update the components of the project, run from within the project directory (
 > On 1/27/2022, eth-docker's repository name changed. Everything should work as it did.
 > If you do wish to manually update your local reference, run `git remote set-url origin https://github.com/eth-educators/eth-docker.git`
 
+## v2.2.4.1 2022-11-25
+
+*This is a required release for users of Nethermind on Gnosis, and optional for all others*
+
+- Let Nethermind determine sync mode based on chain
+- Better Nethermind prune. Thanks to Joe at RocketPool for the suggestion!
+- Some more cleanup around the removed Prometheus alert manager
+- Remove Akula 😭
+- Fix an error introduced by shell linting that caused `./ethd terminate` to fail - thanks to @RomanS-re!
+
 ## v2.2.4 2022-11-22
 
 *This is a required release for users of Nethermind, and optional for all others*
