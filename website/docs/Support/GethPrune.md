@@ -7,8 +7,7 @@ sidebar_label: Prune Geth
 The Geth DB will [grow over time](../Usage/ResourceUsage.md), and may fill a 1TB SSD in
 about 6 months.
 
-You can offline prune Geth, bringing it back down close to its initial DB size. You may
-want [a failover execution client](../Usage/ClientSetup.md) configured for your consensus client.
+You can offline prune Geth, bringing it back down close to its initial DB size.
 
 ### Semi-automated Geth prune
 
