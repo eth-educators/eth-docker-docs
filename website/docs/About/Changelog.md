@@ -17,6 +17,16 @@ To update the components of the project, run from within the project directory (
 > On 1/27/2022, eth-docker's repository name changed. Everything should work as it did.
 > If you do wish to manually update your local reference, run `git remote set-url origin https://github.com/eth-educators/eth-docker.git`
 
+## v2.2.4.2 2022-12-02
+
+*This is an optional release containing new features and bug fixes*
+
+- Nethermind source build fixed. Thanks @nu404040!
+- Reverted use of Bonsai snapshots. Note this can cause initial snap sync to fail, but should resolve failure after initial sync. Thanks @realsnick!
+- Replace `which` with `command -v` in `ethd` to get ready for Debian Bookworm
+- Add Nimbus as an option for Gnosis Chain during `./ethd config`
+- Image pull during `./ethd update` is more consistent
+
 ## v2.2.4.1 2022-11-25
 
 *This is a required release for users of Nethermind on Gnosis, and optional for all others*
