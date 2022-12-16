@@ -17,7 +17,13 @@ To update the components of the project, run from within the project directory (
 > On 1/27/2022, eth-docker's repository name changed. Everything should work as it did.
 > If you do wish to manually update your local reference, run `git remote set-url origin https://github.com/eth-educators/eth-docker.git`
 
-## v2.2.5 2022-12-03
+## v2.2.5.1 2011-12-15
+
+*This is a required release for users of Teku, and optional for all others*
+
+- Fix Teku keymanager API cert. Thanks to @alepacheco for raising the issue!
+
+## v2.2.5 2022-12-08
 
 *This is a required release for users of Erigon and Nethermind, and optional for all others*
 
