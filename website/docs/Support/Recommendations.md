@@ -15,7 +15,7 @@ is a work in progress. Choose one client, and one client only, and run that.
 
 ## Host Security
 
-The [bare metal installation guide](https://medium.com/@SomerEsat/guide-to-staking-on-ethereum-2-0-ubuntu-medalla-nimbus-5f4b2b0f2d7c)
+The [bare metal installation guide](https://someresat.medium.com/guide-to-staking-on-ethereum-ubuntu-nimbus-31f56657ea8f)
 by /u/SomerEsat has excellent notes on Linux host security. Running `ntpd`
 is highly recommended, time matters to validators. Note the ports
 you will need to open in `ufw` depend on the client you choose.
