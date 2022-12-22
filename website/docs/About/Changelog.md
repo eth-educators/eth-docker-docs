@@ -27,6 +27,7 @@ To update the components of the project, run from within the project directory (
 - Pruning logic now recognizes a non-standard docker `data-root` directory
 - Host map additional P2P ports for Erigon: It uses a separate port for each eth/xx P2P protocol.
 - Remove Nethermind metrics push timeout, as it no longer has a default pushgateway
+- Fix an issue that had `./ethd update` build everything twice
 
 ## v2.2.5.1 2022-12-15
 
