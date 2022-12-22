@@ -17,7 +17,18 @@ To update the components of the project, run from within the project directory (
 > On 1/27/2022, eth-docker's repository name changed. Everything should work as it did.
 > If you do wish to manually update your local reference, run `git remote set-url origin https://github.com/eth-educators/eth-docker.git`
 
-## v2.2.5.1 2011-12-15
+## v2.2.6 2022-12-22
+
+*This is a required release for users of Nimbus, and optional for all others*
+
+- Support Nimbus v22.12.0. This is a breaking change, no prior releases of Nimbus are supported.
+- `./auto-prune.sh` now supports Nethermind. There is a risk that this breaks if Nethermind takes >24 hours to prune and the crontab is run every 24 hours. Feedback welcome.
+- `./auto-prune.sh` now supports `--threshold` and `--help`
+- Pruning logic now recognizes a non-standard docker `data-root` directory
+- Host map additional P2P ports for Erigon: It uses a separate port for each eth/xx P2P protocol.
+- Remove Nethermind metrics push timeout, as it no longer has a default pushgateway
+
+## v2.2.5.1 2022-12-15
 
 *This is a required release for users of Teku, and optional for all others*
 
@@ -83,7 +94,7 @@ To update the components of the project, run from within the project directory (
 
 *This is a required release for users of Erigon, and optional for all others*
 
-- Support Erigon 2.30.0's new `--externalcl` parameter
+- Support Erigon 2.30.0's new `--externalcl` parameter. This is a breaking change, no prior versions of Erigon are supported.
 - Fix test for `custom-prom.yml` used in `grafana-cloud.yml`
 - Support MEV boost `-minbid`
 - Check for 125 GiB free disk space before Nethermind prune
