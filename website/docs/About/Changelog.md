@@ -23,6 +23,7 @@ To update the components of the project, run from within the project directory (
 
 - Add `--rpc-max-logs-range=65536` to `besu.yml` to support SSV and RocketPool out of the box
 - Fix handling of non-standard Docker data-root. Thanks to @mLewisLogic!
+- Added `grafana-rootless.yml` for use with rootless docker.
 
 ## v2.2.6 2022-12-22
 
