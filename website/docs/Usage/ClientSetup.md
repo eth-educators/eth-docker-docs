@@ -372,3 +372,61 @@ Check that chrony is synchronized: Run `chronyc tracking`.
 
 This step is highly hardware-dependent. If you went with a server that has IPMI/BMC - out of band management of
 the hardware - then you'll want to configure IPMI to email you on error.
+
+## Additional and recommended Linux performance tuning
+
+### noatime
+
+By default, Linux will write a new file timestamp on every read. As you may imagine, this is no bueno for database applications like an Ethereum node.
+
+You can increase the lifetime of your SSD - and incidentally get a small speed boost - by turning this "atime" feature off.
+
+`sudo nano /etc/fstab`
+
+Find the entry for your `/` filesystem, or, if you moved the docker `data-root`, the file system docker lives on.
+
+Find the 4th column. It might read `defaults` right now. Append `,noatime` to it. A full entry might look something like this:
+
+`/dev/disk/by-uuid/33162132-f374-417d-817e-04fdd77e5e11 / ext4 defaults,noatime 0 1`
+
+Don't delete any parameters, just add `,noatime`. And make sure to add that to the 4th column, not anywhere else.
+
+Save, and test with `sudo mount -o remount /`. If that completes without errors, you got it right.
+
+### swappiness
+
+By default, Linux will use swap **a lot**. And, yep you guessed it, that ain't great for database applications like an Ethereum node.
+
+So let's set [swappiness](https://www.howtogeek.com/449691/what-is-swapiness-on-linux-and-how-to-change-it/) to `1`.
+
+`sudo nano /etc/sysctl.conf`
+
+Scroll to the bottom of this file and add
+
+`vm.swappiness=1`
+
+Close and save. Then load the new value with
+
+`sudo sysctl -p`
+
+Alternatively, if you have 32 GiB of RAM or more, you can disable swap entirely with
+
+`sudo swapoff -a`
+
+then edit `/etc/fstab` with `sudo nano /etc/fstab` and comment out the swap volume(s).
+
+### Side channel mitigations - CAUTION
+
+**Here be dragons**
+
+On a VM, VPS, cloud instance, &c, leave this alone. Do not turn off mitigations. They exist for a reason, to keep other processes on the same CPU from reading your secrets.
+
+If however this is a machine you own - baremetal or solo node at home - and the only thing running on here is the Ethereum node, you can turn off side channel mitigations for a small speed boost.
+
+`sudo nano /etc/default/grub`
+
+Find `GRUB_CMDLINE_LINUX` and add `  mitigations=off`
+
+Close and save. `sudo update-grub` and then `sudo reboot`. Provided you got the edit right, the system will come back up, and you can check vulnerability mitigations are now off with `lscpu`
+
+Once more, **don't do this** if the physical machine is shared with VMs or processes you do not control.

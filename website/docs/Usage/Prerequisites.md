@@ -166,6 +166,14 @@ sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-compose-plu
 
 If you like, you can also add a docker-compose alias, replacing `MYUSERNAME` with your actual user name: `echo 'alias docker-compose="docker compose"' >>/home/MYUSERNAME/.profile`
 
+## rootless Docker
+
+eth-docker works with [rootless Docker](https://docs.docker.com/engine/security/rootless/).
+
+If using Grafana, use `grafana-rootless.yml` instead of `grafana.yml`. This omits node-exporter, cadvisor, promtail and Loki.
+
+If using traefik, either change its ports in `.env` to be above `1024`, or [expose privileged ports](https://docs.docker.com/engine/security/rootless/#exposing-privileged-ports).
+
 ## macOS Prerequisites
 
 > The following prerequisites apply if you are going to use macOS as a server to run an Ethereum staking full node. If you use macOS to connect *to* a node server, all you need is an SSH client.
