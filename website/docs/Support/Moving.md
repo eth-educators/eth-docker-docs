@@ -8,7 +8,7 @@ When you wish to move a validator, the most important part is that you do not
 cause yourself to get slashed. "Slashing" is a large penalty and a forced
 exit of the validator.
 
-The first slashings on mainnet occured because someone was running a validator in
+The first slashings on mainnet occurred because someone was running a validator in
 two places at once. **Don't be that person.**
 
 Read the [Ethereum PoS primer](https://ethos.dev/beacon-chain/) to understand how
