@@ -17,6 +17,16 @@ To update the components of the project, run from within the project directory (
 > On 1/27/2022, eth-docker's repository name changed. Everything should work as it did.
 > If you do wish to manually update your local reference, run `git remote set-url origin https://github.com/eth-educators/eth-docker.git`
 
+## v2.2.6.2 2022-12-31
+
+*This is an optional release*
+
+- Increase stop timeout for all EL to 5 minutes "just in case"
+- Explicit permissions for all scripts in Dockerfile - thanks to @mLewisLogic for finding a corner case!
+- Run Grafana as a non-root user
+- Explicit NAT method added to Besu - thanks to @dabauxi!
+- Update Nethermind's dasel dependency to v2.0.2
+
 ## v2.2.6.1 2022-12-23
 
 *This is an optional release*
