@@ -178,10 +178,12 @@ If using traefik, either change its ports in `.env` to be above `1024`, or [expo
 
 > The following prerequisites apply if you are going to use macOS as a server to run an Ethereum staking full node. If you use macOS to connect *to* a node server, all you need is an SSH client.
 
-- Install [Docker Desktop](https://www.docker.com/products/docker-desktop) and allocate 16 GiB of RAM and 1.5TB or so of storage space to it, in Preferences->Resources-Advanced.
+- Install [Docker Desktop](https://www.docker.com/products/docker-desktop) and allocate 16+ GiB of RAM and 1.5TB or so of storage space to it, in Preferences->Resources->Advanced.
 - Install prerequisites via homebrew: `brew install coreutils newt bash`
 - You may need to log out and back into your terminal session to have the right version of bash. Try `bash --version` and verify it's 5.x or higher.
 - Verify git is installed with `git --version`. It will show a Desktop prompt to install it if it isn't.
+
+> Docker Desktop on macOS has its ideosyncrasies. An arguable easier path could be to keep macOS just for firmware updates and [dual-boot into Debian Linux](https://wiki.debian.org/InstallingDebianOn/Apple).
 
 ## Windows 10/11 discouraged
 
