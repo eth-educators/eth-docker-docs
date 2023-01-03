@@ -8,10 +8,10 @@ When you wish to move a validator, the most important part is that you do not
 cause yourself to get slashed. "Slashing" is a large penalty and a forced
 exit of the validator.
 
-The first slashings on mainnet occured because someone was running a validator in
+The first slashings on mainnet occurred because someone was running a validator in
 two places at once. **Don't be that person.**
 
-Read the [beacon chain primer](https://ethos.dev/beacon-chain/) to understand how
+Read the [Ethereum PoS primer](https://ethos.dev/beacon-chain/) to understand how
 a validator can get slashed. The most common way is to simply run two copies of it
 at once.
 
@@ -27,13 +27,12 @@ a new one elsewhere, you may need to know how to move your key(s) safely.
 
 ## What you'll need
 
-* Your signing keys in keystore-m JSON format, and the password for them
-* If you do not have these any more, you can recreate them with the `existing-mnemonic`
-  workflow of deposit-cli, `sudo docker-compose run --rm deposit-cli-add-recover` in
-  this project, or offline to be very secure.
-* Ideally, an export of the slashing protection DB. This is a work in progress by
-  the client teams.
-* A checklist, and diligence
+- [ ] Your signing keys in keystore-m JSON format, and the password for them
+>  If you do not have these any more, you can recreate them with the `existing-mnemonic`
+>  workflow of deposit-cli, `./ethd cmd run --rm deposit-cli-existing` in
+>  this project, or offline to be very secure.
+- [ ] Ideally, an export of the slashing protection DB. If you are using eth-docker, `./ethd keys delete` will export the slashing protection database.
+- [ ] A checklist, and diligence
 
 ## Checklist
 
@@ -48,36 +47,42 @@ First, you'll want to bring down the old client and make sure it can't come back
 
 In the directory of the old client:
 
-* `sudo docker-compose down`
-* `sudo docker volume ls` - find the volume for the validator
-* `sudo docker volume rm VOLUMENAME` - remove the volume for the validator
+- [ ] `./ethd keys list`
+- [ ] `./ethd keys delete 0xPUBKEY` for each one so you get the slashing protection database
+- [ ] `./ethd down`
+- [ ] `docker volume ls` - find the volume for the validator
+- [ ] `docker volume rm VOLUMENAME` - remove the volume for the validator
 
 ### Verify
 
 Verify that you removed the right client:
 
-* `sudo docker-compose run validator` - confirm that it complains it cannot find its keys. If it still
+- [ ] `./ethd cmd run --rm validator` - confirm that it complains it cannot find its keys. If it still
   finds validator keys, do not proceed until you fixed that and it doesn't.
-  * For Nimbus and Teku, the command is `sudo docker-compose run beacon` instead
-* Look at https://beaconcha.in/ and verify that the validator(s) you just removed are now
-  missing an attestation.
-* Allow 10 minutes to go by before taking the next step
+  > For Nimbus and Teku, the command is `./ethd cmd run --rm consensus` instead
+- [ ] Look at https://beaconcha.in/ and verify that the validator(s) you just removed are now
+  missing an attestation. Take a note of the epoch the last successful attestion was in.
+- [ ] Verify that both machines are synchronized to time and are using NTP.
+- [ ] Allow 15 minutes to go by and verify that the last successful attestation's epoch is now
+  finalized. Only then take the next step.
 
 ### Import keys into new client
 
-* SCP the keys to `.eth2/validator_keys` in the project directory
-* Run `sudo docker-compose run --rm validator-import` and import the keys
-* Verify **once more** that all your validator(s) have been down long
+- [ ] SCP (or USB sneaker-net) the keys to `.eth/validator_keys` in the project directory
+- [ ] Ideally, also copy `slashing_protection*.json` to `.eth/validator_keys`
+- [ ] Verify **once more** that all your validator(s) have been down long
   enough to miss an attestion
-* Verify **once more** that trying to start the validator on the old client
+- [ ] Verify **once more** that trying to start the validator on the old client
   has it complaining it can't find keys, so that there is **no way** it
   could run in two places.
-* If you are absolutely positively sure that the old validator client cannot
-  start attesting again and 10 minutes have passed / **all** validators
-  have missed an attestion, then and only then:
-* Start the new client with `sudo docker-compose up -d eth2`
+- [ ] If you are absolutely positively sure that the old validator client cannot
+  start attesting again and 15 minutes have passed / **all** validators'
+  last successful attestation is in a finalized epoch, then and only then:
+- [ ] Start the new client with `./ethd up`
+- [ ] Run `./ethd keys import` and import the keys
 
-### Variant: DR beacon
+
+### Variant: DR consensus client
 
 You can keep a client fully synchronized without keys. No keys "ready
 to be imported" on the node, and no keys imported. That way, if and

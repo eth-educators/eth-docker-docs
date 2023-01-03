@@ -4,31 +4,38 @@
 			"About/Overview",
 			"About/Acknowledgements",
 			"About/Clients",
-			"About/PrysmWeb",
+			"About/Rewards",
+			"About/MergePrep",
 			"About/Changelog"
 		],
-		
 		"Usage": [
 			"Usage/BeforeYouStart",
+			"Usage/Hardware",
 			"Usage/Prerequisites",
-			"Usage/ResourceUsage",
 			"Usage/ClientSetup",
-			"Usage/BuildClient",
 			"Usage/ConfigureWallet",
 			"Usage/ImportKeys",
 			"Usage/StartClient",
 			"Usage/Deposit",
 			"Usage/Dashboards",
-			"Usage/Autostart"
+			"Usage/PrysmWeb",
+			"Usage/ReverseProxy",
+			"Usage/ResourceUsage"
 		],
 		"Support" : [
+			"Support/Troubleshooting",
 			"Support/Recommendations",
+			"Support/Update",
+			"Support/AddValidator",		
 			"Support/Cloud",
-			"Support/Testing",
+                        "Support/Moving",
+                        "Support/SwitchClient",
+			"Support/Exit",
+			"Support/GethPrune",
+			"Support/Rocketpool",
+			"Support/BloxSSV",
 			"Support/Windows",
-			"Support/Addendums",
-			"Support/Moving",
-			"Support/Tipjar"
+			"Support/Testing"
 		]
-}
+	}	
 }

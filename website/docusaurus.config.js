@@ -1,26 +1,27 @@
 module.exports = {
-    title: 'eth2-docker',
-    tagline: 'Ethereum 2 Docker Client',
-    url: 'https://github.com/eth2-educators/eth2-docker',
+    title: 'eth-docker',
+    tagline: 'Ethereum  Docker Client',
+    url: 'https://eth-docker.net',
     baseUrl: '/',
     onBrokenLinks: 'throw',
-    favicon: 'img/Moby-logo.png',
-    organizationName: 'Eth2 Docker',
-    projectName: 'eth2-docker',
+    favicon: 'img/eth-moby-logo.png',
+    organizationName: 'Eth Docker',
+    projectName: 'eth-docker',
     customFields: {
-        image: 'img/Moby-logo.png',
+        image: 'img/eth-moby-logo.png',
     },
     scripts: ['https://buttons.github.io/buttons.js'],
     themeConfig: {
         navbar: {
-            title: "eth2-docker Docs",
+            title: "eth-docker Docs",
             logo: {
-                alt: "Docker logo",
-                src: 'img/Moby-logo.png',
+                alt: "eth-docker logo",
+                href: '/',
+                src: 'img/eth-moby-logo.png',
             },
             items: [
                 {
-                    href: 'https://github.com/eth2-educators/eth2-docker',
+                    href: '/',
                     label: 'Get Started',
                     position: 'right',
                 }
@@ -28,17 +29,18 @@ module.exports = {
         },
         footer: {
             logo: {
-                alt: "eth2-docker Docs",
+                alt: "eth-docker logo",
                 href: '/',
-                src: 'img/Moby-logo.png',
+                src: 'img/eth-moby-logo.png',
             },
-            copyright: `Copyright © ${new Date().getFullYear()} Prysmatic Labs, LLC., Validator Deposit Contract 0x00000000219ab540356cbb839cbe05303d7705fa`,
+            copyright: `Copyright © ${new Date().getFullYear()} eth-docker contributors`,
             links: [],
         },
         algolia: {
-            apiKey: '1cfe22495a6677d0769b41f971145ac6',
-            indexName: 'eth2-docker',
-            algoliaOptions: {}
+            appId: 'BH4D9OD16A',
+            apiKey: 'a51366ded1891d634408de0e1e4cf1c5',
+            indexName: 'eth-docker',
+            algoliaOptions: { 'facetFilters': ["type:content", "version:current"] }
         }
     },
     presets: [
@@ -47,15 +49,14 @@ module.exports = {
             {
                 docs: {
                     path: './docs',
-                    routeBasePath: 'docs',
+                    routeBasePath: '/',
                     sidebarPath: require.resolve('./sidebars.json'),
-                    editUrl: 'https://github.com/prysmaticlabs/documentation/edit/master/website/',
+                    editUrl: 'https://github.com/eth-educators/eth-docker-docs/edit/main/website/',
                 },
                 // theme: {
                 //     customCss: require.resolve('./src/css/custom.css'),
                 // },
                 sitemap: {
-                    cacheTime: 600 * 1000,
                     changefreq: 'weekly',
                     priority: 0.5,
                 },

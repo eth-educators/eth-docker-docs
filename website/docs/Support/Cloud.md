@@ -1,14 +1,18 @@
 ---
 id: Cloud
-title:  Running eth2-docker in the cloud.
-sidebar_label: Cloud
+title:  Securing a cloud VPS.
+sidebar_label: Cloud Security
 ---
 
-For the most part, nothing special needs to be done to run eth2-docker on a VPS. However, budget VPS providers do not
+For the most part, nothing special needs to be done to run eth-docker on a VPS. However, budget VPS providers do not
 filter the traffic that can reach the machine: This is definitely not desirable for unsecured ports like Grafana
-or eth1, if the shared/standalone option is being used. All that should be reachable are the P2P ports.
+or execution client, if the shared option is being used. All that should be reachable are the P2P ports.
 
-## Securing Grafana and eth1 via ufw
+The arguably best way to secure Grafana, Web UI and execution client ports is via encryption. For this, please see the [secure proxy](../Usage/ReverseProxy.md)
+instructions.
+
+If you prefer to keep the ports unencrypted and wish to secure them via ufw, please read on.
+## Securing Grafana and execution client via ufw
 
 While Docker automatically opens the Linux firewall for ports it "maps" to the host, it also
 allows rules to be placed in front of that, via the `DOCKER-USER` chain.
@@ -51,6 +55,7 @@ stop)
     iptables -F DOCKER-USER || true
     iptables -A DOCKER-USER -j RETURN || true
     iptables -X ufw-user-input || true
+    ;;
 ```
 
 Then, make it executable: `sudo chmod 750 /etc/ufw/before.init`
@@ -102,12 +107,11 @@ Check again on [you get signal](https://www.yougetsignal.com/tools/open-ports/) 
 Connect to your node with ssh tunneling, e.g. `ssh -L7500:node-IP:7500 user@node-IP` and browse to `http://127.0.0.1:7500` on the client
 you started the SSH session *from*. You expect to be able to reach the Prysm Web UI.
 
-### Example: Shared or standalone eth1 on port 8545
+### Example: Shared or standalone execution client on port 8545
 
-It can be useful to have a single eth1 node service multiple beacons, for example when testing, or running a solo
-staking docker-compose stack as well as a pool docker-compose stack.
+It can be useful to have a single execution client service multiple consensus clients, for example when testing, or running a solo staking docker-compose stack as well as a pool docker-compose stack.
 
-To allow Docker traffic to eth1 while dropping all other traffic:
+To allow Docker traffic to the execution client while dropping all other traffic:
 - `sudo ufw allow from 172.16.0.0/12 to any port 8545`
 - `sudo ufw allow from 192.168.0.0/16 to any port 8545`
 - `sudo ufw allow from 10.0.0.0/8 to any port 8545`
@@ -117,10 +121,8 @@ To allow Docker traffic to eth1 while dropping all other traffic:
 - `sudo ufw allow from 10.0.0.0/8 to any port 8546`
 - `sudo ufw deny 8546`
 
-> With ISP traffic caps, it could be quite attractive to run eth1 in a small VPS, and reference it from a beacon somewhere
-> else. This would require an eth1 proxy and TLS encryption, and likely client authentication. If that is your use case,
-> a PR would be welcome, if you can get to it before I do.
-
+> With ISP traffic caps, it could be quite attractive to run the execution client in a small VPS, and reference it from a consensus client somewhere
+> else. This requires a [secure proxy](../Usage/ReverseProxy.md).
 ## Acknowledgements
 
 The ufw integration is a slightly tweaked version of https://github.com/chaifeng/ufw-docker by way 

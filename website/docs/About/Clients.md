@@ -1,26 +1,32 @@
 ---
 id: Clients
-title:  Supported Clients
+title:  Supported Clients.
 sidebar_label: Clients
 ---
 
 This project builds from client teams' official docker images or from official source repositories, pulled
 directly from docker hub or github, respectively. In most cases, binary is the default.
 
-Currently supported clients:
-- Lighthouse
-- Prysm
+Currently supported consensus clients:
 - Teku
+- Lighthouse
 - Nimbus
+- Lodestar
+- Prysm
 
-Currently supported optional components:
-- geth, local eth1 node
-- besu, local eth1 node - has not been tested extensively by this team. Feedback welcome.
-- nethermind, local eth1 node - pruning in beta. Feedback welcome.
-- openethereum, local eth1 node - testing mainly, DB corruption resolved.
-> Use one of the local eth1 node options or a 3rd-party provider of eth1 chain data to "feed"
-> your eth2 beacon node, so you can [propose](https://ethos.dev/beacon-chain/) blocks.
-- slasher, Running slasher is optional, but helps secure the chain and may result in additional earnings.
+Currently supported execution clients:
+- Geth
+- Besu
+- Nethermind
+- Erigon
+
+> An Ethereum node has one consensus client and one execution client. eth-docker can be used to
+> split this between two machines, but that distributed setup has not yet been tested.
+
+Currently supported additional options:
+- Sending stats to https://beaconcha.in
+- Prysm Web UI
 - Grafana dashboard
+- slasher - running slasher is optional and requires additional resources
 
-Please see [Prysm Web](../About/PrysmWeb.md) for experimental Web UI support on Prysm, and use the Web instead of validator-import to import keys.
+Please see [Prysm Web](../Usage/PrysmWeb.md) for Web UI support on Prysm.
