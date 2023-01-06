@@ -14,13 +14,13 @@ As always, add `sudo` to these commands if your user is not part of the `docker`
 
 ## Stopping and starting, updating
 
-`./ethd stop` stops all services, `./ethd up` starts them. `./ethd restart` does both. `./ethd update` brings in updates to the clients, `./ethd update --keep-targets` does that while keeping docker tag targets in `.env` intact.
+`./ethd stop` stops all services, `./ethd up` starts them. `./ethd restart` does both. `./ethd update` brings in updates to the clients, `./ethd update --refresh-targets` does that while resetting docker tag targets in `.env` to defaults.
 
 ## Targets, source build
 
-There are build targets in `.env` which, for the most part, you need not touch. For Lighthouse in particular, if your CPU is older than Broadwell (2014), you'll want the `latest` target, not `latest-modern`. Change `LH_DOCKER_TAG=latest` in .env and when updating, tell eth-docker to keep your targets: `./ethd update --keep-targets`. You could also add an `alias` to your `.profile` or `.bashrc` for it.
+There are build targets in `.env` which, for the most part, you need not touch. For Lighthouse in particular, if your CPU is older than Broadwell (2014), you'll want the `latest` target, not `latest-modern`. Change `LH_DOCKER_TAG=latest` in `.env` and run `./ethd update`, then `./ethd up`.
 
-If you want to build from source, change to `Dockerfile.source` instead of `Dockerfile.binary` for that particular client. The default source targets use the latest released tag on github; adjust to whichever tag or branch you want to build from. And be sure to use `./ethd update --keep-targets` so your change is not overwritten on update.
+If you want to build from source, change to `Dockerfile.source` instead of `Dockerfile.binary` for that particular client. The default source targets use the latest released tag on github; adjust to whichever tag or branch you want to build from.
 
 ## Remove all traces of the client
 
