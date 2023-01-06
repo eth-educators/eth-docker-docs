@@ -10,12 +10,24 @@ sidebar_label: Changelog
 
 To update the components of the project, run from within the project directory (`cd ~/eth-docker` by default):
 
-* `./ethd update`. This fetches new client version(s), a new eth-docker, and updates `.env`, keeping your modifications. If you made changes to the source or binary build targets, run `./ethd update --keep-targets` instead.
+* `./ethd update`. This fetches new client version(s), a new eth-docker, and updates `.env`, keeping your modifications. If you want to reset the source or binary build targets in `.env`, run `./ethd update --refresh-targets` instead.
 * **Only** if you are using source builds: `./ethd cmd build --pull --no-cache`
 * `./ethd up` - use the new client version(s)
 
 > On 1/27/2022, eth-docker's repository name changed. Everything should work as it did.
 > If you do wish to manually update your local reference, run `git remote set-url origin https://github.com/eth-educators/eth-docker.git`
+
+## v2.2.6.3 2023-01-06
+
+*This is an optional release*
+
+- Update Ethereum metrics exporter dashboard to latest version
+- Add ultrasound relays to default list - thanks @JustinDrake! 🦇🔊
+- A few fixes for `./ethd` on macOS
+- `./ethd config` builds only once 😅
+- `./ethd update` now defaults to keeping changed build targets, and can reset them to defaults with `--refresh-targets`
+- New `./ethd keys create-prysm-wallet` for better UX when using Prysm
+- Remove return code workaround for Lodestar from key management script
 
 ## v2.2.6.2 2022-12-31
 
