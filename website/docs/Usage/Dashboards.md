@@ -23,6 +23,7 @@ A baseline set of dashboards has been included.
 - [Nimbus Dashboard JSON](https://raw.githubusercontent.com/status-im/nimbus-eth2/master/grafana/beacon_nodes_Grafana_dashboard.json)
 - [Teku Dashboard JSON](https://grafana.com/api/dashboards/12199/revisions/1/download)
 - [Geth Dashboard JSON](https://gist.githubusercontent.com/karalabe/e7ca79abdec54755ceae09c08bd090cd/raw/3a400ab90f9402f2233280afd086cb9d6aac2111/dashboard.json)
+- [Lodestar Dashboard JSON](https://raw.githubusercontent.com/ChainSafe/lodestar/stable/dashboards/lodestar_summary.json)
 
 You can additional dashboards from the Grafana repository, for example `11133` as a node exporter dashboard. You can also import dashboards by their JSON, as you see fit.
 
