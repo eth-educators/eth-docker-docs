@@ -51,6 +51,12 @@ Run `./ethd cmd run --rm validator-exit <INDEX or 0xPUBKEY>` and follow prompts 
 - If using an index, here 0, `./ethd cmd run --rm validator-voluntary-exit 0`
 - If using a public key, you need to include "0x" in front of it, for example `./ethd cmd run --rm validator-voluntary-exit 0xb0127e191555550fae82788061320428d2cef31b0807aa33b88f48c53682baddce6398bb737b1ba5c503ca696d0cab4a`
 
+## Lodestar
+
+To exit a specific validator, run `./ethd cmd run --rm validator-exit --pubkeys <0xPUBKEY>`.  
+Multiple validators can be exited by providing a comma-separated list of public keys to `pubkeys`.  
+If no `pubkeys` are provided, it will exit all validators that have been imported.
+
 ## Avoid penalties
 
 Note you will need to continue running your validator until the exit
