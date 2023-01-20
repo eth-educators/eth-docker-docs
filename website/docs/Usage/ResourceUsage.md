@@ -12,6 +12,7 @@ sidebar_label: Client Resource Usage
 | Lighthouse | 2.1.1  | Jan 2022 | ~90 GiB | ~1.7 GiB | 50-200% | |
 | Nimbus | 1.6.0 | Jan 2022 | ~40 GiB | ~2.3 GiB | 50-200% | |
 | Prysm | 2.1.3 | Jul 2022 | ~100 GiB | ~4 GiB | 100-300% | |
+| Lodestar | 1.3.0 | Jan 2023 | ~30 GiB | ~4 GiB | 50-150% | |
 
 # Execution clients
 
