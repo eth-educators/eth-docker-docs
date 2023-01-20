@@ -17,6 +17,20 @@ To update the components of the project, run from within the project directory (
 > On 1/27/2022, eth-docker's repository name changed. Everything should work as it did.
 > If you do wish to manually update your local reference, run `git remote set-url origin https://github.com/eth-educators/eth-docker.git`
 
+## v2.2.7 2023-01-20
+
+*This is an optional release*
+
+- New advanced option `ARCHIVE_NODE` in `./env`. Caution that this can use upwards of 12TB of disk space.
+- Nethermind source build uses .NET 7.0
+- Lodestar prometheus scrape fixed. Thanks @nflaig!
+- Nethermind pruning requires 200 GiB free, down from 250 GiB
+- Extremely experimental support for Reth - it does not yet sync
+- `./ethd config` offers Erigon when running on Gnosis Chain
+- Update Nethermind's dasel dependency to v2.1.0
+- All source builds can now build from a tag, a branch, or a PR
+- `./ethd update` will also run `docker system prune --force` to remove dangling images and build caches
+
 ## v2.2.6.3 2023-01-06
 
 *This is an optional release*
