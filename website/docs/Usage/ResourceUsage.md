@@ -27,7 +27,7 @@ SSD, RAM and CPU use is after initial sync, when keeping up with head. 100% CPU 
 | Geth   | 1.10.18 | Jun 2022 | ~560 GiB | ~13.5 GiB / week | 8 GiB | 100-400% | default cache size |
 | Geth   | 1.10.18 | Jun 2022 | ~560 GiB | ~12 GiB / week | 9-10 GiB | 100-400% | `--cache 5336`, max value at 16 GiB RAM, reduces DB growth rate |
 | Geth   | 1.10.18 | Jun 2022 | ~560 GiB | ~8 GiB / week | 16-19 GiB | 100-400% | `--cache 10704`, max value at 32 GiB RAM, reduces DB growth rate |
-| Nethermind | 1.12.4 | Feb 2022 | ~660 GiB | ~16 GiB / week | 15-16 GiB | 50-200% | memory use w/ pruning and prune-cache 4096; 18 GiB memory and 8 cores during sync |
+| Nethermind | 1.16.1 | Jan 2023 | ~860 GiB | ~30 GiB / week | 15-16 GiB | 50-200% | |
 | Besu | 22.4.1 | May 2022 | ~610 GiB | ~8 GiB / week | 8 - 9 GiB | 50-100% | with Bonsai tries |
 | Erigon | 2.28.1 | Oct 2022 | ~913 GiB | ~18 GiB / week | See comment | 50-100% | Erigon will have the OS use all available RAM as a DB cache during post-sync operation, but this RAM is free to be used by other programs as needed. During sync, it may run out of memory on machines with less than 32 GiB |
 
@@ -80,10 +80,7 @@ Cache size default in all tests.
 | Geth   | 1.10.1  | Mar 2021 | Homebrew Xeon | ~ 10 hours | |
 | Geth   | 1.10.9  | Oct 2021 | OVH Baremetal | ~ 4.5 hours | |
 | Geth   | 1.10.9  | Oct 2021 | Netcup VPS3000 | ~ 13 hours | |
-| Geth   | 1.10.13  | Nov 2021 | Contabo L | Never | VPS IOPS too low to finish Geth sync |
-| Nethermind | 1.10.7-beta | Jan 2021 | Contabo L | Never | VPS IOPS too low to finish Nethermind sync |
-| Nethermind | 1.10.44 | Mar 2021 | Homebrew Xeon | ~ 27 hours | |
-| Nethermind | 1.10.9 | Jan 2021 | Netcup VPS 2000 | ~ 20 hours | |
+| Nethermind | 1.15 | December 2022 | Baremetal NVMe | ~ 24 hours | |
 | Besu | 22.4.1 | May 2022 | OVH Baremetal NVMe | ~ 30 hours | With X_SNAP sync |
 | Erigon | 2022.09.03 | Oct 2022 | EPYC 7443p | ~ 4 days | |
 
