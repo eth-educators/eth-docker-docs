@@ -11,9 +11,9 @@ If you haven't already, please see [prerequisites](../Usage/Prerequisites.md) an
 
 ## Non-root user on Linux
 
-If you are logged in as user `root` and do not have a non-root user already, create a non-root user 
-with your `USERNAME` of choice to log in as, and give it sudo rights. `sudo` allows you to 
-run commands `as root` while logged in as a non-root user. 
+If you are logged in as user `root` and do not have a non-root user already, create a non-root user
+with your `USERNAME` of choice to log in as, and give it sudo rights. `sudo` allows you to
+run commands `as root` while logged in as a non-root user.
 
 This step may be needed on a VPS, and is not typically needed on a local fresh install of Ubuntu,
 as Ubuntu creates a non-root user by default.
@@ -210,7 +210,7 @@ clients each in their own directory.
 If you want to run multiple isolated clients, just clone this project into a new directory for
 each. This is great for running testnet and mainnet in parallel, for example.
 
-### Prysm or Lighthouse Slasher   
+### Prysm or Lighthouse Slasher
 
 Running [slasher](https://docs.prylabs.network/docs/prysm-usage/slasher/) is an optional setting in `.env`, and helps secure the chain. There are [no additional earnings](https://github.com/ethereum/consensus-specs/issues/1631) from running a slasher: Whistleblower rewards are not implemented, and may not ever be implemented.
 
@@ -228,7 +228,7 @@ Build all required images. `./ethd cmd build --pull`
 You'll want to enable a host firewall. You can also forward the P2P ports of your execution and consensus
 clients for faster peer acquisition.
 
-Docker will open execution and consensuns client P2P (Peer to Peer) ports and the Grafana port automatically. Please make sure the Grafana port cannot be reached directly. If you need to get to Grafana remotely,
+Docker will open execution and consensus client P2P (Peer to Peer) ports and the Grafana port automatically. Please make sure the Grafana port cannot be reached directly. If you need to get to Grafana remotely,
 an [SSH tunnel](https://www.howtogeek.com/168145/how-to-use-ssh-tunneling/) is a good choice.
 
 For a VPS/cloud setup, please take a look at notes on [cloud security](../Support/Cloud.md). You'll want to
@@ -240,7 +240,7 @@ Ports that I mention can be "Open to Internet" can be either forwarded to your n
 > Opening the P2P ports to the Internet is optional. It will speed up peer acquisition, which
 > can be helpful. To learn how to forward your ports in a home network, first verify
 > that you are [not behind CGNAT](https://winbuzzer.com/2020/05/29/windows-10-how-to-tell-if-your-isp-uses-carrier-grade-nat-cg-nat-xcxwbt/).
-> Then look at [port-forwarding instructions](https://portforward.com/) for your specific router/firewall. 
+> Then look at [port-forwarding instructions](https://portforward.com/) for your specific router/firewall.
 
 Open only the ports that you actually use, depending on your client choices.
 
@@ -250,7 +250,7 @@ Open only the ports that you actually use, depending on your client choices.
 - 22/tcp - SSH. Only open to Internet if you want to access the server remotely. If open to Internet, configure
   SSH key authentication.
 
-On Ubuntu, the host firewall `ufw` can be used to allow SSH traffic. 
+On Ubuntu, the host firewall `ufw` can be used to allow SSH traffic.
 
 Docker bypasses ufw and opens additional ports directly via "iptables" for all ports that are public on the host,
 which means that the P2P ports need not be explicitly listed in ufw.
@@ -268,16 +268,16 @@ which means that the P2P ports need not be explicitly listed in ufw.
 
 > There is one exception to the rule that Docker opens ports automatically: Traffic that targets a port
 > mapped by Docker, where the traffic originates somewhere on the same machine the container runs on,
-> and not from a machine somewhere else, will not be automatically handled by the Docker firewall rules, 
-> and will require an explicit ufw rule. 
+> and not from a machine somewhere else, will not be automatically handled by the Docker firewall rules,
+> and will require an explicit ufw rule.
 > Steps to allow for this scenario are in [cloud security](../Support/Cloud.md)
 
 ### SSH key authentication with Linux
 
 This step is vital if your node's SSH port is reachable via the Internet, for example, because
-it runs on a VPS. 
+it runs on a VPS.
 
-This step is still recommended if the SSH port is not reachable via the Internet. 
+This step is still recommended if the SSH port is not reachable via the Internet.
 
 For security reasons, you want some form of two-factor authentication for SSH login, particularly if SSH
 is exposed to the Internet. These instructions accomplish that by creating an SSH key with passphrase.

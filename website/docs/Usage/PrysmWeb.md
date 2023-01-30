@@ -28,7 +28,7 @@ and validator.
 
 You need the Web UI secret first. It is shown during startup in the validator client log. You can also run `./ethd keys get-api-token` to get it.
 
-The first time you connect to the Web UI, you'll want to use `http://IP:7500/initalize?token=THETOKEN`, replacing `IP` and `THETOKEN` with the actual IP address and access token.
+The first time you connect to the Web UI, you'll want to use `http://IP:7500/initialize?token=THETOKEN`, replacing `IP` and `THETOKEN` with the actual IP address and access token.
 
 If your node is on a local, protected LAN, you can access the Web UI on a browser from any machine on your network via the node's IP address, if you use `prysm-web-shared.yml`.
 

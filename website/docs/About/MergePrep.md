@@ -10,11 +10,11 @@ Ethereum is moving towards "The Merge", a long-awaited change to Proof-of-Stake 
 
 Both a Consensus Layer and an Execution Layer client are now required.
 
-If you run a Consensus Layer (CL) client such as Lodestar, Nimbus, Teku, Lighthouse, Prysm, then you'll now also need an Execution Layer (EL) client such as Besu, Erigon, Nethermind, Geth. 
+If you run a Consensus Layer (CL) client such as Lodestar, Nimbus, Teku, Lighthouse, Prysm, then you'll now also need an Execution Layer (EL) client such as Besu, Erigon, Nethermind, Geth.
 
 Conversely, if you run an EL today, you will now also need a CL.
 
-This is because Ethereum will be one chain and the CL is in complete control of the EL, telling it which fork / chain is real: The "Consensus" in "Consensus Layer". While the EL produces blocks and handles transactions, as it has all along. This happens over something called the Engine API, which we'll get to next. 
+This is because Ethereum will be one chain and the CL is in complete control of the EL, telling it which fork / chain is real: The "Consensus" in "Consensus Layer". While the EL produces blocks and handles transactions, as it has all along. This happens over something called the Engine API, which we'll get to next.
 
 For this reason, Infura projects won't be able to be used as an EL any longer, or for failover. Their "ETH2" project can still be used for checkpoint sync of the CL.
 

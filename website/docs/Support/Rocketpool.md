@@ -40,7 +40,7 @@ Optional cleanup: If you had chain databases in eth-docker previously, do a `doc
 ### Import solo staking keys
 
 If you haven't already imported validator keys to eth-docker, do so now. You will need the `keystore-m` files and their
-pasword.
+password.
 
 - Copy `keystore-m` files to `.eth/validator_keys` in the eth-docker directory
 - From the eth-docker directory, start eth-docker: `./ethd up`

@@ -19,7 +19,7 @@ With this option, CloudFlare will provide DNS management as well as DDoS protect
 
 You'll add `traefik-cf.yml` to your `COMPOSE_FILE` in `.env`, for example: `lighthouse.yml:geth.yml:grafana.yml:traefik-cf.yml`
 
-Create a (free) CloudFlare account and set up your domain, which will require pointing nameservers for your domain 
+Create a (free) CloudFlare account and set up your domain, which will require pointing nameservers for your domain
 to Cloudflare's servers. How this is done depends on your domain registrar.
 
 You will need a "scoped API token" from CloudFlare's [API page](https://dash.cloudflare.com/profile/api-tokens). Create a token with `Zone.DNS:Edit`, `Zone.Zone:Read` and `Zone.Zone Settings:Read` permissions, for all zones. This will not work if it is issued for a specific zone only. Make a note of the Token secret, it will only be shown to you once.

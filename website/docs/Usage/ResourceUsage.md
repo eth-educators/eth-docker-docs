@@ -47,7 +47,7 @@ Specifically `fio --randrepeat=1 --ioengine=libaio --direct=1 --gtod_reduce=1 --
 
 Read and write latencies are measured with `sudo iostat -mdx 240 2` during Geth sync, look at `r_await` and `w_await` of the second output block.
 
-Servers have been configured with [noatime](https://www.howtoforge.com/reducing-disk-io-by-mounting-partitions-with-noatime) and [no swap](https://www.geeksforgeeks.org/how-to-permanently-disable-swap-in-linux/) to improve available IOPS. 
+Servers have been configured with [noatime](https://www.howtoforge.com/reducing-disk-io-by-mounting-partitions-with-noatime) and [no swap](https://www.geeksforgeeks.org/how-to-permanently-disable-swap-in-linux/) to improve available IOPS.
 
 A note on Contabo: Stability of their service [is questionable](https://www.reddit.com/r/ethstaker/comments/l5d69l/if_youre_struggling_with_contabo/).
 
@@ -65,11 +65,11 @@ A note on Contabo: Stability of their service [is questionable](https://www.redd
 
 ## Initial sync times
 
-NB: All execution clients need to [download state](https://github.com/ethereum/go-ethereum/issues/20938#issuecomment-616402016) after getting blocks. If state isn't "in" yet, your sync is not done. This is a heavily disk IOPS dependent operation, which is why HDD cannot be used for a node. 
+NB: All execution clients need to [download state](https://github.com/ethereum/go-ethereum/issues/20938#issuecomment-616402016) after getting blocks. If state isn't "in" yet, your sync is not done. This is a heavily disk IOPS dependent operation, which is why HDD cannot be used for a node.
 
 For Nethermind, seeing "branches" percentage reset to "0.00%" after state root changes with "Setting sync state root to" is normal and expected. With sufficient IOPS, the node will "catch up" and get in sync.
 
-For Geth, you will see "State heal in progress" after initial sync, which will persist for a few hours if IOPS are low-ish. 
+For Geth, you will see "State heal in progress" after initial sync, which will persist for a few hours if IOPS are low-ish.
 
 This should complete in under 4 hours. If it does not, or even goes on for a week+, you do not have sufficient IOPS for Geth to "catch up" with state.
 
@@ -88,12 +88,12 @@ Cache size default in all tests.
 
 Geth needs a decent amount of IOPS, as do Besu and Nethermind. Erigon can run on very low IOPS, though should also not be used with HDD.
 
-For cloud providers, here are some results for syncing Geth. 
+For cloud providers, here are some results for syncing Geth.
 - AWS, gp2 or gp3 with provisioned IOPS have both been tested successfully.
-- Linode block storage, make sure to get NVMe-backed storage. 
+- Linode block storage, make sure to get NVMe-backed storage.
 - Netcup is sufficient as of late 2021.
 - Contabo VPS SSD cannot sync Geth as of late 2021.
-- There are reports that Digital Ocean block storage is too slow, as of late 2021. 
+- There are reports that Digital Ocean block storage is too slow, as of late 2021.
 - Strato V-Server is too slow as of late 2021.
 
 Dedicated servers with SSD or NVMe will always have sufficient IOPS. Do avoid hardware RAID though, see below. OVH Advance line as well as Hetzner are well-liked dedicated options; Linode or Strato or any other provider will work as well.

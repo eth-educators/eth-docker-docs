@@ -34,7 +34,7 @@ When setting up an Ethereum staking full node, you'll:
   machine used to run the node, for security reasons.
 - Import validator keys into the validator client, each validator key activates one validator
 - Once the Ethereum execution client and consensus client are fully synced with the chain, deposit Ethereum
-  at the launchpad, 32 ETH per validator key. That Ethereum is now locked up until after the "merge" 
+  at the launchpad, 32 ETH per validator key. That Ethereum is now locked up until after the "merge"
   of Ethereum PoS (Proof-of-Stake) with Ethereum PoW (Proof-of-Work).
 
 Here's what then happens:
@@ -56,7 +56,7 @@ Here's what then happens:
   in two separate validator clients simultaneously. The initial slashing penalty on main net has been reduced
   to 1/4th of its eventual value.
 - If all of the above was so much Gobbledegook, you may want to read the [Ethereum PoS primer](https://ethos.dev/beacon-chain/) and come
-  back to it every time you have questions. 
+  back to it every time you have questions.
 
 ## Guiding principles:
 
