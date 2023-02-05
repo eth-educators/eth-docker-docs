@@ -17,6 +17,18 @@ To update the components of the project, run from within the project directory (
 > On 1/27/2022, eth-docker's repository name changed. Everything should work as it did.
 > If you do wish to manually update your local reference, run `git remote set-url origin https://github.com/eth-educators/eth-docker.git`
 
+## v2.2.7.1 2023-02-05
+
+*This is an optional release*
+
+- Nimbus engine connection defaults to `http://` instead of `ws://` on a fresh install
+- Teku uses the `MINIMAL` mode when running pruned
+- Nethermind workaround for Prysm, `--JsonRpc.MaxBatchSize 10000`
+- New command `./ethd cmd run deposit-cli-change` to prep for withdrawal credential changes, if deposit-cli.yml is included *and* deposit-cli supports this
+- Flashbots URL change
+- Check for apparmor on Ubuntu and Debian because of an issue with docker-ce 23.0.0
+- Pre-provision homestaking dashboard id 17846. Thanks to @gwenvador!
+
 ## v2.2.7 2023-01-20
 
 *This is an optional release*

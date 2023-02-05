@@ -32,10 +32,9 @@ SSD, RAM and CPU use is after initial sync, when keeping up with head. 100% CPU 
 | Erigon | 2.28.1 | Oct 2022 | ~913 GiB | ~18 GiB / week | See comment | 50-100% | Erigon will have the OS use all available RAM as a DB cache during post-sync operation, but this RAM is free to be used by other programs as needed. During sync, it may run out of memory on machines with less than 32 GiB |
 
 Notes on disk usage
-- Geth -  DB size can be reduced when it grew too large by [offline(!) prune](../Support/GethPrune.md)
-- Nethermind - DB size can be reduced when it grow too large by online prune: Switch to full prune, manually start prune, switch back to memory prune
-- Erigon does not compress its DB, leaving that to the filesystem. With ZFS and lz4, it compresses around 1.4x. Be sure to set recordsize 16k on Erigon's dataset.
-
+- Geth -  DB size can be reduced when it grew too large, by [offline(!) prune](../Support/GethPrune.md)
+- Nethermind - DB size can be reduced when it grew too large, by [online prune](../Support/GethPrune.md)
+- Erigon does not compress its DB, leaving that to the filesystem.
 
 ## Test Systems
 
