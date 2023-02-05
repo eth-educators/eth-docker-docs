@@ -11,7 +11,7 @@ Recommended hardware profile:
 
 Generally, 8 GiB of RAM is a very tight fit, with only Nimbus/Geth reported to work, 16 GiB can be a tight fit depending on client mix, and 32 GiB is recommended.
 
-4 CPU cores are recommended to deal with spikes in processing. 
+4 CPU cores are recommended to deal with spikes in processing.
 
 An SSD is required for storage because the node databases are so IOPS-heavy. The Geth execution client would require around 650GiB of storage by itself initially, which can fill a 1TB SSD within 2 months. Offline pruning is available.
 

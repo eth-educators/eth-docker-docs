@@ -20,7 +20,7 @@ at once.
 When you absolutely have to. You incur an offline penalty of 3/4 of the reward
 you could have made in the same time. This means it is often better to take a day
 or several of downtime and work on getting the node back online, than risk
-slashing while moving validator keys. 
+slashing while moving validator keys.
 
 That said, if you are down during non-finality, or are abandoning a node to start
 a new one elsewhere, you may need to know how to move your key(s) safely.
@@ -61,7 +61,7 @@ Verify that you removed the right client:
   finds validator keys, do not proceed until you fixed that and it doesn't.
   > For Nimbus and Teku, the command is `./ethd cmd run --rm consensus` instead
 - [ ] Look at https://beaconcha.in/ and verify that the validator(s) you just removed are now
-  missing an attestation. Take a note of the epoch the last successful attestion was in.
+  missing an attestation. Take a note of the epoch the last successful attestation was in.
 - [ ] Verify that both machines are synchronized to time and are using NTP.
 - [ ] Allow 15 minutes to go by and verify that the last successful attestation's epoch is now
   finalized. Only then take the next step.

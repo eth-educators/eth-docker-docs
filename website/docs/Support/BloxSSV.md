@@ -50,4 +50,4 @@ Please see the [secure proxy](../Usage/ReverseProxy.md) docs if you'd like to ru
 
 ## Updating
 
-When there is a new version of your execuction client, consensus client or of the SSV node, just run `./ethd update` inside the `ssv-node` directory, which will pull fresh images. Then when you are ready, run `./ethd up` to start using the new version(s).
+When there is a new version of your execution client, consensus client or of the SSV node, just run `./ethd update` inside the `ssv-node` directory, which will pull fresh images. Then when you are ready, run `./ethd up` to start using the new version(s).

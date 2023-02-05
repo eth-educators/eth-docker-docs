@@ -79,8 +79,8 @@ First, verify that Grafana is running and port 3000 is open to world using somet
 
 Next, create ufw rules to allow access from `localhost` and drop access from anywhere else:
 
-- `sudo ufw allow from 127.0.0.1 to any port 3000` 
-- `sudo ufw deny 3000` 
+- `sudo ufw allow from 127.0.0.1 to any port 3000`
+- `sudo ufw deny 3000`
 
 Check again on "yougetsignal" or the like that port 3000 is now closed.
 
