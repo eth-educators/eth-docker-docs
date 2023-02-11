@@ -195,5 +195,5 @@ Optionally, remove the old Geth package: `sudo apt remove -y ethereum && sudo ap
 
 ### 4. Set an auto-prune crontab
 
-This is an optional component for [auto-pruning Geth](../Support/GethPrune.md#fully-automated-geth-prune).
+This is an optional component for [auto-pruning Geth or Nethermind](../Support/GethPrune.md#fully-automated-geth-prune).
 
