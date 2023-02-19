@@ -9,18 +9,17 @@
 			"About/Changelog"
 		],
 		"Usage": [
-			"Usage/BeforeYouStart",
-			"Usage/Hardware",
-			"Usage/Prerequisites",
-			"Usage/ClientSetup",
-			"Usage/ConfigureWallet",
+			"Usage/QuickStart",
 			"Usage/ImportKeys",
-			"Usage/StartClient",
-			"Usage/Deposit",
+			"Usage/Hardware",
+			"Usage/Networking",
+			"Usage/LinuxSecurity",
+			"Usage/Advanced",
 			"Usage/Dashboards",
 			"Usage/PrysmWeb",
 			"Usage/ReverseProxy",
-			"Usage/ResourceUsage"
+			"Usage/ResourceUsage",
+			"Usage/Prerequisites"
 		],
 		"Support" : [
 			"Support/Troubleshooting",
@@ -28,8 +27,8 @@
 			"Support/Update",
 			"Support/AddValidator",		
 			"Support/Cloud",
-                        "Support/Moving",
-                        "Support/SwitchClient",
+            "Support/Moving",
+            "Support/SwitchClient",
 			"Support/Exit",
 			"Support/GethPrune",
 			"Support/Rocketpool",
