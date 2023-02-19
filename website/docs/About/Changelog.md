@@ -17,6 +17,16 @@ To update the components of the project, run from within the project directory (
 > On 1/27/2022, eth-docker's repository name changed. Everything should work as it did.
 > If you do wish to manually update your local reference, run `git remote set-url origin https://github.com/eth-educators/eth-docker.git`
 
+## v2.2.8.1 2023-02-19
+
+*This is an optional release*
+
+- Online/offline withdrawal change workflow now actually works 😅
+- Geth will use PebbleDB on a fresh sync
+- Zhejiang testnet supported with Lodestar and Nethermind
+- Change default docker tag for Besu to `latest`
+- Remove legacy keyimport in preparation for security audit
+
 ## v2.2.8 2023-02-08
 
 *This is an optional release*
