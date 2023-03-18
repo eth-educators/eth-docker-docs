@@ -17,6 +17,21 @@ To update the components of the project, run from within the project directory (
 > On 1/27/2022, eth-docker's repository name changed. Everything should work as it did.
 > If you do wish to manually update your local reference, run `git remote set-url origin https://github.com/eth-educators/eth-docker.git`
 
+## v2.2.8.2 2023-03-18
+
+*This is an optional release*
+
+- `./ethd` will check for free disk space and warn the user if it's running low
+- Fix and pin ethereum-metrics-exporter
+- Default Graffiti uses 🦉
+- Erigon supports larger return values for RocketPool >= 1.9
+- Erigon and Prysm source builds use Go 1.20
+- Lighthouse source build uses jemalloc and defaults to `stable` target
+- Prysm supports larger messages so credential change messages can be sent
+- Initial web3signer addition - not integrated with any clients
+- Don't query for mev-boost on Gnosis Chain
+- Add auth port for Reth
+
 ## v2.2.8.1 2023-02-19
 
 *This is an optional release*
