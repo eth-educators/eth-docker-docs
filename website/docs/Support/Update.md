@@ -14,22 +14,15 @@ node is up and running
 
 ## Automated update
 
-### If updating from a version prior to 1.2.5 (2021-June-05)
-
-Inside the project directory, run:<br />
-`git pull origin main`
-
-and then continue below
-
-### For all versions
-
 Inside the project directory, run:<br />
 `./ethd update`
 
 This will update eth-docker, all Ethereum clients, and migrate your `.env` settings over to a fresh copy
 from `default.env`.
 
-Restart changed containers with `./ethd up`
+If you want to reset your client version targets, run `./ethd update --refresh-targets` instead.
+
+Restart changed containers with `./ethd up`.
 
 ## Optional: Manually update eth-docker
 
