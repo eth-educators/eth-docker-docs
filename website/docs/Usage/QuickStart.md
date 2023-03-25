@@ -36,6 +36,8 @@ Start eth-docker
 
 The same script can also be used to stop, start and update the node. Run `./ethd` for a help screen.
 
+> Note that docker will restart running clients automatically after a reboot. They will remain stopped if you stopped them with `./ethd stop` or equivalent docker commands.
+
 ## Next steps
 
 If you are going to run a validating node, [create and import keys](../Usage/ImportKeys.md). 

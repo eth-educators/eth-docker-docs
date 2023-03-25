@@ -6,12 +6,9 @@ sidebar_label: Changelog
 
 ## Updating the project
 
-> `sudo` for docker compose commands is only necessary if your user is *not* part of the `docker` group
-
 To update the components of the project, run from within the project directory (`cd ~/eth-docker` by default):
 
 * `./ethd update`. This fetches new client version(s), a new eth-docker, and updates `.env`, keeping your modifications. If you want to reset the source or binary build targets in `.env`, run `./ethd update --refresh-targets` instead.
-* **Only** if you are using source builds: `./ethd cmd build --pull --no-cache`
 * `./ethd up` - use the new client version(s)
 
 > On 1/27/2022, eth-docker's repository name changed. Everything should work as it did.
