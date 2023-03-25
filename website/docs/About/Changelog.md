@@ -14,6 +14,13 @@ To update the components of the project, run from within the project directory (
 > On 1/27/2022, eth-docker's repository name changed. Everything should work as it did.
 > If you do wish to manually update your local reference, run `git remote set-url origin https://github.com/eth-educators/eth-docker.git`
 
+## v2.2.8.6 2023-03-26
+
+*This is a bugfix release*
+
+- Fix a bug introduced in 2.2.8.5 that would break Graffiti with spaces. Thanks @nflaig!
+- New command `./ethd keys delete all`
+
 ## v2.2.8.5 2023-03-25
 
 *This is an optional release*
