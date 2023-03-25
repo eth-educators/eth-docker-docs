@@ -17,6 +17,24 @@ To update the components of the project, run from within the project directory (
 > On 1/27/2022, eth-docker's repository name changed. Everything should work as it did.
 > If you do wish to manually update your local reference, run `git remote set-url origin https://github.com/eth-educators/eth-docker.git`
 
+## v2.2.8.5 2023-03-25
+
+*This is an optional release*
+
+- Support client default graffiti - use this for Lodestar incentive
+- Add Lodestar beaconcha.in monitoring. Thanks @nflaig!
+- Keymanager works on ARM64
+- Rely on default ethdo timeout
+- Require 250 GiB free for Nethermind prune
+- Only overwrite `.env.bak` when there are changes
+- Warn user if `git pull` fails during `./ethd update`
+
+## v2.2.8.4 2023-03-21
+
+*This is a bugfix release*
+
+- Fix a bug during disk space check in `./ethd` introduced by 2.2.8.3
+
 ## v2.2.8.3 2023-03-20
 
 *This is an optional release*
