@@ -30,12 +30,12 @@ was unable to report ECC errors via IPMI, only OS-level reporting worked.
 
 * mITX: 
   * SuperMicro X11SCL-IF(-O) (1 NVMe)
-    * Intel i3-9100F or Intel Xeon E-21xx/22xx (i5/7 do not support ECC)
+    * Intel i3-9100F or Intel Xeon E-21xx/22xx (i5/7 do not support ECC) - ~ 840 USD with Fractal Node case and NVMe
   * SuperMicro X12STL-IF(-O) (1 NVMe)
     * Intel Xeon E-23xx 
 * uATX:
   * SuperMicro X11SCL-F(-O) (1 NVMe) or X11SCH-F(-O) (2 NVMe). SCH supports an iGPU
-    * Intel i3-9100(F) or Intel Xeon E-21xx/22xx(G) (i5/7 do not support ECC)
+    * Intel i3-9100(F) or Intel Xeon E-21xx/22xx(G) (i5/7 do not support ECC) - ~ 900 USD with Fractal Node case and NVMe
   * SuperMicro X12STL-F(-O) or X12STH-F(-O). STH supports an iGPU
     * Intel Xeon E-23xx(G)
 * Common components:
