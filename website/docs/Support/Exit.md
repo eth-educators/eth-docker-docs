@@ -22,7 +22,7 @@ prompts.
 
 ## Lighthouse
 
-The exit procedure for Lighthouse requires a copy of tkey keystore files.
+The exit procedure for Lighthouse requires a copy of the keystore JSON files.
 
 - Copy the `keystore-m` JSON files into `.eth/validator_keys/` in this project
   directory.
