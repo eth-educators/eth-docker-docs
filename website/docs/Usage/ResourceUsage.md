@@ -38,9 +38,9 @@ Notes on disk usage
 
 ## Test Systems
 
-IOPS is random read-write IOPS [measured by fio with "typical" DB parameters](https://arstech.net/how-to-measure-disk-performance-iops-with-fio-in-linux/), 4G and 150G file, without other processes running.
+IOPS is random read-write IOPS [measured by fio with "typical" DB parameters](https://arstech.net/how-to-measure-disk-performance-iops-with-fio-in-linux/), 150G file, without other processes running.
 
-Specifically `fio --randrepeat=1 --ioengine=libaio --direct=1 --gtod_reduce=1 --name=test --filename=test --bs=4k --iodepth=64 --size=4G --readwrite=randrw --rwmixread=75` followed by `fio --randrepeat=1 --ioengine=libaio --direct=1 --gtod_reduce=1 --name=test --filename=test --bs=4k --iodepth=64 --size=150G --readwrite=randrw --rwmixread=75`, then `rm test` to get rid of the 150G test file. If the 150G test shows it'd take hours to complete, feel free to cut it short once the IOPS display for the test looks steady.
+Specifically `fio --randrepeat=1 --ioengine=libaio --direct=1 --gtod_reduce=1 --name=test --filename=test --bs=4k --iodepth=64 --size=150G --readwrite=randrw --rwmixread=75`, then `rm test` to get rid of the 150G test file. If the test shows it'd take hours to complete, feel free to cut it short once the IOPS display for the test looks steady.
 
 150G was chosen to "break through" any caching strategems the SSD uses for bursty writes. Execution clients write steadily, and the performance of an SSD under heavy write is more important than its performance with bursty writes.
 
@@ -52,15 +52,15 @@ A note on Contabo: Stability of their service [is questionable](https://www.redd
 
 | Name                 | RAM    | SSD Size | CPU        | r/w IOPS | r/w latency | Notes |
 |----------------------|--------|----------|------------|------|-------|--------|
-| Homebrew Xeon ZFS zvol | 32 GiB | 1.2 TiB | Intel Quad | 19.3k/6.4k (4G file) 3.5k/1k (150G file) | | Intel SATA SSD, 16k recordsize, stripe, xfs; fio with --bs=16k |
-| Homebrew Xeon ZFS dataset | 32 GiB | 1.2 TiB | Intel Quad | 38.1k/12.5k (4G file) 1.2k/500 (150G file) | | | Intel SATA SSD, 16k recordsize, stripe, xfs; 16G Optane SLOG |
-| Dell R420 w/ HBA     | 32 GiB | 1 TB | Dual Intel Octo | 44.7k/14k (4G file) 35.9k/11k (150G file) | | Xeon E5-2450 |
-| Contabo L VPS SSD  | 30 GiB | 800 GiB | Intel Octa  | 3.1k/1k (4G file) 2.5k/800 (150G file) | | This was not sufficient to sync Geth |
-| [Netcup](https://netcup.eu) VPS 3000 G9   | 24 GiB | 600 GiB  | AMD Hexa | 25.8k/8.6k (4G file) 11.2k/3.7k (150G file) | 2.25/6 ms | |
-| Netcup RS 8000 G9.5 | 64 GiB | 2 TB | AMD EPYC 7702 | 47.8k/16k (4G file) 15.6k/5k (150G file) | 3.4/1.5 ms | |
-| OVH Baremetal NVMe   | 32 GiB | 1.9 TB  | Intel Hexa | 267k/89k (4G file) 177k/59k (150G file) | 0.08/3.5 ms | |
-| AWS io1 w/ 10K IOPS  | 8 GiB  | NA      | Intel Dual | 7.7k/2.6k (4G file) 7.6k/2.5k (150G file) | | t2.large, could not sync Geth. Note t2 throttles CPU |
-| AWS gp3 w/ 16K IOPS  | 16 GiB | NA      | Intel Quad | 12.5k/4.2k (4G file) 12.2k/4.1k (150G file) | | m6i.xlarge |
+| Homebrew Xeon ZFS zvol | 32 GiB | 1.2 TiB | Intel Quad | 3.5k/1k | | Intel SATA SSD, 16k recordsize, stripe, xfs; fio with --bs=16k |
+| Homebrew Xeon ZFS dataset | 32 GiB | 1.2 TiB | Intel Quad | 1.2k/500 | | Intel SATA SSD, 16k recordsize, stripe, xfs; 16G Optane SLOG |
+| Dell R420 w/ HBA     | 32 GiB | 1 TB | Dual Intel Octo | 35.9k/11k | Xeon E5-2450 |
+| Contabo L VPS SSD  | 30 GiB | 800 GiB | Intel Octa  | 2.5k/800 | | This was not sufficient to sync Geth |
+| [Netcup](https://netcup.eu) VPS 3000 G9   | 24 GiB | 600 GiB  | AMD Hexa | 11.2k/3.7k | 2.25/6 ms | |
+| Netcup RS 8000 G9.5 | 64 GiB | 2 TB | AMD EPYC 7702 | 15.6k/5k | 3.4/1.5 ms | |
+| OVH Baremetal NVMe   | 32 GiB | 1.9 TB  | Intel Hexa | 177k/59k | 0.08/3.5 ms | |
+| AWS io1 w/ 10K IOPS  | 8 GiB  | NA      | Intel Dual | 7.6k/2.5k | | t2.large, could not sync Geth. Note t2 throttles CPU |
+| AWS gp3 w/ 16K IOPS  | 16 GiB | NA      | Intel Quad | 12.2k/4.1k | | m6i.xlarge |
 
 ## Initial sync times
 
