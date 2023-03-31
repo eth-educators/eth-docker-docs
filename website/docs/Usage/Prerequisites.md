@@ -164,6 +164,11 @@ Install docker-ce:
 sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-compose-plugin
 ```
 
+Verify that all containers started automatically:
+```
+sudo docker ps
+```
+
 If you like, you can also add a docker-compose alias, replacing `MYUSERNAME` with your actual user name: `echo 'alias docker-compose="docker compose"' >>/home/MYUSERNAME/.profile`
 
 ## rootless Docker
