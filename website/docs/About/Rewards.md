@@ -14,7 +14,7 @@ They are rewarded for executing those duties by new ETH issuance to the "validat
 
 If the validator is down and not executing its duties, it will be penalized at a rate slightly lower than the rewards for the same period of time.
 
-Rewards will be able to be withdrawn sometime after merge, possibly with the first scheduled hardfork after, "Shanghai/Capella".
+Rewards are withdrawn automatically to the [withdrawal address](https://ethereum.org/en/staking/withdrawals/).
 
 2) Priority fees
 
