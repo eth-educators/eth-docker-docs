@@ -29,6 +29,7 @@
 			"Support/Cloud",
             "Support/Moving",
             "Support/SwitchClient",
+			"Support/ChangingWithdrawalCredentials",
 			"Support/Exit",
 			"Support/GethPrune",
 			"Support/Rocketpool",
