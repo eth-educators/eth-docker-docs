@@ -14,7 +14,15 @@ To update the components of the project, run from within the project directory (
 > On 1/27/2022, eth-docker's repository name changed. Everything should work as it did.
 > If you do wish to manually update your local reference, run `git remote set-url origin https://github.com/eth-educators/eth-docker.git`
 
-## v2.2.9 2023-04-1
+## v2.2.9.1 2023-04-03
+
+*This is an optional release with bug fixes*
+
+- Support Teku doppelganger detection
+- `./ethd keys send-address-change` counts unique addresses. Thanks to @valefar for fixing the logic!
+- Shell lint pass, which fixes a bug in `./ethd prune-nethermind` and `./ethd install`
+
+## v2.2.9 2023-04-01
 
 *This is an optional release*
 
