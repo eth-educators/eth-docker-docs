@@ -8,12 +8,13 @@ sidebar_label: Overview
 ## This project
 
 eth-docker aims to make running an Ethereum staking full node simpler than setting everything up manually,
-while allowing the user choice when it comes to the exact client mix they wish to run.
+while allowing the user choice when it comes to the exact client mix they wish to run. It's the "easy button" for home stakers,
+with full control for advanced users.
 
 Recommended hardware, whether your own hardware or a VPS, is:
 - 32 GiB of RAM - 16 GiB works but can be challenging depending on client mix
 - 4 CPU cores
-- 2TB ["mainstream" SSD](https://gist.github.com/yorickdowne/f3a3e79a573bf35767cd002cc977b038) - neither QLC nor DRAMless. 1TB can work with some client combinations but is very tight; 2TB affords more room for growth
+- 2TB ["mainstream" SSD](https://gist.github.com/yorickdowne/f3a3e79a573bf35767cd002cc977b038) - neither QLC nor DRAMless.
 
 ## Node components
 
@@ -25,6 +26,16 @@ An Ethereum staking full node has many moving parts. Here's a high level, concep
 > for the consensus client. You will still encounter these names in several places,
 > particularly in the logs of the consensus client.
 > Ethereum PoS (Proof-of-Stake) was also called Ethereum 2.0 at one point, but uses the same ETH token.
+
+## eth-docker feature highlights
+
+- Supports all FOSS (Free and Open Source Software) Ethereum clients in any combination: Lodestar, Nimbus, Teku, Lighthouse, Prysm; and Nethermind, Besu, Erigon, Geth
+- Runs on Linux or macOS, Intel/AMD x64 or ARM CPUs
+- Supports Grafana dashboards and alerting, either locally or Grafana Cloud or even your own remote Mimir/Thanos cluster
+- Uses official client teams' images, does not publish its own images
+- Supports advanced use cases such as exposing interfaces over https with traefik, source-building clients locally
+
+## Staking workflow
 
 When setting up an Ethereum staking full node, you'll:
 
