@@ -14,6 +14,17 @@ To update the components of the project, run from within the project directory (
 > On 1/27/2022, eth-docker's repository name changed. Everything should work as it did.
 > If you do wish to manually update your local reference, run `git remote set-url origin https://github.com/eth-educators/eth-docker.git`
 
+## v2.2.9.2 2023-04-09
+
+*This is an optional release with bug fixes*
+
+- Teku CL uses liveness tracking so doppelganger detection actually works
+- ethdo now works with reverse hybrid setups, and similar setups where the CL is remote
+- Undo a too-aggressive shell lint change, so saying "no" to Grafana works again
+- Adjust Nethermind prune threshold to account for it using MB not MiB
+- Adjust Nethermind memory hint in the hopes it won't OOM during prune
+- Withdrawal credential change readme clarification around the mnemonic that is needed
+
 ## v2.2.9.1 2023-04-03
 
 *This is an optional release with bug fixes*
