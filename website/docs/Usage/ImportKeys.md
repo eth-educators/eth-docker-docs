@@ -19,12 +19,12 @@ If you are going to use the deposit-cli that is bundled with eth-docker, please 
 
 Make sure you're in the project directory, `cd ~/eth-docker` by default.
 
-When creating keys, you can specify an Ethereum address that a future withdrawal will be paid to. If you have a hardware wallet that withdrawals should go to, this is a good option.
+When creating keys, you can specify an Ethereum address that withdrawals will be paid to. If you have a hardware wallet that withdrawals should go to, this is a good option.
 > Make sure the Ethereum address is correct, you cannot change it after you deposit. You can also remove that parameter, in which  case withdrawals would be done with the mnemonic seed, not against a fixed address
 
 This command will create the keys to deposit ETH against:
 
-`./ethd cmd run --rm deposit-cli-new --eth1_withdrawal_address YOURHARDWAREWALLETADDRESS --uid $(id -u)`
+`./ethd cmd run --rm deposit-cli-new --execution_address YOURHARDWAREWALLETADDRESS --uid $(id -u)`
 > Specifying the uid is optional. If this is not done, the generated files will be owned by the user with uid `1000`
 
 Choose the number of validators you wish to create.
@@ -40,7 +40,7 @@ This is also where you'd place your own keystore files if you already have some 
 From the project directory:
 
 ```
-./ethd cmd run --rm deposit-cli-existing --folder seed_check --eth1_withdrawal_address YOURHARDWAREWALLETADDRESS --uid $(id -u)
+./ethd cmd run --rm deposit-cli-existing --folder seed_check --execution_address YOURHARDWAREWALLETADDRESS --uid $(id -u)
 ```
 > Specifying the uid is optional. If this is not done, the generated files will be owned by the user with uid `1000`
 
