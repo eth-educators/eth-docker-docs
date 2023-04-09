@@ -51,7 +51,7 @@ command line.
 
 # Import keys
 
-Assuming you have some `keystore-m` JSON files from `./ethd cmd run --rm deposit-cli-new --eth1_withdrawal_address YOURHARDWAREWALLETADDRESS` or some other way of creating Launchpad compatible keys, click on "Create a Wallet".
+Assuming you have some `keystore-m` JSON files from `./ethd cmd run --rm deposit-cli-new --execution_address YOURHARDWAREWALLETADDRESS` or some other way of creating Launchpad compatible keys, click on "Create a Wallet".
 
 > These files are in `.eth/validator_keys` if you used the `deposit-cli` workflow. You'll want to move them to the machine you are running the browser on.
 

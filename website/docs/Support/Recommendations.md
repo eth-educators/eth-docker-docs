@@ -83,8 +83,8 @@ For more on validator key security, read this article: https://www.attestant.io/
 
 **Critical**<br />
 When you ran staking-deposit-cli, a 24-word mnemonic was created. This mnemonic
-will be used for Ethereum PoS (Proof-of-Stake) withdrawals in the future. It must be securely kept offline.
-Without this mnemonic, unless you set an `--eth1_withdrawal_address`, there is **no** way to withdraw your funds.
+is used for Ethereum validator exits and withdrawals. It must be securely kept offline.
+Without this mnemonic, unless you set a withdrawal address via `--execution_address`, there is **no** way to withdraw your funds.
 
 Precise methods are beyond this README, but consider something as simple as
 a sheet of paper kept in a fireproof envelope in a safe, or one of the [steel
@@ -93,7 +93,8 @@ mnemonic safeguards](https://jlopp.github.io/metal-bitcoin-storage-reviews/) tha
 Test your mnemonic **before** you deposit, so you know that you will be able
 to withdraw funds in future.
 
-An attacker with access to your mnemonic can drain your funds.
+An attacker with access to your mnemonic can drain your funds, if no withdrawal address was set during key generation. If one
+was set, they can't get the validator funds, but can cause a "slashing", a penalty of around 1.1 ETH and forced exit of the validator.
 
 For more on withdrawal key security, read this article: https://www.attestant.io/posts/protecting-withdrawal-keys/
 

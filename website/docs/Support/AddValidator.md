@@ -21,10 +21,10 @@ and are now recreating.
 
 ## Create additional keys
 
-In order to add additional validator signing keys, likewise run `./ethd cmd run --rm deposit-cli-existing --eth1_withdrawal_address YOURHARDWAREWALLETADDRESS --uid $(id -u)`
+In order to add additional validator signing keys, likewise run `./ethd cmd run --rm deposit-cli-existing --execution_address YOURHARDWAREWALLETADDRESS --uid $(id -u)`
 and provide your mnemonic, but this time set the index to the number of validator keys you had created previously,
 for example, `4`. Specify how many *new, additional* validators you want to create. You will receive new `keystore-m` signing keys and a new `deposit_data` JSON.
-> This example assumes that you want to fix withdrawals to an Ethereum address you control, ideally a hardware wallet. You can leave the `--eth1_withdrawal_address` parameter out and set a withdrawal address later with your seed phrase (mnemonic), once withdrawals are enabled on Ethereum.
+> This example assumes that you want to fix withdrawals to an Ethereum address you control, ideally a hardware wallet. You can leave the `--execution_address` parameter out and set a withdrawal address later with your seed phrase (mnemonic).
 
 **Caution**
 
