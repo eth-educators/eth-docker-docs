@@ -8,7 +8,8 @@ Ethereum PoS has a concept of "voluntary validator exit", which will remove the
 validator from attesting duties. Locked ETH could be withdrawn after the "merge"
 of the Proof-of-Work and Proof-of-Stake Ethereum chains, and not sooner.
 
-Exiting a validator requires a fully synced consensus client.
+Exiting a validator requires a fully synced consensus client. Checkpoint sync,
+configured with `RAPID_SYNC_URL` in `.env`, can sync one in minutes.
 
 ## Teku
 
@@ -45,7 +46,7 @@ Enter the keystore password for validator in "/keys/keystore-m_12381_3600_0_0_0-
 
 ## Nimbus
 
-You will need to know the index of your validator as it shows on https://beaconcha.in/ or https://pyrmont.beaconcha.in/ if on Pyrmont testnet, or its public key.
+You will need to know the index of your validator as it shows on https://beaconcha.in/ or https://goerli.beaconcha.in/ if on Goerli testnet, or its public key.
 
 Run `./ethd cmd run --rm validator-exit <INDEX or 0xPUBKEY>` and follow prompts to exit. For example:
 - If using an index, here 0, `./ethd cmd run --rm validator-voluntary-exit 0`
