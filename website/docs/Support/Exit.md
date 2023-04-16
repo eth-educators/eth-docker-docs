@@ -1,6 +1,6 @@
 ---
 id: Exit
-title:  Voluntary validator exit.
+title:  Voluntary validator exit
 sidebar_label: Voluntary exit
 ---
 
@@ -78,7 +78,7 @@ If you want to pre-sign exit messages, for example to leave for your heirs, you 
 with `./ethd keys pre-sign from-keystore`, optionally with a parameter `--offline` added.
 
 This uses `ethdo.yml` and will sign exit messages for all `keystore*.json` files in the
-`.eth/validators_keys` directory. If `--offline` is used, it does not require connection
+`.eth/validator_keys` directory. If `--offline` is used, it does not require connection
 to a CL (consensus layer client) and instead expects a file `.eth/ethdo/offline-preparation.json`,
 created with ethdo.
 
