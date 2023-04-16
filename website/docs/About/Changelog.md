@@ -14,6 +14,16 @@ To update the components of the project, run from within the project directory (
 > On 1/27/2022, eth-docker's repository name changed. Everything should work as it did.
 > If you do wish to manually update your local reference, run `git remote set-url origin https://github.com/eth-educators/eth-docker.git`
 
+## v2.2.9.5 2023-04-16
+
+*This is an optional release*
+
+- Use `docker compose` if it and `docker-compose` are installed
+- Nethermind memory hint higher for 64 GiB RAM
+- `create-withdrawal-change.sh` handles 12-word mnemonics
+- Nimbus validator exit changed to fit new Nimbus behavior
+- New command `./ethd keys sign-exit from-keystore [--offline]` to create pre-signed exit messages
+
 ## v2.2.9.4 2023-04-13
 
 *This is an optional release with bug fixes*
