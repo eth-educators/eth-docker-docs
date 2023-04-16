@@ -15,7 +15,7 @@ For mainnet, best practice is to create keys using a Linux Live USB and the offi
 
 ### You want to create keys with eth-docker
 
-If you are going to use the deposit-cli that is bundled with eth-docker, please make sure that `COMPOSE_FILE` contains `deposit-cli.yml`
+If you are going to use the deposit-cli that is bundled with eth-docker, please make sure to edit `.env` and that the `COMPOSE_FILE` line contains `:deposit-cli.yml`. You can edit with `nano .env`.
 
 Make sure you're in the project directory, `cd ~/eth-docker` by default.
 
