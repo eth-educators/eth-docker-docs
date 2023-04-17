@@ -1,7 +1,7 @@
 ---
 id: ipv6
-title: IP v6
-sidebar_label: IP v6 support
+title: IPv6
+sidebar_label: IPv6 support
 ---
 
 ## Y tho
@@ -10,7 +10,7 @@ As of early 2023:
 
 CGNAT is becoming more prevalant, making it harder to make P2P ports available inbound and get good peering.
 
-Docker support for v6 is slowly, ever so slowly, getting better.
+Docker support for IPv6 is slowly, ever so slowly, getting better.
 
 Ethereum clients are starting to add v6 support, which can benefit from testing.
 
