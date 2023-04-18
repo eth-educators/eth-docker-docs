@@ -131,7 +131,14 @@ After that, Docker will store its data on your desired disk.
 
 ## Switching from docker.io to docker-ce
 
-If you are currently running Canonical's docker.io and you'd like to switch to docker-ce, this is how
+If you are currently running Canonical's docker.io and you'd like to switch to docker-ce, the
+"Community Edition" released by Docker, Inc., this is how.
+
+You do not need to stop running containers manually, and they will be back up and running after. All
+volumes and other data kept in Docker will stay intact.
+
+If you came here because of a nag message, you can switch out docker.io for docker-ce, or you can
+narrowly just upgrade compose to V2, and remove compose V1. In that case, stop before "remove docker.io".
 
 Prepare docker-ce repo:
 
@@ -145,6 +152,11 @@ echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.
  
 sudo apt-get update
 ```
+
+If you want to keep docker.io, and add the compose V2 plugin, you can do so by:<br>
+`sudo apt-get remove --autoremove -y docker-compose && sudo apt-get install -y docker-compose-plugin`
+
+**Only** if you wish to replace docker.io with docker-ce, continue below.
 
 Remove docker.io:
 
