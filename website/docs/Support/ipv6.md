@@ -97,7 +97,13 @@ you'd need rules to allow the P2P ports incoming to the v6 address of your node.
 
 ## Which clients?
 
-Still testing, this will be updated.
+- Teku: Yes (probably, advertisement not tested)
+- Lighthouse: Yes, `--listen-address 0.0.0.0 --listen-address :: --port6 <p2p-port>`
+- Prysm: Yes, `--p2p-local-ip ::`, but [not dual-stack](https://github.com/prysmaticlabs/prysm/issues/12303)
+- Besu: Yes (probably, advertisement not tested)
+- Erigon: Yes (probably, advertisement not tested)
+- Geth: Yes (probably, advertisement not tested)
 
-- Besu: No
-- Lighthouse: Yes, `--listen-address 0.0.0.0 --listen-address ::`
+- Lodestar: [No](https://github.com/ChainSafe/lodestar/issues/5380)
+- Nimbus: [No](https://github.com/status-im/nimbus-eth2/issues/4839)
+- Nethermind: [No](https://github.com/NethermindEth/nethermind/issues/5565)
