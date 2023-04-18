@@ -22,6 +22,9 @@ Make sure you're in the project directory, `cd ~/eth-docker` by default.
 When creating keys, you can specify an Ethereum address that withdrawals will be paid to. If you have a hardware wallet that withdrawals should go to, this is a good option.
 > Make sure the Ethereum address is correct, you cannot change it after you deposit. You can also remove that parameter, in which  case withdrawals would be done with the mnemonic seed, not against a fixed address
 
+**Do not** set your withdrawal address to an exchange wallet. The funds will not
+be credited, and you will battle support for them.
+
 This command will create the keys to deposit ETH against:
 
 `./ethd cmd run --rm deposit-cli-new --execution_address YOURHARDWAREWALLETADDRESS --uid $(id -u)`

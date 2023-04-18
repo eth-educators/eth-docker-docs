@@ -5,8 +5,11 @@ sidebar_label: Voluntary exit
 ---
 
 Ethereum PoS has a concept of "voluntary validator exit", which will remove the
-validator from attesting duties. Locked ETH could be withdrawn after the "merge"
-of the Proof-of-Work and Proof-of-Stake Ethereum chains, and not sooner.
+validator from attesting duties. Staked ETH will be withdrawn automatically
+to the withdrawal address, as long as one has been set.
+
+**Do not** set your withdrawal address to an exchange wallet. The funds will not
+be credited, and you will battle support for them.
 
 Exiting a validator requires a fully synced consensus client. Checkpoint sync,
 configured with `RAPID_SYNC_URL` in `.env`, can sync one in minutes.
