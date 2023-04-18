@@ -16,9 +16,20 @@ Ethereum clients are starting to add v6 support, which can benefit from testing.
 
 ## How then
 
-You'll likely want to be on the latest version of docker-ce, as IPv6 support in docker is a moving target.
+### Check you have v6
 
-Create a `/etc/docker/daemon.json` if it doesn't already exist, and make sure it contains this:
+You can test, from a PC on your LAN, that [whatismyip](https://whatismyip.com) shows both a public v6 and v4 address. If so,
+your router is set correctly. This will likely be the case "out of the box" on any ISP that uses CGNAT, and on several that don't,
+like Comcast in the US.
+
+On your node, `ip address show` should show you both a v4 `inet` and public v6 `inet6` address on the interface. If all you see
+is an `fe80::` address for inet6, you don't have a routable v6 address configured, and you'll want to fix that, first.
+
+### Configure Docker
+
+You'll want to be on the latest version of docker-ce, as IPv6 support in Docker is a moving target.
+
+Create an `/etc/docker/daemon.json` if it doesn't already exist, and make sure it contains this:
 
 ```
 {
@@ -65,6 +76,9 @@ Create a `/etc/docker/daemon.json` if it doesn't already exist, and make sure it
 }
 ```
 
+Restart docker with `sudo systemctl restart docker`, then verify it's up with `systemctl status docker`, lastly check its logs with `sudo journalctl -fu docker` to make sure it came up ok. If there
+are issues that keep it from starting, fix those before going further.
+
 Edit `.env` as well and add `:v6-network.yml` to `COMPOSE_FILE`, which will tell compose to enable v6 for the networks it creates.
 
 ### Dafuq
@@ -80,4 +94,10 @@ networks are used for networks that compose creates.
 
 Maybe. I still have to test ufw integration. I believe there is a v6 USER table for docker since 23.x. The feature itself, though experimental, shouldn't cause issues. On your LAN firewall, if this is in a LAN,
 you'd need rules to allow the P2P ports incoming to the v6 address of your node.
- 
+
+## Which clients?
+
+Still testing, this will be updated.
+
+- Besu: No
+- Lighthouse: Yes, `--listen-address 0.0.0.0 --listen-address ::`
