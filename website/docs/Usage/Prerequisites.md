@@ -131,7 +131,11 @@ After that, Docker will store its data on your desired disk.
 
 ## Switching from docker.io to docker-ce
 
-If you are currently running Canonical's docker.io and you'd like to switch to docker-ce, this is how
+If you are currently running Canonical's docker.io and you'd like to switch to docker-ce, the
+"Community Edition" released by Docker, Inc., this is how.
+
+You do not need to stop running containers manually, and they will be back up and running after. All
+volumes and other data kept in Docker will stay intact.
 
 Prepare docker-ce repo:
 
