@@ -26,6 +26,9 @@ Copy the contents of this directory, including this `README.md`, `ethdo`, `ethdo
 
 You should also create a new text file on the Data USB that contains the address you want your validator rewards to go to. This has to be an address you control. Good choices are a hardware wallet where the mnemonic was never online or a contract such as a [multi-signature safe](https://app.safe.global/).
 
+**Do not** set your withdrawal address to an exchange wallet. The funds will not
+be credited, and you will battle support for them.
+
 **Triple-check the withdrawal address you choose! You can only set this once**
 
 If you do not provide the address through a USB stick you will have to type it manually which is prone to human error.
