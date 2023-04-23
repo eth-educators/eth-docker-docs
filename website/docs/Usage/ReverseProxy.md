@@ -24,7 +24,7 @@ to Cloudflare's servers. How this is done depends on your domain registrar.
 
 You will need a "scoped API token" from CloudFlare's [API page](https://dash.cloudflare.com/profile/api-tokens). Create a token with `Zone.DNS:Edit`, `Zone.Zone:Read` and `Zone.Zone Settings:Read` permissions, for all zones. Make a note of the Token secret, it will only be shown to you once.
 
-If you want to be [more specific](https://go-acme.github.io/lego/dns/cloudflare/), you can create two scoped API tokens: One with `Zone.DNS:Edit` for just the domain you wish to manage, and one with `Zone.Zone:Read` and `Zone.Zone Settings:Read` for all zones.
+If you want to be [more specific](https://go-acme.github.io/lego/dns/cloudflare/), you can create two scoped API tokens: One with `Zone.DNS:Edit` for just the domain you wish to manage, and one with `Zone.Zone:Read` and `Zone.Zone Settings:Read` for all zones. Using granular permissions like this will break DDNS, you'll create the A record manually instead.
 
 With that, in the `.env` file:
 - Set `CF_DNS_API_TOKEN` to the API token with `Edit` rights you just created

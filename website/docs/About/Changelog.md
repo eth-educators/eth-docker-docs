@@ -14,6 +14,15 @@ To update the components of the project, run from within the project directory (
 > On 1/27/2022, eth-docker's repository name changed. Everything should work as it did.
 > If you do wish to manually update your local reference, run `git remote set-url origin https://github.com/eth-educators/eth-docker.git`
 
+## v2.2.10 2023-04-23
+
+*This is a mandatory update for users of Erigon, and optional for all others*
+
+- Support Erigon v2.43.0
+- Initial work on IPv6 support
+- Fix infinite loop in `create-withdrawal-change.sh`
+- `traefik-cf.yml` can use more granular token permissions
+ 
 ## v2.2.9.5 2023-04-16
 
 *This is an optional release*
