@@ -153,7 +153,8 @@ echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.
 sudo apt-get update
 ```
 
-If you want to keep docker.io, and add the compose V2 plugin, you can do so by:<br>
+If you want to keep docker.io, and add the compose V2 plugin, you can do so by:
+
 `sudo apt-get remove --autoremove -y docker-compose && sudo apt-get install -y docker-compose-plugin`
 
 **Only** if you wish to replace docker.io with docker-ce, continue below.
