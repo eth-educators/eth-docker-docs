@@ -24,11 +24,12 @@ to Cloudflare's servers. How this is done depends on your domain registrar.
 
 You will need a "scoped API token" from CloudFlare's [API page](https://dash.cloudflare.com/profile/api-tokens). Create a token with `Zone.DNS:Edit`, `Zone.Zone:Read` and `Zone.Zone Settings:Read` permissions, for all zones. Make a note of the Token secret, it will only be shown to you once.
 
-If you want to be [more specific](https://go-acme.github.io/lego/dns/cloudflare/), you can create two scoped API tokens: One with `Zone.DNS:Edit` for just the domain you wish to manage, and one with `Zone.Zone:Read` and `Zone.Zone Settings:Read` for all zones. Using granular permissions like this will break DDNS, you'll create the A record manually instead.
+If you want to be [more specific](https://go-acme.github.io/lego/dns/cloudflare/), you can create two scoped API tokens: One with `Zone.DNS:Edit` for just the domain you wish to manage, and one with `Zone.Zone:Read` and `Zone.Zone Settings:Read` for all zones. As the DNS API token now no longer has read permissions, also set `CF_ZONE_ID` in `.env` so DDNS still functions.
 
 With that, in the `.env` file:
 - Set `CF_DNS_API_TOKEN` to the API token with `Edit` rights you just created
 - Optionally set `CF_ZONE_API_TOKEN` to the API token with `Read` rights, only if you created split permissions.
+- Optionally set `CF_ZONE_ID` to the Zone ID of the domain, only if you created split permissions.
 - Set `DDNS_SUBDOMAIN` if you want the Dynamic DNS IP address update to act on a specific subdomain name, rather than the main domain
 - Set `DDNS_PROXY` to `false` if you do not want CloudFlare to proxy traffic to the domain / subdomain
 - Read further down about common settings for Traefik
