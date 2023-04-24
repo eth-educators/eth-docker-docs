@@ -38,7 +38,7 @@ Create an `/etc/docker/daemon.json` if it doesn't already exist, and make sure i
     "ip6tables": true,
     "fixed-cidr-v6": "fd00:1::/64",
     "default-address-pools":[
-      {"base": "172.31.0.0/16", "size": 24},
+      {"base": "172.16.0.0/12", "size": 24},
       {"base": "fd12:3456::/64", "size": 64},
       {"base": "fd12:3456:1::/64", "size": 64},
       {"base": "fd12:3456:2::/64", "size": 64},
