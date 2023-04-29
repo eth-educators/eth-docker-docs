@@ -14,6 +14,15 @@ To update the components of the project, run from within the project directory (
 > On 1/27/2022, eth-docker's repository name changed. Everything should work as it did.
 > If you do wish to manually update your local reference, run `git remote set-url origin https://github.com/eth-educators/eth-docker.git`
 
+## v2.2.10.1 2023-04-29
+
+*This is an optional update*
+
+- validator exit for Lighthouse and Nimbus works if there are subdirectories in `.eth/validator_keys`. Thanks @gorillamania!
+- Add dashboard for Reth
+- traefik revamped, new v6-aware DDNS provider for `traefik-cf.yml`
+- Lighthouse enables v6 by default
+
 ## v2.2.10 2023-04-23
 
 *This is a mandatory update for users of Erigon, and optional for all others*
