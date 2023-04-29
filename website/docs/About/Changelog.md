@@ -16,7 +16,7 @@ To update the components of the project, run from within the project directory (
 
 ## v2.2.10.1 2023-04-29
 
-*This is an optional update*
+*This is an optional release*
 
 - validator exit for Lighthouse and Nimbus works if there are subdirectories in `.eth/validator_keys`. Thanks @gorillamania!
 - Add dashboard for Reth
@@ -25,7 +25,7 @@ To update the components of the project, run from within the project directory (
 
 ## v2.2.10 2023-04-23
 
-*This is a mandatory update for users of Erigon, and optional for all others*
+*This is a mandatory release for users of Erigon, and optional for all others*
 
 - Support Erigon v2.43.0
 - Initial work on IPv6 support
