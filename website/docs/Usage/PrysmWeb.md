@@ -9,7 +9,7 @@ should be used to access it if your node is on a cloud VPS.
 
 If you wish to expose the Web UI across the network, which also exposes the key management UI, you can add `prysm-web-shared.yml` to your `COMPOSE_FILE` in `.env`.
 
-If you wish to only expose the Web UI to `localhost` and then use either a browser on the host or an SSH tunnel, you can add `validator-keyapi-localhost.yml` to `COMPOSE_FILE` in `.env`.
+If you wish to only expose the Web UI to `localhost` and then use either a browser on the host or an SSH tunnel, you can add `validator-keyapi-localport.yml` to `COMPOSE_FILE` in `.env`.
 
 ## Prepare the validator client
 
