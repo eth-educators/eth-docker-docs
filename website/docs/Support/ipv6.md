@@ -83,17 +83,13 @@ Edit `.env` as well and add `:v6-network.yml` to `COMPOSE_FILE`, which will tell
 
 ### Dafuq
 
-The many many base networks are necessary until a [docker fix](https://github.com/moby/moby/pull/43033) lands. It's a hack so docker compose can create v6 networks, and this allows it to create 32 of them. Once
-the fix is in, this could be a single v6 base with something like `{"base": "fd00:0:1::/56", "size": 64}`.
+The many many base networks are necessary until a [docker fix](https://github.com/moby/moby/pull/43033) lands, possibly in [docker-ce 25.0.x](https://github.com/moby/moby/milestone/119). It's a hack so docker compose can create v6 networks, and this allows it to create 32 of them. Once the fix is in, this could be a single v6 base with something like `{"base": "fd00:0:1::/56", "size": 64}`.
 
-So, what's going on here. Manuel Bauer's [blog](https://www.manuel-bauer.net/blog/docker-with-full-ipv6-support) will get you started. Basically, enable experimental ip6tables support which does a form of v6 NAT
-between the host address and the container address, where the container address is a ULA in the `fd::/8` range. `fixed-cidr-v6` is used for the `docker0` default bridge network, and the many many (many) base
-networks are used for networks that compose creates.
+So, what's going on here. Manuel Bauer's [blog](https://www.manuel-bauer.net/blog/docker-with-full-ipv6-support) will get you started. Basically, enable experimental ip6tables support which does a form of v6 NAT between the host address and the container address, where the container address is a ULA in the `fd::/8` range. `fixed-cidr-v6` is used for the `docker0` default bridge network, and the many many (many) base networks are used for networks that compose creates.
 
 ## Safu?
 
-Maybe. I still have to test ufw integration. I believe there is a v6 USER table for docker since 23.x. The feature itself, though experimental, shouldn't cause issues. On your LAN firewall, if this is in a LAN,
-you'd need rules to allow the P2P ports incoming to the v6 address of your node.
+Maybe. I still have to test ufw integration. I believe there is a v6 USER table for docker since 23.x. The feature itself, though experimental, shouldn't cause issues. On your LAN firewall, if this is in a LAN, you'd need rules to allow the P2P ports incoming to the v6 address of your node.
 
 ## Which clients?
 
