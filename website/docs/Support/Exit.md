@@ -78,7 +78,7 @@ as [beaconcha.in](https://beaconcha.in) and [beaconscan](https://beaconscan.com)
 ## Pre-sign exit messages
 
 If you want to pre-sign exit messages, for example to leave for your heirs, you can do so
-with `./ethd keys pre-sign from-keystore`, optionally with a parameter `--offline` added.
+with `./ethd keys sign-exit from-keystore`, optionally with a parameter `--offline` added.
 
 This uses `ethdo.yml` and will sign exit messages for all `keystore*.json` files in the
 `.eth/validator_keys` directory. If `--offline` is used, it does not require connection
