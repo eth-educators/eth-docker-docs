@@ -18,7 +18,7 @@ To update the components of the project, run from within the project directory (
 
 *This is a recommended release*
 
-- Address findings from Sigma Prime security audit. Users of `ee-shared.yml` should pay particular attention.
+- Address findings from Sigma Prime security audit. Users of `ee-shared.yml` or `ee-traefik.yml` should pay particular attention.
 - Nethermind prune reduced to 2 threads, to have more headroom during sync committees
 
 ## v2.2.10.1 2023-04-29
