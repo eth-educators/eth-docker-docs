@@ -19,13 +19,13 @@ API manager token in Nimbus and Lodestar, Prysm wallet password, and Teku cert p
 
 eth-docker v2.3 addresses these findings. It now uses 64 bits of entropy and SHA-256 hash.
 
-Users that expose the Engine API with `ee-shared.yml` need to make sure that it is firewalled to trusted IPs.
+Users that expose the Engine API with `ee-shared.yml` or `ee-traefik.yml` need to make sure that it is firewalled to trusted IPs.
 
 Users that did so before eth-docker v2.3 may want to, in addition, update with `./ethd update`, stop the stack with `./ethd stop`,
 delete the `jwtsecret` docker volume with `docker volume ls` and `docker volume rm`, and start the stack with `./ethd up`. 
 
 My own likelihood assessment for exploitation is "Low", not "Medium". This is because
-- The Engine API by default is not exposed. Only users who use `ee-shared.yml` **and** allow access by untrusted addresses are at risk.
+- The Engine API by default is not exposed. Only users who expose the Engine API with `ee-shared.yml` or `ee-traefik.yml` **and** allow access by untrusted addresses are at risk.
 - The Prysm wallet and Teku cert file are not accessible remotely.
 - The keymanager API is not accessible remotely: At most locally if using `*-keyapi-localport.yml`.
 
