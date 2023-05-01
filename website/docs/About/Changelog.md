@@ -16,7 +16,7 @@ To update the components of the project, run from within the project directory (
 
 ## v2.3 2023-05-01
 
-*This is an optional release*
+*This is a recommended release*
 
 - Address findings from Sigma Prime security audit
 - Nethermind prune reduced to 2 threads, to have more headroom during sync committees
