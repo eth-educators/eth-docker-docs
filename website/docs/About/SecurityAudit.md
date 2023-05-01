@@ -8,7 +8,7 @@ sidebar_label: Security Audit
 
 Sigma Prime conducted a security audit of eth-docker 2.2.8.4 during March and April 2023, with findings presented on April 30th 2023.
 
-A huge thank-you to both Sigma Prime and Ethereum foundation, who funded the work.
+A huge thank-you to both Sigma Prime for the audit, and Ethereum Foundation for funding it.
 
 [Findings as PDF](../../static/pdf/Sigma_Prime_Security_Audit_Findings_2023-05-01.pdf)
 
