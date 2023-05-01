@@ -6,7 +6,8 @@
 			"About/Clients",
 			"About/Rewards",
 			"About/MergePrep",
-			"About/Changelog"
+			"About/Changelog",
+            "About/SecurityAudit"
 		],
 		"Usage": [
 			"Usage/QuickStart",

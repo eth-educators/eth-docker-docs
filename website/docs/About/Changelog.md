@@ -14,6 +14,13 @@ To update the components of the project, run from within the project directory (
 > On 1/27/2022, eth-docker's repository name changed. Everything should work as it did.
 > If you do wish to manually update your local reference, run `git remote set-url origin https://github.com/eth-educators/eth-docker.git`
 
+## v2.3 2023-05-01
+
+*This is an optional release*
+
+- Address findings from Sigma Prime security audit
+- Nethermind prune reduced to 2 threads, to have more headroom during sync committees
+
 ## v2.2.10.1 2023-04-29
 
 *This is an optional release*
