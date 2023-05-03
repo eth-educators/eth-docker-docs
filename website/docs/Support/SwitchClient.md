@@ -40,8 +40,6 @@ Move the `_data` directory in the **old** volume to the new database location: `
 
 Start the new stack again: `./ethd up`, then observe that your execution client is running well and is synced to head: `./ethd logs -f execution`.
 
-Finally, remove the old volume: `docker volume rm OLDVOLUME`, e.g. for Geth `docker volume rm eth-docker_geth-eth1-data`.
-
 ### 2. Move your validators
 
 **Exercise extreme caution. Running your validators in two locations at once would lead to slashing**
