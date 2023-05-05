@@ -14,40 +14,52 @@ To update the components of the project, run from within the project directory (
 > On 1/27/2022, eth-docker's repository name changed. Everything should work as it did.
 > If you do wish to manually update your local reference, run `git remote set-url origin https://github.com/eth-educators/eth-docker.git`
 
+## v2.3.0.1 2023-05-05
+
+*This is an optional release with bug fixes*
+
+- Support Nethermind 1.18 prune parameters; switch back to Hybrid prune
+- Graffiti string with `&` character survives `./ethd update`.
+- `./ethd update` checks for source-built clients and starts a fresh build
+- Use `--nat` for Lodestar and Reth
+- `deposit-cli.yml` no longer causes error messages during `./ethd update`.
+- Nethermind dasel dependency to `2.2.0`
+- Fix Lodestar and Nimbus entrypoint script on fresh sync
+
 ## v2.3 2023-05-01
 
 *This is a recommended release*
 
 - Address findings from Sigma Prime security audit. Users of `ee-shared.yml` or `ee-traefik.yml` should pay particular attention.
-- Nethermind prune reduced to 2 threads, to have more headroom during sync committees
+- Nethermind prune reduced to 2 threads, to have more headroom during sync committees.
 
 ## v2.2.10.1 2023-04-29
 
 *This is an optional release*
 
 - validator exit for Lighthouse and Nimbus works if there are subdirectories in `.eth/validator_keys`. Thanks @gorillamania!
-- Add dashboard for Reth
-- traefik revamped, new v6-aware DDNS provider for `traefik-cf.yml`
-- Lighthouse enables v6 by default
+- Add dashboard for Reth.
+- traefik revamped, new v6-aware DDNS provider for `traefik-cf.yml`.
+- Lighthouse enables v6 by default.
 
 ## v2.2.10 2023-04-23
 
 *This is a mandatory release for users of Erigon, and optional for all others*
 
-- Support Erigon v2.43.0
-- Initial work on IPv6 support
-- Fix infinite loop in `create-withdrawal-change.sh`
-- `traefik-cf.yml` can use more granular token permissions
+- Support Erigon v2.43.0.
+- Initial work on IPv6 support.
+- Fix infinite loop in `create-withdrawal-change.sh`.
+- `traefik-cf.yml` can use more granular token permissions.
  
 ## v2.2.9.5 2023-04-16
 
 *This is an optional release*
 
-- Use `docker compose` if it and `docker-compose` are installed
-- Nethermind memory hint higher for 64 GiB RAM
-- `create-withdrawal-change.sh` handles 12-word mnemonics
-- Nimbus validator exit changed to fit new Nimbus behavior
-- New command `./ethd keys sign-exit from-keystore [--offline]` to create pre-signed exit messages
+- Use `docker compose` if it and `docker-compose` are installed.
+- Nethermind memory hint higher for 64 GiB RAM.
+- `create-withdrawal-change.sh` handles 12-word mnemonics.
+- Nimbus validator exit changed to fit new Nimbus behavior.
+- New command `./ethd keys sign-exit from-keystore [--offline]` to create pre-signed exit messages.
 
 ## v2.2.9.4 2023-04-13
 
@@ -61,47 +73,47 @@ To update the components of the project, run from within the project directory (
 
 *This is an optional release*
 
-- Nethermind uses Full pruning mode instead of Hybrid
-- Nethermind uses a lower memory hint to resolve OOM during prune
-- Nethermind archive mode fixed
+- Nethermind uses Full pruning mode instead of Hybrid.
+- Nethermind uses a lower memory hint to resolve OOM during prune.
+- Nethermind archive mode fixed.
 - Support for stake fish, staked.us and allnodes withdrawal change. Thanks @valefar!
 
 ## v2.2.9.2 2023-04-09
 
 *This is an optional release with bug fixes*
 
-- Teku CL uses liveness tracking so doppelganger detection actually works
-- ethdo now works with reverse hybrid setups, and similar setups where the CL is remote
-- Undo a too-aggressive shell lint change, so saying "no" to Grafana works again
-- Adjust Nethermind prune threshold to account for it using MB not MiB
-- Adjust Nethermind memory hint in the hopes it won't OOM during prune
-- Withdrawal credential change readme clarification around the mnemonic that is needed
+- Teku CL uses liveness tracking so doppelganger detection actually works.
+- ethdo now works with reverse hybrid setups, and similar setups where the CL is remote.
+- Undo a too-aggressive shell lint change, so saying "no" to Grafana works again.
+- Adjust Nethermind prune threshold to account for it using MB not MiB.
+- Adjust Nethermind memory hint in the hopes it won't OOM during prune.
+- Withdrawal credential change readme clarification around the mnemonic that is needed.
 
 ## v2.2.9.1 2023-04-03
 
 *This is an optional release with bug fixes*
 
-- Support Teku doppelganger detection
+- Support Teku doppelganger detection.
 - `./ethd keys send-address-change` counts unique addresses. Thanks to @valefar for fixing the logic!
-- Shell lint pass, which fixes a bug in `./ethd prune-nethermind` and `./ethd install`
+- Shell lint pass, which fixes a bug in `./ethd prune-nethermind` and `./ethd install`.
 
 ## v2.2.9 2023-04-01
 
 *This is an optional release*
 
-- Add automatic pruning to Nethermind, controlled by `AUTOPRUNE_NM` in `.env`
+- Add automatic pruning to Nethermind, controlled by `AUTOPRUNE_NM` in `.env`.
 
 ## v2.2.8.7 2023-03-31
 
 *This is an optional release*
 
-- Remove soft max heap from Teku and Besu default JVM heap settings
-- Resolve failure when upgrading from eth-docker 2.2.8.3 or earlier
-- Dasel dependency upgraded to 2.1.2
-- `reth.yml` sets the P2P port
-- Remove check for apparmor
-- `./ethd install` now requires Ubuntu 20.04 or later or Debian 10 or later
-- `./ethd` warns the user if they are using Compose V1
+- Remove soft max heap from Teku and Besu default JVM heap settings.
+- Resolve failure when upgrading from eth-docker 2.2.8.3 or earlier.
+- Dasel dependency upgraded to 2.1.2.
+- `reth.yml` sets the P2P port.
+- Remove check for apparmor.
+- `./ethd install` now requires Ubuntu 20.04 or later or Debian 10 or later.
+- `./ethd` warns the user if they are using Compose V1.
 
 ## v2.2.8.6 2023-03-26
 
