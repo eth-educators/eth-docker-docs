@@ -4,20 +4,25 @@ title:  Offline prune Geth / Online prune Nethermind.
 sidebar_label: Prune Geth or Nethermind
 ---
 
-The Geth DB will [grow over time](../Usage/ResourceUsage.md), and may fill a 1TB SSD in
-about 6 months.
+### Automatic Nethermind prune
 
-You can offline prune Geth, bringing it back down close to its initial DB size.
+By default, Nethermind will prune when free disk space falls below 350 GiB. If you want to disable that, `nano .env` and change `AUTOPRUNE_NM` to `false`.
 
 ### Semi-automated Geth or Nethermind prune
+
+The Geth DB will [grow over time](../Usage/ResourceUsage.md), and may fill a 2TB SSD in a year or two.
+
+You can offline prune Geth, bringing it back down close to its initial DB size.
 
 Run `./ethd prune-geth` if using Geth. It will check prerequisites, offline prune Geth, and restart it.
 
 Run `./ethd prune-nethermind` if using Nethermind. It will check prerequisites, online prune Nethermind, and restart it.
 
-### Fully automated Geth or Nethermind prune
+### Automatic Geth prune
 
-The script `./autoprune.sh` can be run in crontab to monitor disk space, and start a Geth or Nethermind prune when free disk space is below 100/250 GiB or below 10%, whichever comes first.
+> This script is expected to become obsolete with the release of Geth 1.12 and pbss
+
+The script `./autoprune.sh` can be run in crontab to monitor disk space, and start a Geth prune when free disk space is below 100 GiB or below 10%, whichever comes first.
 
 The script requires the `bc` package, install that first: `sudo apt install bc`
 

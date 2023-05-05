@@ -16,7 +16,7 @@ Note that you either need sufficient disk space to sync two execution clients, o
 
 ### 1. Create a new client stack
 
-We'll be running a second copy of eth-docker in its own directory. For example, if the new directory is going to be `~/eth-staker`: `cd ~ && git clone https://github.com/eth2-educators/eth-docker.git eth-staker && cd eth-staker` .
+We'll be running a second copy of eth-docker in its own directory. For example, if the new directory is going to be `~/eth-staker`: `cd ~ && git clone https://github.com/eth-educators/eth-docker.git eth-staker && cd eth-staker` .
 
 Configure the new stack. Make sure to choose "rapid sync" so the consensus client can sync in minutes. `./ethd config` followed by `./ethd up`.
 
@@ -40,8 +40,6 @@ Move the `_data` directory in the **old** volume to the new database location: `
 
 Start the new stack again: `./ethd up`, then observe that your execution client is running well and is synced to head: `./ethd logs -f execution`.
 
-Finally, remove the old volume: `docker volume rm OLDVOLUME`, e.g. for Geth `docker volume rm eth-docker_geth-eth1-data`.
-
 ### 2. Move your validators
 
 **Exercise extreme caution. Running your validators in two locations at once would lead to slashing**
@@ -50,7 +48,7 @@ Follow the [moving a validator](../Support/Moving.md) instructions. You'll be in
 
 ### 3. Shut down the old client and remove its storage
 
-Inside the directory for the old client, e.g. `cd ~/eth-docker`, stop the client: `./ethd stop`. Then find its volumes via `docker volume ls`, they will all start with the name of the directory. And `docker volume rm VOLUMENAME` those.
+Inside the directory for the old client, e.g. `cd ~/eth-docker`, remove all storage for the client: `./ethd terminate`.
 
 Finally, you can remove the directory itself: For example, if it was `~/eth-docker`, `cd ~ && rm -rf eth-docker`.
 
@@ -192,8 +190,3 @@ Optionally, remove the old Geth package: `sudo apt remove -y ethereum && sudo ap
 `sudo systemctl stop beacon-chain && sudo systemctl disable beacon-chain` and `sudo rm -rf ~/prysm`.
 
 Optionally, remove the old Geth package: `sudo apt remove -y ethereum && sudo apt -y auto-remove`.
-
-### 4. Set an auto-prune crontab
-
-This is an optional component for [auto-pruning Geth or Nethermind](../Support/GethPrune.md#fully-automated-geth-prune).
-
