@@ -88,21 +88,22 @@ Make sure to choose "checkpoint sync" so the consensus client can sync in minute
 
 **Do not** import validator keys yet. Your validators are still running on your old client, and moving them over needs to be done with care to avoid running them in two places and getting yourself slashed.
 
-Observe consensus client logs with `./ethd logs -f consensus`.
+Observe consensus client logs with `./ethd logs -f consensus`, see that it checkpoint synced. Look at execution client logs with `./ethd logs -f execution` and wait until it is fully synced. Depending on client this takes between
+1 hour and 5 days.
 
-### 2. Move your validators
+### 3. Move your validators
 
 **Exercise extreme caution. Running your validators in two locations at once would lead to slashing**
 
 Follow the [moving a validator](../Support/Moving.md) instructions. You'll be inside the old directory, e.g. `~/eth-docker`, for the first part where you delete the keys and make sure they are gone, and inside the new directory, e.g. `~/eth-staker`, for the second part where you import the keys again.
 
-### 3. Shut down the old client and remove its storage
+### 4. Shut down the old client and remove its storage
 
 Inside the directory for the old client, e.g. `cd ~/eth-docker`, remove all storage for the client: `./ethd terminate`.
 
 Finally, you can remove the directory itself: For example, if it was `~/eth-docker`, `cd ~ && rm -rf eth-docker`.
 
-### 4. Change auto-prune crontab
+### 5. Change auto-prune crontab
 
 These is an optional component that you may not be using.
 
