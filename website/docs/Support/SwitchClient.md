@@ -10,7 +10,7 @@ It may be desirable to switch clients if you are using one that is close to a su
 
 Choose any consensus client and any execution client you'd like to use, and then follow the instructions below.
 
-Note that you either need sufficient disk space to sync two execution clients, or keep the same execution client and move its database, or accept downtime while your new execution client syncs.
+Note that if you change the execution client, you either need sufficient disk space to sync two execution clients, or accept downtime while your new execution client syncs.
 
 > `sudo` commands for docker are necessary if your user is not part of the `docker` group. If `docker ps` does not succeed, you need to use `sudo` for `docker` or `docker-compose`, or make your user part of the `docker` group.
 
@@ -67,6 +67,10 @@ Check https://beaconcha.in/ for your validator public keys, as well as the logs 
 Depending on the client, sync takes between an hour and 5 days. Once the execution client is fully synced, your validators will start attesting again.
 
 ## Switching the execution client while avoiding downtime
+
+### 0. Verify you have sufficient disk space
+
+`df -h` should you enough space to sync a second execution client. ~1 TiB free is usually good. This may be a tall order on a 2TB drive.
 
 ### 1. Change the ports of the existing client stack
 
