@@ -12,33 +12,79 @@ Choose any consensus client and any execution client you'd like to use, and then
 
 Note that you either need sufficient disk space to sync two execution clients, or keep the same execution client and move its database, or accept downtime while your new execution client syncs.
 
-## Switching clients if you are already using eth-docker
+> `sudo` commands for docker are necessary if your user is not part of the `docker` group. If `docker ps` does not succeed, you need to use `sudo` for `docker` or `docker-compose`, or make your user part of the `docker` group.
 
-### 1. Create a new client stack
+## Switching only the consensus client
 
-We'll be running a second copy of eth-docker in its own directory. For example, if the new directory is going to be `~/eth-staker`: `cd ~ && git clone https://github.com/eth-educators/eth-docker.git eth-staker && cd eth-staker` .
+### 1. Delete validator keys
 
-Configure the new stack. Make sure to choose "rapid sync" so the consensus client can sync in minutes. `./ethd config` followed by `./ethd up`.
+- Verify that you have the keystore-m files to reimport keys after consensus client switch. They should be in `./.eth/validator_keys`.
+- `./ethd keys delete all`
+
+### 2. Choose a new consensus client
+
+- Reconfigure the stack, either with `nano .env` or `./ethd config`, and choose a new consensus client and the same execution client. Make sure to choose "checkpoint sync" so the consensus client can sync in minutes.
+- `./ethd up`
+- `./ethd logs -f consensus` and verify it went through checkpoint sync and is following chain head
+
+### 3. Delete volumes for the old consensus client
+
+`docker volume ls` and find the volumes that belonged to the old consensus client, and for all but Nimbus and Teku, corresponding validator client. `docker volume rm` those.
+
+### 4. Reimport validator keys
+
+This carries a slashing risk, take extreme care.
+
+- [ ] Look at https://beaconcha.in/ and verify that the validator(s) you just removed are now
+  missing an attestation. Take a note of the epoch the last successful attestation was in.
+- [ ] Allow 15 minutes to go by and verify that the last successful attestation's epoch is now
+  finalized. Only then take the next step.
+- [ ] Verify **once more** that all your validator(s) have been down long
+  enough to miss an attestion
+- [ ] If you are absolutely positively sure that the old validator client cannot
+  start attesting again and 15 minutes have passed / **all** validators'
+  last successful attestation is in a finalized epoch, then and only then:
+- [ ] Run `./ethd keys import` and import the keys
+
+### 5. Verify that validators are attesting again
+
+Check https://beaconcha.in/ for your validator public keys, as well as the logs of `consensus` and, if not Nimbus or Teku, `validator` services.
+
+## Switching the execution client if downtime is acceptable
+
+### 1. Choose a new execution client
+
+- Reconfigure the stack, either with `nano .env` or `./ethd config`, and choose a new execution client and the same consensus client.
+- `./ethd up`
+- `./ethd logs -f execution` and verify it started sync
+
+### 2. Delete volumes for the old execution client
+
+`docker volume ls` and find the volume that belonged to the old execution client. `docker volume rm` it.
+
+### 3. Wait for sync
+
+Depending on the client, sync takes between an hour and 5 days. Once the execution client is fully synced, your validators will start attesting again.
+
+## Switching the execution client while avoiding downtime
+
+### 1. Change the ports of the existing client stack
+
+So that new and old client do not conflict, in the directory for the existing client stack, `nano .env` and adjust `EL_P2P_PORT` and `CL_P2P_PORT` - if using Prysm in old and new location,
+change `PRYSM_PORT` and `PRYSM_UDP_PORT`. "One higher" will work.
+
+Start the existing client stack with `./ethd up`, it will start using the new ports. Peering may be a bit iffy as there is no port forward for the new ports. There is no need to fix that, as it's temporary.
+
+### 2. Create a new client stack
+
+You'll be running a second copy of eth-docker in its own directory. For example, if the new directory is going to be `~/eth-staker`: `cd ~ && git clone https://github.com/eth-educators/eth-docker.git eth-staker && cd eth-staker` .
+
+Configure the new stack. You can choose the same or a different consensus client, and a different execution client, compared to your existing client stack.
+Make sure to choose "checkpoint sync" so the consensus client can sync in minutes. `./ethd config` followed by `./ethd up`.
 
 **Do not** import validator keys yet. Your validators are still running on your old client, and moving them over needs to be done with care to avoid running them in two places and getting yourself slashed.
 
-Observe consensus client logs with `./ethd logs -f consensus`. Once it is fully synced, you can move the execution client database if you kept the same execution client between the old and new setup.
-
-> `sudo` commands for docker are necessary if your user is not part of the `docker` group. If `docker ps` does not succeed, you need to use `sudo` for `docker` or `docker-compose`, or make your user part of the `docker` group.
-
-### 1a. Optional: Move the existing execution client database to its new location
-
-This avoids a fresh sync of the execution client database in the new location. Note you might want to fresh sync if your DB has grown to the point where starting over is beneficial.
-
-In the location for the new client stack, e.g. `~/eth-staker`, stop the stack: `./ethd stop`
-
-`docker volume ls` to see the volume names of the old and new execution client. For Geth, you might see `eth-docker_geth-eth1-data` and `eth-staker_geth-eth1-data`.
-
-Remove the partially synced contents of the **new** database location: `sudo rm -rf /var/lib/docker/volumes/NEWVOLUME/_data`, e,g. for Geth `sudo rm -rf /var/lib/docker/volumes/eth-staker_geth-eth1-data/_data`
-
-Move the `_data` directory in the **old** volume to the new database location: `sudo mv /var/lib/docker/volumes/OLDVOLUME/_data -t /var/lib/docker/volumes/NEWVOLUME`. For Geth this might be `sudo mv /var/lib/docker/volumes/eth-docker_geth-eth1-data/_data -t /var/lib/docker/volumes/eth-staker_geth-eth1-data`
-
-Start the new stack again: `./ethd up`, then observe that your execution client is running well and is synced to head: `./ethd logs -f execution`.
+Observe consensus client logs with `./ethd logs -f consensus`.
 
 ### 2. Move your validators
 
