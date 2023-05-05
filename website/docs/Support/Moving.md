@@ -48,10 +48,8 @@ First, you'll want to bring down the old client and make sure it can't come back
 In the directory of the old client:
 
 - [ ] `./ethd keys list`
-- [ ] `./ethd keys delete 0xPUBKEY` for each one so you get the slashing protection database
-- [ ] `./ethd down`
-- [ ] `docker volume ls` - find the volume for the validator
-- [ ] `docker volume rm VOLUMENAME` - remove the volume for the validator
+- [ ] `./ethd keys delete all` so you get the slashing protection database
+- [ ] `./ethd terminate`
 
 ### Verify
 
