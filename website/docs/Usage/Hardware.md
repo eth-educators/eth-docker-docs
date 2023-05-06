@@ -7,7 +7,7 @@ sidebar_label: Hardware
 Recommended hardware profile:
 * 32 GiB of RAM - 16 GiB works but can be challenging depending on client mix
 * Quad Core CPU
-* 2TB ["mainstream" SSD](https://gist.github.com/yorickdowne/f3a3e79a573bf35767cd002cc977b038) - neither QLC nor DRAMless. 1TB can work with some client combinations but is very tight; 2TB affords more room for growth.
+* 2TB ["mainstream" SSD](https://gist.github.com/yorickdowne/f3a3e79a573bf35767cd002cc977b038) - neither QLC nor DRAMless.
 
 Generally, 8 GiB of RAM is a very tight fit, with only Nimbus/Geth reported to work, 16 GiB can be a tight fit depending on client mix, and 32 GiB is recommended.
 
@@ -17,11 +17,11 @@ An SSD is required for storage because the node databases are so IOPS-heavy. The
 
 Other execution clients grow at different rates, see [resource use](../Usage/ResourceUsage.md).
 
-The consensus client database is small, around 20-100 GiB, but we don't know what growth will look like after the merge of Ethereum.
+The consensus client database is small, around 70-200 GiB.
 
 If you are running a slasher, that might be another 100 to 300 GiB by itself.
 
-Two home server builds that I like and am happy to recommend are below. Both support
+Two home server builds that I like and am happy to recommend are below. Both Intel and AMD support
 IPMI, which means they can be managed and power-cycled remotely and need neither
 a GPU nor monitor. Both support ECC RAM, though the AMD option as of Sept 2020
 was unable to report ECC errors via IPMI, only OS-level reporting worked.
@@ -52,6 +52,14 @@ was unable to report ECC errors via IPMI, only OS-level reporting worked.
   * AMD Ryzen CPU (Zen2/3), but not APU (APUs do not support ECC)
   * 32 GiB of Micron or Samsung DDR4 UDIMM ECC RAM (unbuffered, **not** registered)
   * [2TB M.2 NVMe SSD](https://gist.github.com/yorickdowne/f3a3e79a573bf35767cd002cc977b038)
+
+* uATX Zen 4:
+  * AsRock Rack B650D4U
+  * AMD Ryzen 7000 CPU (Zen4), but not APU (APUs do not support ECC)
+  * 32 GiB of DDR5 UDIMM ECC RAM (unbuffered, **not** registered)
+  * [2TB M.2 NVMe SSD](https://gist.github.com/yorickdowne/f3a3e79a573bf35767cd002cc977b038)
+
+The SuperMicro eStore is one good source of UDIMM ECC, DDR4 and DDR5 both.
 
 Plus, obviously, a case, PSU, case fans. Pick your own. Well-liked
 options are Node 304 (mITX) and Node 804 (uATX) with Seasonic PSUs,
