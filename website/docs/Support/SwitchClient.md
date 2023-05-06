@@ -14,7 +14,71 @@ Note that if you change the execution client, you either need sufficient disk sp
 
 > `sudo` commands for docker are necessary if your user is not part of the `docker` group. If `docker ps` does not succeed, you need to use `sudo` for `docker` or `docker-compose`, or make your user part of the `docker` group.
 
-## Switching only the consensus client
+## Switching to web3signer
+
+With web3signer, the keys do not need to be moved when switching the consensus client. If keys are currently loaded directly into the validator client, which is the default, they need to be just as carefully moved as when switching between consensus clients without web3signer.
+
+### 1. Delete validator keys
+
+- Verify that you have the keystore-m files to reimport keys after consensus client switch. They should be in `./.eth/validator_keys`.
+- `./ethd keys delete all`
+
+### 2. Enable web3signer
+
+- Edit configuration with `nano .env`, set `WEB3SIGNER=true` and add `:web3signer.yml` to `COMPOSE_FILE`.
+- `./ethd up`
+- `./ethd logs -f web3signer` and verify it started correctly
+
+### 3. Delete volume for the old validator client
+
+For all but Nimbus and Teku:
+- `./ethd stop`
+- `docker volume ls` and find the volume that belonged to the old validator client. `docker volume rm` it.
+- `./ethd up`
+
+### 4. Reimport validator keys
+
+This carries a slashing risk, take extreme care.
+
+- [ ] Look at https://beaconcha.in/ and verify that the validator(s) you just removed are now
+  missing an attestation. Take a note of the epoch the last successful attestation was in.
+- [ ] Allow 15 minutes to go by and verify that the last successful attestation's epoch is now
+  finalized. Only then take the next step.
+- [ ] Verify **once more** that all your validator(s) have been down long
+  enough to miss an attestion
+- [ ] If you are absolutely positively sure that the old validator client cannot
+  start attesting again and 15 minutes have passed / **all** validators'
+  last successful attestation is in a finalized epoch, then and only then:
+- [ ] Run `./ethd keys import` and import the keys
+
+### 5. Verify that validators are attesting again
+
+Check https://beaconcha.in/ for your validator public keys, as well as the logs of `consensus` and, if not Nimbus or Teku, `validator` services.
+
+## Switching only the consensus client, keys in web3signer
+
+### 1. Choose a new consensus client
+
+- Verify that you have the keystore-m files to reregister keys after consensus client switch. They should be in `./.eth/validator_keys`.
+- Reconfigure the stack, either with `nano .env` or `./ethd config`, and choose a new consensus client and the same execution client. Make sure to choose "checkpoint sync" so the consensus client can sync in minutes.
+- `./ethd up`
+- `./ethd logs -f consensus` and verify it went through checkpoint sync and is following chain head
+
+### 2. Delete volumes for the old consensus client
+
+`docker volume ls` and find the volumes that belonged to the old consensus client, and for all but Nimbus and Teku, corresponding validator client. `docker volume rm` those.
+
+### 3. Reregister validator keys
+
+As the keys remain in web3signer, this does not carry a slashing risk.
+
+- Run `./ethd keys import`, which will skip import on web3signer and register the keys with the new validator client.
+
+### 4. Verify that validators are attesting
+
+Check https://beaconcha.in/ for your validator public keys, as well as the logs of `consensus` and, if not Nimbus or Teku, `validator` services.
+
+## Switching only the consensus client, keys *not* in web3signer
 
 ### 1. Delete validator keys
 
