@@ -59,7 +59,6 @@ Check https://beaconcha.in/ for your validator public keys, as well as the logs 
 
 ### 1. Choose a new consensus client
 
-- Verify that you have the keystore-m files to reregister keys after consensus client switch. They should be in `./.eth/validator_keys`.
 - Reconfigure the stack, either with `nano .env` or `./ethd config`, and choose a new consensus client and the same execution client. Make sure to choose "checkpoint sync" so the consensus client can sync in minutes.
 - `./ethd up`
 - `./ethd logs -f consensus` and verify it went through checkpoint sync and is following chain head
@@ -68,11 +67,11 @@ Check https://beaconcha.in/ for your validator public keys, as well as the logs 
 
 `docker volume ls` and find the volumes that belonged to the old consensus client, and for all but Nimbus and Teku, corresponding validator client. `docker volume rm` those.
 
-### 3. Reregister validator keys
+### 3. Re-register validator keys
 
 As the keys remain in web3signer, this does not carry a slashing risk.
 
-- Run `./ethd keys import`, which will skip import on web3signer and register the keys with the new validator client.
+- Run `./ethd keys register`, which will register all keys in web3signer with the new validator client.
 
 ### 4. Verify that validators are attesting
 
