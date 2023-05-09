@@ -70,6 +70,12 @@ Cleanup duplicate deposit_data.
 rm .eth/seed_check/*
 ```
 
+## Decide whether to use web3signer
+
+You have the option of keeping the keys in web3signer, which means you will not need to move them if you switch CL clients. To enable web3signer, `nano .env` and set `WEB3SIGNER=true` and add `:web3signer.yml` to `COMPOSE_FILE`.
+
+> This has been tested with all clients, and Prysm support is [limited](https://github.com/prysmaticlabs/prysm/issues/12373) as of May 2023.
+
 ## Using the keymanager API to import keys
 
 **Warning** Import your validator key(s) to only *one* client. If you run them in two locations at once,
