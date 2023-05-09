@@ -38,6 +38,8 @@ The same script can also be used to stop, start and update the node. Run `./ethd
 
 > Note that docker will restart running clients automatically after a reboot. They will remain stopped if you stopped them with `./ethd stop` or equivalent docker commands.
 
+All your settings are in `.env` and can be viewed and edited with `nano .env`. You can also re-run `./ethd config` at any time.
+
 ## Next steps
 
 If you are going to run a validating node, [create and import keys](../Usage/ImportKeys.md). 
