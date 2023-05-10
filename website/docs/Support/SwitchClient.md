@@ -18,7 +18,7 @@ Note that if you change the execution client, you either need sufficient disk sp
 
 With web3signer, the keys do not need to be moved when switching the consensus client. If keys are currently loaded directly into the validator client, which is the default, they need to be just as carefully moved as when switching between consensus clients without web3signer.
 
-> This has been tested with all clients, and Prysm support is [limited](https://github.com/prysmaticlabs/prysm/issues/12373) as of May 2023.
+> This has been tested with all clients, and Prysm support is [limited](https://github.com/prysmaticlabs/prysm/issues/12373) as of May 2023. To be clear, don't use Prysm with web3signer.
 
 ### 1. Delete validator keys
 
