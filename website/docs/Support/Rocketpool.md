@@ -30,8 +30,8 @@ If you are not running eth-docker already, grab it with `git clone https://githu
 
 Configure it with `./ethd config`. Make sure to choose the same Ethereum PoS network as RocketPool, and a "Validator client only" to match the Consensus client in RocketPool. Choose "http://eth2:5052" as your "remote consensus client".
 
-> Lighthouse and Teku are mutually compatible, they can be mixed and matched.
-> Prysm support has not been tested.
+> Lighthouse and Teku are mutually compatible, they can be mixed and matched
+> Prysm support has not been tested
 
 If you had previously already imported keys to eth-docker, restart eth-docker with `./ethd restart`.
 
