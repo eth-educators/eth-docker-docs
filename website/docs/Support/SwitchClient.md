@@ -62,6 +62,7 @@ Check https://beaconcha.in/ for your validator public keys, as well as the logs 
 ### 1. Choose a new consensus client
 
 - Reconfigure the stack, either with `nano .env` or `./ethd config`, and choose a new consensus client and the same execution client. Make sure to choose "checkpoint sync" so the consensus client can sync in minutes.
+- Optional: If you set the advanced options `CL_EXTRAS` or `VC_EXTRAS` in `.env`, edit them to conform to the parameters of the new client.
 - `./ethd up`
 - `./ethd logs -f consensus` and verify it went through checkpoint sync and is following chain head
 
@@ -89,6 +90,7 @@ Check https://beaconcha.in/ for your validator public keys, as well as the logs 
 ### 2. Choose a new consensus client
 
 - Reconfigure the stack, either with `nano .env` or `./ethd config`, and choose a new consensus client and the same execution client. Make sure to choose "checkpoint sync" so the consensus client can sync in minutes.
+- Optional: If you set the advanced options `CL_EXTRAS` or `VC_EXTRAS` in `.env`, edit them to conform to the parameters of the new client.
 - `./ethd up`
 - `./ethd logs -f consensus` and verify it went through checkpoint sync and is following chain head
 
@@ -120,6 +122,7 @@ Check https://beaconcha.in/ for your validator public keys, as well as the logs 
 ### 1. Choose a new execution client
 
 - Reconfigure the stack, either with `nano .env` or `./ethd config`, and choose a new execution client and the same consensus client.
+- Optional: If you set the advanced option `EL_EXTRAS` in `.env`, edit it to conform to the parameters of the new client.
 - `./ethd up`
 - `./ethd logs -f execution` and verify it started sync
 
