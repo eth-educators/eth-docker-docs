@@ -22,8 +22,10 @@ With web3signer, the keys do not need to be moved when switching the consensus c
 
 ### 1. Delete validator keys
 
-- Verify that you have the keystore-m files to reimport keys after consensus client switch. They should be in `./.eth/validator_keys`.
+- Verify that you have the keystore-m files to reimport keys after the switch to web3signer. They should be in `./.eth/validator_keys`.
+- Verify that `WEB3SIGNER=false` in .env. If that's not so, **stop** and make it so.
 - `./ethd keys delete all`
+- Verify keys are gone: `./ethd keys list`
 
 ### 2. Enable web3signer
 
