@@ -90,7 +90,7 @@ Taken from the [RocketPool docs](https://docs.rocketpool.net/guides/node/docker.
 
 By default, Docker will store all of its container data on your operating system's drive. In some cases, this is **not** what you want. For example, you may have a small boot drive and a second larger SSD for the chain data.
 
-> If you just one drive and are good with the default behavior, don't make these adjustments
+> If you have just one drive and are good with the default behavior, don't make these adjustments
 
 To change the docker volume location, create a new file called /etc/docker/daemon.json as the root user:
 
