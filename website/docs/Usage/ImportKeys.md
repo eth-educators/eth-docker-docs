@@ -74,6 +74,8 @@ rm .eth/seed_check/*
 
 You have the option of keeping the keys in web3signer, which means you will not need to move them if you switch CL clients. To enable web3signer, `nano .env` and set `WEB3SIGNER=true` and add `:web3signer.yml` to `COMPOSE_FILE`.
 
+Do **not** run keys in both the client directly and web3signer. This can get you slashed. If you wish to switch to web3signer, and already have keys loaded, look at [switching instructions](../Support/SwitchClients.md).
+
 > This has been tested with all clients, and Prysm support is [limited](https://github.com/prysmaticlabs/prysm/issues/12373) as of May 2023. To be clear, don't use Prysm with web3signer.
 
 ## Using the keymanager API to import keys
