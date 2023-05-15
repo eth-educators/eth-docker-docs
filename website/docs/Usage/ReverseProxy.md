@@ -15,12 +15,11 @@ For example, say I have a domain `example.com`, left the `_HOST` and port settin
 
 ## Cloudflare for DNS management
 
-With this option, CloudFlare will provide DNS management as well as DDoS protection. Traefik uses CloudFlare to issue a Let's Encrypt certificate for your domain. This also automatically updates the IP address of the domain, which is useful if you are on a dynamic address, such as domestic Internet. Either for the main domain `example.com` or if desired for a subdomain such as `grafana.example.com`.
+With this option, CloudFlare will provide DNS management as well as DDoS protection. Traefik uses CloudFlare to issue a Let's Encrypt certificate for your domain. This also automatically updates the IP address of the domain, which is useful if you are on a dynamic address, such as domestic Internet. This only works for a subdomain such as `grafana.example.com`, not for the domain itself like `example.com`.
 
 You'll add `traefik-cf.yml` to your `COMPOSE_FILE` in `.env`, for example: `lighthouse.yml:geth.yml:grafana.yml:traefik-cf.yml`
 
-Create a (free) CloudFlare account and set up your domain, which will require pointing nameservers for your domain
-to Cloudflare's servers. How this is done depends on your domain registrar.
+Create a (free) CloudFlare account and set up your domain, which will require pointing nameservers for your domain to Cloudflare's servers. How this is done depends on your domain registrar.
 
 You will need a "scoped API token" from CloudFlare's [API page](https://dash.cloudflare.com/profile/api-tokens). Create a token with `Zone.DNS:Edit`, `Zone.Zone:Read` and `Zone.Zone Settings:Read` permissions, for all zones. Make a note of the Token secret, it will only be shown to you once.
 
@@ -30,18 +29,18 @@ With that, in the `.env` file:
 - Set `CF_DNS_API_TOKEN` to the API token with `Edit` rights you just created
 - Optionally set `CF_ZONE_API_TOKEN` to the API token with `Read` rights, only if you created split permissions.
 - Optionally set `CF_ZONE_ID` to the Zone ID of the domain, only if you created split permissions.
-- Set `DDNS_SUBDOMAIN` if you want the Dynamic DNS IP address update to act on a specific subdomain name, rather than the main domain
-- Set `DDNS_PROXY` to `false` if you do not want CloudFlare to proxy traffic to the domain / subdomain
+- Set `DDNS_SUBDOMAIN` to the specific A/AAAA record you want to see created. This cannot be empty, updating the domain itself no longer works.
+- Set `DDNS_PROXY` to `false` if you do not want CloudFlare to proxy traffic to the subdomain
 - Read further down about common settings for Traefik
 
 ### CNAMEs and proxy settings
 
-You need CNAMEs or A records for the services you make available. Assuming you have set the main domain with the IP address of your host, and keeping the default names in `.env`, set the CNAMEs for only the services you use:
+You need CNAMEs or A records for the services you make available. Assuming you have set the subdomain `grafana` with the IP address of your host, and keeping the default names in `.env`, set the CNAMEs for only the services you use:
 
-- `grafana` CNAME to `@`, proxied, for the Grafana dashboard
-- `prysm` CNAME to `@`, proxied, for the Prysm Web UI
-- `el` CNAME to `@`, DNS only, for the execution client RPC https:// port
-- `elws` CNAME to `@`, DNS only, for the execution client WS wss:// port
+- `grafana` is automatically created, proxied, for the Grafana dashboard
+- `prysm` CNAME to `grafana.example.com`, proxied, for the Prysm Web UI
+- `el` CNAME to `grafana.example.com`, DNS only, for the execution client RPC https:// port
+- `elws` CNAME to `grafana.example.com`, DNS only, for the execution client WS wss:// port
 
 If you are using CloudFlare to proxy Grafana / Prysm web, you'll also want to set these:
 
