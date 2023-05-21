@@ -12,13 +12,15 @@ This has been tested with Lighthouse. It should work without changes for any cli
 
 ## Configuration A: Chain databases in RocketPool
 
-For this example, the consensus client (beacon/eth2) and execution client (eth1) will run in RocketPool, and eth-docker will run just a validator client, but not "consensus" or "execution" containers.
+For this example, the consensus client (beacon/eth2) and execution client (eth1) will run in RocketPool, and eth-docker will run just a validator client, but not "consensus" or "execution" containers.  Optionally, the MEV-Boost service can also be run in RocketPool and accessed by the eth-docker validator.
 
 ### Configure RocketPool
 
 If you are not running RocketPool already, install it [following their instructions](https://docs.rocketpool.net/guides/node/docker.html). When you get to the step where you configure RocketPool:
 
 `rocketpool service config` and choose Locally Managed, any local Execution Client (Geth, Erigon, etc) and any Consensus Client, though I'd avoid Prysm.
+
+Expose RocketPool API ports as per https://docs.rocketpool.net/guides/node/advanced-config.html#allowing-external-validator-clients-to-connect-to-the-smartnode
 
 Run `rocketpool service start`, and everything should come up. 
 

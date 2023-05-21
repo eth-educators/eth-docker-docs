@@ -114,7 +114,7 @@ These are largely for running RPC nodes, instead of validator nodes. Most users 
 
 Your Consensus Layer client connects to the mev-boost container. If you are running a CL in eth-docker, then in `.env` you'd add `mev-boost.yml` to `COMPOSE_FILE`, set `MEV_BOOST=true` and set `MEV_RELAYS` to the [relays you wish to use](https://ethstaker.cc/mev-relay-list/).
 
-If you are running a validator client only, such as with a RocketPool "reverse hybrid" setup, then all you need to do is to set `MEV_BOOST=true` in `.env`. `mev-boost.yml` and `MEV_RELAYS` are not needed and won't be used if they are set, as they are relevant only where the Consensus Layer client runs. See the [Overview](/) drawing for how these components communicate.
+If you are running a validator client only, such as with a RocketPool "reverse hybrid" setup, then all you need to do is to set `MEV_BOOST=true` in `.env`. `mev-boost.yml` and `MEV_RELAYS` are not needed and won't be used if they are set, as they are relevant only where the Consensus Layer client runs.  Be sure that the MEV API port is exposed so that the eth-docker validator can access it.  See the [Overview](/) drawing for how these components communicate.
 
 ## Multiple nodes on one host
 
