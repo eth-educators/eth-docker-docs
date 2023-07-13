@@ -23,6 +23,7 @@ Please choose:
   * Besu
   * Geth - this client has a super-majority. Choosing another is safer.
   * Erigon
+  * Reth (alpha)
 * Whether to run a grafana dashboard for monitoring
 
 First, copy the environment file.<br />
@@ -54,16 +55,17 @@ Choose one consensus client:
 
 - `teku.yml` - Teku
 - `lighthouse.yml` - Lighthouse
+- `lodestar.yml` - Lodestar
 - `nimbus.yml` - Nimbus
 - `prysm.yml` - Prysm
-- `lodestar.yml` - Lodestar
 
 Choose one execution client:
 
-- `geth.yml` - geth execution client
-- `erigon.yml` - erigon execution client
-- `besu.yml` - besu execution client
 - `nethermind.yml` - nethermind execution client
+- `besu.yml` - besu execution client
+- `reth.yml` - reth execution client
+- `erigon.yml` - erigon execution client
+- `geth.yml` - geth execution client
 
 Optionally, enable MEV boost:
 
