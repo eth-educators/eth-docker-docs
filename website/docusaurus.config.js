@@ -38,7 +38,7 @@ module.exports = {
         },
         algolia: {
             appId: '0ADJW6A3YH',
-            apiKey: 'a51366ded1891d634408de0e1e4cf1c5',
+            apiKey: 'ac048855a81596948b9d8386b6ccc0c1',
             indexName: 'eth2-docker',
             searchParameters: { 'facetFilters': ["type:content", "version:current"] }
         }
