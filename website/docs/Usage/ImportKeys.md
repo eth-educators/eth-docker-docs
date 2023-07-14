@@ -114,7 +114,7 @@ replacing `PATHTOKEYS` with the actual path where they are.
 
 ## Importing keys from another validator instance
 
-If you are migrating to eth-docker from another validator node that uses systemd or some other init system, please see [SwitchClient.md](../Support/SwitchClient.md) and [Moving.md](../Support/Moving.md) for advice. Ultimately, you'll likely need to export your keys from your old client and move them to your new node manually, and then use eth-docker's key management commands to import the keys into clients managed by eth-docker.
+If you are migrating to eth-docker from another validator node that uses systemd or some other init system, please see [SwitchClient](../Support/SwitchClient.md) and [Moving](../Support/Moving.md) for advice. Ultimately, you'll likely need to export your keys from your old client and move them to your new node manually, and then use eth-docker's key management commands to import the keys into clients managed by eth-docker.
 
 For example, for moving from a system+prysm setup, you'll want to use prysm's [export functionality](https://docs.prylabs.network/docs/advanced/migrating-keys). For other clients, check their official documentation to find out how to export your validator keys. You can then use eth-docker's key management API to import your keys with `./ethd keys import`.
 
