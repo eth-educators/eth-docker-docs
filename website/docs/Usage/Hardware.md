@@ -13,13 +13,7 @@ Generally, 8 GiB of RAM is a very tight fit, with only Nimbus/Geth reported to w
 
 4 CPU cores are recommended to deal with spikes in processing.
 
-An SSD is required for storage because the node databases are so IOPS-heavy. The Geth execution client would require around 650GiB of storage by itself initially, which can fill a 1TB SSD within 2 months. Offline pruning is available.
-
-Other execution clients grow at different rates, see [resource use](../Usage/ResourceUsage.md).
-
-The consensus client database is small, around 70-200 GiB.
-
-If you are running a slasher, that might be another 100 to 300 GiB by itself.
+An SSD is required for storage because the node databases are so IOPS-heavy. An Ethereum mainnet node takes between 800 GiB and 1 TiB of storage initially, as of mid 2023. The on-disk growth pattern differs between execution clients, see [resource use](../Usage/ResourceUsage.md). A 2TB disk is expected to last (potentially with execution client pruning or resync) until late 2025. If [EIP-4444](https://eips.ethereum.org/EIPS/eip-4444) is in Ethereum by that time, it may last "forever".
 
 Two home server builds that I like and am happy to recommend are below. Both Intel and AMD support
 IPMI, which means they can be managed and power-cycled remotely and need neither
