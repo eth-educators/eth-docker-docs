@@ -22,6 +22,8 @@ For reference, here are disk, RAM and CPU requirements, as well as mainnet initi
 
 SSD, RAM and CPU use is after initial sync, when keeping up with head. 100% CPU is one core.
 
+Please pay attention to the version and Date. These are snapshots in time of client behavior. Initial state size increases over time, and execution clients are always working on improving their storage engines.
+
 | Client | Version | Date | DB Size  | DB Growth | RAM | CPU | Notes |
 |--------|---------|----  |----------|-----------|-----|-----|-------|
 | Geth   | 1.10.18 | Jun 2022 | ~560 GiB | ~13.5 GiB / week | 8 GiB | 100-400% | default cache size |
@@ -48,7 +50,6 @@ Read and write latencies are measured with `sudo iostat -mdx 240 2` during Geth 
 
 Servers have been configured with [noatime](https://www.howtoforge.com/reducing-disk-io-by-mounting-partitions-with-noatime) and [no swap](https://www.geeksforgeeks.org/how-to-permanently-disable-swap-in-linux/) to improve available IOPS.
 
-A note on Contabo: Stability of their service [is questionable](https://www.reddit.com/r/ethstaker/comments/l5d69l/if_youre_struggling_with_contabo/).
 
 | Name                 | RAM    | SSD Size | CPU        | r/w IOPS | r/w latency | Notes |
 |----------------------|--------|----------|------------|------|-------|--------|
@@ -73,6 +74,7 @@ For Geth, you will see "State heal in progress" after initial sync, which will p
 This should complete in under 4 hours. If it does not, or even goes on for a week+, you do not have sufficient IOPS for Geth to "catch up" with state.
 
 Cache size default in all tests.
+
 
 | Client | Version | Date | Test System | Time Taken |  Notes |
 |--------|---------|------|-------------|------------|--------|
