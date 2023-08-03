@@ -14,6 +14,32 @@ To update the components of the project, run from within the project directory (
 > On 1/27/2022, eth-docker's repository name changed. Everything should work as it did.
 > If you do wish to manually update your local reference, run `git remote set-url origin https://github.com/eth-educators/eth-docker.git`
 
+## v2.3.2 2023-08-03
+
+*This is an optional release with new features and bug fixes*
+
+- Update SSV and Nethermind dashboards
+- Update Prysm dashboards
+- Fix Teku VC connecting to Lighthouse CL
+- Fix Nimbus VC using MEV Boost
+- Remove dasel dependency from Nethermind
+- `./ethd config` on Gnosis Chain now offers Lodestar
+- Teku default heap changed to `-Xmx6g`
+- Fix a docker presence check on macOS
+- promtail can write to a remote Loki
+- Loki uses TSDB
+- Fix `./ethd install` failing when docker is not yet installed
+- Improvements to Geth and Lighthouse archive node options
+- Reth binary images supported
+- compose V1 EOS message
+- Lodestar forces validator files open in case of lingering lock files
+- `./ethd` can stop and restart individual services
+- Configurable traefik and ddns tags
+- Lighthouse source build uses maxperf. Thanks @jimmygchen!
+- Default NM source build target does not build rc targets. Thanks @nu404040!
+- ethdo script fixed when user used a 25th word. Thanks @valefar-on-discord!
+- Source builds updated to use Debian bookworm
+ 
 ## v2.3.1 2023-05-17
 
 *This is an optional release with bug fixes*
