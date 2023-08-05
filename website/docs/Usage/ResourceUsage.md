@@ -30,13 +30,14 @@ Please pay attention to the version and Date. These are snapshots in time of cli
 | Geth   | 1.10.18 | Jun 2022 | ~560 GiB | ~12 GiB / week | 9-10 GiB | 100-400% | `--cache 5336`, max value at 16 GiB RAM, reduces DB growth rate |
 | Geth   | 1.10.18 | Jun 2022 | ~560 GiB | ~8 GiB / week | 16-19 GiB | 100-400% | `--cache 10704`, max value at 32 GiB RAM, reduces DB growth rate |
 | Nethermind | 1.16.1 | Jan 2023 | ~860 GiB | ~30 GiB / week | 15-16 GiB | 50-200% | |
-| Besu | v23.1.3 | May 2023 | ~810 GiB | ~12 GiB / week | 8 - 9 GiB | 50-100% | YoY DB growth 2022->2023 was around 200 GiB. Resync should reduce Besu DB size when it has grown  |
+| Besu | v23.4.1 | June 2023 | ~845 GiB | ~9 GiB / week | 8 - 9 GiB | 50-100% | YoY fresh synced DB growth 2022->2023 was around 200 GiB |
 | Erigon | 2.28.1 | Oct 2022 | ~913 GiB | ~18 GiB / week | See comment | 50-100% | Erigon will have the OS use all available RAM as a DB cache during post-sync operation, but this RAM is free to be used by other programs as needed. During sync, it may run out of memory on machines with less than 32 GiB |
 
 Notes on disk usage
 - Geth -  DB size can be reduced when it grew too large, by [offline(!) prune](../Support/GethPrune.md)
 - Nethermind - DB size can be reduced when it grew too large, by [online prune](../Support/GethPrune.md)
 - Erigon does not compress its DB, leaving that to the filesystem.
+- Besu and Erigon in my testing benefit from resync when they've run out of space
 
 ## Test Systems
 
