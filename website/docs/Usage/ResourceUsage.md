@@ -32,12 +32,14 @@ Please pay attention to the version and Date. These are snapshots in time of cli
 | Nethermind | 1.16.1 | Jan 2023 | ~860 GiB | ~30 GiB / week | 15-16 GiB | 50-200% | |
 | Besu | v23.4.1 | June 2023 | ~845 GiB | ~9 GiB / week | 8 - 9 GiB | 50-100% | YoY fresh synced DB growth 2022->2023 was around 200 GiB |
 | Erigon | 2.28.1 | Oct 2022 | ~913 GiB | ~18 GiB / week | See comment | 50-100% | Erigon will have the OS use all available RAM as a DB cache during post-sync operation, but this RAM is free to be used by other programs as needed. During sync, it may run out of memory on machines with less than 32 GiB |
+| Erigon | 2.48.1 | August 2023 | ~1.3 TiB | TBD GiB / week | See comment | 50-100% | Erigon will have the OS use all available RAM as a DB cache during post-sync operation, but this RAM is free to be used by other programs as needed. During sync, it may run out of memory on machines with less than 32 GiB |
 
 Notes on disk usage
 - Geth -  DB size can be reduced when it grew too large, by [offline(!) prune](../Support/GethPrune.md)
 - Nethermind - DB size can be reduced when it grew too large, by [online prune](../Support/GethPrune.md)
 - Erigon does not compress its DB, leaving that to the filesystem.
-- Besu and Erigon in my testing benefit from resync when they've run out of space
+- Besu in my testing benefits from resync when it's run out of space
+- To a lesser extent this is also true of Erigon, though its initial sync size makes it an increasingly tight fit in a 2TB drive
 
 ## Test Systems
 
@@ -84,7 +86,7 @@ Cache size default in all tests.
 | Geth   | 1.10.9  | Oct 2021 | Netcup VPS3000 | ~ 13 hours | |
 | Nethermind | 1.15 | December 2022 | Baremetal NVMe | ~ 24 hours | |
 | Besu | 22.4.1 | May 2022 | OVH Baremetal NVMe | ~ 30 hours | With X_SNAP sync |
-| Erigon | 2022.09.03 | Oct 2022 | EPYC 7443p | ~ 4 days | |
+| Erigon | 2.48.1 | August 2023 | OVH Baremetal NVMe | ~ 9 days | |
 
 ## Getting better IOPS
 
