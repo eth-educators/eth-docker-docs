@@ -76,8 +76,6 @@ You have the option of keeping the keys in web3signer, which means you will not 
 
 Do **not** run keys in both the client directly and web3signer. This can get you slashed. If you wish to switch to web3signer, and already have keys loaded, look at [switching instructions](../Support/SwitchClient.md).
 
-> This has been tested with all clients, and Prysm support is [limited](https://github.com/prysmaticlabs/prysm/issues/12373) as of May 2023. To be clear, don't use Prysm with web3signer.
-
 ## Using the keymanager API to import keys
 
 **Warning** Import your validator key(s) to only *one* client. If you run them in two locations at once,
