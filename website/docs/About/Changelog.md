@@ -14,6 +14,20 @@ To update the components of the project, run from within the project directory (
 > On 1/27/2022, eth-docker's repository name changed. Everything should work as it did.
 > If you do wish to manually update your local reference, run `git remote set-url origin https://github.com/eth-educators/eth-docker.git`
 
+## v2.3.3 2023-08-15
+
+*This is an optional release with new features and bug fixes*
+
+- Fixed an `./ethd terminate` edge case that would attempt to delete volumes in other stacks / directories
+- Improved web3signer support; work around a Teku bug
+- Support signing exit messages with keymanager API
+- Teku default heap reduced to 4g
+- Lodestar source build with node 20
+- Lodestar doppelganger flag adjusted. Thanks @nflaig!
+- cadvisor works on ARM64
+- Default to jato-v2 for new SSV setups
+- Geth source build with Go 1.21
+
 ## v2.3.2 2023-08-03
 
 *This is an optional release with new features and bug fixes*
