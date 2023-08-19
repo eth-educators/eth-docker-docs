@@ -22,20 +22,18 @@ For reference, here are disk, RAM and CPU requirements, as well as mainnet initi
 
 SSD, RAM and CPU use is after initial sync, when keeping up with head. 100% CPU is one core.
 
-Please pay attention to the version and Date. These are snapshots in time of client behavior. Initial state size increases over time, and execution clients are always working on improving their storage engines.
+Please pay attention to the Version and Date. These are snapshots in time of client behavior. Initial state size increases over time, and execution clients are always working on improving their storage engines.
 
 | Client | Version | Date | DB Size  | DB Growth | RAM | CPU | Notes |
 |--------|---------|----  |----------|-----------|-----|-----|-------|
-| Geth   | 1.10.18 | Jun 2022 | ~560 GiB | ~13.5 GiB / week | 8 GiB | 100-400% | default cache size |
-| Geth   | 1.10.18 | Jun 2022 | ~560 GiB | ~12 GiB / week | 9-10 GiB | 100-400% | `--cache 5336`, max value at 16 GiB RAM, reduces DB growth rate |
-| Geth   | 1.10.18 | Jun 2022 | ~560 GiB | ~8 GiB / week | 16-19 GiB | 100-400% | `--cache 10704`, max value at 32 GiB RAM, reduces DB growth rate |
-| Nethermind | 1.16.1 | Jan 2023 | ~860 GiB | ~30 GiB / week | 15-16 GiB | 50-200% | |
+| Geth   | 1.13.0 | August 2023 | ~830 GiB | TBD GiB / week | 8 GiB | 100-400% | with PBSS |
+| Nethermind | 1.16.1 | Jan 2023 | ~860 GiB | ~30 GiB / week | 15-16 GiB | 50-200% | Can automatic online prune at ~350 GiB free | 
 | Besu | v23.4.1 | June 2023 | ~845 GiB | ~9 GiB / week | 8 - 9 GiB | 50-100% | YoY fresh synced DB growth 2022->2023 was around 200 GiB |
 | Erigon | 2.28.1 | Oct 2022 | ~913 GiB | ~18 GiB / week | See comment | 50-100% | Erigon will have the OS use all available RAM as a DB cache during post-sync operation, but this RAM is free to be used by other programs as needed. During sync, it may run out of memory on machines with less than 32 GiB |
 | Erigon | 2.48.1 | August 2023 | ~1.3 TiB | TBD GiB / week | See comment | 50-100% | Erigon will have the OS use all available RAM as a DB cache during post-sync operation, but this RAM is free to be used by other programs as needed. During sync, it may run out of memory on machines with less than 32 GiB |
 
 Notes on disk usage
-- Geth -  DB size can be reduced when it grew too large, by [offline(!) prune](../Support/GethPrune.md)
+- Geth - continously prunes when synced with PBSS
 - Nethermind - DB size can be reduced when it grew too large, by [online prune](../Support/GethPrune.md)
 - Erigon does not compress its DB, leaving that to the filesystem.
 - Besu in my testing benefits from resync when it's run out of space
@@ -68,6 +66,8 @@ Servers have been configured with [noatime](https://www.howtoforge.com/reducing-
 
 ## Initial sync times
 
+Please pay attention to the Version and Date. These are snapshots in time of client behavior.
+
 NB: All execution clients need to [download state](https://github.com/ethereum/go-ethereum/issues/20938#issuecomment-616402016) after getting blocks. If state isn't "in" yet, your sync is not done. This is a heavily disk IOPS dependent operation, which is why HDD cannot be used for a node.
 
 For Nethermind, seeing "branches" percentage reset to "0.00%" after state root changes with "Setting sync state root to" is normal and expected. With sufficient IOPS, the node will "catch up" and get in sync.
@@ -78,12 +78,9 @@ This should complete in under 4 hours. If it does not, or even goes on for a wee
 
 Cache size default in all tests.
 
-
 | Client | Version | Date | Test System | Time Taken |  Notes |
 |--------|---------|------|-------------|------------|--------|
-| Geth   | 1.10.1  | Mar 2021 | Homebrew Xeon | ~ 10 hours | |
-| Geth   | 1.10.9  | Oct 2021 | OVH Baremetal | ~ 4.5 hours | |
-| Geth   | 1.10.9  | Oct 2021 | Netcup VPS3000 | ~ 13 hours | |
+| Geth   | 1.13.0  | August 2023 | OVH Baremetal NVMe | ~ 6 hours | |
 | Nethermind | 1.15 | December 2022 | Baremetal NVMe | ~ 24 hours | |
 | Besu | 22.4.1 | May 2022 | OVH Baremetal NVMe | ~ 30 hours | With X_SNAP sync |
 | Erigon | 2.48.1 | August 2023 | OVH Baremetal NVMe | ~ 9 days | |
