@@ -29,13 +29,14 @@ Please pay attention to the Version and Date. These are snapshots in time of cli
 | Geth   | 1.13.0 | August 2023 | ~830 GiB | TBD GiB / week | 8 GiB | 100-400% | with PBSS |
 | Nethermind | 1.16.1 | Jan 2023 | ~860 GiB | ~30 GiB / week | 15-16 GiB | 50-200% | Can automatic online prune at ~350 GiB free | 
 | Besu | v23.4.1 | June 2023 | ~845 GiB | ~9 GiB / week | 8 - 9 GiB | 50-100% | YoY fresh synced DB growth 2022->2023 was around 200 GiB |
-| Erigon | 2.28.1 | Oct 2022 | ~913 GiB | ~18 GiB / week | See comment | 50-100% | Erigon will have the OS use all available RAM as a DB cache during post-sync operation, but this RAM is free to be used by other programs as needed. During sync, it may run out of memory on machines with less than 32 GiB |
+| Reth | alpha.7 | Aug 2023 | ~960 GiB | TBD / week | 9 GiB | 5-120% | |
 | Erigon | 2.48.1 | August 2023 | ~1.3 TiB | TBD GiB / week | See comment | 50-100% | Erigon will have the OS use all available RAM as a DB cache during post-sync operation, but this RAM is free to be used by other programs as needed. During sync, it may run out of memory on machines with less than 32 GiB |
 
 Notes on disk usage
 - Geth - continously prunes when synced with PBSS
 - Nethermind - DB size can be reduced when it grew too large, by [online prune](../Support/GethPrune.md)
 - Erigon does not compress its DB, leaving that to the filesystem.
+- Reth does not compress its DB, leaving that to the filesystem.
 - Besu in my testing benefits from resync when it's run out of space
 - To a lesser extent this is also true of Erigon, though its initial sync size makes it an increasingly tight fit in a 2TB drive
 
@@ -84,6 +85,7 @@ Cache size default in all tests.
 | Nethermind | 1.15 | December 2022 | Baremetal NVMe | ~ 24 hours | |
 | Besu | 22.4.1 | May 2022 | OVH Baremetal NVMe | ~ 30 hours | With X_SNAP sync |
 | Erigon | 2.48.1 | August 2023 | OVH Baremetal NVMe | ~ 9 days | |
+| Reth  | alpha.7 | August 2023 | OVH Baremetal NVMe | ~ 3 days 5 hours | |
 
 ## Getting better IOPS
 
