@@ -88,13 +88,19 @@ you will be slashed: Forcibly exited and assessed a penalty greater than 1 ETH.
 
 Prysm requires a wallet first. Run `./ethd cmd run --rm create-wallet`, which will set up a wallet and a password for it. You can then print the password with `./ethd keys get-prysm-wallet`
 
+### If you used eth2-val-tools
+
+eth2-val-tools is an alternative to staking-deposit-cli/Wagyu Keygen to create keys. If you used eth2-val-tools to generate keys, please copy the generated `keys` and `secrets` directories
+into `.eth/validator_keys`.
+
 ### Start the client and import keys
 
 `./ethd up` to start the client and the client's keymanager API
 
 `./ethd keys` to see all options available to you
 
-`./ethd keys import` to import keys and their slashing protection data. This looks in `.eth/validator_keys` for `keystore*.json` files and optionally `slashing_protection*.json` files.
+`./ethd keys import` to import keys and their slashing protection data. This looks in `.eth/validator_keys` for `*keystore*.json` files and optionally `slashing_protection*.json` files, and
+will also import from `keys` and `secrets` directories as created by eth2-val-tools.
 
 If the key JSON files are in another directory, run:
 
