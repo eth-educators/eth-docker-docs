@@ -8,7 +8,7 @@ RocketPool node and eth-docker solo staking, it's like peanut butter and jelly. 
 
 I'll be showing two configurations: Chain databases in Rocketpool, and chain databases in eth-docker.
 
-This has been tested with Lighthouse. It should work without changes for any client that brings its own validator client inside Rocketpool, those being any but Nimbus. Prysm compatibility is not guaranteed as of RocketPool 1.3.0.
+This has been tested with Lighthouse. It should work without changes for any client that Rocketpool supports. Prysm compatibility is not guaranteed as of RocketPool 1.3.0.
 
 ## Configuration A: Chain databases in RocketPool
 
