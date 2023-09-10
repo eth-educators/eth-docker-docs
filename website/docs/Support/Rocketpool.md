@@ -30,9 +30,9 @@ If you are not running Eth Docker already, grab it with `git clone https://githu
 
 #### With remote Prysm
 
-Configure Eth Docker with `./ethd config`. Make sure to choose the same Ethereum PoS network as RocketPool, and a "Validator client only" to match the Consensus client in RocketPool. Choose "eth2:5053" (note no "http://") as your "remote consensus client" if your solo validator client is Prysm, and "http://eth2:5052" as your "remote consensus client" if your solo validator client is anything else. Doppelganger protection works for Prysm and Nimbus VCs towards a Prysm CL; leave it off for any other VC.
+Configure Eth Docker with `./ethd config`. Make sure to choose the same Ethereum PoS network as RocketPool, and a "Validator client only" to match the Consensus client in RocketPool. Choose "eth2:5053" (note no "http://") as your "remote consensus client" if your solo validator client is Prysm, and "http://eth2:5052" as your "remote consensus client" if your solo validator client is anything else. Doppelganger protection works for Prysm and Nimbus VCs towards a Prysm CL. Any other VC requires Doppelganger to be off.
 
-#### For any other CL
+#### For any other remote CL
 
 Configure Eth Docker with `./ethd config`. Make sure to choose the same Ethereum PoS network as RocketPool, and a "Validator client only" to match the Consensus client in RocketPool. Choose "http://eth2:5052" as your "remote consensus client".
 
