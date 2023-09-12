@@ -18,8 +18,6 @@ Note that if you change the execution client, you either need sufficient disk sp
 
 With web3signer, the keys do not need to be moved when switching the consensus client. If keys are currently loaded directly into the validator client, which is the default, they need to be just as carefully moved as when switching between consensus clients without web3signer.
 
-> This has been tested with all clients, and Prysm support is [limited](https://github.com/prysmaticlabs/prysm/issues/12373) as of May 2023. To be clear, don't use Prysm with web3signer.
-
 ### 1. Delete validator keys
 
 - Verify that you have the keystore-m files to reimport keys after the switch to web3signer. They should be in `./.eth/validator_keys`.
@@ -74,9 +72,11 @@ Check https://beaconcha.in/ for your validator public keys, as well as the logs 
 
 ### 3. Re-register validator keys
 
-As the keys remain in web3signer, this does not carry a slashing risk.
+For Lighthouse and Lodestar, you will need to manually register the keys that are in web3signer. As the keys remain in web3signer, this does not carry a slashing risk.
 
 - Run `./ethd keys register`, which will register all keys in web3signer with the new validator client.
+
+Nimbus, Teku and Prysm register the web3signer keys automatically on startup, you need not register them manually.
 
 ### 4. Verify that validators are attesting
 
@@ -172,12 +172,6 @@ Follow the [moving a validator](../Support/Moving.md) instructions. You'll be in
 Inside the directory for the old client, e.g. `cd ~/eth-docker`, remove all storage for the client: `./ethd terminate`.
 
 Finally, you can remove the directory itself: For example, if it was `~/eth-docker`, `cd ~ && rm -rf eth-docker`.
-
-### 5. Change auto-prune crontab
-
-These is an optional component that you may not be using.
-
-If you are using the `auto-prune.sh` script in crontab, change where crontab looks for it: `crontab -e` and adjust the path to the new directory.
 
 ## Switching clients from systemd to eth-docker
 

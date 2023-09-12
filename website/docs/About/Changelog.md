@@ -14,6 +14,26 @@ To update the components of the project, run from within the project directory (
 > On 1/27/2022, eth-docker's repository name changed. Everything should work as it did.
 > If you do wish to manually update your local reference, run `git remote set-url origin https://github.com/eth-educators/eth-docker.git`
 
+## v2.3.4 2023-09-11
+
+*This is an optional release with new features and bug fixes*
+
+- `./ethd config` offers Holesky testnet
+- Geth fresh sync now uses PBSS
+- SSV supports MEV
+- SSV migrates to new jato-v2 testnet
+- Reth supports full node pruning
+- The `auto-prune.sh` script has been deprecated and will be removed with Dencun
+- New `./ethd keys sign-exit` command for use with clients' keymanager API
+- `./ethd config` prompts for MEV when using a RocketPool reverse hybrid setup. Thanks @haurog!
+- `./ethd keys import` knows about eth2-val-tools style `keys` and `secrets` folders. Thanks to Patches for prodding me!
+- Geth uses its down defaults for HTTP and WS API for easier override via `EL_EXTRAS`. Thanks @jiangbo0216!
+- Nimbus registers web3signer keys on startup
+- All-new support for custom testnets. Set `NETWORK` to a github repo containing the network repo such as `https://github.com/ethpandaops/dencun-testnet/tree/master/network-configs/devnet-8`. Thanks to Barnabas and client teams for the feature request!
+- Binary and source repos can now be specified in `.env`, to allow use of custom client repos for custom testnets.
+- Upgrading compose V1 to compose V2 no longer marks docker.io for deletion
+- New Nethermind executable name on source build. Thanks @rubo!
+
 ## v2.3.3 2023-08-15
 
 *This is an optional release with new features and bug fixes*
