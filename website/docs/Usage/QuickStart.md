@@ -4,18 +4,15 @@ title:  Eth Docker QuickStart
 sidebar_label: QuickStart
 ---
 
-Warnings about the dangers of running Ethereum staking full nodes are in [Recommendations.md]
-(../Support/Recommendations.md).  
+Warnings about the dangers of running Ethereum staking full nodes are in [Recommendations.md](../Support/Recommendations.md).  
 In particular, you must be sure to secure your seed phrase, the mnemonic. You need it to recreate keys, and
 to set a withdrawal address, if you didn't already do so during key creation.
 
-You may also want to take a look at a [guide to Linux host security]
-(https://www.coincashew.com/coins/overview-eth/guide-or-security-best-practices-for-a-eth2-validator-beaconchain-node#setup-two-factor-authentication-for-ssh-optional).
+You may also want to take a look at a [guide to Linux host security](https://www.coincashew.com/coins/overview-eth/guide-or-security-best-practices-for-a-eth2-validator-beaconchain-node#setup-two-factor-authentication-for-ssh-optional).
 
 ## Hardware, resource use
 
-Take a look at some [build ideas](../Usage/Hardware.md) and consider clients' [resource requirements]
-(../Usage/ResourceUsage.md)
+Take a look at some [build ideas](../Usage/Hardware.md) and consider clients' [resource requirements](../Usage/ResourceUsage.md)
 
 ## eth-docker QuickStart
 
@@ -65,5 +62,4 @@ shared RPC/WS ports or these ports [secured by Traefik and https](../Usage/Rever
 ## Additional resources
 
 [Youtube Channel](https://www.youtube.com/channel/UCS5mP-iWYxOCBVSVugPYUhQ)  
-[Security Best Practices]
-(https://www.coincashew.com/coins/overview-eth/guide-or-security-best-practices-for-a-eth2-validator-beaconchain-node)
+[Security Best Practices](https://www.coincashew.com/coins/overview-eth/guide-or-security-best-practices-for-a-eth2-validator-beaconchain-node)

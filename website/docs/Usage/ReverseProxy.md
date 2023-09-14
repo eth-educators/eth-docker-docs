@@ -80,8 +80,8 @@ You'll add `traefik-aws.yml` to your `COMPOSE_FILE` in `.env`, for example:
 This setup assumes that you already have an [AWS CLI]
 (https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html) named user profile in `~/.aws` on the
 node itself. If not, [please create one](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-profiles.html).
-The IAM user will need to have the AWS-managed `AmazonRoute53DomainsFullAccess` policy [attached to it]
-(https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_manage-attach-detach.html).
+The IAM user will need to have the AWS-managed `AmazonRoute53DomainsFullAccess` policy
+[attached to it](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_manage-attach-detach.html).
 
 With that, in the `.env` file:
 - Set `AWS_PROFILE` to the profile you want to use

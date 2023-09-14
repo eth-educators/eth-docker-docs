@@ -100,8 +100,8 @@ Optionally, add encryption to the Grafana and/or Prysm Web pages:
 - `traefik-cf.yml` - use encrypting secure web proxy and use CloudFlare for DNS management
 - `traefik-aws.yml` - use encrypting secure web proxy and use AWS Route53 for DNS management
 
-With these, you wouldn't use the `-shared.yml` files. Please see [Secure Web Proxy Instructions]
-(../Usage/ReverseProxy.md) for setup instructions for either option.
+With these, you wouldn't use the `-shared.yml` files. Please see [Secure Web Proxy Instructions](../Usage/ReverseProxy.md)
+for setup instructions for either option.
 
 For example, Teku with Besu:
 `COMPOSE_FILE=teku.yml:besu.yml`
