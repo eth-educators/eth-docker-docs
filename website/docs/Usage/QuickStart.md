@@ -62,4 +62,4 @@ shared RPC/WS ports or these ports [secured by Traefik and https](../Usage/Rever
 ## Additional resources
 
 [Youtube Channel](https://www.youtube.com/channel/UCS5mP-iWYxOCBVSVugPYUhQ)  
-[Security Best Practices](https://www.coincashew.com/coins/overview-eth/guide-or-security-best-practices-for-a-eth2-validator-beaconchain-node)
+[Security Best Practices](https://www.coincashew.com/coins/overview-eth/archived-guides/guide-or-how-to-setup-a-validator-on-eth2-mainnet/part-i-installation/guide-or-security-best-practices-for-a-eth2-validator-beaconchain-node)
