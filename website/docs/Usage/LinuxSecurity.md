@@ -13,7 +13,6 @@ This step is still recommended if the SSH port is not reachable via the Internet
 
 For security reasons, you want some form of two-factor authentication for SSH login, particularly if SSH
 is exposed to the Internet. These instructions accomplish that by creating an SSH key with passphrase.
-Alternatively or in addition, you could set up [two-factor authentication with one-time passwords](https://www.coincashew.com/coins/overview-eth/guide-or-security-best-practices-for-a-eth2-validator-beaconchain-node#setup-two-factor-authentication-for-ssh-optional).
 
 To switch to SSH key authentication instead of password authentication, you will start
 on the machine you are logging in from, whether that is Windows 10, MacOS or Linux, and then

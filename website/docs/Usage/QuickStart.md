@@ -8,8 +8,6 @@ Warnings about the dangers of running Ethereum staking full nodes are in [Recomm
 In particular, you must be sure to secure your seed phrase, the mnemonic. You need it to recreate keys, and
 to set a withdrawal address, if you didn't already do so during key creation.
 
-You may also want to take a look at a [guide to Linux host security](https://www.coincashew.com/coins/overview-eth/guide-or-security-best-practices-for-a-eth2-validator-beaconchain-node#setup-two-factor-authentication-for-ssh-optional).
-
 ## Hardware, resource use
 
 Take a look at some [build ideas](../Usage/Hardware.md) and consider clients' [resource requirements](../Usage/ResourceUsage.md)

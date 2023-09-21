@@ -72,11 +72,12 @@ Check https://beaconcha.in/ for your validator public keys, as well as the logs 
 
 ### 3. Re-register validator keys
 
-For Lighthouse and Lodestar, you will need to manually register the keys that are in web3signer. As the keys remain in web3signer, this does not carry a slashing risk.
+For Teku, Lighthouse and Lodestar, you will need to manually register the keys that are in web3signer. As the keys
+remain in web3signer, this does not carry a slashing risk.
 
 - Run `./ethd keys register`, which will register all keys in web3signer with the new validator client.
 
-Nimbus, Teku and Prysm register the web3signer keys automatically on startup, you need not register them manually.
+Nimbus and Prysm register the web3signer keys automatically on startup, you need not register them manually.
 
 ### 4. Verify that validators are attesting
 
