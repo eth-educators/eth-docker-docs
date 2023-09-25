@@ -26,10 +26,10 @@ Please pay attention to the Version and Date. These are snapshots in time of cli
 
 | Client | Version | Date | DB Size  | DB Growth | RAM | CPU | Notes |
 |--------|---------|----  |----------|-----------|-----|-----|-------|
-| Geth   | 1.13.0 | August 2023 | ~830 GiB | TBD GiB / week | 8 GiB | 100-400% | with PBSS |
+| Geth   | 1.13.0 | August 2023 | ~830 GiB | ~8 GiB / week | 8 GiB | 100-400% | with PBSS |
 | Nethermind | 1.16.1 | Jan 2023 | ~860 GiB | ~30 GiB / week | 15-16 GiB | 50-200% | Can automatic online prune at ~350 GiB free | 
 | Besu | v23.4.1 | June 2023 | ~845 GiB | ~9 GiB / week | 8 - 9 GiB | 50-100% | YoY fresh synced DB growth 2022->2023 was around 200 GiB |
-| Reth | alpha.7 | Aug 2023 | ~960 GiB | TBD GiB / week | 9 GiB | 5-120% | |
+| Reth | alpha.7 | Aug 2023 | ~960 GiB | ~ 2 GiB / week | 9 GiB | 5-120% | |
 | Erigon | 2.48.1 | August 2023 | ~1.3 TiB | ~7-8 GiB / week | See comment | 50-100% | Erigon will have the OS use all available RAM as a DB cache during post-sync operation, but this RAM is free to be used by other programs as needed. During sync, it may run out of memory on machines with less than 32 GiB |
 
 Notes on disk usage
