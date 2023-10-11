@@ -14,6 +14,20 @@ To update the components of the project, run from within the project directory (
 > On 1/27/2022, eth-docker's repository name changed. Everything should work as it did.
 > If you do wish to manually update your local reference, run `git remote set-url origin https://github.com/eth-educators/eth-docker.git`
 
+## v2.3.5 2023-10-11
+
+*This is an optional release with new features and bug fixes*
+
+- Support for encrypted node key with an SSV node
+- Remove hard coded ancient barriers for Nethermind, use Nethermind defaults
+- Add tab completion for Linux systems. Thanks @jshufro!
+- Add support for Lighthouse Siren
+- Change Prometheus retention to 40d
+- Configurable Lodestar heap
+- Changed Teku and web3signer integration
+- Add QUIC port to Lighthouse
+- Support Nethermind v1.21
+
 ## v2.3.4 2023-09-11
 
 *This is an optional release with new features and bug fixes*

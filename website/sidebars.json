@@ -34,7 +34,7 @@
 			"Support/Exit",
 			"Support/GethPrune",
 			"Support/Rocketpool",
-			"Support/BloxSSV",
+			"Support/SSV",
 			"Support/Windows",
 			"Support/ipv6"
 		]
