@@ -54,7 +54,7 @@ Consider your [Linux security](../Usage/LinuxSecurity.md)
 macOS requires [manual installation](../Usage/Prerequisites.md) of Docker Desktop. 
 
 Explore the sidebar for advanced options. In particular, you can [integrate with RocketPool](../Support/Rocketpool.md),
-run an [SSV operator node](../Support/BloxSSV.md), or run an [RPC node](../Usage/ClientSetup.md) with either locally
+run an [SSV operator node](../Support/SSV.md), or run an [RPC node](../Usage/ClientSetup.md) with either locally
 shared RPC/WS ports or these ports [secured by Traefik and https](../Usage/ReverseProxy.md).
 
 ## Additional resources
