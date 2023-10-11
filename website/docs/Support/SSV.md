@@ -7,7 +7,7 @@ sidebar_label: Run a SSV node
 Eth Docker supports running a SSV node, together with a consensus client and execution client of choice.
 
 ## Setup Prerequisites
-### Get eth-docker
+### Get Eth Docker
 - Clone this tool
   - `git clone https://github.com/eth-educators/eth-docker.git ssv-node && cd ssv-node`
 
