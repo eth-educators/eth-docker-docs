@@ -22,7 +22,7 @@ configured with `RAPID_SYNC_URL` in `.env`, can sync one in minutes.
 At this point you can store the resulting JSON files in `.eth/exit_messages` for later use, for example by your heirs.
 
 When you want to submit a voluntary exit you can:
-- Submit the JSON file to [beaconcha.in](https://beaconcha.in/tools/broadcast)
+- Submit the JSON file to [beaconcha.in](https://beaconcha.in/tools/broadcast)  
 OR
 - Use `./ethd keys send-exit` to send all created exits through your own consensus layer client
 
