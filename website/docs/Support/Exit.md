@@ -14,6 +14,42 @@ be credited, and you will battle support for them.
 Exiting a validator requires a fully synced consensus client. Checkpoint sync,
 configured with `RAPID_SYNC_URL` in `.env`, can sync one in minutes.
 
+# Exit using keymanager API
+
+- Get a list of your keys with `./ethd keys list`
+- Sign an exit message with `./ethd keys sign-exit 0xpubkey`
+
+At this point you can store the resulting JSON files in `.eth/exit_messages` for later use, for example by your heirs.
+
+When you want to submit a voluntary exit you can:
+- Submit the JSON file to [beaconcha.in](https://beaconcha.in/tools/broadcast)
+OR
+- Use `./ethd keys send-exit` to send all created exits through your own consensus layer client
+
+# Avoid penalties
+
+Note you will need to continue running your validator until the exit has been processed by the chain, if you wish to
+avoid incurring offline penalties. You can check the status of your validator with tools such as
+[beaconcha.in](https://beaconcha.in).
+
+# Exit using keystore-m and ethdo
+
+- Place all keys to be exited into `.eth/validator-keys`
+- Run `./ethd keys sign-exit from-keystore`, optionally with `--offline` if you have an `offline-preparation.json` for
+ethdo
+
+This will sign exit messages with ethdo, which you can then store for your heirs or submit.
+
+This method has the advantage of not requiring the keys to be loaded into a validator client first, and is ideal when
+the validators are being run by a 3rd-party service.
+
+This works when Eth Docker is not the primary way to run the node. For example, for a systemd setup, you could
+`nano .env`, set `COMPOSE_FILE=ethdo.yml`, and set `CL_NODE=http://HOSTIP:5052`, adjusting `HOSTIP` to the IP address
+of your node and `5052` to the port REST is available on. Note that for this to work, the REST port needs to be
+reachable by host IP, *not* just by `localhost`. When in doubt, the `--offline` method will always work.
+
+# Legacy exit using client-specific tools
+
 ## Teku
 
 Teku will exit all validators that have been imported to it. Run
@@ -67,32 +103,3 @@ Password:
 To exit a specific validator, run `./ethd cmd run --rm validator-exit --pubkeys <0xPUBKEY>`.  
 Multiple validators can be exited by providing a comma-separated list of public keys to `pubkeys`.  
 If no `pubkeys` are provided, it will exit all validators that have been imported.
-
-## Avoid penalties
-
-Note you will need to continue running your validator until the exit
-has been processed by the chain, if you wish to avoid incurring offline
-penalties. You can check the status of your validator with tools such
-as [beaconcha.in](https://beaconcha.in) and [beaconscan](https://beaconscan.com).
-
-## Pre-sign exit messages
-
-If you want to pre-sign exit messages, for example to leave for your heirs, you can do so
-with `./ethd keys sign-exit from-keystore`, optionally with a parameter `--offline` added.
-
-This uses `ethdo.yml` and will sign exit messages for all `keystore*.json` files in the
-`.eth/validator_keys` directory. If `--offline` is used, it does not require connection
-to a CL (consensus layer client) and instead expects a file `.eth/ethdo/offline-preparation.json`,
-created with ethdo.
-
-The created pre-signed exit messages will be in `.eth/exit_messages` and can be placed on a USB
-stick for heirs, for example, and loaded via [beaconcha.in](https://beaconcha.in/tools/broadcast) when exit is desired.
-
-Note that Ethereum pre-signed exit messages remain valid only for two hardforks: The current one, and the one after. It's good
-practice to re-create the pre-signed messages after every hardfork.
-
-This works when eth-docker is not the primary way to run the node. For example, for a systemd
-setup, you could `nano .env`, set `COMPOSE_FILE=ethdo.yml`, and set `CL_NODE=http://HOSTIP:5052`,
-adjusting `HOSTIP` to the IP address of your node and `5052` to the port REST is available on. Note
-that for this to work, the REST port needs to be reachable by host IP, *not* just by `localhost`.
-When in doubt, the `--offline` method will always work.
