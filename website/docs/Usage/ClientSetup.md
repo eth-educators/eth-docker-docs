@@ -13,9 +13,9 @@ sidebar_label: Advanced Use
 Please choose:
 
 * The consensus client you wish to run
-  * Teku
-  * Nimbus
   * Lodestar
+  * Nimbus
+  * Teku
   * Lighthouse
   * Prysm
 * Your execution client you wish to run

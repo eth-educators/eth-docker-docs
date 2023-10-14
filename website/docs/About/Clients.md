@@ -8,15 +8,15 @@ This project builds from client teams' official docker images or from official s
 directly from docker hub or github, respectively. In most cases, binary is the default.
 
 Currently supported consensus clients:
-- Nimbus
 - Lodestar
+- Nimbus
 - Teku
 - Lighthouse
 - Prysm
 
 Currently supported execution clients:
-- Besu
 - Nethermind
+- Besu
 - Geth
 - Erigon
 - Reth (alpha)
