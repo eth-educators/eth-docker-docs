@@ -58,7 +58,7 @@ Servers have been configured with [noatime](https://www.howtoforge.com/reducing-
 | Homebrew Xeon ZFS zvol | 32 GiB | 1.2 TiB | Intel Quad | 3.5k/1k | | Intel SATA SSD, 16k recordsize, stripe, xfs; fio with --bs=16k |
 | Homebrew Xeon ZFS dataset | 32 GiB | 1.2 TiB | Intel Quad | 1.2k/500 | | Intel SATA SSD, 16k recordsize, stripe, xfs; 16G Optane SLOG |
 | Dell R420 w/ HBA     | 32 GiB | 1 TB | Dual Intel Octo | 35.9k/11k | Xeon E5-2450 |
-| Contabo L VPS SSD  | 30 GiB | 800 GiB | Intel Octa  | 2.5k/800 | | This was not sufficient to sync Geth |
+| Contabo Storage VPS L  | 16 GiB | 1600 GiB | AMD EPYC Hexa  | 3k/1k | |  |
 | [Netcup](https://netcup.eu) VPS 3000 G9   | 24 GiB | 600 GiB  | AMD Hexa | 11.2k/3.7k | 2.25/6 ms | |
 | Netcup RS 8000 G9.5 | 64 GiB | 2 TB | AMD EPYC 7702 | 15.6k/5k | 3.4/1.5 ms | |
 | OVH Baremetal NVMe   | 32 GiB | 1.9 TB  | Intel Hexa | 177k/59k | 0.08/3.5 ms | |
@@ -95,7 +95,6 @@ For cloud providers, here are some results for syncing Geth.
 - AWS, gp2 or gp3 with provisioned IOPS have both been tested successfully.
 - Linode block storage, make sure to get NVMe-backed storage.
 - Netcup is sufficient as of late 2021.
-- Contabo VPS SSD cannot sync Geth as of late 2021.
 - There are reports that Digital Ocean block storage is too slow, as of late 2021.
 - Strato V-Server is too slow as of late 2021.
 
