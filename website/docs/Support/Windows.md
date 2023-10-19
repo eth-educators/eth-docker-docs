@@ -4,8 +4,8 @@ title:  Windows
 sidebar_label: Windows
 ---
 
-Windows may seem like an "easy button". For Eth Docker, it is anything but, and even for other ways of running a
-client, there are multiple challenges. They can all be overcome, and the
+Windows may seem like an "easy button". For Eth Docker, it is anything but, and even running native Windows clients
+presents multiple challenges. They can all be overcome, and the
 [eth-wizard project](https://github.com/stake-house/eth-wizard) aims to do just that.
 
 If you wish to run Eth Docker on Windows regardless, these are the steps needed.
