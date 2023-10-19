@@ -1,10 +1,10 @@
 ---
 id: SSV
-title: Run a SSV node.
-sidebar_label: Run a SSV node
+title: Run an SSV node.
+sidebar_label: Run an SSV node
 ---
 
-Eth Docker supports running a SSV node, together with a consensus client and execution client of choice.
+Eth Docker supports running an SSV node, together with a consensus client and execution client of choice.
 
 ## Setup Prerequisites
 ### Get Eth Docker
