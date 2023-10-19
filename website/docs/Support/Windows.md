@@ -22,7 +22,8 @@ Windows home directory and add a memory section, for example
 [wsl2]
 memory=32GB
 ```
-- Install [Docker Desktop](https://www.docker.com/products/docker-desktop/) and configure it to use the WSL 2 backend
+- Install [Docker Desktop](https://www.docker.com/products/docker-desktop/) and configure it to start on login, but
+not to open the Docker Dashboard on start. It should default to use the WSL 2 based engine.
 - Fix Windows time sync
   - Change w32time to [start automatically](https://docs.microsoft.com/en-us/troubleshoot/windows-client/identity/w32time-not-start-on-workgroup). In Administrator cmd, but **not** PowerShell, `sc triggerinfo w32time start/networkon stop/networkoff`. Verify with `sc qtriggerinfo w32time`. To get into cmd that way, you can start Admin PowerShell and then just type `cmd`.
   - In `Computer\HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\w32time\Config`, set `MaxPollInterval` to hex `c`, decimal `12`.
