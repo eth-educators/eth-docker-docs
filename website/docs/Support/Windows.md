@@ -13,7 +13,7 @@ If you wish to run Eth Docker on Windows regardless, these are the steps needed.
 - Run Windows 11 Pro 2023 Update or later, ideally with 64 GiB RAM so that WSL defaults to 30 GiB
 - From Windows Store, install WSL and Ubuntu current LTS. Debian is also an option, it is however quite bare-bones
 without even man-db out of the box
-- Install WSL 2 2.x.x or later
+- Install WSL 2 [2.0.4](https://github.com/microsoft/WSL/releases) or later
 - Configure WSL 2 for [mirrored networking](https://github.com/microsoft/WSL/releases/tag/2.0.0)
 - In my testing, this assigns a static MAC address. On your router, set a DHCP reservation so WSL always has the same local IP
 - Check memory assigned to WSL with `free -h`. If it's too low for your chosen client mix, edit `.wslconfig` in your
