@@ -49,8 +49,8 @@ Optional cleanup: If you had chain databases in Eth Docker previously, do a `doc
 If you haven't already imported validator keys to Eth Docker, do so now. You will need the `keystore-m` files and their
 password.
 
-- Copy `keystore-m` files to `.eth/validator_keys` in the eth-docker directory
-- From the eth-docker directory, start Eth Docker: `./ethd up`
+- Copy `keystore-m` files to `.eth/validator_keys` in the `eth-docker` directory
+- From the `eth-docker` directory, start Eth Docker: `./ethd up`
 - Import keys and follow prompts: `./ethd keys import`
 - Verify keys came in: `./ethd keys list`
 

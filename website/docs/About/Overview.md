@@ -7,7 +7,7 @@ sidebar_label: Overview
 
 ## This project
 
-eth-docker aims to make running an Ethereum staking full node simpler than setting everything up manually,
+Eth Docker aims to make running an Ethereum staking full node simpler than setting everything up manually,
 while allowing the user choice when it comes to the exact client mix they wish to run. It's the "easy button" for home stakers,
 with full control for advanced users.
 
@@ -27,7 +27,7 @@ An Ethereum staking full node has many moving parts. Here's a high level, concep
 > particularly in the logs of the consensus client.
 > Ethereum PoS (Proof-of-Stake) was also called Ethereum 2.0 at one point, but uses the same ETH token.
 
-## eth-docker feature highlights
+## Eth Docker feature highlights
 
 - Supports all FOSS (Free and Open Source Software) Ethereum clients in any combination: Lodestar, Nimbus, Teku, Lighthouse, Prysm; and Nethermind, Besu, Erigon, Geth
 - Runs on Linux or macOS, Intel/AMD x64 or ARM CPUs

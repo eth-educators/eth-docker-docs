@@ -17,14 +17,14 @@ node is up and running
 Inside the project directory, run:<br />
 `./ethd update`
 
-This will update eth-docker, all Ethereum clients, and migrate your `.env` settings over to a fresh copy
+This will update Eth Docker, all Ethereum clients, and migrate your `.env` settings over to a fresh copy
 from `default.env`.
 
 If you want to reset your client version targets, run `./ethd update --refresh-targets` instead.
 
 Restart changed containers with `./ethd up`.
 
-## Optional: Manually update eth-docker
+## Optional: Manually update Eth Docker
 
 Inside the project directory, run:<br />
 `git pull`

@@ -18,7 +18,7 @@ Rewards are withdrawn automatically to the [withdrawal address](https://ethereum
 
 2) Priority fees
 
-Users of Ethereum set a [priority fee](https://ethereum.org/en/developers/docs/gas/#priority-fee) for their transactions. This fee is paid to block proposers and is immediately liquid. In order for that fee to be paid, a `--suggested-fee-recipient` needs to be configured. This is why eth-docker prompts for an Ethereum address to send priority fees to.
+Users of Ethereum set a [priority fee](https://ethereum.org/en/developers/docs/gas/#priority-fee) for their transactions. This fee is paid to block proposers and is immediately liquid. In order for that fee to be paid, a `--suggested-fee-recipient` needs to be configured. This is why Eth Docker prompts for an Ethereum address to send priority fees to.
 
 This address could be a hardware wallet, a software wallet, or even a multi-sig contract.
 

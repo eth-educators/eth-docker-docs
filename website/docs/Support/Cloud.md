@@ -4,7 +4,7 @@ title:  Securing a cloud VPS.
 sidebar_label: Cloud Security
 ---
 
-For the most part, nothing special needs to be done to run eth-docker on a VPS. However, budget VPS providers do not
+For the most part, nothing special needs to be done to run Eth Docker on a VPS. However, budget VPS providers do not
 filter the traffic that can reach the machine: This is definitely not desirable for unsecured ports like Grafana
 or execution client, if the shared option is being used. All that should be reachable are the P2P ports.
 

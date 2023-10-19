@@ -152,7 +152,7 @@ Start the existing client stack with `./ethd up`, it will start using the new po
 
 ### 2. Create a new client stack
 
-You'll be running a second copy of eth-docker in its own directory. For example, if the new directory is going to be `~/eth-staker`: `cd ~ && git clone https://github.com/eth-educators/eth-docker.git eth-staker && cd eth-staker` .
+You'll be running a second copy of Eth Docker in its own directory. For example, if the new directory is going to be `~/eth-staker`: `cd ~ && git clone https://github.com/eth-educators/eth-docker.git eth-staker && cd eth-staker` .
 
 Configure the new stack. You can choose the same or a different consensus client, and a different execution client, compared to your existing client stack.
 Make sure to choose "checkpoint sync" so the consensus client can sync in minutes. `./ethd config` followed by `./ethd up`.
@@ -174,13 +174,13 @@ Inside the directory for the old client, e.g. `cd ~/eth-docker`, remove all stor
 
 Finally, you can remove the directory itself: For example, if it was `~/eth-docker`, `cd ~ && rm -rf eth-docker`.
 
-## Switching clients from systemd to eth-docker
+## Switching clients from systemd to Eth Docker
 
-If you are using systemd with guides from Somer Esat, Coincashew or Metanull, and want to give eth-docker's automation a whirl, these instructions will show you how to make the switch.
+If you are using systemd with guides from Somer Esat, Coincashew or Metanull, and want to give Eth Docker's automation a whirl, these instructions will show you how to make the switch.
 
-### 1. Create a new eth-docker client stack
+### 1. Create a new Eth Docker client stack
 
-Clone eth-docker, for example into `~/eth-docker`: `cd ~ && git clone https://github.com/eth2-educators/eth-docker.git && cd eth-docker` .
+Clone Eth Docker, for example into `~/eth-docker`: `cd ~ && git clone https://github.com/eth2-educators/eth-docker.git && cd eth-docker` .
 
 Install prerequisites: `./ethd install`
 
@@ -194,7 +194,7 @@ Observe the consensus client, and make sure it is synchronizing: `./ethd logs -f
 
 ### 1a. Optional: Move the existing execution client database to its new location
 
-This only works if you've chosen the same execution client in eth-docker as you are running in systemd. This avoids a fresh sync of the execution client database in the new location. Note you might want to fresh sync if your DB has grown to the point where starting over is beneficial.
+This only works if you've chosen the same execution client in Eth Docker as you are running in systemd. This avoids a fresh sync of the execution client database in the new location. Note you might want to fresh sync if your DB has grown to the point where starting over is beneficial.
 
 In the location for the new client stack, e.g. `~/eth-docker`, stop the stack: `./ethd stop`
 
@@ -218,7 +218,7 @@ Disable the Geth service and move its database: `sudo systemctl disable eth1` an
 
 #### Change permissions and start the stack
 
-Change permissions so eth-docker can access the Geth database: `sudo chown -R 10001:10001 /var/lib/docker/volumes/eth-docker_geth-eth1-data`
+Change permissions so Eth Docker can access the Geth database: `sudo chown -R 10001:10001 /var/lib/docker/volumes/eth-docker_geth-eth1-data`
 
 Start the new stack again: `./ethd up`, then observe that your execution client is running well and is synced to head: `./ethd logs -f execution`.
 
@@ -246,9 +246,9 @@ Make sure you have your `keystore-m_ETC.json` files and the password for them. I
 
 Stop the validator service. Somer Esat: `sudo systemctl stop prysmvalidator`. Metanull and Coincashew: `sudo systemctl stop validator`.
 
-To export the slashing protection DB from Prysm, adjust this command line to your username and location eth-docker is in and run `sudo validator slashing-protection-history export --datadir=/var/lib/prysm/validator --slashing-protection-export-dir=/home/ubuntu/eth-docker/.eth/validator_keys`
+To export the slashing protection DB from Prysm, adjust this command line to your username and location Eth Docker is in and run `sudo validator slashing-protection-history export --datadir=/var/lib/prysm/validator --slashing-protection-export-dir=/home/ubuntu/eth-docker/.eth/validator_keys`
 
-To export the keys from Prysm, run `sudo validator accounts backup --wallet-dir=/var/lib/prysm/validator --backup-dir=/tmp/keys` and then move them to the eth-docker directory, again adjusting for your username: `sudo unzip /tmp/keys/backup.zip -d /home/ubuntu/eth-docker/.eth/validator_keys`. Lastly, remove the zip file again: `sudo rm /tmp/keys/backup.zip`
+To export the keys from Prysm, run `sudo validator accounts backup --wallet-dir=/var/lib/prysm/validator --backup-dir=/tmp/keys` and then move them to the `eth-docker` directory, again adjusting for your username: `sudo unzip /tmp/keys/backup.zip -d /home/ubuntu/eth-docker/.eth/validator_keys`. Lastly, remove the zip file again: `sudo rm /tmp/keys/backup.zip`
  
 #### Somer Esat's guide
 

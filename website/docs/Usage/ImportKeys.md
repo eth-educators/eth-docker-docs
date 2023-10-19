@@ -13,9 +13,9 @@ read these yet, please do so now. You need to know how to guard your keystore pa
 
 For mainnet, best practice is to create keys using a Linux Live USB and the official [staking-deposit-cli](https://github.com/ethereum/staking-deposit-cli). I have a [YouTube walkthrough](https://www.youtube.com/watch?v=oDELXYNSS5w) for this process. Make sure to safeguard your mnemonic and only ever keep it offline! In steel and in a safe is best.
 
-### You want to create keys with eth-docker
+### You want to create keys with Eth Docker
 
-If you are going to use the deposit-cli that is bundled with eth-docker, please make sure to edit `.env` and that the `COMPOSE_FILE` line contains `:deposit-cli.yml`. You can edit with `nano .env`.
+If you are going to use the deposit-cli that is bundled with Eth Docker, please make sure to edit `.env` and that the `COMPOSE_FILE` line contains `:deposit-cli.yml`. You can edit with `nano .env`.
 
 Make sure you're in the project directory, `cd ~/eth-docker` by default.
 
@@ -118,9 +118,9 @@ replacing `PATHTOKEYS` with the actual path where they are.
 
 ## Importing keys from another validator instance
 
-If you are migrating to eth-docker from another validator node that uses systemd or some other init system, please see [SwitchClient](../Support/SwitchClient.md) and [Moving](../Support/Moving.md) for advice. Ultimately, you'll likely need to export your keys from your old client and move them to your new node manually, and then use eth-docker's key management commands to import the keys into clients managed by eth-docker.
+If you are migrating to Eth Docker from another validator node that uses systemd or some other init system, please see [SwitchClient](../Support/SwitchClient.md) and [Moving](../Support/Moving.md) for advice. Ultimately, you'll likely need to export your keys from your old client and move them to your new node manually, and then use Eth Docker's key management commands to import the keys into clients managed by Eth Docker.
 
-For example, for moving from a system+prysm setup, you'll want to use prysm's [export functionality](https://docs.prylabs.network/docs/advanced/migrating-keys). For other clients, check their official documentation to find out how to export your validator keys. You can then use eth-docker's key management API to import your keys with `./ethd keys import`.
+For example, for moving from a system+prysm setup, you'll want to use prysm's [export functionality](https://docs.prylabs.network/docs/advanced/migrating-keys). For other clients, check their official documentation to find out how to export your validator keys. You can then use Eth Docker's key management API to import your keys with `./ethd keys import`.
 
 Please read all of the warnings about slashing and make sure to exercise tons of caution when moving validators to avoid being slashed.
 
