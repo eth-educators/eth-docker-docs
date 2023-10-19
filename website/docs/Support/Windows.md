@@ -15,7 +15,7 @@ If you wish to run Eth Docker on Windows regardless, these are the steps needed.
 without even man-db out of the box
 - Install WSL 2 2.x.x or later
 - Configure WSL 2 for [mirrored networking](https://github.com/microsoft/WSL/releases/tag/2.0.0)
-- In my testing, this assigns a static MAC address. Set a DHCP reservation so WSL always has the same local IP
+- In my testing, this assigns a static MAC address. On your router, set a DHCP reservation so WSL always has the same local IP
 - Check memory assigned to WSL with `free -h`. If it's too low for your chosen client mix, edit `.wslconfig` in your
 Windows home directory and add a memory section, for example
 ```
