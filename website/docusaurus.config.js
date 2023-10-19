@@ -13,9 +13,9 @@ module.exports = {
     scripts: ['https://buttons.github.io/buttons.js'],
     themeConfig: {
         navbar: {
-            title: "eth-docker Docs",
+            title: "Eth Docker Docs",
             logo: {
-                alt: "eth-docker logo",
+                alt: "Eth Docker logo",
                 href: '/',
                 src: 'img/eth-moby-logo.png',
             },
@@ -29,11 +29,11 @@ module.exports = {
         },
         footer: {
             logo: {
-                alt: "eth-docker logo",
+                alt: "Eth Docker logo",
                 href: '/',
                 src: 'img/eth-moby-logo.png',
             },
-            copyright: `Copyright © ${new Date().getFullYear()} eth-docker contributors`,
+            copyright: `Copyright © ${new Date().getFullYear()} Eth Docker contributors`,
             links: [],
         },
         algolia: {
