@@ -12,7 +12,7 @@ to set a withdrawal address, if you didn't already do so during key creation.
 
 Take a look at some [build ideas](../Usage/Hardware.md) and consider clients' [resource requirements](../Usage/ResourceUsage.md)
 
-## eth-docker QuickStart
+## Eth Docker QuickStart
 
 For a rapid start, have Ubuntu or Debian Linux installed, and then follow these steps. This has been tested on Ubuntu
 20.04/22.04 and Debian 11/12.

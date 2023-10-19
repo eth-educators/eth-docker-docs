@@ -21,8 +21,8 @@ Currently supported execution clients:
 - Erigon
 - Reth (alpha)
 
-> An Ethereum node has one consensus client and one execution client. eth-docker can be used to
-> split this between two machines, but that distributed setup is rare
+> An Ethereum node has one consensus client and one execution client. Eth Docker can be used to split this between two
+machines, but that distributed setup is rare
 
 Currently supported additional options:
 - Sending stats to https://beaconcha.in

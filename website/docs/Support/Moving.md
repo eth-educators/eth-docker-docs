@@ -31,7 +31,7 @@ a new one elsewhere, you may need to know how to move your key(s) safely.
 >  If you do not have these any more, you can recreate them with the `existing-mnemonic`
 >  workflow of deposit-cli, `./ethd cmd run --rm deposit-cli-existing` in
 >  this project, or offline to be very secure.
-- [ ] Ideally, an export of the slashing protection DB. If you are using eth-docker, `./ethd keys delete` will export the slashing protection database.
+- [ ] Ideally, an export of the slashing protection DB. If you are using Eth Docker, `./ethd keys delete` will export the slashing protection database.
 - [ ] A checklist, and diligence
 
 ## Checklist
