@@ -4,22 +4,23 @@ title: "Step 1: Install Prerequisites."
 sidebar_label: Prerequisites
 ---
 
-This project relies on docker and docker-compose, and git to bring the
-project itself in. It has been tested on Linux, and is expected to work on MacOS.
+Eth Docker relies on docker and docker compose, and git for initial install and updates. It has been tested on Linux,
+and is expected to work on MacOS.
 
-> The following prerequisites will be installed on the Linux server you
-> will run your node on. The machine you use to connect *to* the Linux server
-> only requires an SSH client.
+> The following prerequisites will be installed on the Linux server you will run your node on. The machine you use to
+connect *to* the Linux server only requires an SSH client.
 
 ## Ubuntu Prerequisites
 
-> Ubuntu can be installed with the Docker snap package, which can cause
-> issues including complete data loss on upgrade. We highly recommend removing this
-> via `sudo snap remove --purge docker`. Note this action will delete all data kept
-> in docker. If you are running the snap Docker package and have data you need to keep,
-> please ask for help in the ethstaker Discord.
+> Ubuntu can be installed with the Docker snap package, which can cause issues including complete data loss on upgrade.
+We highly recommend removing this via `sudo snap remove --purge docker`. Note this action will delete all data kept
+in docker. If you are running the snap Docker package and have data you need to keep, please ask for help in the
+ethstaker Discord.
 
-This project has been tested on Ubuntu 22.04 "Jammy Jellyfish" and Ubuntu 20.04 "Focal Fossa". A [LTS](https://wiki.ubuntu.com/Releases), Long Term Support, version of Ubuntu is recommended, either Ubuntu Desktop or Ubuntu Server. If installing Ubuntu Server, make doubly sure to extend the "lv", logical volume, to use your entire disk.
+Eth Docker has been tested on Ubuntu 22.04 "Jammy Jellyfish" and Ubuntu 20.04 "Focal Fossa". A
+[LTS](https://wiki.ubuntu.com/Releases), Long Term Support, version of Ubuntu is recommended, either Ubuntu Desktop or
+Ubuntu Server. If installing Ubuntu Server, make doubly sure to extend the "lv", logical volume, to use your entire
+disk.
 
 ### Automatic installation
 
@@ -45,9 +46,10 @@ sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-compose-plu
 
 You know it was successful when you saw messages scrolling past that install docker and docker compose.
 
-If you like, you can also add a docker-compose alias, replacing `MYUSERNAME` with your actual user name: `echo 'alias docker-compose="docker compose"' >>/home/MYUSERNAME/.profile`
+If you like, you can also add a docker-compose alias, replacing `MYUSERNAME` with your actual user name:
+`echo 'alias docker-compose="docker compose"' >>/home/MYUSERNAME/.profile`
 
-## Debian 10/11
+## Debian 10/11/12
 
 ### Automatic installation
 
@@ -73,22 +75,22 @@ sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-compose-plu
 
 You know it was successful when you saw messages scrolling past that install docker and docker compose.
 
-If you like, you can also add a docker-compose alias, replacing `MYUSERNAME` with your actual user name: `echo 'alias docker-compose="docker compose"' >>/home/MYUSERNAME/.profile`
+If you like, you can also add a docker-compose alias, replacing `MYUSERNAME` with your actual user name:
+`echo 'alias docker-compose="docker compose"' >>/home/MYUSERNAME/.profile`
 
 ## Generic Linux
 
-Other distributions are expected to work as long as they support
-git, docker, and docker compose.
+Other distributions are expected to work as long as they support git, docker, and docker compose.
 
-On Linux, docker compose runs as root by default. The individual containers do not,
-they run as local users inside the containers. "Rootless mode" is expected to
-work for docker with this project, as it does not use AppArmor.
+On Linux, docker compose runs as root by default. The individual containers do not, they run as local users inside the
+containers. "Rootless mode" is expected to work for docker with this project, as it does not use AppArmor.
 
 ## Change Docker storage location
 
 Taken from the [RocketPool docs](https://docs.rocketpool.net/guides/node/docker.html#configuring-docker-s-storage-location)
 
-By default, Docker will store all of its container data on your operating system's drive. In some cases, this is **not** what you want. For example, you may have a small boot drive and a second larger SSD for the chain data.
+By default, Docker will store all of its container data on your operating system's drive. In some cases, this is
+**not** what you want. For example, you may have a small boot drive and a second larger SSD for the chain data.
 
 > If you have just one drive and are good with the default behavior, don't make these adjustments
 
@@ -131,14 +133,14 @@ After that, Docker will store its data on your desired disk.
 
 ## Switching from docker.io to docker-ce
 
-If you are currently running Canonical's docker.io and you'd like to switch to docker-ce, the
-"Community Edition" released by Docker, Inc., this is how.
+If you are currently running Canonical's docker.io and you'd like to switch to docker-ce, the "Community Edition"
+released by Docker, Inc., this is how.
 
-You do not need to stop running containers manually, and they will be back up and running after. All
-volumes and other data kept in Docker will stay intact.
+You do not need to stop running containers manually, and they will be back up and running after. All volumes and other
+data kept in Docker will stay intact.
 
-If you came here because of a nag message, you can switch out docker.io for docker-ce, or you can
-narrowly just upgrade compose to V2, and remove compose V1. In that case, stop before "remove docker.io".
+If you came here because of a nag message, you can switch out docker.io for docker-ce, or you can narrowly just upgrade
+compose to V2, and remove compose V1. In that case, stop before "remove docker.io".
 
 Prepare docker-ce repo:
 
@@ -148,7 +150,9 @@ sudo apt-get install -y ca-certificates curl gnupg lsb-release
 
 sudo mkdir -p /etc/apt/keyrings
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
-echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu  $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list >/dev/null
+echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] \
+https://download.docker.com/linux/ubuntu  $(lsb_release -cs) stable" \
+| sudo tee /etc/apt/sources.list.d/docker.list >/dev/null
  
 sudo apt-get update
 ```
@@ -182,32 +186,39 @@ Verify that all containers started automatically:
 sudo docker ps
 ```
 
-If you like, you can also add a docker-compose alias, replacing `MYUSERNAME` with your actual user name: `echo 'alias docker-compose="docker compose"' >>/home/MYUSERNAME/.profile`
+If you like, you can also add a docker-compose alias, replacing `MYUSERNAME` with your actual user name:
+`echo 'alias docker-compose="docker compose"' >>/home/MYUSERNAME/.profile`
 
 ## rootless Docker
 
-eth-docker works with [rootless Docker](https://docs.docker.com/engine/security/rootless/).
+Eth Docker works with [rootless Docker](https://docs.docker.com/engine/security/rootless/).
 
-If using Grafana, use `grafana-rootless.yml` instead of `grafana.yml`. This omits node-exporter, cadvisor, promtail and Loki.
+If using Grafana, use `grafana-rootless.yml` instead of `grafana.yml`. This omits node-exporter, cadvisor, promtail and
+Loki.
 
-If using traefik, either change its ports in `.env` to be above `1024`, or [expose privileged ports](https://docs.docker.com/engine/security/rootless/#exposing-privileged-ports).
+If using traefik, either change its ports in `.env` to be above `1024`, or
+[expose privileged ports](https://docs.docker.com/engine/security/rootless/#exposing-privileged-ports).
 
 ## macOS Prerequisites
 
-> The following prerequisites apply if you are going to use macOS as a server to run an Ethereum staking full node. If you use macOS to connect *to* a node server, all you need is an SSH client.
+> The following prerequisites apply if you are going to use macOS as a server to run an Ethereum staking full node. If
+you use macOS to connect *to* a node server, all you need is an SSH client.
 
-- Install [Docker Desktop](https://www.docker.com/products/docker-desktop) and allocate 16+ GiB of RAM and 1.5TB or so of storage space to it, in Preferences->Resources->Advanced.
+- Install [Docker Desktop](https://www.docker.com/products/docker-desktop) and allocate 16+ GiB of RAM and 2TB or so
+of storage space to it, in Preferences->Resources->Advanced.
 - Install prerequisites via homebrew: `brew install coreutils newt bash`
-- You may need to log out and back into your terminal session to have the right version of bash. Try `bash --version` and verify it's 5.x or higher.
+- You may need to log out and back into your terminal session to have the right version of bash. Try `bash --version`
+and verify it's 5.x or higher.
 - Verify git is installed with `git --version`. It will show a Desktop prompt to install it if it isn't.
 
-> Docker Desktop on macOS has its ideosyncrasies. An arguable easier path could be to keep macOS just for firmware updates and [dual-boot into Debian Linux](https://wiki.debian.org/InstallingDebianOn/Apple).
+> Docker Desktop on macOS has its ideosyncrasies. An arguable easier path could be to keep macOS just for firmware
+updates and [dual-boot into Debian Linux](https://wiki.debian.org/InstallingDebianOn/Apple).
 
-## Windows 10/11 discouraged
+## Windows 11
 
-While it is technically possible to run this project, and thus a node, on Windows 10/11,
-I want to [discourage that idea](../Support/Windows.md). Windows 10/11 is fine as an SSH client to connect *to*
-your Linux server, but not as a basis to run the node server itself inside Docker.
+It is technically possible to run Eth Docker on [Windows 11](../Support/Windows.md).
 
-The challenges inherent in running on Windows 10/11 are easier to solve when using the Windows-native
-versions of the clients, rather than wrapping Docker around them.
+However, the challenges inherent in running on Windows 11 are easier to solve when using the Windows-native versions of
+the clients, rather than wrapping Docker around them.
+
+Windows 10/11 is fine as an SSH client to connect *to* your Linux server.
