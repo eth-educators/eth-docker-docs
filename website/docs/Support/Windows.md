@@ -10,7 +10,7 @@ client, there are multiple challenges. They can all be overcome, and the
 
 If you wish to run Eth Docker on Windows regardless, these are the steps needed.
 
-- Run Windows 11 2023 Update or later, ideally with 64 GiB RAM so that WSL2 defaults to 30 GiB
+- Run Windows 11 2023 Update or later, ideally with 64 GiB RAM so that WSL defaults to 30 GiB
 - From Windows Store, install WSL and Ubuntu current LTS. Debian is also an option, it is however quite bare-bones
 without even man-db out of the box
 - Install WSL 2 2.x.x or later
@@ -30,7 +30,7 @@ memory=32GB
   - Reboot, then from Powershell run `w32tm /query /status /verbose` to verify that w32time service did start. If it didn't, check triggers again. If all else fails, set it to Automatic Delayed startup
 - If you see [clock skew](https://github.com/microsoft/WSL/issues/10006) in WSL, set a scheduled task to keep WSL in
 sync with your Windows clock. From non-admin Powershell, run
-`schtasks /Create /TN WSL2TimeSync /TR "wsl -u root hwclock -s" /SC ONEVENT /EC System /MO "*[System[Provider[@Name='Microsoft-Windows-Kernel-Power'] and (EventID=107 or EventID=507) or Provider[@Name='Microsoft-Windows-Kernel-General'] and (EventID=1)]]" /F`.
+`schtasks /Create /TN WSLTimeSync /TR "wsl -u root hwclock -s" /SC ONEVENT /EC System /MO "*[System[Provider[@Name='Microsoft-Windows-Kernel-Power'] and (EventID=107 or EventID=507) or Provider[@Name='Microsoft-Windows-Kernel-General'] and (EventID=1)]]" /F`.
 - Create a scheduled task in Task Scheduler to keep WSL updated.
   - Call it WSLUpdate
   - Run every day at a time you like
