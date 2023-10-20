@@ -8,14 +8,24 @@ Windows may seem like an "easy button". For Eth Docker, it is anything but, and 
 presents multiple challenges. They can all be overcome, and the
 [eth-wizard project](https://github.com/stake-house/eth-wizard) aims to do just that.
 
-If you wish to run Eth Docker on Windows regardless, these are the steps needed.
+If you wish to run Eth Docker on Windows regardless, this is what's required.
 
-- Run Windows 11 Pro 2023 Update or later, ideally with 64 GiB RAM so that WSL defaults to 30 GiB
+- Windows 11 Pro 2023 Update or later, ideally with 64 GiB RAM so that WSL defaults to 30 GiB
+- [WSL 2](https://learn.microsoft.com/en-us/windows/wsl/about), the "Windows Subsystem for Linux", which runs a Linux
+kernel in a lightweight VM
+- Functioning time sync
+- WSL networking that is reachable from the LAN
+
+These are the configuration steps:
+
+- Verify you are running Windows 11 Pro 2023 Update or later and have sufficient RAM
 - From Windows Store, install WSL and Ubuntu current LTS. Debian is also an option, it is however quite bare-bones
-without even man-db out of the box
-- Install WSL 2 [2.0.4](https://github.com/microsoft/WSL/releases) or later
-- Configure WSL 2 for [mirrored networking](https://github.com/microsoft/WSL/releases/tag/2.0.0)
-- In my testing, this assigns a static MAC address. On your router, set a DHCP reservation so WSL always has the same local IP
+without even man-db out of the box. This defaults to WSL 2, but if you have an older WSL 1 install, find it with
+`wsl --list -v` and change it with `wsl --set-version DISTRO-NAME 2` as well as `wsl --set-default-version 2`.
+- Install WSL [2.0.4](https://github.com/microsoft/WSL/releases) or later
+- Configure WSL for [mirrored networking](https://github.com/microsoft/WSL/releases/tag/2.0.0)
+- In my testing, this assigns a static MAC address. On your router, set a DHCP reservation so WSL always has the same
+local IP
 - Check memory assigned to WSL with `free -h`. If it's too low for your chosen client mix, edit `.wslconfig` in your
 Windows home directory and add a memory section, for example
 ```
@@ -31,7 +41,7 @@ not to open the Docker Dashboard on start. It should default to use the WSL 2 ba
   - Reboot, then from Powershell run `w32tm /query /status /verbose` to verify that w32time service did start. If it didn't, check triggers again. If all else fails, set it to Automatic Delayed startup
 - [Enable systemd](https://devblogs.microsoft.com/commandline/systemd-support-is-now-available-in-wsl/#set-the-systemd-flag-set-in-your-wsl-distro-settings)
 for WSL and install chrony with `sudo apt install -y chrony`.
-- If you see [clock skew](https://github.com/microsoft/WSL/issues/10006) in WSL, set a scheduled task to keep WSL in
+- If despite chrony, you still see [clock skew](https://github.com/microsoft/WSL/issues/10006) in WSL, set a scheduled task to keep WSL in
 sync with your Windows clock. From non-admin Powershell, run
 `schtasks /Create /TN WSLTimeSync /TR "wsl -u root hwclock -s" /SC ONEVENT /EC System /MO "*[System[Provider[@Name='Microsoft-Windows-Kernel-Power'] and (EventID=107 or EventID=507) or Provider[@Name='Microsoft-Windows-Kernel-General'] and (EventID=1)]]" /F`.
 - Create a scheduled task in Task Scheduler to keep WSL updated.
@@ -47,7 +57,7 @@ sync with your Windows clock. From non-admin Powershell, run
 To solve this, use [Windows ARSO](https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/manage/component-updates/winlogon-automatic-restart-sign-on--arso-).
   - Start group policy editor, find "Computer Configuration > Administrative Templates > Windows Components > Windows sign in Options"
 and enable "Sign-in and lock last interactive user automatically after a restart"
-  - If you are not using Bitlocker, you may also need "Configure the mode of automatically signing in and locking last interactive user after a restart or cold boot"
+  - If you are not using Bitlocker, you may also need "Configure the mode of automatically signing in and locking last interactive user after a restart or cold boot".
 I was unable to configure this from the GUI and ended up using RegEdit. Navigate to
 `HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System` and create a new DWORD called
 `AutomaticRestartSignOnConfig`. Set it to `0` if you use BitLocker, and to `1` if you are not.
