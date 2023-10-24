@@ -48,7 +48,10 @@ Ethereum PoS beacon, and choose one of the `CLIENT-vc-only.yml` entries in `COMP
 - Adjust ports if you are going to need custom ports instead of the defaults. These are the ports
 exposed to the host, and for the P2P ports to the Internet via your firewall/router.
 
-## Client compose files
+## Compose files
+
+The main concept to understand is that all files in `COMPOSE_FILE` inside `.env` are combined in order, and Docker
+Compose will then act on the resulting config. It can be viewed with `docker compose config`.
 
 Set the `COMPOSE_FILE` string depending on which client you are going to use. Add optional services with `:` between
 the file names.
@@ -83,6 +86,7 @@ not be exposed to the Internet. Used *in addition* to `grafana.yml`, not instead
 `traefik-*.yml` is recommended.
 - `prysm-web-shared.yml` - to map the Prysm web port (default: 3500) to the host. This is not encrypted and should
 not be exposed to the Internet. Using encryption instead via `traefik-*.yml` is recommended.
+- `siren.yml` - Lighthouse's Siren UI
 
 > See [Prysm Web](../Usage/PrysmWeb.md) for notes on using the Prysm Web UI
 
@@ -136,6 +140,19 @@ If you are running a validator client only, such as with a RocketPool "reverse h
 is to set `MEV_BOOST=true` in `.env`. `mev-boost.yml` and `MEV_RELAYS` are not needed and won't be used if they are
 set, as they are relevant only where the Consensus Layer client runs. See the [Overview](/) drawing for how thesei
 components communicate.
+
+## Specialty yml files
+
+Eth Docker supports some specialty use cases. These are the corresponding yml files.
+
+- `ext-network.yml` - Connect to another Docker network, for example for reverse hybrid with RocketPool or connecting
+to a central traefik/prometheus.
+- `v6-network.yml` - part of enabling IPv6 support
+ - `central-metrics.yml` - Scrape metrics from a
+[central prometheus](https://github.com/CryptoManufaktur-io/central-proxy-docker)
+- `nimbus-stats.yml` - Send Nimbus stats to beaconcha.in app
+- `prysm-stats.yml` - Send Prysm stats to beaconcha.in app
+- `ssv.yml` - Run an SSV DVT node
 
 ## Multiple nodes on one host
 
