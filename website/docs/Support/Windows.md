@@ -22,6 +22,7 @@ These are the configuration steps:
 
 - Verify you are running Windows 11 Pro 22H2 build 22621.2428 or later and have sufficient RAM
   
+  
 - From Windows Store, install WSL and Ubuntu current LTS. Debian is also an option, it is however quite bare-bones
 without even man-db out of the box. This defaults to WSL 2, but if you have an older WSL 1 install, find it with
 `wsl --list -v` and change it with `wsl --set-version DISTRO-NAME 2` as well as `wsl --set-default-version 2`.
@@ -36,6 +37,7 @@ without even man-db out of the box. This defaults to WSL 2, but if you have an o
   - Create two "Start Program" actions
     - The first is `wsl.exe -u root -e apt-get update`
     - The second is `wsl.exe -u root DEBIAN_FRONTEND=noninteractive apt-get -y --autoremove dist-upgrade`
+  
   
 - Configure WSL for [mirrored networking](https://github.com/microsoft/WSL/releases/tag/2.0.0). Edit `.wslconfig` in
 your Windows home directory and add
@@ -53,6 +55,7 @@ Windows home directory and add a memory section, for example
 memory=32GB
 ```
   
+  
 - Fix Windows time sync
   - Change w32time to [start automatically](https://docs.microsoft.com/en-us/troubleshoot/windows-client/identity/w32time-not-start-on-workgroup). In Administrator cmd, but **not** PowerShell, `sc triggerinfo w32time start/networkon stop/networkoff`. Verify with `sc qtriggerinfo w32time`. To get into cmd that way, you can start Admin PowerShell and then just type `cmd`.
   - In `Computer\HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\w32time\Config`, set `MaxPollInterval` to hex `c`, decimal `12`.
@@ -63,6 +66,7 @@ for WSL and install chrony with `sudo apt install -y chrony`.
 - If despite chrony, you still see [clock skew](https://github.com/microsoft/WSL/issues/10006) in WSL, set a scheduled task to keep WSL in
 sync with your Windows clock. From non-admin Powershell, run
 `schtasks /Create /TN WSLTimeSync /TR "wsl -u root hwclock -s" /SC ONEVENT /EC System /MO "*[System[Provider[@Name='Microsoft-Windows-Kernel-Power'] and (EventID=107 or EventID=507) or Provider[@Name='Microsoft-Windows-Kernel-General'] and (EventID=1)]]" /F`.
+  
   
 - Install [Docker Desktop](https://www.docker.com/products/docker-desktop/) and configure it to start on login, but
 not to open the Docker Dashboard on start. It should default to use the WSL 2 based engine.
@@ -76,8 +80,10 @@ I was unable to configure this from the GUI and ended up using RegEdit. Navigate
 `HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System` and create a new DWORD called
 `AutomaticRestartSignOnConfig`. Set it to `0` if you use BitLocker, and to `1` if you are not.
   
+  
 - To keep the system secure, configure Windows Update to download and apply patches automatically, and to update WSL.
 Settings -> Windows Update -> Advanced, enable "Receive updates for other Microsoft products" and "Get me up to date".
+  
   
 - Optional: Improve your WSL experience with [Windows Terminal and oh-my-zsh](https://gist.github.com/zachrank/fc71ed301e9823264ddac4fb77975735)
 - Optional: Use sparse VHD for WSL, `wsl.exe --list` and then `wsl.exe --manage DISTRO-NAME --set-sparse true`. I
@@ -85,5 +91,6 @@ have not tested the performance impact of this.
 - Optional: Configure your Windows drive to be [encrypted with Bitlocker](https://www.windowscentral.com/how-use-bitlocker-encryption-windows-10).
 Be very careful to print out the recovery key and keep it safe. Always suspend Bitlocker before doing a UEFI/BIOS
 upgrade.
+  
   
 From here, you should be able to configure Eth Docker as usual, see [Quick Start](../Usage/QuickStart.md).
