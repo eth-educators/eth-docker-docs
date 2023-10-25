@@ -66,6 +66,7 @@ sync with your Windows clock. From non-admin Powershell, run
 
 - Install [Docker Desktop](https://www.docker.com/products/docker-desktop/) and configure it to start on login, but
 not to open the Docker Dashboard on start. It should default to use the WSL 2 based engine.
+- Configure Docker Desktop to download patches automatically. Applying them may be a manual step.
 - Your node needs to run after Windows reboot for 24/7 uptime. Docker Desktop only starts well with a logged-in user.
 To solve this, use [Windows ARSO](https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/manage/component-updates/winlogon-automatic-restart-sign-on--arso-).
   - Start group policy editor, find "Computer Configuration > Administrative Templates > Windows Components > Windows sign in Options"
@@ -75,16 +76,14 @@ I was unable to configure this from the GUI and ended up using RegEdit. Navigate
 `HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System` and create a new DWORD called
 `AutomaticRestartSignOnConfig`. Set it to `0` if you use BitLocker, and to `1` if you are not.
 
+- To keep the system secure, configure Windows Update to download and apply patches automatically, and to update WSL.
+Settings -> Windows Update -> Advanced, enable "Receive updates for other Microsoft products" and "Get me up to date".
+
 - Optional: Improve your WSL experience with [Windows Terminal and oh-my-zsh](https://gist.github.com/zachrank/fc71ed301e9823264ddac4fb77975735)
 - Optional: Use sparse VHD for WSL, `wsl.exe --list` and then `wsl.exe --manage DISTRO-NAME --set-sparse true`. I
 have not tested the performance impact of this.
 - Optional: Configure your Windows drive to be [encrypted with Bitlocker](https://www.windowscentral.com/how-use-bitlocker-encryption-windows-10).
 Be very careful to print out the recovery key and keep it safe. Always suspend Bitlocker before doing a UEFI/BIOS
 upgrade.
-
-To keep the system secure, configure Windows Update to download and apply patches automatically, and to update WSL.
-Settings -> Windows Update -> Advanced, enable "Receive updates for other Microsoft products" and "Get me up to date".
-
-Configure Docker Desktop to download patches automatically. Applying them may be a manual step.
 
 From here, you should be able to configure Eth Docker as usual, see [Quick Start](../Usage/QuickStart.md).
