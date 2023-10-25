@@ -77,9 +77,9 @@ up to you.
 You'll add `traefik-aws.yml` to your `COMPOSE_FILE` in `.env`, for example:
 `lighthouse.yml:geth.yml:grafana.yml:traefik-aws.yml`
 
-This setup assumes that you already have an [AWS CLI]
-(https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html) named user profile in `~/.aws` on the
-node itself. If not, [please create one](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-profiles.html).
+This setup assumes that you already have an [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html)
+named user profile in `~/.aws` on the node itself. If not, [please create one](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-profiles.html).
+
 The IAM user will need to have the AWS-managed `AmazonRoute53DomainsFullAccess` policy
 [attached to it](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_manage-attach-detach.html).
 

@@ -10,7 +10,7 @@ presents multiple challenges. They can all be overcome, and the
 
 If you wish to run Eth Docker on Windows regardless, this is what's required.
 
-- Windows 11 Pro 2023 Update or later, ideally with 64 GiB RAM so that WSL defaults to 30 GiB
+- Windows 11 Pro 22H2 or later, ideally with 64 GiB RAM so that WSL defaults to 30 GiB
 - [WSL 2](https://learn.microsoft.com/en-us/windows/wsl/about), the "Windows Subsystem for Linux", which runs a Linux
 kernel in a lightweight VM
 - Functioning time sync
@@ -18,11 +18,11 @@ kernel in a lightweight VM
 
 These are the configuration steps:
 
-- Verify you are running Windows 11 Pro 2023 Update or later and have sufficient RAM
+- Verify you are running Windows 11 Pro 22H2 or later and have sufficient RAM
 - From Windows Store, install WSL and Ubuntu current LTS. Debian is also an option, it is however quite bare-bones
 without even man-db out of the box. This defaults to WSL 2, but if you have an older WSL 1 install, find it with
 `wsl --list -v` and change it with `wsl --set-version DISTRO-NAME 2` as well as `wsl --set-default-version 2`.
-- Install WSL [2.0.5](https://github.com/microsoft/WSL/releases) or later in PowerShell with
+- Install WSL [2.0.6](https://github.com/microsoft/WSL/releases) or later in PowerShell with
 `wsl --update; wsl --update --pre-release`
 - Configure WSL for [mirrored networking](https://github.com/microsoft/WSL/releases/tag/2.0.0). Edit `.wslconfig` in
 your Windows home directory and add
