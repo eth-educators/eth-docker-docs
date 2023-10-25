@@ -27,8 +27,9 @@ Settings -> Windows Update -> Advanced, enable "Receive updates for other Micros
 
 WSL
 - From Windows Store, install WSL and Ubuntu current LTS. Debian is also an option, it is however quite bare-bones
-without even man-db out of the box. This defaults to WSL 2, but if you have an older WSL 1 install, find it with
-`wsl --list -v` and change it with `wsl --set-version DISTRO-NAME 2` as well as `wsl --set-default-version 2`.
+without even man-db out of the box.
+- This defaults to WSL 2, but if you have an older WSL 1 install, find it with `wsl --list -v` and change it with
+`wsl --set-version DISTRO-NAME 2` as well as `wsl --set-default-version 2`.
 - Install WSL [2.0.6](https://github.com/microsoft/WSL/releases) or later in PowerShell with
 `wsl --update; wsl --update --pre-release`
 - Create a scheduled task in Task Scheduler to keep Ubuntu/Debian in WSL updated.
