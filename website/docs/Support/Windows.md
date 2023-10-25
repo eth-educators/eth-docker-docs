@@ -22,6 +22,8 @@ These are the configuration steps:
 
 Windows
 - Verify you are running Windows 11 Pro 22H2 build 22621.2428 or later and have sufficient RAM
+- To keep the system secure, configure Windows Update to download and apply patches automatically, and to update WSL.
+Settings -> Windows Update -> Advanced, enable "Receive updates for other Microsoft products" and "Get me up to date".
 
 WSL
 - From Windows Store, install WSL and Ubuntu current LTS. Debian is also an option, it is however quite bare-bones
@@ -80,10 +82,6 @@ and enable "Sign-in and lock last interactive user automatically after a restart
 I was unable to configure this from the GUI and ended up using RegEdit. Navigate to
 `HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System` and create a new DWORD called
 `AutomaticRestartSignOnConfig`. Set it to `0` if you use BitLocker, and to `1` if you are not.
-
-Updates
-- To keep the system secure, configure Windows Update to download and apply patches automatically, and to update WSL.
-Settings -> Windows Update -> Advanced, enable "Receive updates for other Microsoft products" and "Get me up to date".
 
 QoL
 - Optional: Improve your WSL experience with [Windows Terminal and oh-my-zsh](https://gist.github.com/zachrank/fc71ed301e9823264ddac4fb77975735)
