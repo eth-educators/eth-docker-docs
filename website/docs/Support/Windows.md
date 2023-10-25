@@ -71,8 +71,9 @@ sync with your Windows clock. From non-admin Powershell, run
 `schtasks /Create /TN WSLTimeSync /TR "wsl -u root hwclock -s" /SC ONEVENT /EC System /MO "*[System[Provider[@Name='Microsoft-Windows-Kernel-Power'] and (EventID=107 or EventID=507) or Provider[@Name='Microsoft-Windows-Kernel-General'] and (EventID=1)]]" /F`.
 
 Docker Desktop
-- Install [Docker Desktop](https://www.docker.com/products/docker-desktop/) and configure it to start on login, but
-not to open the Docker Dashboard on start. It should default to use the WSL 2 based engine.
+- Install [Docker Desktop](https://www.docker.com/products/docker-desktop/).
+- Configure it to start on login, but not to open the Docker Dashboard on start.
+- It should default to use the WSL 2 based engine.
 - Configure Docker Desktop to download patches automatically. Applying them may be a manual step.
 - Your node needs to run after Windows reboot for 24/7 uptime. Docker Desktop only starts well with a logged-in user.
 To solve this, use [Windows ARSO](https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/manage/component-updates/winlogon-automatic-restart-sign-on--arso-).
