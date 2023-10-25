@@ -30,8 +30,8 @@ your Windows home directory and add
 [wsl2]
 networkingMode=mirrored
 ```
-- In my testing, this assigns a static MAC address. On your router, set a DHCP reservation so WSL always has the same
-local IP
+- This shares the MAC address, IPv4 address and IPv6 address of the Windows host machine. On your router, set a DHCP
+reservation for this machine so WSL always has the same local IP; or configure Windows with a static IP.
 - Check memory assigned to WSL with `free -h`. If it's too low for your chosen client mix, edit `.wslconfig` in your
 Windows home directory and add a memory section, for example
 ```
