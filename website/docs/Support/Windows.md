@@ -82,7 +82,9 @@ have not tested the performance impact of this.
 Be very careful to print out the recovery key and keep it safe. Always suspend Bitlocker before doing a UEFI/BIOS
 upgrade.
 
-To keep the system secure, configure Windows Update to download and apply patches automatically and reboot as needed.
+To keep the system secure, configure Windows Update to download and apply patches automatically, and to update WSL.
+Settings -> Windows Update -> Advanced, enable "Receive updates for other Microsoft products" and "Get me up to date".
+
 Configure Docker Desktop to download patches automatically. Applying them may be a manual step.
 
 From here, you should be able to configure Eth Docker as usual, see [Quick Start](../Usage/QuickStart.md).
