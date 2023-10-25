@@ -14,17 +14,29 @@ If you wish to run Eth Docker on Windows regardless, this is what's required.
 to 30 GiB
 - [WSL 2](https://learn.microsoft.com/en-us/windows/wsl/about), the "Windows Subsystem for Linux", which runs a Linux
 kernel in a lightweight VM
-- Functioning time sync
 - WSL networking that is reachable from the LAN
+- Functioning time sync
+- Docker Desktop, with Windows configured to start it on boot
 
 These are the configuration steps:
 
 - Verify you are running Windows 11 Pro 22H2 build 22621.2428 or later and have sufficient RAM
+
 - From Windows Store, install WSL and Ubuntu current LTS. Debian is also an option, it is however quite bare-bones
 without even man-db out of the box. This defaults to WSL 2, but if you have an older WSL 1 install, find it with
 `wsl --list -v` and change it with `wsl --set-version DISTRO-NAME 2` as well as `wsl --set-default-version 2`.
 - Install WSL [2.0.6](https://github.com/microsoft/WSL/releases) or later in PowerShell with
 `wsl --update; wsl --update --pre-release`
+- Create a scheduled task in Task Scheduler to keep WSL updated.
+  - Call it WSLUpdate
+  - Run every day at a time you like
+  - Run only if any network is connected
+  - Run as soon as possible if a start was missed
+  - Stop task if it runs longer than 1 hour
+  - Create two "Start Program" actions
+    - The first is `wsl.exe -u root -e apt-get update`
+    - The second is `wsl.exe -u root DEBIAN_FRONTEND=noninteractive apt-get -y --autoremove dist-upgrade`
+
 - Configure WSL for [mirrored networking](https://github.com/microsoft/WSL/releases/tag/2.0.0). Edit `.wslconfig` in
 your Windows home directory and add
 ```
@@ -40,8 +52,7 @@ Windows home directory and add a memory section, for example
 [wsl2]
 memory=32GB
 ```
-- Install [Docker Desktop](https://www.docker.com/products/docker-desktop/) and configure it to start on login, but
-not to open the Docker Dashboard on start. It should default to use the WSL 2 based engine.
+
 - Fix Windows time sync
   - Change w32time to [start automatically](https://docs.microsoft.com/en-us/troubleshoot/windows-client/identity/w32time-not-start-on-workgroup). In Administrator cmd, but **not** PowerShell, `sc triggerinfo w32time start/networkon stop/networkoff`. Verify with `sc qtriggerinfo w32time`. To get into cmd that way, you can start Admin PowerShell and then just type `cmd`.
   - In `Computer\HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\w32time\Config`, set `MaxPollInterval` to hex `c`, decimal `12`.
@@ -52,15 +63,9 @@ for WSL and install chrony with `sudo apt install -y chrony`.
 - If despite chrony, you still see [clock skew](https://github.com/microsoft/WSL/issues/10006) in WSL, set a scheduled task to keep WSL in
 sync with your Windows clock. From non-admin Powershell, run
 `schtasks /Create /TN WSLTimeSync /TR "wsl -u root hwclock -s" /SC ONEVENT /EC System /MO "*[System[Provider[@Name='Microsoft-Windows-Kernel-Power'] and (EventID=107 or EventID=507) or Provider[@Name='Microsoft-Windows-Kernel-General'] and (EventID=1)]]" /F`.
-- Create a scheduled task in Task Scheduler to keep WSL updated.
-  - Call it WSLUpdate
-  - Run every day at a time you like
-  - Run only if any network is connected
-  - Run as soon as possible if a start was missed
-  - Stop task if it runs longer than 1 hour
-  - Create two "Start Program" actions
-    - The first is `wsl.exe -u root -e apt-get update`
-    - The second is `wsl.exe -u root DEBIAN_FRONTEND=noninteractive apt-get -y --autoremove dist-upgrade`
+
+- Install [Docker Desktop](https://www.docker.com/products/docker-desktop/) and configure it to start on login, but
+not to open the Docker Dashboard on start. It should default to use the WSL 2 based engine.
 - Your node needs to run after Windows reboot for 24/7 uptime. Docker Desktop only starts well with a logged-in user.
 To solve this, use [Windows ARSO](https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/manage/component-updates/winlogon-automatic-restart-sign-on--arso-).
   - Start group policy editor, find "Computer Configuration > Administrative Templates > Windows Components > Windows sign in Options"
@@ -76,5 +81,8 @@ have not tested the performance impact of this.
 - Optional: Configure your Windows drive to be [encrypted with Bitlocker](https://www.windowscentral.com/how-use-bitlocker-encryption-windows-10).
 Be very careful to print out the recovery key and keep it safe. Always suspend Bitlocker before doing a UEFI/BIOS
 upgrade.
+
+To keep the system secure, configure Windows Update to download and apply patches automatically and reboot as needed.
+Configure Docker Desktop to download patches automatically. Applying them may be a manual step.
 
 From here, you should be able to configure Eth Docker as usual, see [Quick Start](../Usage/QuickStart.md).
