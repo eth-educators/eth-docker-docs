@@ -84,7 +84,8 @@ The IAM user will need to have the AWS-managed `AmazonRoute53DomainsFullAccess` 
 [attached to it](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_manage-attach-detach.html).
 
 With that, in the `.env` file:
-- Set `AWS_PROFILE` to the profile you want to use
+- Set `AWS_PROFILE` to the profile you want to use. This is the profile name as shown in `~/.aws/config` and
+`~/.aws/credentials`, e.g. `default` or whichever name you gave it, *not* the access key id.
 - Set `AWS_HOSTED_ZONE_ID` to the Route53 zone you are going to use
 
 ### A records and CNAMEs
