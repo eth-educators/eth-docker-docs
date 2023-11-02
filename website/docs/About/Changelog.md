@@ -14,6 +14,15 @@ To update the components of the project, run from within the project directory (
 > On 1/27/2022, eth-docker's repository name changed. Everything should work as it did.
 > If you do wish to manually update your local reference, run `git remote set-url origin https://github.com/eth-educators/eth-docker.git`
 
+## v2.3.7 2023-11-02
+
+*This is an optional release with security relevant changes for traefik users*
+
+- **BREAKING** change for users who use traefik to access the execution client RPC API, consensus client REST
+API or execution client engine RPC API: The `el-traefik.yml`, `cl-traefik.yml` and `el-traefik.yml` files are
+now required for this. This was done to avoid host header attacks against users who just want to expose Grafana
+and may not have firewall rules in place to trusted source IPs.
+
 ## v2.3.6 2023-11-02
 
 *This is an optional release with new features and bug fixes*
