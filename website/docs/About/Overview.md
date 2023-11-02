@@ -46,8 +46,7 @@ When setting up an Ethereum staking full node, you'll:
   machine used to run the node, for security reasons.
 - Import validator keys into the validator client, each validator key activates one validator
 - Once the Ethereum execution client and consensus client are fully synced with the chain, deposit Ethereum
-  at the launchpad, 32 ETH per validator key. That Ethereum is now locked up until after the "merge"
-  of Ethereum PoS (Proof-of-Stake) with Ethereum PoW (Proof-of-Work).
+  at the launchpad, 32 ETH per validator key.
 
 Here's what then happens:
 
