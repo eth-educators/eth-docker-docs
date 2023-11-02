@@ -14,6 +14,26 @@ To update the components of the project, run from within the project directory (
 > On 1/27/2022, eth-docker's repository name changed. Everything should work as it did.
 > If you do wish to manually update your local reference, run `git remote set-url origin https://github.com/eth-educators/eth-docker.git`
 
+## v2.3.6 2023-11-02
+
+*This is an optional release with new features and bug fixes*
+
+- `./ethd keys send-exit` works with RocketPool reverse hybrid
+- Raise Loki ingestion limit. Thanks invis!
+- Prysm uses prysmctl for legacy exit method
+- Erigon source build uses Go 1.21
+- `./ethd config` offers Reth alpha
+- Send anonymized traefik usage
+- Fixes to `prysm-vc-only.yml`. Thanks @nflaig!
+- Scraping metrics centrally is now supported
+- RocketPool integration no longer adds `mev-boost.yml`
+- Error handler that restores `.env` if `./ethd update` fails. Thanks invis!
+- `./ethd config` is a little more visually consistent
+- On Ubuntu, use the `docker-compose-v2` package for Docker Compose upgrades
+- Lighthouse Siren fixed. Thanks @davidkassa!
+- Changed default checkpoint URL for Gnosis Chain
+- Added traefik labels to all `CL-CLIENT.yml` files
+
 ## v2.3.5 2023-10-11
 
 *This is an optional release with new features and bug fixes*
