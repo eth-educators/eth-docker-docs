@@ -103,6 +103,9 @@ Optionally, add encryption to the Grafana and/or Prysm Web pages:
 
 - `traefik-cf.yml` - use encrypting secure web proxy and use CloudFlare for DNS management
 - `traefik-aws.yml` - use encrypting secure web proxy and use AWS Route53 for DNS management
+- `el-traefik.yml,` `cl-traefik.yml`, `ee-traefik.yml` - advanced use, use traefik for access to execution RPC,
+consensus REST and execution engine RPC API ports respectively. Be very cautious with these, always
+[firewall](../Support/Cloud.md) that access to trusted source IPs.
 
 With these, you wouldn't use the `-shared.yml` files. Please see [Secure Web Proxy Instructions](../Usage/ReverseProxy.md)
 for setup instructions for either option.
