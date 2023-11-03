@@ -30,7 +30,7 @@ WSL
 without even man-db out of the box.
 - This defaults to WSL 2, but if you have an older WSL 1 install, find it with `wsl --list -v` and change it with
 `wsl --set-version DISTRO-NAME 2` as well as `wsl --set-default-version 2`.
-- Install WSL [2.0.6](https://github.com/microsoft/WSL/releases) or later in PowerShell with
+- Install WSL [2.0.7](https://github.com/microsoft/WSL/releases) or later in PowerShell with
 `wsl --update; wsl --update --pre-release`
 - Create a scheduled task in Task Scheduler to keep Ubuntu/Debian in WSL updated.
   - Call it WSLUpdate
