@@ -180,17 +180,15 @@ If you are using systemd with guides from Somer Esat, Coincashew or Metanull, an
 
 ### 1. Create a new Eth Docker client stack
 
-Clone Eth Docker, for example into `~/eth-docker`: `cd ~ && git clone https://github.com/eth2-educators/eth-docker.git && cd eth-docker` .
+Clone Eth Docker, for example into `~/eth-docker`: `cd ~ && git clone https://github.com/eth-educators/eth-docker.git && cd eth-docker` .
 
 Install prerequisites: `./ethd install`
 
-Configure the client stack. Make sure to choose an Infura failover for your execution client, and any of the four minority consensus clients. "Rapid sync" can let the consensus layer client sync in minutes. `./ethd config`, followed by `./ethd start`.
+Configure the client stack. "Rapid sync" can let the consensus layer client sync in minutes. `./ethd config`, followed by `./ethd up`.
 
 **Do not** import validator keys yet. Your validators are still running on your old client, and moving them over needs to be done with care to avoid running them in two places and getting yourself slashed.
 
 Observe the consensus client, and make sure it is synchronizing: `./ethd logs -f consensus`.
-
-> `sudo` commands for docker are necessary if your user is not part of the `docker` group. If `docker ps` does not succeed, you need to use `sudo` for `docker` or `docker-compose`, or make your user part of the `docker` group.
 
 ### 1a. Optional: Move the existing execution client database to its new location
 
