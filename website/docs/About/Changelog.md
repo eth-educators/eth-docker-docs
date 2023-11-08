@@ -6,13 +6,28 @@ sidebar_label: Changelog
 
 ## Updating the project
 
-To update the components of the project, run from within the project directory (`cd ~/eth-docker` by default):
+To update the components of Eth Docker, run from within its directory (`cd ~/eth-docker` by default):
 
-* `./ethd update`. This fetches new client version(s), a new eth-docker, and updates `.env`, keeping your modifications. If you want to reset the source or binary build targets in `.env`, run `./ethd update --refresh-targets` instead.
+* `./ethd update`. This fetches new client version(s), a new Eth Docker, and updates `.env`, keeping your
+modifications. If you want to reset the source or binary build targets in `.env`, run `./ethd update --refresh-targets`
+instead.
 * `./ethd up` - use the new client version(s)
 
-> On 1/27/2022, eth-docker's repository name changed. Everything should work as it did.
+> On 1/27/2022, Eth Docker's repository name changed. Everything should work as it did.
 > If you do wish to manually update your local reference, run `git remote set-url origin https://github.com/eth-educators/eth-docker.git`
+
+## v2.3.8 2023-11-08
+
+*This is an optional release with new features and bug fixes*
+
+- Fixed a **breaking** bug in `cl-traefik.yml` that impacted 2.3.7
+- Fix `./ethd keys delete all` when using Web3signer
+- `./ethd config` can now configure SSV for Holesky
+- Switched Prometheus to scrape by Docker labels
+- Added Web3signer dashboard
+- Fixed Nimbus dashboard provisioning
+- Running multiple RPC nodes connected to one central traefik is now easier. If that is your use case, set
+`EL_NODE=http://${NETWORK}-execution:8551` in `.env`. See the `ELCLIENT.yml` files for the alias this references.
 
 ## v2.3.7 2023-11-02
 
