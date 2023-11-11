@@ -15,7 +15,7 @@ Take a look at some [build ideas](../Usage/Hardware.md) and consider clients' [r
 ## Eth Docker QuickStart
 
 For a rapid start, have Ubuntu or Debian Linux installed, and then follow these steps. This has been tested on Ubuntu
-20.04/22.04 and Debian 11/12.
+20.04/22.04 and Debian 11/12. 
 
 Download Eth Docker
 
@@ -48,6 +48,8 @@ If you are going to run a validating node, [create and import keys](../Usage/Imp
 Forward the [P2P ports](../Usage/Networking.md) that the clients use.
 
 Consider your [Linux security](../Usage/LinuxSecurity.md)
+
+Deposit your 32 ETH using the official [Staking Launchpad](https://launchpad.ethereum.org/en/).
 
 ## Advanced use
 

@@ -48,6 +48,8 @@ When setting up an Ethereum staking full node, you'll:
 - Once the Ethereum execution client and consensus client are fully synced with the chain, deposit Ethereum
   at the launchpad, 32 ETH per validator key.
 
+* Note on Görli: Görli testnet is in rough shape and it is quite difficult to get the required 32 eth to setup a validator on the testnet. 
+
 Here's what then happens:
 
 - The chain processes the deposit and activates the validators: Your validators start earning rewards

@@ -36,7 +36,8 @@
             "Support/Rocketpool",
             "Support/SSV",
             "Support/Windows",
-            "Support/ipv6"
+            "Support/ipv6",
+            "Support/HelpfulWebsites"
         ]
     }
 }
