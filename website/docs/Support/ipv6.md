@@ -114,8 +114,8 @@ CL
 
 EL
 
-- [x] Nethermind: [Yes](https://github.com/NethermindEth/nethermind/issues/5565)
-- [ ] Besu: Unsure, advertisement not tested
+- [ ] Geth: Requires `IPV6=true` for advertisement via discv5, not fully tested
+- [ ] Erigon: Requires `IPV6=true` for advertisement via discv5, not fully tested
+- [ ] Nethermind: Possibly no advertisement, no explicit discv5 option
+- [ ] Besu: Possibly no advertisement, no explicit discv5 option
 - [ ] Reth: Unknown, not tested on `main`. No connectivity on alpha.10
-- [ ] Geth: Unsure, advertisement not tested
-- [ ] Erigon: Unsure, advertisement not tested
