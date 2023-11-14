@@ -81,7 +81,7 @@ Restart docker with `sudo systemctl restart docker`, then verify it's up with `s
 its logs with `sudo journalctl -fu docker` to make sure it came up ok. If there are issues that keep it from starting,
 fix those before going further.
 
-Edit `.env` as well and set `IPV6=true` and add `:v6-network.yml` to `COMPOSE_FILE`, which will tell compose to enable
+Edit `.env` as well and set `IPV6=true` and add `:ipv6.yml` to `COMPOSE_FILE`, which will tell compose to enable
 v6 for the networks it creates.
 
 ### Dafuq
