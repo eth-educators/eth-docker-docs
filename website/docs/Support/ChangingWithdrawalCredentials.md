@@ -10,7 +10,7 @@ Eth Docker supports using ethdo in an online/offline fashion to prepare withdraw
 
 ## Check whether your validator has a withdrawal address set
 
-[Metrika](https://app.metrika.co/ethereum/dashboard/withdrawals-overview) will let you see whether your validator has a withdrawal address set. If yes, that is where consensus layer rewards will be swept automatically (every 4-5 days at ~500,000 validators total) and where your funds will be sent when exiting.
+[Ethereum's Staking Launchpad](https://launchpad.ethereum.org/en/withdrawals) will let you see whether your validator has a withdrawal address set. If yes, that is where consensus layer rewards will be swept automatically (every 4-5 days at ~500,000 validators total) and where your funds will be sent when exiting.   
 
 You can use `./ethd keys list` to get a list of your validator public keys that are currently active on your system.
 
