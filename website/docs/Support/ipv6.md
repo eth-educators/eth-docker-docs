@@ -118,4 +118,4 @@ EL
 - [ ] Erigon: Requires `IPV6=true` for advertisement via discv5, not fully tested
 - [ ] Nethermind: Possibly no advertisement, no explicit discv5 option
 - [ ] Besu: Possibly no advertisement, no explicit discv5 option
-- [ ] Reth: Unknown, not tested on `main`. No connectivity on alpha.10
+- [ ] Reth: No IPv6 connectivity on `main` as of mid Nov 2023
