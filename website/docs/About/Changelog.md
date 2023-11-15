@@ -16,6 +16,17 @@ instead.
 > On 1/27/2022, Eth Docker's repository name changed. Everything should work as it did.
 > If you do wish to manually update your local reference, run `git remote set-url origin https://github.com/eth-educators/eth-docker.git`
 
+## v2.3.9 2023-11-15
+
+*This is an optional release with new features and bug fixes*
+
+- Eth Docker's version can be pinned in `.env`
+- Use new Teku v23.11.0 syntax. *Breaking* for any prior version.
+- Fix the `./ethd prune-geth` command
+- Additional IPv6 support for Lodestar, Geth and Erigon
+- Use .NET 8 for Nethermind source build
+- `default.env` defaults to Holesky testnet
+
 ## v2.3.8 2023-11-08
 
 *This is an optional release with new features and bug fixes*
