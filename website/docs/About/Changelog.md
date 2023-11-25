@@ -16,6 +16,19 @@ instead.
 > On 1/27/2022, Eth Docker's repository name changed. Everything should work as it did.
 > If you do wish to manually update your local reference, run `git remote set-url origin https://github.com/eth-educators/eth-docker.git`
 
+## v2.3.10.0 2023-11-25
+
+*This is an optional release with new features and bug fixes*
+
+- Prometheus metrics collection improved. Scrape targets in `./prometheus/conf.d`, uses `yq` to merge
+`custom-prom.yml`. Default scrape interval 15s instead of 1m now possible because of this, which solves a whole bevvy
+of "No Data" in preloaded dashboards. Thanks to @aliask!
+- Preserve empty `RAPID_SYNC_URL` in `.env`
+- Extraneous web3signer messages during keyimport, when web3signer was not in use, resolved
+- `./ethd up <service-name>` supported
+- Version numbering will be semver-ish from here: World-shaking changes (think Ethereum merge) first digit, breaking
+changes second digit, enhancements third digit, bug fixes fourth digit.
+
 ## v2.3.9 2023-11-15
 
 *This is an optional release with new features and bug fixes*
