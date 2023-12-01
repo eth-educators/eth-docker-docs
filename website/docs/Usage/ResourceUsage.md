@@ -58,11 +58,11 @@ Servers have been configured with [noatime](https://www.howtoforge.com/reducing-
 | Homebrew Xeon ZFS zvol | 32 GiB | 1.2 TiB | Intel Quad | 3.5k/1k | | Intel SATA SSD, 16k recordsize, stripe, xfs; fio with --bs=16k |
 | Homebrew Xeon ZFS dataset | 32 GiB | 1.2 TiB | Intel Quad | 1.2k/500 | | Intel SATA SSD, 16k recordsize, stripe, xfs; 16G Optane SLOG |
 | Dell R420 w/ HBA     | 32 GiB | 1 TB | Dual Intel Octo | 35.9k/11k | Xeon E5-2450 |
-| Contabo Storage VPS L  | 16 GiB | 1600 GiB | AMD EPYC Hexa  | 3k/1k | |  |
+| [Contabo](https://contabo.com) Storage VPS L  | 16 GiB | 1600 GiB | AMD EPYC Hexa  | 3k/1k | |  |
 | [Netcup](https://netcup.eu) VPS 3000 G9   | 24 GiB | 600 GiB  | AMD Hexa | 11.2k/3.7k | 2.25/6 ms | |
 | Netcup RS 8000 G9.5 | 64 GiB | 2 TB | AMD EPYC 7702 | 15.6k/5k | 3.4/1.5 ms | |
-| OVH Baremetal NVMe   | 32 GiB | 1.9 TB  | Intel Hexa | 177k/59k | 0.08/3.5 ms | |
-| AWS io1 w/ 10K IOPS  | 8 GiB  | NA      | Intel Dual | 7.6k/2.5k | | t2.large, could not sync Geth. Note t2 throttles CPU |
+| [OVH](https://ovhcloud.com/) Baremetal NVMe   | 32 GiB | 1.9 TB  | Intel Hexa | 177k/59k | 0.08/3.5 ms | |
+| [AWS](https://aws.amazon.com/) io1 w/ 10K IOPS  | 8 GiB  | NA      | Intel Dual | 7.6k/2.5k | | t2.large, could not sync Geth. Note t2 throttles CPU |
 | AWS gp3 w/ 16K IOPS  | 16 GiB | NA      | Intel Quad | 12.2k/4.1k | | m6i.xlarge |
 
 ## Initial sync times
