@@ -25,7 +25,7 @@ instead.
 - Add Eden relays to Holesky during `./ethd config`
 - `mev-boost` can be source-built
 - `./ethd update` can be `--non-interactive`
-- Support `DEBIAN_FRONTEND=noninteractive` as an alternative to `--non-interactive`
+- Support `ETHD_FRONTEND=noninteractive` as an alternative to `--non-interactive`
 
 ## v2.3.11.0 2023-12-01
 
