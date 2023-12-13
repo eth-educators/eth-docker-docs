@@ -16,6 +16,17 @@ instead.
 > On 1/27/2022, Eth Docker's repository name changed. Everything should work as it did.
 > If you do wish to manually update your local reference, run `git remote set-url origin https://github.com/eth-educators/eth-docker.git`
 
+## v2.4.0.0 2023-12-13
+
+*This is an optional release with new features and bug fixes*
+
+- **Breaking** change: Teku without checkpoint sync (e.g. archive node) uses parameters that require Teku 23.12.0
+- Fixed checkpoint sync url query during `./ethd config`
+- `./ethd keys` can set individual Graffiti, as long as the client supports it
+- Prometheus instance hard-coded for easier use with dashboards that use instance
+- Added a pre-provisioned Grafana alert for disk space
+- Renamed Teku and Nimbus `-legacy.yml` files to `-allin1.yml`
+
 ## v2.3.12.0 2023-12-04
 
 *This is an optional release with new features and bug fixes*
