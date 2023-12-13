@@ -18,7 +18,8 @@ instead.
 
 ## v2.4.0.0 2023-12-13
 
-*This is an optional release with new features and bug fixes*
+*This is an optional release with new features and bug fixes for most users*  
+*It is mandatory for users of Teku 23.12.0 who do not wish to use checkpoint sync*
 
 - **Breaking** change: Teku without checkpoint sync (e.g. archive node) uses parameters that require Teku 23.12.0
 - Fixed checkpoint sync url query during `./ethd config`
