@@ -16,6 +16,17 @@ instead.
 > On 1/27/2022, Eth Docker's repository name changed. Everything should work as it did.
 > If you do wish to manually update your local reference, run `git remote set-url origin https://github.com/eth-educators/eth-docker.git`
 
+## v2.4.1.0 2023-12-29
+
+*This is an optional release with new features and bug fixes*
+
+- Fix `./ethd keys import` with unique passwords. Thanks @shamoya!
+- Fix Teku archive sync on Holesky
+- Nethermind auto-prune is network aware: Kicks off at 350 GiB mainnet, 50 GiB otherwise
+- Web3signer PostgreSQL migration to PG16 during `./ethd update`
+- Teku source build uses Java 21
+- Slightly less naive offline detection for `create-withdrawal-change.sh`
+
 ## v2.4.0.0 2023-12-13
 
 *This is an optional release with new features and bug fixes for most users*  
