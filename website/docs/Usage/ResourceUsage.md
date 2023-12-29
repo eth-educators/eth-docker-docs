@@ -34,11 +34,11 @@ Please pay attention to the Version and Date. These are snapshots in time of cli
 
 Notes on disk usage
 - Geth - continously prunes when synced with PBSS
-- Nethermind - DB size can be reduced when it grew too large, by [online prune](../Support/GethPrune.md)
-- Erigon does not compress its DB, leaving that to the filesystem.
-- Reth does not compress its DB, leaving that to the filesystem.
-- Besu in my testing benefits from resync when it's run out of space
-- To a lesser extent this is also true of Erigon, though its initial sync size makes it an increasingly tight fit in a 2TB drive
+- Besu - can continuously prune its trie log, and continously prunes state with BONSAI
+- Nethermind - DB size can be reduced when it grew too large, by [online prune](../Support/GethPrune.md). Keep an eye
+on Paprika
+- Erigon does not compress its DB, leaving that to the filesystem
+- Reth does not compress its DB, leaving that to the filesystem
 
 ## Test Systems
 
