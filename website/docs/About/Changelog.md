@@ -4,7 +4,7 @@ title:  Changelog
 sidebar_label: Changelog
 ---
 
-## Updating the project
+## Updating Eth Docker
 
 To update the components of Eth Docker, run from within its directory (`cd ~/eth-docker` by default):
 
