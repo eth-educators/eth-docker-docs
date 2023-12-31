@@ -16,6 +16,17 @@ instead.
 > On 1/27/2022, Eth Docker's repository name changed. Everything should work as it did.
 > If you do wish to manually update your local reference, run `git remote set-url origin https://github.com/eth-educators/eth-docker.git`
 
+## v2.5.0.0 2023-12-31
+
+*This is an optional release with new features and bug fixes*
+
+- **Breaking** for Besu: Requires Besu 23.10.3
+- Besu will limit its trie logs, and on fresh sync heal its flat DB for better RPC performance
+- Besu source build uses Java 21 runtime (but continues to build with Java 17)
+- Additional pre-previsioned Grafana alerts: memory, CPU, out of memory (OOM) kill
+- Geth can keep its ancient directory on a separate path, see `ANCIENT_DIR` in `.env`
+- Logs dashboard works if the directory is not called `eth-docker`
+
 ## v2.4.1.0 2023-12-29
 
 *This is an optional release with new features and bug fixes*
