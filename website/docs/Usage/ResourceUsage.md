@@ -6,13 +6,17 @@ sidebar_label: Client Resource Usage
 
 # Consensus Clients
 
-| Client | Version | Date | DB Size  |  RAM | CPU | Notes |
-|--------|---------|----  |----------|------|-----|-------|
-| Teku   | 22.1.1  | Jan 2022 | ~130 GiB | ~9 GiB | 100-300% | |
-| Lighthouse | 2.1.1  | Jan 2022 | ~130 GiB | ~1.7 GiB | 50-200% | |
-| Nimbus | 1.6.0 | Jan 2022 | ~130 GiB | ~2.3 GiB | 50-200% | |
-| Prysm | 2.1.3 | Jul 2022 | ~130 GiB | ~4 GiB | 100-300% | |
-| Lodestar | 1.3.0 | Jan 2023 | ~130 GiB | ~4 GiB | 50-150% | |
+| Client | Version | Date | DB Size  |  RAM | Notes |
+|--------|---------|----  |----------|------|-------|
+| Teku   | 23.12.1  | Jan 2024 | ~130 GiB | ~10 GiB |
+| Lighthouse | 4.5.0  | Jan 2024 | ~130 GiB | ~5 GiB |
+| Nimbus | 24.1.1 | Jan 2024 | ~130 GiB | ~2 to 3 GiB |
+| Prysm | 4.1.1 | Jan 2024 | ~130 GiB | ~5 GiB |
+| Lodestar | 1.13.0 | Jan 2024 | ~130 GiB | ~8 GiB |
+
+Notes on disk usage
+- When disk usage grows, you can checkpoint resync the client in minutes to bring it back down. Auto-pruning is in the
+works for most (all?) clients as of early 2024, but not yet released.
 
 # Execution clients
 
@@ -24,13 +28,13 @@ SSD, RAM and CPU use is after initial sync, when keeping up with head. 100% CPU 
 
 Please pay attention to the Version and Date. These are snapshots in time of client behavior. Initial state size increases over time, and execution clients are always working on improving their storage engines.
 
-| Client | Version | Date | DB Size  | DB Growth | RAM | CPU | Notes |
-|--------|---------|----  |----------|-----------|-----|-----|-------|
-| Geth   | 1.13.0 | August 2023 | ~830 GiB | ~7-8 GiB / week | 8 GiB | 100-400% | with PBSS |
-| Nethermind | 1.16.1 | Jan 2023 | ~860 GiB | ~25-30 GiB / week | 15-16 GiB | 50-200% | Can automatic online prune at ~350 GiB free | 
-| Besu | v23.10.4-dev | December 2023 | 1.1 TiB | ~6 GiB / week | 8 - 9 GiB | 50-100% | with Bonsai and trie log limit |
-| Reth | alpha.7 | Aug 2023 | ~960 GiB | ~ 2.5 GiB / week | 9 GiB | 5-120% | throws away all logs except deposit contract, and so grows more slowly |
-| Erigon | 2.48.1 | August 2023 | ~1.3 TiB | ~7-8 GiB / week | See comment | 50-100% | Erigon will have the OS use all available RAM as a DB cache during post-sync operation, but this RAM is free to be used by other programs as needed. During sync, it may run out of memory on machines with less than 32 GiB |
+| Client | Version | Date | DB Size  | DB Growth | RAM | Notes |
+|--------|---------|----  |----------|-----------|-----|-------|
+| Geth   | 1.13.8 | Jan 2024 | ~1.1 TiB | ~7-8 GiB / week | ~ 8 GiB | with PBSS |
+| Nethermind | 1.24.0 | Jan 2024 | ~1.1 TiB | ~25-30 GiB / week | ~ 9 GiB | Can automatic online prune at ~350 GiB free |
+| Besu | v23.10.3-hotfix | Jan 2024 | ~1.1 TiB | ~6 GiB / week | ~ 10 GiB | with Bonsai and trie log limit |
+| Reth | alpha.13 | Jan 2024 | ~1.1 TiB | ~ 2.5 GiB / week | ~ 9 GiB | throws away all logs except deposit contract, and so grows more slowly |
+| Erigon | 2.56.1 | Jan 2024 | ~1.7 TiB | ~7-8 GiB / week | See comment | Erigon will have the OS use all available RAM as a DB cache during post-sync operation, but this RAM is free to be used by other programs as needed. During sync, it may run out of memory on machines with less than 32 GiB |
 
 Notes on disk usage
 - Geth - continously prunes when synced with PBSS
@@ -38,7 +42,6 @@ Notes on disk usage
 - Nethermind - DB size can be reduced when it grew too large, by [online prune](../Support/GethPrune.md). Keep an eye
 on Paprika
 - Erigon does not compress its DB, leaving that to the filesystem
-- Reth does not compress its DB, leaving that to the filesystem
 
 ## Test Systems
 
