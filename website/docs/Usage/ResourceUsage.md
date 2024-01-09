@@ -85,7 +85,7 @@ Cache size default in all tests.
 | Client | Version | Date | Test System | Time Taken |  Notes |
 |--------|---------|------|-------------|------------|--------|
 | Geth   | 1.13.0  | August 2023 | OVH Baremetal NVMe | ~ 6 hours | |
-| Nethermind | 1.15 | December 2022 | Baremetal NVMe | ~ 24 hours | |
+| Nethermind | 1.24.0| Jan 2024 | OVH Baremetal NVMe | ~ 5 hours | Ready to attest after ~ 1 hour |
 | Besu | v23.10.4-dev | December 2023 | OVH Baremetal NVMe | ~ 16 hours | With X_SNAP sync |
 | Erigon | 2.48.1 | August 2023 | OVH Baremetal NVMe | ~ 9 days | |
 | Reth  | alpha.7 | August 2023 | OVH Baremetal NVMe | ~ 3 days 5 hours | |
