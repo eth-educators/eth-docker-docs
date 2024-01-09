@@ -8,11 +8,11 @@ sidebar_label: Client Resource Usage
 
 | Client | Version | Date | DB Size  |  RAM | CPU | Notes |
 |--------|---------|----  |----------|------|-----|-------|
-| Teku   | 22.1.1  | Jan 2022 | ~30 GiB | ~9 GiB | 100-300% | |
-| Lighthouse | 2.1.1  | Jan 2022 | ~90 GiB | ~1.7 GiB | 50-200% | |
-| Nimbus | 1.6.0 | Jan 2022 | ~40 GiB | ~2.3 GiB | 50-200% | |
-| Prysm | 2.1.3 | Jul 2022 | ~100 GiB | ~4 GiB | 100-300% | |
-| Lodestar | 1.3.0 | Jan 2023 | ~30 GiB | ~4 GiB | 50-150% | |
+| Teku   | 22.1.1  | Jan 2022 | ~130 GiB | ~9 GiB | 100-300% | |
+| Lighthouse | 2.1.1  | Jan 2022 | ~130 GiB | ~1.7 GiB | 50-200% | |
+| Nimbus | 1.6.0 | Jan 2022 | ~130 GiB | ~2.3 GiB | 50-200% | |
+| Prysm | 2.1.3 | Jul 2022 | ~130 GiB | ~4 GiB | 100-300% | |
+| Lodestar | 1.3.0 | Jan 2023 | ~130 GiB | ~4 GiB | 50-150% | |
 
 # Execution clients
 
@@ -26,10 +26,10 @@ Please pay attention to the Version and Date. These are snapshots in time of cli
 
 | Client | Version | Date | DB Size  | DB Growth | RAM | CPU | Notes |
 |--------|---------|----  |----------|-----------|-----|-----|-------|
-| Geth   | 1.13.0 | August 2023 | ~830 GiB | ~8 GiB / week | 8 GiB | 100-400% | with PBSS |
+| Geth   | 1.13.0 | August 2023 | ~830 GiB | ~7-8 GiB / week | 8 GiB | 100-400% | with PBSS |
 | Nethermind | 1.16.1 | Jan 2023 | ~860 GiB | ~30 GiB / week | 15-16 GiB | 50-200% | Can automatic online prune at ~350 GiB free | 
-| Besu | v23.10.4-dev | December 2023 | 1.1 TiB | TBD / week | 8 - 9 GiB | 50-100% | YoY fresh synced DB growth 2022->2023 was around 200 GiB |
-| Reth | alpha.7 | Aug 2023 | ~960 GiB | ~ 2 GiB / week | 9 GiB | 5-120% | |
+| Besu | v23.10.4-dev | December 2023 | 1.1 TiB | ~6 GiB / week | 8 - 9 GiB | 50-100% | YoY fresh synced DB growth 2022->2023 was around 200 GiB |
+| Reth | alpha.7 | Aug 2023 | ~960 GiB | ~ 2.5 GiB / week | 9 GiB | 5-120% | |
 | Erigon | 2.48.1 | August 2023 | ~1.3 TiB | ~7-8 GiB / week | See comment | 50-100% | Erigon will have the OS use all available RAM as a DB cache during post-sync operation, but this RAM is free to be used by other programs as needed. During sync, it may run out of memory on machines with less than 32 GiB |
 
 Notes on disk usage
