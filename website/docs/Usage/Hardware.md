@@ -4,21 +4,25 @@ title: Resources, hardware
 sidebar_label: Hardware
 ---
 
-Recommended hardware profile:
+Recommended hardware:
 * 32 GiB of RAM - 16 GiB works but can be challenging depending on client mix
 * Quad Core CPU
-* 2TB ["mainstream" SSD](https://gist.github.com/yorickdowne/f3a3e79a573bf35767cd002cc977b038) - neither QLC nor DRAMless.
+* 2TB ["mainstream" SSD](https://gist.github.com/yorickdowne/f3a3e79a573bf35767cd002cc977b038) - TLC and DRAM
 
-Generally, 8 GiB of RAM is a very tight fit, with only Nimbus/Geth reported to work, 16 GiB can be a tight fit depending on client mix, and 32 GiB is recommended.
+Generally, 8 GiB of RAM is a very tight fit, with only Nimbus/Geth reported to work. 16 GiB can be a tight fit
+depending on client mix, and 32 GiB is recommended. For 16 GiB RAM, a Nimbus/Nethermind combo works well.
 
-4 CPU cores are recommended to deal with spikes in processing.
+4+ CPU cores are recommended to deal with spikes in processing.
 
-An SSD is required for storage because the node databases are so IOPS-heavy. An Ethereum mainnet node takes between 800 GiB and 1 TiB of storage initially, as of mid 2023. The on-disk growth pattern differs between execution clients, see [resource use](../Usage/ResourceUsage.md). A 2TB disk is expected to last (potentially with execution client pruning or resync) until late 2025. If [EIP-4444](https://eips.ethereum.org/EIPS/eip-4444) is in Ethereum by that time, it may last "forever".
+An SSD is required for storage because the node databases are so IOPS-heavy. An Ethereum mainnet node takes ~ 1.1 TiB
+of storage initially, as of Jan 2024. The on-disk growth pattern differs between execution clients, see
+[resource use](../Usage/ResourceUsage.md). A 2TB disk is expected to last (potentially with execution client pruning)
+until late 2025. If [EIP-4444](https://eips.ethereum.org/EIPS/eip-4444) is in Ethereum by that time, it may last
+"forever".
 
-Two home server builds that I like and am happy to recommend are below. Both Intel and AMD support
-IPMI, which means they can be managed and power-cycled remotely and need neither
-a GPU nor monitor. Both support ECC RAM, though the AMD option as of Sept 2020
-was unable to report ECC errors via IPMI, only OS-level reporting worked.
+Two home server builds that I like and am happy to recommend are below. Both Intel and AMD support IPMI, which means
+they can be managed and power-cycled remotely and need neither a GPU nor monitor. Both support ECC RAM, though the AMD
+option as of Sept 2020 was unable to report ECC errors via IPMI, only OS-level reporting worked.
 
 **Intel**
 
@@ -27,11 +31,16 @@ was unable to report ECC errors via IPMI, only OS-level reporting worked.
     * Intel i3-9100F or Intel Xeon E-21xx/22xx (i5/7 do not support ECC) - ~ 840 USD with Fractal Node case and NVMe
   * SuperMicro X12STL-IF(-O) (1 NVMe)
     * Intel Xeon E-23xx 
+  * SuperMicro X13SCL-IF(-O) (1 NVMe)
+    * Intel Xeon E-24xx
 * uATX:
   * SuperMicro X11SCL-F(-O) (1 NVMe) or X11SCH-F(-O) (2 NVMe). SCH supports an iGPU
-    * Intel i3-9100(F) or Intel Xeon E-21xx/22xx(G) (i5/7 do not support ECC) - ~ 900 USD with Fractal Node case and NVMe
-  * SuperMicro X12STL-F(-O) or X12STH-F(-O). STH supports an iGPU
+    * Intel i3-9100(F) or Intel Xeon E-21xx/22xx(G) (i5/7 do not support ECC) - ~ 900 USD with Fractal Node case and
+NVMe
+  * SuperMicro X12STL-F(-O) or X12STH-F(-O) (1 NVMe both). STH supports an iGPU
     * Intel Xeon E-23xx(G)
+  * SuperMicro X13SCL-F(-O) (1 NVMe) or X13SCH-F(-O) (2 NVMe)
+    * Intel Xeon E-24xx
 * Common components:
   * 32 GiB of Micron or Samsung DDR4 UDIMM ECC RAM (unbuffered, **not** registered)
   * [2TB M.2 NVMe SSD](https://gist.github.com/yorickdowne/f3a3e79a573bf35767cd002cc977b038)
@@ -55,20 +64,19 @@ was unable to report ECC errors via IPMI, only OS-level reporting worked.
 
 The SuperMicro eStore is one good source of UDIMM ECC, DDR4 and DDR5 both.
 
-Plus, obviously, a case, PSU, case fans. Pick your own. Well-liked
-options are Node 304 (mITX) and Node 804 (uATX) with Seasonic PSUs,
-but really any quality case that won't cook your components will do.
-For a small uATX form factor, consider Silverstone ML04B.
+Plus, obviously, a case, PSU, case fans. Pick your own. Well-liked options are Node 304 (mITX) and Node 804 (uATX)
+with Seasonic PSUs, but really any quality case that won't cook your components will do. For a small uATX form factor,
+consider Silverstone ML04B.
 
-[Joe's hardware roundup](https://github.com/jclapis/rocketpool.github.io/blob/main/src/guides/local/hardware.md) has additional build ideas.
+[Joe's hardware roundup](https://github.com/jclapis/rocketpool.github.io/blob/main/src/guides/local/hardware.md) has
+additional build ideas.
 
-For the SSD, you'll want decent write endurance and good IOPS. You get better sync and prune performance with ["mainstream" SSDs](https://gist.github.com/yorickdowne/f3a3e79a573bf35767cd002cc977b038), that is, SSDs that are neither DRAMless nor use QLC Flash.
+For the SSD, you'll want decent write endurance and good IOPS. You get better sync and prune performance with
+["mainstream" SSDs](https://gist.github.com/yorickdowne/f3a3e79a573bf35767cd002cc977b038), that is, SSDs that use TLC
+and have DRAM, not DRAMless or QLC.
 
-Intel SSDs are also well-liked: Their data center SSDs are quite reliable, if a bit pricey.
-
-You may also consider getting two SSDs and running them in a software mirror
-(RAID-1) setup, in the OS. That way, data loss becomes less likely for the
-chain databases, reducing potential down time because of hardware issues.
+You may also consider getting two SSDs and running them in a software mirror (RAID-1) setup, in the OS. That way, data
+loss becomes less likely for the chain databases, reducing potential down time because of hardware issues.
 
 Why ECC? This is a personal preference. The cost difference is minimal,
 and the potential time savings huge. An Ethereum staking full node does not require

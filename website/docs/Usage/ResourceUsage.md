@@ -31,7 +31,7 @@ Please pay attention to the Version and Date. These are snapshots in time of cli
 | Client | Version | Date | DB Size  | DB Growth | RAM | Notes |
 |--------|---------|----  |----------|-----------|-----|-------|
 | Geth   | 1.13.8 | Jan 2024 | ~1.1 TiB | ~7-8 GiB / week | ~ 8 GiB | with PBSS |
-| Nethermind | 1.24.0 | Jan 2024 | ~1.1 TiB | ~25-30 GiB / week | ~ 9 GiB | Can automatic online prune at ~350 GiB free |
+| Nethermind | 1.25.0 | Jan 2024 | ~1.1 TiB | ~25-30 GiB / week | ~ 7 GiB | Can automatic online prune at ~350 GiB free |
 | Besu | v23.10.3-hotfix | Jan 2024 | ~1.1 TiB | ~6 GiB / week | ~ 10 GiB | with Bonsai and trie log limit |
 | Reth | alpha.13 | Jan 2024 | ~1.1 TiB | ~ 2.5 GiB / week | ~ 9 GiB | throws away all logs except deposit contract, and so grows more slowly |
 | Erigon | 2.56.1 | Jan 2024 | ~1.7 TiB | ~7-8 GiB / week | See comment | Erigon will have the OS use all available RAM as a DB cache during post-sync operation, but this RAM is free to be used by other programs as needed. During sync, it may run out of memory on machines with less than 32 GiB |
@@ -92,7 +92,7 @@ Cache size default in all tests.
 
 ## Getting better IOPS
 
-Geth needs a decent amount of IOPS, as do Besu and Nethermind. Erigon can run on very low IOPS, though should also not be used with HDD.
+Ethereum execution layer clients need a decent amount of IOPS. HDD will not be sufficient.
 
 For cloud providers, here are some results for syncing Geth.
 - AWS, gp2 or gp3 with provisioned IOPS have both been tested successfully.
@@ -101,11 +101,13 @@ For cloud providers, here are some results for syncing Geth.
 - There are reports that Digital Ocean block storage is too slow, as of late 2021.
 - Strato V-Server is too slow as of late 2021.
 
-Dedicated servers with SSD or NVMe will always have sufficient IOPS. Do avoid hardware RAID though, see below. OVH Advance line as well as Hetzner are well-liked dedicated options; Linode or Strato or any other provider will work as well.
+Dedicated servers with SATA or NVMe SSD will always have sufficient IOPS. Do avoid hardware RAID though, see below.
+OVH Advance line is a well-liked dedicated option; Linode or Strato or any other provider will work as well.
 
 For own hardware, we've seen three causes of low IOPS:
-- Overheating of the SSD. Check `smartctl -x`. You want the SSD to be at or below 40 degrees Celsius.
-- External SSD with a USB controller that can't keep up. Samsung T5 has been shown to work, as has Samsung T7 with the right firmware. T7 is slower.
-- Hardware RAID, no TRIM support. [Flash the controller](https://gist.github.com/yorickdowne/fd36009c19fdbee0337bffc0d5ad8284) to HBA and use software RAID.
-
-In some cases, the SSD itself can't keep up, e.g. reports of this with WD Green SN350, Crucial BX500. While they sync slowly, even QLC/DRAMless SSDs can be "enough" - this depends heavily on model. Given the option, you may want to [choose a "mainstream" SSD](https://gist.github.com/yorickdowne/f3a3e79a573bf35767cd002cc977b038) for better sync and pruning performance.
+- DRAMless or QLC SSD. Choose a ["mainstream" SSD](https://gist.github.com/yorickdowne/f3a3e79a573bf35767cd002cc977b038)
+with TLC and DRAM. Enterprise / data center SSDs will always work great; consumer SSDs vary.
+- Overheating of the SSD. Check `smartctl -x`. You want the SSD to be at ~ 40-50 degrees Celsius, so it does not
+throttle.
+- Hardware RAID, no TRIM support. [Flash the controller](https://gist.github.com/yorickdowne/fd36009c19fdbee0337bffc0d5ad8284)
+to HBA and use software RAID.
