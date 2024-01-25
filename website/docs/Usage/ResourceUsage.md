@@ -32,8 +32,8 @@ Please pay attention to the Version and Date. These are snapshots in time of cli
 |--------|---------|----  |----------|-----------|-----|-------|
 | Geth   | 1.13.8 | Jan 2024 | ~1.1 TiB | ~7-8 GiB / week | ~ 8 GiB | with PBSS |
 | Nethermind | 1.25.0 | Jan 2024 | ~1.1 TiB | ~25-30 GiB / week | ~ 7 GiB | Can automatic online prune at ~350 GiB free |
-| Besu | v23.10.3-hotfix | Jan 2024 | ~1.1 TiB | ~6 GiB / week | ~ 10 GiB | with Bonsai and trie log limit |
-| Reth | alpha.13 | Jan 2024 | ~1.1 TiB | ~ 2.5 GiB / week | ~ 9 GiB | throws away all logs except deposit contract, and so grows more slowly |
+| Besu | v23.10.3-hotfix | Jan 2024 | ~1.1 TiB | ~7-8 GiB / week | ~ 10 GiB | with Bonsai and trie log limit |
+| Reth | alpha.13 | Jan 2024 | ~1.1 TiB | ~ 3.5 GiB / week | ~ 9 GiB | throws away all logs except deposit contract, and so grows more slowly |
 | Erigon | 2.56.1 | Jan 2024 | ~1.7 TiB | ~7-8 GiB / week | See comment | Erigon will have the OS use all available RAM as a DB cache during post-sync operation, but this RAM is free to be used by other programs as needed. During sync, it may run out of memory on machines with less than 32 GiB |
 
 Notes on disk usage

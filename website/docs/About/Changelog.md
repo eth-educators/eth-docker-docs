@@ -16,6 +16,32 @@ instead.
 > On 1/27/2022, Eth Docker's repository name changed. Everything should work as it did.
 > If you do wish to manually update your local reference, run `git remote set-url origin https://github.com/eth-educators/eth-docker.git`
 
+## v2.6.0.0 2024-01-25
+
+*This is an optional release with new features and bug fixes*
+
+**Breaking** changes
+- Requires Lighthouse 4.6.0 or later
+
+New features
+- Supports `./ethd prune-lighthouse` to prune Lighthouse state
+- Lighthouse VC will broadcast duties to all configured CLs, and uses v3 API for producing blocks
+- Besu on machines with 64 GiB of RAM or more will use the high spec flag
+- Added Bloxroute relay to default Holesky MEV config
+- Prysm uses 70 max peers by default
+- `./ethd config` offers a VC-only setup on Gnosis Chain. Thanks @haurog!
+- Remove Nethermind memory hints
+- Add network aliases to CLs, `${NETWORK}-consensus`. This can be useful in setups with multiple Eth Docker
+installations on one host, all connected to the same Docker overlay network
+- Changed Prometheus yq dependency to version `4`
+- Update Lodestar beacon `max-old-space-size` to `8192`. Thanks @nflaig!
+- Changed Teku default heap size to 5G
+- `./ethd keys` does some input vaidation on public keys and other user-supplied values
+
+Bug fixes
+- Nethermind prune no longer outputs an error message on Nethermind 1.25.0 and later
+- Added parameter to support Erigon 2.55 and later
+
 ## v2.5.0.1 2023-12-31
 
 *This is an optional release with new features and bug fixes*
