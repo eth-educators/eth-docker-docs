@@ -37,8 +37,8 @@ Please pay attention to the Version and Date. These are snapshots in time of cli
 | Erigon | 2.56.1 | Jan 2024 | ~1.7 TiB | ~7-8 GiB / week | See comment | Erigon will have the OS use all available RAM as a DB cache during post-sync operation, but this RAM is free to be used by other programs as needed. During sync, it may run out of memory on machines with less than 32 GiB |
 
 Notes on disk usage
-- Geth - continously prunes when synced with PBSS
-- Besu - can continuously prune its trie log, and continously prunes state with BONSAI
+- Geth - continuously prunes when synced with PBSS
+- Besu - can continuously prune its trie log, and continuously prunes state with BONSAI
 - Nethermind - DB size can be reduced when it grew too large, by [online prune](../Support/GethPrune.md). Keep an eye
 on Paprika
 - Erigon does not compress its DB, leaving that to the filesystem
