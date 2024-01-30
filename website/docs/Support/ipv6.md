@@ -30,7 +30,7 @@ that, first.
 
 You'll want to be on the latest version of docker-ce, as IPv6 support in Docker is a moving target.
 
-Create an `/etc/docker/daemon.json` if it doesn't already exist, and make sure it contains this:
+`sudo nano /etc/docker/daemon.json` and make sure it contains this:
 
 ```
 {
@@ -81,24 +81,25 @@ Restart docker with `sudo systemctl restart docker`, then verify it's up with `s
 its logs with `sudo journalctl -fu docker` to make sure it came up ok. If there are issues that keep it from starting,
 fix those before going further.
 
-Edit `.env` as well and set `IPV6=true` and add `:ipv6.yml` to `COMPOSE_FILE`, which will tell compose to enable
+### Configure Eth Docker
+
+`nano .env` and set `IPV6=true` and add `:ipv6.yml` to `COMPOSE_FILE`, which will tell Compose to enable
 v6 for the networks it creates.
 
 ### Dafuq
 
-The many many base networks are necessary until a [docker fix](https://github.com/moby/moby/pull/43033) lands, possibly
-in [docker-ce 25.0.x](https://github.com/moby/moby/milestone/119). It's a hack so docker compose can create v6
-networks, and this allows it to create 32 of them. Once the fix is in, this could be a single v6 base with something
-like `{"base": "fd00:0:1::/56", "size": 64}`.
+The base networks are necessary until a [Docker fix](https://github.com/moby/moby/pull/43033) lands.
+It's a hack so Docker Compose can create v6 networks, and this allows it to create 32 of them. Once the fix is in,
+this could be a single v6 base with something like `{"base": "fd00:0:1::/56", "size": 64}`.
 
 So, what's going on here. Manuel Bauer's [blog](https://www.manuel-bauer.net/blog/docker-with-full-ipv6-support) will
 get you started. Basically, enable experimental ip6tables support which does a form of v6 NAT between the host address
 and the container address, where the container address is a ULA in the `fd::/8` range. `fixed-cidr-v6` is used for the
-`docker0` default bridge network, and the many many (many) base networks are used for networks that compose creates.
+`docker0` default bridge network, and the many many (many) base networks are used for networks that Compose creates.
 
 ## Safu?
 
-Maybe. I still have to test ufw integration. I believe there is a v6 USER table for docker since 23.x. The feature
+Maybe. I still have to test ufw integration. I believe there is a v6 USER table for Docker since 23.x. The feature
 itself, though experimental, shouldn't cause issues. On your LAN firewall, if this is in a LAN, you'd need rules to
 allow the P2P ports incoming to the v6 address of your node.
 
@@ -106,16 +107,19 @@ allow the P2P ports incoming to the v6 address of your node.
 
 CL
 
-- [x] Lighthouse, requires `IPV6=true`
-- [x] Lodestar, requires `IPV6=true`
+- [x] Lighthouse
+- [x] Lodestar
 - [ ] Teku: Unsure, advertisement not tested
 - [ ] Prysm: Maybe, `--p2p-local-ip ::`, but [not dual-stack](https://github.com/prysmaticlabs/prysm/issues/12303)
 - [ ] Nimbus: [No](https://github.com/status-im/nimbus-eth2/issues/4839)
+- [ ] Grandine: Unsure
+- [ ] Lambda: Unsure
 
 EL
 
-- [ ] Geth: Requires `IPV6=true` for advertisement via discv5, not fully tested
-- [ ] Erigon: Requires `IPV6=true` for advertisement via discv5, not fully tested
+- [ ] Besu: not fully tested
+- [ ] Geth: not fully tested
+- [ ] Erigon: not fully tested
 - [ ] Nethermind: Possibly no advertisement, no explicit discv5 option
-- [ ] Besu: Possibly no advertisement, no explicit discv5 option
 - [ ] Reth: No IPv6 connectivity on `main` as of mid Nov 2023
+- [ ] Nimbus: Unsure
