@@ -16,6 +16,26 @@ instead.
 > On 1/27/2022, Eth Docker's repository name changed. Everything should work as it did.
 > If you do wish to manually update your local reference, run `git remote set-url origin https://github.com/eth-educators/eth-docker.git`
 
+## v2.6.1.0 2024-02-10
+
+*This is an optional release with new features and bug fixes*
+
+New features
+- `./ethd sign-exit all` will sign a voluntary exit message for all loaded validators
+- `./ethd update --help` will print help specific to the `update` command
+- Added a Graffiti length check to `./ethd config`
+- Changed the CloudFlare DDNS container, as the old one is no longer supported upstream
+- Source compile for Geth, Prysm, Erigon and mev-boost uses Go 1.22
+
+Bug fixes
+- Updated Discord link. Thanks to @victorelec14 and @ymittal!
+- Fixed some typos. Thanks to @cristiantroy!
+- `./ethd keys delete` fixed
+- `./ethd keys prepare-address-change` works with Prysm
+- Nethermind dashboard fixed
+- SSV dashboard fixed
+- Fixed the pre-provisioned high memory alert in Grafana
+
 ## v2.6.0.0 2024-01-25
 
 *This is an optional release with new features and bug fixes*
