@@ -16,6 +16,28 @@ instead.
 > On 1/27/2022, Eth Docker's repository name changed. Everything should work as it did.
 > If you do wish to manually update your local reference, run `git remote set-url origin https://github.com/eth-educators/eth-docker.git`
 
+## v2.7.0.0 2024-02-24
+
+*This is an optional release with new features and bug fixes*
+
+**Breaking** changes
+- Breaks if `ext-network.yml` was changed. In this case please `mv ext-network.yml ~` it out to your home directory,
+try `./ethd update` again, and then `nano ext-network.yml` and re-apply the changes that were made, likely just the
+network name as `name: rocketpool_net` for reverse hybrid.
+- Drops support for Docker Compose V1
+- Drops support for automatically converting pre-merge (before September 2022) configurations
+- Requires Nethermind `v1.25.4` or later
+
+New features
+- Changed Lighthouse default max peers to 100, to match their 5.0.0 release
+- Lodestar flags updated to use the current convention. Thankls @nflaig!
+
+Bug fixes
+- Works more consistently on macOS. Thanks to @alindsilva and @toraonion for raising the issue and testing!
+- Fixed `prometheus-traefik.yml`
+- Fixed the jwt secret that `ethd config` queries for not being saved. Thanks @victorelec14!
+
+
 ## v2.6.1.0 2024-02-10
 
 *This is an optional release with new features and bug fixes*

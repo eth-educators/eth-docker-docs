@@ -58,6 +58,11 @@ Grafana dashboards are included.
 Please see the [secure proxy](../Usage/ReverseProxy.md) docs if you'd like to run Grafana on a secured https port,
 rather than insecure 3000.
 
+## Debug logs
+
+SSV writes debug logs into its docker volume. By default, these can be found in the
+`/var/lib/docker/volumes/eth-docker_ssv-data/_data` directory. `sudo bash` gets you a root shell that has access.
+
 ## Updating
 
 When there is a new version of your execution client, consensus client or of the SSV node, just run `./ethd update`
