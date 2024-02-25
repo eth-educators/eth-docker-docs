@@ -30,8 +30,9 @@ WSL
 without even man-db out of the box.
 - This defaults to WSL 2, but if you have an older WSL 1 install, find it with `wsl --list -v` and change it with
 `wsl --set-version DISTRO-NAME 2` as well as `wsl --set-default-version 2`.
-- Install WSL [2.0.9](https://github.com/microsoft/WSL/releases) or later. It should come in automatically with Windows
+- Install WSL [2.0.14](https://github.com/microsoft/WSL/releases) or later. It should come in automatically with Windows
 Update, and can also be updated in PowerShell with `wsl --update`.
+- Increase the disk space available to WSL [from 1TB to 2TB](https://learn.microsoft.com/en-us/windows/wsl/disk-space).
 - Create a scheduled task in Task Scheduler to keep Ubuntu/Debian in WSL updated.
   - Call it WSLUpdate
   - Run every day at a time you like
