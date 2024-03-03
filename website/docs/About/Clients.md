@@ -18,8 +18,8 @@ Currently supported execution clients:
 - [Nethermind](https://github.com/NethermindEth/nethermind)
 - [Besu](https://github.com/hyperledger/besu)
 - [Geth](https://github.com/ethereum/go-ethereum)
+- [Reth](https://github.com/paradigmxyz/reth) (beta)
 - [Erigon](https://github.com/ledgerwatch/erigon)
-- [Reth](https://github.com/paradigmxyz/reth) (alpha)
 
 > An Ethereum node has one consensus client and one execution client. Eth Docker can be used to split this between two
 machines, but that distributed setup is rare
