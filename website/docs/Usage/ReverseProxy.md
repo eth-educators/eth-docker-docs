@@ -80,16 +80,17 @@ You'll add `traefik-aws.yml` to your `COMPOSE_FILE` in `.env`, for example:
 
 This setup assumes that you already have an [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html)
 named user profile in `~/.aws` on the node itself. If not, [please create one](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-profiles.html).
+Be sure to specify a default region during `aws configure`. This is not optional.
 
-The IAM user will need to have the AWS-managed `AmazonRoute53DomainsFullAccess` policy
-[attached to it](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_manage-attach-detach.html).
+The IAM user will need to have the AWS-managed `AmazonRoute53ReadOnlyAcces`, `AmazonRoute53AutoNamingFullAccess` and
+`AmazonRoute53DomainsFullAccess` policies [attached to it](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_manage-attach-detach.html).
 
 With that, in the `.env` file:
 - Set `DOMAIN` to your domain.
 - Set `ACME_EMAIL` to the email address Let's Encrypt will use to communicate with you.
 - Set `AWS_PROFILE` to the profile you want to use. This is the profile name as shown in `~/.aws/config` and
 `~/.aws/credentials`, e.g. `default` or whichever name you gave it, *not* the access key id. The profile
-must contain a region.
+**must** contain a region.
 - Set `AWS_HOSTED_ZONE_ID` to the Route53 zone you are going to use
 
 ### A records and CNAMEs
