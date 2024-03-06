@@ -16,6 +16,23 @@ instead.
 > On 1/27/2022, Eth Docker's repository name changed. Everything should work as it did.
 > If you do wish to manually update your local reference, run `git remote set-url origin https://github.com/eth-educators/eth-docker.git`
 
+## v2.7.1.0 2024-03-06
+
+*This is an optional release with new features and bug fixes*
+
+New features
+- Supports Reth beta and prompts for resync if coming from Reth alpha
+- Update cadvisor to `0.49.1`
+- Update ethereum-metrics-exporter to `0.23.0`
+
+Bug fixes
+- Fix `HOST_IP` in `allin1.yml` files
+- Lodestar dashboard shows more metrics
+- Fix `./ethd config` not building
+- Besu high spec more reliably activates with 64 GiB RAM
+- `pull_policy: never` to avoid extraneous builds
+
+
 ## v2.7.0.0 2024-02-24
 
 *This is an optional release with new features and bug fixes*
