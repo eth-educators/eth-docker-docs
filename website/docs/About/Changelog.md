@@ -16,6 +16,16 @@ instead.
 > On 1/27/2022, Eth Docker's repository name changed. Everything should work as it did.
 > If you do wish to manually update your local reference, run `git remote set-url origin https://github.com/eth-educators/eth-docker.git`
 
+## v2.8.0.0 2024-03-07
+
+*This is an optional release with new features*
+
+**Breaking** changes
+- Requires Besu `24.3.0`
+
+New features
+- Supports `./ethd prune-besu` for long-running Besu DBs, to one-off prune trie logs
+
 ## v2.7.1.0 2024-03-06
 
 *This is an optional release with new features and bug fixes*
