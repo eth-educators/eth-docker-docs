@@ -40,17 +40,18 @@ the token secret, it will only be shown to you once.
 
 If you want to be [more specific](https://go-acme.github.io/lego/dns/cloudflare/), you can create two scoped API
 tokens: One with `Zone.DNS:Edit` for just the domain you wish to manage, and one with `Zone.Zone:Read` and
-`Zone.Zone Settings:Read` for all zones. As the DNS API token now no longer has read permissions, also set
-`CF_ZONE_ID` in `.env` so DDNS still functions.
+`Zone.Zone Settings:Read` for all zones.
 
 With that, in the `.env` file:
+- Set `DOMAIN` to your domain.
+- Set `ACME_EMAIL` to the email address Let's Encrypt will use to communicate with you.
+- Set `CF_ZONE_ID` to the Zone ID of the domain, visible in the Overview page of your domain, on the right-hand side
 - Set `CF_DNS_API_TOKEN` to the API token with `Edit` rights you just created
+under "API".
 - Optionally set `CF_ZONE_API_TOKEN` to the API token with `Read` rights, only if you created split permissions.
-- Optionally set `CF_ZONE_ID` to the Zone ID of the domain, only if you created split permissions.
-- Set `DDNS_SUBDOMAIN` to the specific A/AAAA record you want to see created. This cannot be empty, updating the domain
-itself no longer works.
+- Set `DDNS_SUBDOMAIN` to the specific A/AAAA record you want to see created. If you want to update the domain
+itself, make this @.
 - Set `DDNS_PROXY` to `false` if you do not want CloudFlare to proxy traffic to the subdomain
-- Read further down about common settings for Traefik
 
 ### CNAMEs and proxy settings
 
@@ -79,13 +80,17 @@ You'll add `traefik-aws.yml` to your `COMPOSE_FILE` in `.env`, for example:
 
 This setup assumes that you already have an [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html)
 named user profile in `~/.aws` on the node itself. If not, [please create one](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-profiles.html).
+Be sure to specify a default region during `aws configure`. This is not optional.
 
-The IAM user will need to have the AWS-managed `AmazonRoute53DomainsFullAccess` policy
-[attached to it](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_manage-attach-detach.html).
+The IAM user will need to have the AWS-managed `AmazonRoute53ReadOnlyAcces`, `AmazonRoute53AutoNamingFullAccess` and
+`AmazonRoute53DomainsFullAccess` policies [attached to it](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_manage-attach-detach.html).
 
 With that, in the `.env` file:
+- Set `DOMAIN` to your domain.
+- Set `ACME_EMAIL` to the email address Let's Encrypt will use to communicate with you.
 - Set `AWS_PROFILE` to the profile you want to use. This is the profile name as shown in `~/.aws/config` and
-`~/.aws/credentials`, e.g. `default` or whichever name you gave it, *not* the access key id.
+`~/.aws/credentials`, e.g. `default` or whichever name you gave it, *not* the access key id. The profile
+**must** contain a region.
 - Set `AWS_HOSTED_ZONE_ID` to the Route53 zone you are going to use
 
 ### A records and CNAMEs
@@ -98,11 +103,6 @@ CNAMEs. The A record will be the IP address of your node
 reverse-proxy on the node
 
 ## Traefik common settings
-
-Two settings in `.env` are required, and a few are optional.
-
-- `DOMAIN` needs to be set to your domain
-- `ACME_EMAIL` is the email address Let's Encrypt will use to communicate with you.
 
 Optionally, you can change the names that services are reachable under, and adjust CNAMEs to match. These are the
 `_HOST` variables.

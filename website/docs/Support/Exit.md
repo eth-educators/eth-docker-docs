@@ -19,12 +19,21 @@ configured with `RAPID_SYNC_URL` in `.env`, can sync one in minutes.
 - Get a list of your keys with `./ethd keys list`
 - Sign an exit message with `./ethd keys sign-exit 0xpubkey`
 
-At this point you can store the resulting JSON files in `.eth/exit_messages` for later use, for example by your heirs.
+This signed message is valid for the life of your validator; you do not have to use it right away
+(you could, for example, keep it for your heirs). 
 
-When you want to submit a voluntary exit you can:
+As and when you want to submit a voluntary exit you can:
 - Submit the JSON file to [beaconcha.in](https://beaconcha.in/tools/broadcast)  
 OR
 - Use `./ethd keys send-exit` to send all created exits through your own consensus layer client
+
+You can track the status of your voluntary exit request at `https://beaconcha.in/validator/<validator-id>`. 
+There are three steps:
+- Your validator becomes 'Exited' (5-6 epochs (~35 minutes), assuming no [exit queue](https://www.validatorqueue.com/))
+- Your validator exit becomes 'Withdrawable' (256 epochs (~27 hours))
+- Your 32 Eth is returned to your withdrawal address (currently a maximum of just under a week, see the 'Withdrawals' 
+tab at `https://beaconcha.in/validator/<validator-id>` for the next scheduled withdraw for your validator)
+
 
 # Avoid penalties
 

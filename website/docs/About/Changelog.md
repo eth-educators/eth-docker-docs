@@ -4,7 +4,7 @@ title:  Changelog
 sidebar_label: Changelog
 ---
 
-## Updating the project
+## Updating Eth Docker
 
 To update the components of Eth Docker, run from within its directory (`cd ~/eth-docker` by default):
 
@@ -15,6 +15,180 @@ instead.
 
 > On 1/27/2022, Eth Docker's repository name changed. Everything should work as it did.
 > If you do wish to manually update your local reference, run `git remote set-url origin https://github.com/eth-educators/eth-docker.git`
+
+## v2.8.0.0 2024-03-07
+
+*This is an optional release with new features*
+
+**Breaking** changes
+- Requires Besu `24.3.0`
+
+New features
+- Supports `./ethd prune-besu` for long-running Besu DBs, to one-off prune trie logs
+
+## v2.7.1.0 2024-03-06
+
+*This is an optional release with new features and bug fixes*
+
+New features
+- Supports Reth beta and prompts for resync if coming from Reth alpha
+- Update cadvisor to `0.49.1`
+- Update ethereum-metrics-exporter to `0.23.0`
+
+Bug fixes
+- Fix `HOST_IP` in `allin1.yml` files
+- Lodestar dashboard shows more metrics
+- Fix `./ethd config` not building
+- Besu high spec more reliably activates with 64 GiB RAM
+- `pull_policy: never` to avoid extraneous builds
+
+
+## v2.7.0.0 2024-02-24
+
+*This is an optional release with new features and bug fixes*
+
+**Breaking** changes
+- Breaks if `ext-network.yml` was changed. In this case please `mv ext-network.yml ~` it out to your home directory,
+try `./ethd update` again, and then `nano ext-network.yml` and re-apply the changes that were made, likely just the
+network name as `name: rocketpool_net` for reverse hybrid.
+- Drops support for Docker Compose V1
+- Drops support for automatically converting pre-merge (before September 2022) configurations
+- Requires Nethermind `v1.25.4` or later
+
+New features
+- Changed Lighthouse default max peers to 100, to match their 5.0.0 release
+- Lodestar flags updated to use the current convention. Thankls @nflaig!
+
+Bug fixes
+- Works more consistently on macOS. Thanks to @alindsilva and @toraonion for raising the issue and testing!
+- Fixed `prometheus-traefik.yml`
+- Fixed the jwt secret that `ethd config` queries for not being saved. Thanks @victorelec14!
+
+
+## v2.6.1.0 2024-02-10
+
+*This is an optional release with new features and bug fixes*
+
+New features
+- `./ethd sign-exit all` will sign a voluntary exit message for all loaded validators
+- `./ethd update --help` will print help specific to the `update` command
+- Added a Graffiti length check to `./ethd config`
+- Changed the CloudFlare DDNS container, as the old one is no longer supported upstream
+- Source compile for Geth, Prysm, Erigon and mev-boost uses Go 1.22
+
+Bug fixes
+- Updated Discord link. Thanks to @victorelec14 and @ymittal!
+- Fixed some typos. Thanks to @cristiantroy!
+- `./ethd keys delete` fixed
+- `./ethd keys prepare-address-change` works with Prysm
+- Nethermind dashboard fixed
+- SSV dashboard fixed
+- Fixed the pre-provisioned high memory alert in Grafana
+
+## v2.6.0.0 2024-01-25
+
+*This is an optional release with new features and bug fixes*
+
+**Breaking** changes
+- Requires Lighthouse 4.6.0 or later
+
+New features
+- Supports `./ethd prune-lighthouse` to prune Lighthouse state
+- Lighthouse VC will broadcast duties to all configured CLs, and uses v3 API for producing blocks
+- Besu on machines with 64 GiB of RAM or more will use the high spec flag
+- Added Bloxroute relay to default Holesky MEV config
+- Prysm uses 70 max peers by default
+- `./ethd config` offers a VC-only setup on Gnosis Chain. Thanks @haurog!
+- Remove Nethermind memory hints
+- Add network aliases to CLs, `${NETWORK}-consensus`. This can be useful in setups with multiple Eth Docker
+installations on one host, all connected to the same Docker overlay network
+- Changed Prometheus yq dependency to version `4`
+- Update Lodestar beacon `max-old-space-size` to `8192`. Thanks @nflaig!
+- Changed Teku default heap size to 5G
+- `./ethd keys` does some input vaidation on public keys and other user-supplied values
+
+Bug fixes
+- Nethermind prune no longer outputs an error message on Nethermind 1.25.0 and later
+- Added parameter to support Erigon 2.55 and later
+
+## v2.5.0.1 2023-12-31
+
+*This is an optional release with new features and bug fixes*
+
+- **Breaking** for Besu: Requires Besu 23.10.3
+- Besu will limit its trie logs, and on fresh sync heal its flat DB for better RPC performance
+- Besu source build uses Java 21 runtime (but continues to build with Java 17)
+- Additional pre-previsioned Grafana alerts: memory, CPU, out of memory (OOM) kill
+- Geth can keep its ancient directory on a separate path, see `ANCIENT_DIR` in `.env`
+- Logs dashboard works if the directory is not called `eth-docker`
+- Nethermind auto-prune uses 350 GiB threshold again on Gnosis Chain
+
+## v2.4.1.0 2023-12-29
+
+*This is an optional release with new features and bug fixes*
+
+- Fix `./ethd keys import` with unique passwords. Thanks @shamoya!
+- Fix Teku archive sync on Holesky
+- Nethermind auto-prune is network aware: Kicks off at 350 GiB mainnet, 50 GiB otherwise
+- Web3signer PostgreSQL migration to PG16 during `./ethd update`
+- Teku source build uses Java 21
+- Slightly less naive offline detection for `create-withdrawal-change.sh`
+
+## v2.4.0.0 2023-12-13
+
+*This is an optional release with new features and bug fixes for most users*  
+*It is mandatory for users of Teku 23.12.0 who do not wish to use checkpoint sync*
+
+- **Breaking** change: Teku without checkpoint sync (e.g. archive node) uses parameters that require Teku 23.12.0
+- Fixed checkpoint sync url query during `./ethd config`
+- `./ethd keys` can set individual Graffiti, as long as the client supports it
+- Prometheus instance hard-coded for easier use with dashboards that use instance
+- Added a pre-provisioned Grafana alert for disk space
+- Renamed Teku and Nimbus `-legacy.yml` files to `-allin1.yml`
+
+## v2.3.12.0 2023-12-04
+
+*This is an optional release with new features and bug fixes*
+
+- Fix Nimbus Web3signer wait loop
+- Add `./ethd space`
+- Add Eden relays to Holesky during `./ethd config`
+- `mev-boost` can be source-built
+- `./ethd update` can be `--non-interactive`
+- Support `ETHD_FRONTEND=noninteractive` as an alternative to `--non-interactive`
+
+## v2.3.11.0 2023-12-01
+
+*This is an optional release with new features and bug fixes*
+
+- New Nimbus and Teku deployments use a dedicated validator client service. Legacy deployments use the
+`nimbus-legacy.yml` and `teku-legacy.yml` files
+- Introduced a wait loop to Nimbus when using Web3signer, to work around a bug in Nimbus
+- Better handling of legacy `master` branch of Eth Docker
+
+## v2.3.10.0 2023-11-25
+
+*This is an optional release with new features and bug fixes*
+
+- Prometheus metrics collection improved. Scrape targets in `./prometheus/conf.d`, uses `yq` to merge
+`custom-prom.yml`. Default scrape interval 15s instead of 1m now possible because of this, which solves a whole bevvy
+of "No Data" in preloaded dashboards. Thanks to @aliask!
+- Preserve empty `RAPID_SYNC_URL` in `.env`
+- Extraneous web3signer messages during keyimport, when web3signer was not in use, resolved
+- `./ethd up <service-name>` supported
+- Version numbering will be semver-ish from here: World-shaking changes (think Ethereum merge) first digit, breaking
+changes second digit, enhancements third digit, bug fixes fourth digit.
+
+## v2.3.9 2023-11-15
+
+*This is an optional release with new features and bug fixes*
+
+- Eth Docker's version can be pinned in `.env`
+- Use new Teku v23.11.0 syntax. *Breaking* for any prior version.
+- Fix the `./ethd prune-geth` command
+- Additional IPv6 support for Lodestar, Geth and Erigon
+- Use .NET 8 for Nethermind source build
+- `default.env` defaults to Holesky testnet
 
 ## v2.3.8 2023-11-08
 

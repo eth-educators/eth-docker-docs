@@ -22,8 +22,8 @@ Please choose:
   * Nethermind
   * Besu
   * Geth - this client has a super-majority. Choosing another is safer.
+  * Reth (beta)
   * Erigon
-  * Reth (alpha)
 * Whether to run a grafana dashboard for monitoring
 
 First, copy the environment file.  

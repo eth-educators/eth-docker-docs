@@ -1,24 +1,27 @@
 ---
 id: GethPrune
-title:  Offline prune Geth / Online prune Nethermind.
-sidebar_label: Prune Geth or Nethermind
+title: Execution client prune
+sidebar_label: Prune execution client
 ---
 
 ### Automatic Nethermind prune
 
-By default, Nethermind will prune when free disk space falls below 350 GiB. If you want to disable that, `nano .env` and change `AUTOPRUNE_NM` to `false`.
+By default, Nethermind will prune when free disk space falls below 350 GiB on mainnet, or 50 GiB on testnet. If you
+want to disable that, `nano .env` and change `AUTOPRUNE_NM` to `false`.
 
-### Automatic Geth prune
+### Continuous Besu prune
 
-Geth can continuously prune from version 1.13.0 on. If you are on that version, run `./ethd resync-execution` to use PBSS. This will cause downtime while Geth syncs, which can take 6-12 hours.
+Besu continuously prunes with BONSAI, and from 24.1.0 on also prunes its trie-logs. A long-running Besu may benefit
+from a manual trie-log prune, once.
 
-### Semi-automated Geth or Nethermind prune
+### Continuous Geth prune
 
-The Geth DB if not using PBSS will grow over time, and may fill a 2TB SSD in a year or two.
+Geth continuously prunes if synced with PBSS. If you are using an old hash-synced Geth, run `./ethd resync-execution`
+to use PBSS. This will cause downtime while Geth syncs, which can take 6-12 hours.
 
-You can offline prune Geth, bringing it back down close to its initial DB size.
-
-Run `./ethd prune-geth` if using Geth. It will check prerequisites, offline prune Geth, and restart it.
+### Manual Nethermind or Besu prune
 
 Run `./ethd prune-nethermind` if using Nethermind. It will check prerequisites, online prune Nethermind, and restart it.
 
+Run `./ethd prune-besu` if using a long-running Besu. It will check prerequisites, offline prune Besu trie-logs, and
+restart it.

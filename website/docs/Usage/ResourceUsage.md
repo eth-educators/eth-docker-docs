@@ -6,13 +6,17 @@ sidebar_label: Client Resource Usage
 
 # Consensus Clients
 
-| Client | Version | Date | DB Size  |  RAM | CPU | Notes |
-|--------|---------|----  |----------|------|-----|-------|
-| Teku   | 22.1.1  | Jan 2022 | ~30 GiB | ~9 GiB | 100-300% | |
-| Lighthouse | 2.1.1  | Jan 2022 | ~90 GiB | ~1.7 GiB | 50-200% | |
-| Nimbus | 1.6.0 | Jan 2022 | ~40 GiB | ~2.3 GiB | 50-200% | |
-| Prysm | 2.1.3 | Jul 2022 | ~100 GiB | ~4 GiB | 100-300% | |
-| Lodestar | 1.3.0 | Jan 2023 | ~30 GiB | ~4 GiB | 50-150% | |
+| Client | Version | Date | DB Size  |  RAM | Notes |
+|--------|---------|----  |----------|------|-------|
+| Teku   | 23.12.1  | Jan 2024 | ~130 GiB | ~10 GiB |
+| Lighthouse | 4.5.0  | Jan 2024 | ~130 GiB | ~5 GiB |
+| Nimbus | 24.1.1 | Jan 2024 | ~130 GiB | ~2 to 3 GiB |
+| Prysm | 4.1.1 | Jan 2024 | ~130 GiB | ~5 GiB |
+| Lodestar | 1.13.0 | Jan 2024 | ~130 GiB | ~8 GiB |
+
+Notes on disk usage
+- When disk usage grows, you can checkpoint resync the client in minutes to bring it back down. Auto-pruning is in the
+works for most (all?) clients as of early 2024, but not yet released.
 
 # Execution clients
 
@@ -24,21 +28,20 @@ SSD, RAM and CPU use is after initial sync, when keeping up with head. 100% CPU 
 
 Please pay attention to the Version and Date. These are snapshots in time of client behavior. Initial state size increases over time, and execution clients are always working on improving their storage engines.
 
-| Client | Version | Date | DB Size  | DB Growth | RAM | CPU | Notes |
-|--------|---------|----  |----------|-----------|-----|-----|-------|
-| Geth   | 1.13.0 | August 2023 | ~830 GiB | ~8 GiB / week | 8 GiB | 100-400% | with PBSS |
-| Nethermind | 1.16.1 | Jan 2023 | ~860 GiB | ~30 GiB / week | 15-16 GiB | 50-200% | Can automatic online prune at ~350 GiB free | 
-| Besu | v23.4.1 | June 2023 | ~845 GiB | ~9 GiB / week | 8 - 9 GiB | 50-100% | YoY fresh synced DB growth 2022->2023 was around 200 GiB |
-| Reth | alpha.7 | Aug 2023 | ~960 GiB | ~ 2 GiB / week | 9 GiB | 5-120% | |
-| Erigon | 2.48.1 | August 2023 | ~1.3 TiB | ~7-8 GiB / week | See comment | 50-100% | Erigon will have the OS use all available RAM as a DB cache during post-sync operation, but this RAM is free to be used by other programs as needed. During sync, it may run out of memory on machines with less than 32 GiB |
+| Client | Version | Date | DB Size  | DB Growth | RAM | Notes |
+|--------|---------|----  |----------|-----------|-----|-------|
+| Geth   | 1.13.8 | Jan 2024 | ~1.1 TiB | ~7-8 GiB / week | ~ 8 GiB | with PBSS |
+| Nethermind | 1.25.0 | Jan 2024 | ~1.1 TiB | ~25-30 GiB / week | ~ 7 GiB | Can automatic online prune at ~350 GiB free |
+| Besu | v23.10.3-hotfix | Jan 2024 | ~1.1 TiB | ~7-8 GiB / week | ~ 10 GiB | with Bonsai and trie log limit |
+| Reth | alpha.13 | Jan 2024 | ~1.1 TiB | ~ 3.5 GiB / week | ~ 9 GiB | throws away all logs except deposit contract, and so grows more slowly |
+| Erigon | 2.56.1 | Jan 2024 | ~1.7 TiB | ~7-8 GiB / week | See comment | Erigon will have the OS use all available RAM as a DB cache during post-sync operation, but this RAM is free to be used by other programs as needed. During sync, it may run out of memory on machines with less than 32 GiB |
 
 Notes on disk usage
-- Geth - continously prunes when synced with PBSS
-- Nethermind - DB size can be reduced when it grew too large, by [online prune](../Support/GethPrune.md)
-- Erigon does not compress its DB, leaving that to the filesystem.
-- Reth does not compress its DB, leaving that to the filesystem.
-- Besu in my testing benefits from resync when it's run out of space
-- To a lesser extent this is also true of Erigon, though its initial sync size makes it an increasingly tight fit in a 2TB drive
+- Geth - continuously prunes when synced with PBSS
+- Besu - can continuously prune its trie log, and continuously prunes state with BONSAI
+- Nethermind - DB size can be reduced when it grew too large, by [online prune](../Support/GethPrune.md). Keep an eye
+on Paprika
+- Erigon does not compress its DB, leaving that to the filesystem
 
 ## Test Systems
 
@@ -58,11 +61,11 @@ Servers have been configured with [noatime](https://www.howtoforge.com/reducing-
 | Homebrew Xeon ZFS zvol | 32 GiB | 1.2 TiB | Intel Quad | 3.5k/1k | | Intel SATA SSD, 16k recordsize, stripe, xfs; fio with --bs=16k |
 | Homebrew Xeon ZFS dataset | 32 GiB | 1.2 TiB | Intel Quad | 1.2k/500 | | Intel SATA SSD, 16k recordsize, stripe, xfs; 16G Optane SLOG |
 | Dell R420 w/ HBA     | 32 GiB | 1 TB | Dual Intel Octo | 35.9k/11k | Xeon E5-2450 |
-| Contabo Storage VPS L  | 16 GiB | 1600 GiB | AMD EPYC Hexa  | 3k/1k | |  |
+| [Contabo](https://contabo.com) Storage VPS L  | 16 GiB | 1600 GiB | AMD EPYC Hexa  | 3k/1k | |  |
 | [Netcup](https://netcup.eu) VPS 3000 G9   | 24 GiB | 600 GiB  | AMD Hexa | 11.2k/3.7k | 2.25/6 ms | |
 | Netcup RS 8000 G9.5 | 64 GiB | 2 TB | AMD EPYC 7702 | 15.6k/5k | 3.4/1.5 ms | |
-| OVH Baremetal NVMe   | 32 GiB | 1.9 TB  | Intel Hexa | 177k/59k | 0.08/3.5 ms | |
-| AWS io1 w/ 10K IOPS  | 8 GiB  | NA      | Intel Dual | 7.6k/2.5k | | t2.large, could not sync Geth. Note t2 throttles CPU |
+| [OVH](https://ovhcloud.com/) Baremetal NVMe   | 32 GiB | 1.9 TB  | Intel Hexa | 177k/59k | 0.08/3.5 ms | |
+| [AWS](https://aws.amazon.com/) io1 w/ 10K IOPS  | 8 GiB  | NA      | Intel Dual | 7.6k/2.5k | | t2.large, could not sync Geth. Note t2 throttles CPU |
 | AWS gp3 w/ 16K IOPS  | 16 GiB | NA      | Intel Quad | 12.2k/4.1k | | m6i.xlarge |
 
 ## Initial sync times
@@ -82,14 +85,14 @@ Cache size default in all tests.
 | Client | Version | Date | Test System | Time Taken |  Notes |
 |--------|---------|------|-------------|------------|--------|
 | Geth   | 1.13.0  | August 2023 | OVH Baremetal NVMe | ~ 6 hours | |
-| Nethermind | 1.15 | December 2022 | Baremetal NVMe | ~ 24 hours | |
-| Besu | 22.4.1 | May 2022 | OVH Baremetal NVMe | ~ 30 hours | With X_SNAP sync |
+| Nethermind | 1.24.0| Jan 2024 | OVH Baremetal NVMe | ~ 5 hours | Ready to attest after ~ 1 hour |
+| Besu | v23.10.4-dev | December 2023 | OVH Baremetal NVMe | ~ 16 hours | With X_SNAP sync |
 | Erigon | 2.48.1 | August 2023 | OVH Baremetal NVMe | ~ 9 days | |
-| Reth  | alpha.7 | August 2023 | OVH Baremetal NVMe | ~ 3 days 5 hours | |
+| Reth  | beta.1 | March 2024 | OVH Baremetal NVMe | ~ 2 days 16 hours | |
 
 ## Getting better IOPS
 
-Geth needs a decent amount of IOPS, as do Besu and Nethermind. Erigon can run on very low IOPS, though should also not be used with HDD.
+Ethereum execution layer clients need a decent amount of IOPS. HDD will not be sufficient.
 
 For cloud providers, here are some results for syncing Geth.
 - AWS, gp2 or gp3 with provisioned IOPS have both been tested successfully.
@@ -98,11 +101,13 @@ For cloud providers, here are some results for syncing Geth.
 - There are reports that Digital Ocean block storage is too slow, as of late 2021.
 - Strato V-Server is too slow as of late 2021.
 
-Dedicated servers with SSD or NVMe will always have sufficient IOPS. Do avoid hardware RAID though, see below. OVH Advance line as well as Hetzner are well-liked dedicated options; Linode or Strato or any other provider will work as well.
+Dedicated servers with SATA or NVMe SSD will always have sufficient IOPS. Do avoid hardware RAID though, see below.
+OVH Advance line is a well-liked dedicated option; Linode or Strato or any other provider will work as well.
 
 For own hardware, we've seen three causes of low IOPS:
-- Overheating of the SSD. Check `smartctl -x`. You want the SSD to be at or below 40 degrees Celsius.
-- External SSD with a USB controller that can't keep up. Samsung T5 has been shown to work, as has Samsung T7 with the right firmware. T7 is slower.
-- Hardware RAID, no TRIM support. [Flash the controller](https://gist.github.com/yorickdowne/fd36009c19fdbee0337bffc0d5ad8284) to HBA and use software RAID.
-
-In some cases, the SSD itself can't keep up, e.g. reports of this with WD Green SN350, Crucial BX500. While they sync slowly, even QLC/DRAMless SSDs can be "enough" - this depends heavily on model. Given the option, you may want to [choose a "mainstream" SSD](https://gist.github.com/yorickdowne/f3a3e79a573bf35767cd002cc977b038) for better sync and pruning performance.
+- DRAMless or QLC SSD. Choose a ["mainstream" SSD](https://gist.github.com/yorickdowne/f3a3e79a573bf35767cd002cc977b038)
+with TLC and DRAM. Enterprise / data center SSDs will always work great; consumer SSDs vary.
+- Overheating of the SSD. Check `smartctl -x`. You want the SSD to be at ~ 40-50 degrees Celsius, so it does not
+throttle.
+- Hardware RAID, no TRIM support. [Flash the controller](https://gist.github.com/yorickdowne/fd36009c19fdbee0337bffc0d5ad8284)
+to HBA and use software RAID.
