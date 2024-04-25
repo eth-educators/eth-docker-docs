@@ -16,6 +16,29 @@ instead.
 > On 1/27/2022, Eth Docker's repository name changed. Everything should work as it did.
 > If you do wish to manually update your local reference, run `git remote set-url origin https://github.com/eth-educators/eth-docker.git`
 
+## v2.9.0.0 2024-04-25
+
+*This is an optional release with new features*
+
+**Breaking** changes
+- Requires Nethermind `v1.26.0`
+
+New features
+- `./ethd prune-nethermind` will migrate the Nethermind DB to HalfPath on nodes with 32 GiB of RAM or more
+- Add discv5 to Reth
+
+Changes
+- Teku default heap to 6g
+- Lodestar default max peers to 100
+- Use Geth 1.14.0 defaults
+- Remove `./ethd prune-geth`
+
+Bug fixes
+- Do not default Besu to highspec on less than 64 GiB RAM, to avoid OOM errors
+- Do not downgrade the `.env` version
+- Fix Loki and prepare for Loki 3
+- Check for snap docker earlier
+
 ## v2.8.0.0 2024-03-07
 
 *This is an optional release with new features*
