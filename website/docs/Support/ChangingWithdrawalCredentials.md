@@ -14,6 +14,10 @@ Eth Docker supports using ethdo in an online/offline fashion to prepare withdraw
 
 You can use `./ethd keys list` to get a list of your validator public keys that are currently active on your system.
 
+**Only** if you have legacy version 0 / 0x00 style BLS key credentials, continue with the below. If your credentials 
+are already version 1 / 0x01 style withdrawal address credentials, they can only be changed by exiting the validator
+and creating a new one, with a new validator index.
+
 ## Offline preparation
 
 On your machine running Eth Docker, run `./ethd keys prepare-address-change`.
