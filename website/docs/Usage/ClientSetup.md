@@ -16,12 +16,13 @@ Please choose:
   * Lodestar
   * Nimbus
   * Teku
+  * Grandine
   * Lighthouse
   * Prysm
 * Your execution client you wish to run
   * Nethermind
   * Besu
-  * Geth - this client has a super-majority. Choosing another is safer.
+  * Geth
   * Reth (beta)
   * Erigon
 * Whether to run a grafana dashboard for monitoring
