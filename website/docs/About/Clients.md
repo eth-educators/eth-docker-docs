@@ -11,6 +11,7 @@ Currently supported consensus clients:
 - [Lodestar](https://github.com/ChainSafe/lodestar)
 - [Nimbus](https://github.com/status-im/nimbus-eth2)
 - [Teku](https://github.com/Consensys/teku)
+- [Grandine](https://github.com/grandinetech/grandine)
 - [Lighthouse](https://github.com/sigp/lighthouse)
 - [Prysm](https://github.com/prysmaticlabs/prysm)
 
