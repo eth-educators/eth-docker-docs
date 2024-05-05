@@ -14,7 +14,7 @@ with full control for advanced users.
 Recommended hardware, whether your own hardware or a VPS, is:
 - 32 GiB of RAM - 16 GiB works but can be challenging depending on client mix
 - 4 CPU cores
-- 2TB ["mainstream" SSD](https://gist.github.com/yorickdowne/f3a3e79a573bf35767cd002cc977b038) - neither QLC nor DRAMless.
+- 4TB ["mainstream" SSD](https://gist.github.com/yorickdowne/f3a3e79a573bf35767cd002cc977b038) - TLC and DRAM.
 
 ## Node components
 

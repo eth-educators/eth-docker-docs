@@ -12,6 +12,11 @@ module.exports = {
     },
     scripts: ['https://buttons.github.io/buttons.js'],
     themeConfig: {
+        docs: {
+            sidebar: {
+                hideable: true,
+            },
+        },
         navbar: {
             title: "Eth Docker Docs",
             logo: {

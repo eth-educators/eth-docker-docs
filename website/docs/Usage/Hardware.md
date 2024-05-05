@@ -7,7 +7,7 @@ sidebar_label: Hardware
 Recommended hardware:
 * 32 GiB of RAM - 16 GiB works but can be challenging depending on client mix
 * Quad Core CPU
-* 2TB ["mainstream" SSD](https://gist.github.com/yorickdowne/f3a3e79a573bf35767cd002cc977b038) - TLC and DRAM
+* 4TB ["mainstream" SSD](https://gist.github.com/yorickdowne/f3a3e79a573bf35767cd002cc977b038) - TLC and DRAM
 
 Generally, 8 GiB of RAM is a very tight fit, with only Nimbus/Geth reported to work. 16 GiB can be a tight fit
 depending on client mix, and 32 GiB is recommended. For 16 GiB RAM, a Nimbus/Nethermind combo works well.
@@ -16,9 +16,10 @@ depending on client mix, and 32 GiB is recommended. For 16 GiB RAM, a Nimbus/Net
 
 An SSD is required for storage because the node databases are so IOPS-heavy. An Ethereum mainnet node takes ~ 1.1 TiB
 of storage initially, as of Jan 2024. The on-disk growth pattern differs between execution clients, see
-[resource use](../Usage/ResourceUsage.md). A 2TB disk is expected to last (potentially with execution client pruning)
-until late 2025. If [EIP-4444](https://eips.ethereum.org/EIPS/eip-4444) is in Ethereum by that time, it may last
-"forever".
+[resource use](../Usage/ResourceUsage.md).
+
+If you have a 2TB disk, it is expected to last (potentially with execution client pruning) until early 2025. Also keep
+an eye on [EIP-4444](https://eips.ethereum.org/EIPS/eip-4444).
 
 Two home server builds that I like and am happy to recommend are below. Both Intel and AMD support IPMI, which means
 they can be managed and power-cycled remotely and need neither a GPU nor monitor. Both support ECC RAM, though the AMD
@@ -43,7 +44,7 @@ NVMe
     * Intel Xeon E-24xx
 * Common components:
   * 32 GiB of Micron or Samsung DDR4 UDIMM ECC RAM (unbuffered, **not** registered)
-  * [2TB M.2 NVMe SSD](https://gist.github.com/yorickdowne/f3a3e79a573bf35767cd002cc977b038)
+  * [4TB M.2 NVMe SSD](https://gist.github.com/yorickdowne/f3a3e79a573bf35767cd002cc977b038)
 
 **AMD**
 
@@ -54,13 +55,13 @@ NVMe
 * Common components:
   * AMD Ryzen CPU (Zen2/3), but not APU (APUs do not support ECC)
   * 32 GiB of Micron or Samsung DDR4 UDIMM ECC RAM (unbuffered, **not** registered)
-  * [2TB M.2 NVMe SSD](https://gist.github.com/yorickdowne/f3a3e79a573bf35767cd002cc977b038)
+  * [4TB M.2 NVMe SSD](https://gist.github.com/yorickdowne/f3a3e79a573bf35767cd002cc977b038)
 
 * uATX Zen 4:
   * AsRock Rack B650D4U
   * AMD Ryzen 7000 CPU (Zen4), but not APU (APUs do not support ECC)
   * 32 GiB of DDR5 UDIMM ECC RAM (unbuffered, **not** registered)
-  * [2TB M.2 NVMe SSD](https://gist.github.com/yorickdowne/f3a3e79a573bf35767cd002cc977b038)
+  * [4TB M.2 NVMe SSD](https://gist.github.com/yorickdowne/f3a3e79a573bf35767cd002cc977b038)
 
 The SuperMicro eStore is one good source of UDIMM ECC, DDR4 and DDR5 both.
 
