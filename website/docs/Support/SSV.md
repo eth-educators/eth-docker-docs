@@ -16,7 +16,7 @@ Eth Docker supports running an SSV node, together with a consensus client and ex
   - Run `./ethd install`
 
 ### On MacOS
-- Install [Docker Desktop](https://www.docker.com/products/docker-desktop) and allocate 16 GiB of RAM and around 2TB
+- Install [Docker Desktop](https://www.docker.com/products/docker-desktop) and allocate 16 GiB of RAM and around 3TB
 of storage to it
 - Install pre-requisites via homebrew
   - `brew install coreutils newt bash`
