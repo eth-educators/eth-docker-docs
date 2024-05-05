@@ -18,8 +18,9 @@ An SSD is required for storage because the node databases are so IOPS-heavy. An 
 of storage initially, as of Jan 2024. The on-disk growth pattern differs between execution clients, see
 [resource use](../Usage/ResourceUsage.md).
 
-If you have a 2TB disk, it is expected to last (potentially with execution client pruning) until early 2025. Also keep
-an eye on [EIP-4444](https://eips.ethereum.org/EIPS/eip-4444).
+If you have a 2TB disk, it is expected to last (potentially with execution client pruning) until early 2025.
+Remy wrote a [migration guide to 4TB](https://github.com/eth-educators/ethstaker-guides/blob/main/migrating-to-a-larger-disk.md).
+Also keep an eye on [EIP-4444](https://eips.ethereum.org/EIPS/eip-4444).
 
 Two home server builds that I like and am happy to recommend are below. Both Intel and AMD support IPMI, which means
 they can be managed and power-cycled remotely and need neither a GPU nor monitor. Both support ECC RAM, though the AMD
