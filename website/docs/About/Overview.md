@@ -29,12 +29,14 @@ An Ethereum staking full node has many moving parts. Here's a high level, concep
 
 ## Eth Docker feature highlights
 
-- Supports all FOSS (Free and Open Source Software) Ethereum clients in any combination: Lodestar, Nimbus, Teku, Lighthouse, Prysm; and Nethermind, Besu, Erigon, Geth
+- Supports all FOSS (Free and Open Source Software) Ethereum clients in any combination: Lodestar, Nimbus, Teku,
+Grandine, Lighthouse, Prysm; and Nethermind, Besu, Reth, Erigon, Geth
 - Runs on Linux or macOS, Intel/AMD x64 or ARM CPUs
-- Supports running Ethereum nodes, staking or RPC, on Ethereum and Gnosis Chain; supports running ssv.network DVT nodes; supports integration with RocketPool in (reverse) hybrid mode
+- Supports running Ethereum nodes, staking or RPC, on Ethereum and Gnosis Chain; supports running ssv.network DVT
+nodes; supports integration with RocketPool in (reverse) hybrid mode
 - Supports Grafana dashboards and alerting, either locally or Grafana Cloud or even your own remote Mimir/Thanos cluster
 - Uses official client teams' images, does not publish its own images
-- Supports advanced use cases such as exposing interfaces over https with traefik secure web proxy, source-building clients locally
+- Supports advanced use cases such as exposing interfaces over https with traefik secure web proxy, or source-building clients locally
 
 ## Staking workflow
 
