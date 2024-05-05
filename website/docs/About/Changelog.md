@@ -16,6 +16,20 @@ instead.
 > On 1/27/2022, Eth Docker's repository name changed. Everything should work as it did.
 > If you do wish to manually update your local reference, run `git remote set-url origin https://github.com/eth-educators/eth-docker.git`
 
+## v2.9.1.0 2024-05-05
+
+*This is an optional release with new features*
+
+New features
+- Support the Grandine consensus layer client
+- Migrate to Loki 3. Caution that if you didn't update after 2024-04-09 and before 2024-05-01, this may require you to
+stop Loki with `./ethd stop Loki`, remove its volume with `docker volume rm eth-docker_loki-data` (adjust if the
+directory is not named `eth-docker`), and start again with `./ethd up`.
+
+Bug fixes
+- Reth DB conversion check works when there are two Reth on the machine
+- `./ethd install` doesn't throw an error if Docker is already installed and `pkg-config` is not
+
 ## v2.9.0.0 2024-04-25
 
 *This is an optional release with new features*
