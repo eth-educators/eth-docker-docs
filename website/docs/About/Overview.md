@@ -38,19 +38,22 @@ nodes; supports integration with RocketPool in (reverse) hybrid mode
 - Uses official client teams' images, does not publish its own images
 - Supports advanced use cases such as exposing interfaces over https with traefik secure web proxy, or source-building clients locally
 
+## Guiding principles:
+
+- Reduce the attack surface of the client as much as feasible.
+- Guide users to good key management as much as possible
+- Create something that makes for a good user experience and guides people new to docker and Linux as much as feasible
+
 ## Staking workflow
 
 When setting up an Ethereum staking full node, you'll:
 
-- Configure and run an execution client and sync it with the Görli testnet or main net
-- Configure and run an Ethereum consensus client and sync it with the Görli testnet or main net
+- Configure and run consensus client and  execution client and sync them with testnet or mainnet
 - Generate validator keys, one per 32 Eth you wish to stake. This can and often is done outside of the
   machine used to run the node, for security reasons.
 - Import validator keys into the validator client, each validator key activates one validator
 - Once the Ethereum execution client and consensus client are fully synced with the chain, deposit Ethereum
   at the launchpad, 32 ETH per validator key.
-
-* Note on Görli: Görli testnet is in rough shape and it is quite difficult to get the required 32 eth to setup a validator on the testnet. 
 
 Here's what then happens:
 
@@ -68,13 +71,8 @@ Here's what then happens:
   values.
 - "Slashing" is a harsh penalty and forced exit for malicious validators; regular penalties could be
   described as "Leaking" instead. The most likely mistake that gets you slashed is to run a validator key
-  in two separate validator clients simultaneously. The initial slashing penalty on main net has been reduced
-  to 1/4th of its eventual value.
-- If all of the above was so much Gobbledegook, you may want to read the [Ethereum PoS primer](https://ethos.dev/beacon-chain/) and come
-  back to it every time you have questions.
+  in two separate validator clients simultaneously.
+- If all of the above was so much Gobbledegook, you may want to read the
+[EthStaker knowlege base](https://docs.ethstaker.cc/ethstaker-knowledge-base) and come back to it every time you have
+questions.
 
-## Guiding principles:
-
-- Reduce the attack surface of the client as much as feasible.
-- Guide users to good key management as much as possible
-- Create something that makes for a good user experience and guides people new to docker and Linux as much as feasible
