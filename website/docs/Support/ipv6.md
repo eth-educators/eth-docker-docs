@@ -115,9 +115,9 @@ CL
 
 - [x] Lighthouse
 - [x] Lodestar
+- [x] Nimbus
 - [ ] Teku: Unsure, advertisement not tested
 - [ ] Prysm: Maybe, `--p2p-local-ip ::`, but [not dual-stack](https://github.com/prysmaticlabs/prysm/issues/12303)
-- [ ] Nimbus: [No](https://github.com/status-im/nimbus-eth2/issues/4839)
 - [ ] Grandine: Unsure
 - [ ] Lambda: Unsure
 
