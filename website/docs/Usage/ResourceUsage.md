@@ -10,13 +10,14 @@ sidebar_label: Client Resource Usage
 |--------|---------|----  |----------|------|-------|
 | Teku   | 23.12.1  | Jan 2024 | ~130 GiB | ~10 GiB |
 | Lighthouse | 4.5.0  | Jan 2024 | ~130 GiB | ~5 GiB |
-| Nimbus | 24.1.1 | Jan 2024 | ~130 GiB | ~2 to 3 GiB |
+| Nimbus | 24.1.1 | Jan 2024 | ~170 GiB | ~2 to 3 GiB |
 | Prysm | 4.1.1 | Jan 2024 | ~130 GiB | ~5 GiB |
 | Lodestar | 1.13.0 | Jan 2024 | ~130 GiB | ~8 GiB |
 
 Notes on disk usage
-- When disk usage grows, you can checkpoint resync the client in minutes to bring it back down. Auto-pruning is in the
-works for most (all?) clients as of early 2024, but not yet released.
+- Teku and Nimbus continuously prune
+- Lighthouse, Lodestar and Prysm can be resynced in minutes to bring space usage back down, with `./ethd resync-consensus`
+- Lighthouse is working on tree states to continuously prune
 
 # Execution clients
 
@@ -37,8 +38,7 @@ Please pay attention to the Version and Date. These are snapshots in time of cli
 | Erigon | 2.56.1 | Jan 2024 | ~1.7 TiB | ~7-8 GiB / week | See comment | Erigon will have the OS use all available RAM as a DB cache during post-sync operation, but this RAM is free to be used by other programs as needed. During sync, it may run out of memory on machines with less than 32 GiB |
 
 Notes on disk usage
-- Geth - continuously prunes when synced with PBSS
-- Besu - can continuously prune its trie log, and continuously prunes state with BONSAI
+- Reth, Besu, Geth and Erigon continously prune
 - Nethermind - DB size can be reduced when it grew too large, by [online prune](../Support/GethPrune.md). Keep an eye
 on Paprika
 - Erigon does not compress its DB, leaving that to the filesystem
