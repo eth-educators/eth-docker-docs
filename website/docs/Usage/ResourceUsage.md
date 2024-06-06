@@ -15,7 +15,7 @@ sidebar_label: Client Resource Usage
 | Lodestar | 1.13.0 | Jan 2024 | ~130 GiB | ~8 GiB |
 
 Notes on disk usage
-- Teku and Nimbus continuously prune
+- Teku, Nimbus and Grandine continuously prune
 - Lighthouse, Lodestar and Prysm can be resynced in minutes to bring space usage back down, with `./ethd resync-consensus`
 - Lighthouse is working on tree states to continuously prune
 
