@@ -23,6 +23,7 @@ instead.
 New features
 - Support Nethermind `1.27`
 - Switch Lighthouse `latest-modern` to `latest`, to support `5.2.0`
+- Switch Erigon `stable` to `v2.60.1`. Please track Erigon versions manually 
 - Migrate existing Prysm and Lighthouse setups to new volume names matching the `cl-only.yml` ones
 - Enable separate static dir for Reth via `ANCIENT_DIR`
 - Source-build Besu with JDK 21
