@@ -16,6 +16,24 @@ instead.
 > On 1/27/2022, Eth Docker's repository name changed. Everything should work as it did.
 > If you do wish to manually update your local reference, run `git remote set-url origin https://github.com/eth-educators/eth-docker.git`
 
+## v2.9.2.0 2024-06-11
+
+*This is an optional release with new features*
+
+New features
+- Support Nethermind `1.27`
+- Switch Lighthouse `latest-modern` to `latest`, to support `5.2.0`
+- Migrate existing Prysm and Lighthouse setups to new volume names matching the `cl-only.yml` ones
+- Enable separate static dir for Reth via `ANCIENT_DIR`
+- Source-build Besu with JDK 21
+- Grandine uses pruned storage when not configured as an archive node
+
+Bug fixes
+- DKG `chown` uses the owning user's group and only runs when required
+- Fix `./ethd sign-exit all` with web3signer and Prysm or Teku
+- Fix Lodestar source build
+- SSV config works on macOS
+
 ## v2.9.1.0 2024-05-05
 
 *This is an optional release with new features*
