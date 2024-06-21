@@ -30,7 +30,7 @@ WSL
 without even man-db out of the box.
 - This defaults to WSL 2, but if you have an older WSL 1 install, find it with `wsl --list -v` and change it with
 `wsl --set-version DISTRO-NAME 2` as well as `wsl --set-default-version 2`.
-- Install WSL [2.0.14](https://github.com/microsoft/WSL/releases) or later. It should come in automatically with Windows
+- Install WSL [2.2.4](https://github.com/microsoft/WSL/releases) or later. It should come in automatically with Windows
 Update, and can also be updated in PowerShell with `wsl --update`.
 - Increase the disk space available to WSL [from 1TB to 3TB](https://learn.microsoft.com/en-us/windows/wsl/disk-space).
 - Create a scheduled task in Task Scheduler to keep Ubuntu/Debian in WSL updated.
@@ -61,15 +61,16 @@ memory=32GB
 ```
 
 Time sync
-- Fix Windows time sync
+- Fix Windows time sync if your machine is not domain-joined
   - Change w32time to [start automatically](https://docs.microsoft.com/en-us/troubleshoot/windows-client/identity/w32time-not-start-on-workgroup). In Administrator cmd, but **not** PowerShell, `sc triggerinfo w32time start/networkon stop/networkoff`. Verify with `sc qtriggerinfo w32time`. To get into cmd that way, you can start Admin PowerShell and then just type `cmd`.
   - In `Computer\HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\w32time\Config`, set `MaxPollInterval` to hex `c`, decimal `12`.
   - Check `Computer\HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\w32time\Parameters\NtpServer`. If it ends in `0x9` you are done. If it ends in `0x1` you need to adjust `SpecialPollInterval` in `Computer\HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\w32time\TimeProviders\NtpClient` to read `3600`
   - Reboot, then from Powershell run `w32tm /query /status /verbose` to verify that w32time service did start. If it didn't, check triggers again. If all else fails, set it to Automatic Delayed startup
 - [Enable systemd](https://devblogs.microsoft.com/commandline/systemd-support-is-now-available-in-wsl/#set-the-systemd-flag-set-in-your-wsl-distro-settings)
-for WSL and install chrony with `sudo apt install -y chrony`.
-- If despite chrony, you still see [clock skew](https://github.com/microsoft/WSL/issues/10006) in WSL, set a scheduled task to keep WSL in
-sync with your Windows clock. From non-admin Powershell, run
+for WSL
+- Install chrony with `sudo apt install -y chrony`.
+- If despite chrony, you still see [clock skew](https://github.com/microsoft/WSL/issues/10006) in WSL, set a scheduled
+task to keep WSL in sync with your Windows clock. From non-admin Powershell, run
 `schtasks /Create /TN WSLTimeSync /TR "wsl -u root hwclock -s" /SC ONEVENT /EC System /MO "*[System[Provider[@Name='Microsoft-Windows-Kernel-Power'] and (EventID=107 or EventID=507) or Provider[@Name='Microsoft-Windows-Kernel-General'] and (EventID=1)]]" /F`.
 
 Docker Desktop
