@@ -6,11 +6,11 @@ sidebar_label: IPv6 support
 
 ## Y tho
 
-As of early 2023:
+As of mid 2024:
 
 CGNAT is becoming more prevalant, making it harder to make P2P ports available inbound and get good peering.
 
-Docker support for IPv6 is slowly, ever so slowly, getting better.
+Docker support for IPv6 is better.
 
 Ethereum clients are starting to add v6 support, which can benefit from testing.
 
@@ -28,86 +28,19 @@ that, first.
 
 ### Configure Docker
 
-You'll want to be on the latest version of docker-ce, as IPv6 support in Docker is a moving target.
+You'll want to be on the latest version of docker-ce, at least `27.0.1`.
 
-`sudo nano /etc/docker/daemon.json` and make sure it contains this:
-
-```
-{
-    "userland-proxy": false,
-    "ipv6": true,
-    "fixed-cidr-v6": "fd00::/64",
-    "experimental": true,
-    "ip6tables": true,
-    "default-address-pools":[
-      { "base": "172.17.0.0/16", "size": 16 },
-      { "base": "172.18.0.0/16", "size": 16 },
-      { "base": "172.19.0.0/16", "size": 16 },
-      { "base": "172.20.0.0/14", "size": 16 },
-      { "base": "172.24.0.0/14", "size": 16 },
-      { "base": "172.28.0.0/14", "size": 16 },
-      { "base": "192.168.0.0/16", "size": 20 },
-      {"base": "fd00:0:1::/64", "size": 64},
-      {"base": "fd00:0:1:1::/64", "size": 64},
-      {"base": "fd00:0:1:2::/64", "size": 64},
-      {"base": "fd00:0:1:3::/64", "size": 64},
-      {"base": "fd00:0:1:4::/64", "size": 64},
-      {"base": "fd00:0:1:5::/64", "size": 64},
-      {"base": "fd00:0:1:6::/64", "size": 64},
-      {"base": "fd00:0:1:7::/64", "size": 64},
-      {"base": "fd00:0:1:8::/64", "size": 64},
-      {"base": "fd00:0:1:9::/64", "size": 64},
-      {"base": "fd00:0:1:a::/64", "size": 64},
-      {"base": "fd00:0:1:b::/64", "size": 64},
-      {"base": "fd00:0:1:c::/64", "size": 64},
-      {"base": "fd00:0:1:d::/64", "size": 64},
-      {"base": "fd00:0:1:e::/64", "size": 64},
-      {"base": "fd00:0:1:f::/64", "size": 64},
-      {"base": "fd00:0:1:10::/64", "size": 64},
-      {"base": "fd00:0:1:11::/64", "size": 64},
-      {"base": "fd00:0:1:12::/64", "size": 64},
-      {"base": "fd00:0:1:13::/64", "size": 64},
-      {"base": "fd00:0:1:14::/64", "size": 64},
-      {"base": "fd00:0:1:15::/64", "size": 64},
-      {"base": "fd00:0:1:16::/64", "size": 64},
-      {"base": "fd00:0:1:17::/64", "size": 64},
-      {"base": "fd00:0:1:18::/64", "size": 64},
-      {"base": "fd00:0:1:19::/64", "size": 64},
-      {"base": "fd00:0:1:1a::/64", "size": 64},
-      {"base": "fd00:0:1:1b::/64", "size": 64},
-      {"base": "fd00:0:1:1c::/64", "size": 64},
-      {"base": "fd00:0:1:1d::/64", "size": 64},
-      {"base": "fd00:0:1:1e::/64", "size": 64},
-      {"base": "fd00:0:1:1f::/64", "size": 64}
-    ]
-}
-```
-
-Restart docker with `sudo systemctl restart docker`, then verify it's up with `systemctl status docker`, lastly check
-its logs with `sudo journalctl -fu docker` to make sure it came up ok. If there are issues that keep it from starting,
-fix those before going further.
+If you previously had IPv6-specific settings in `/etc/docker/daemon.json`, you can remove them now.
 
 ### Configure Eth Docker
 
-`nano .env` and set `IPV6=true` and add `:ipv6.yml` to `COMPOSE_FILE`, which will tell Compose to enable
-v6 for the networks it creates.
-
-### Dafuq
-
-The many base networks are necessary until a [Docker fix](https://github.com/moby/moby/pull/43033) lands.
-It's a hack so Docker Compose can create v6 networks, and this allows it to create 32 of them. Once the fix is in,
-this could be a single v6 base with something like `{"base": "fd00:0:1::/56", "size": 64}`.
-
-So, what's going on here. [Docker documentation](https://docs.docker.com/config/daemon/ipv6/) will
-get you started. Basically, enable experimental ip6tables support which does a form of v6 NAT between the host address
-and the container address, where the container address is a ULA in the `fd::/8` range. `fixed-cidr-v6` is used for the
-`docker0` default bridge network, and the many many (many) base networks are used for networks that Compose creates.
+`nano .env` and set `IPV6=true`, which will tell Compose to enable v6 for the networks it creates.
 
 ## Safu?
 
-Maybe. I still have to test ufw integration. I believe there is a v6 USER table for Docker since 23.x. The feature
-itself, though experimental, shouldn't cause issues. On your LAN firewall, if this is in a LAN, you'd need rules to
-allow the P2P ports incoming to the v6 address of your node.
+Maybe. I still have to test ufw integration.  
+On your LAN firewall, if this is in a LAN, you'd need rules to allow the P2P ports incoming to the v6 address of your
+node.
 
 ## Which clients?
 
