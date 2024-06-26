@@ -20,10 +20,10 @@ Please choose:
   * Lighthouse
   * Prysm
 * Your execution client you wish to run
-  * Nethermind
+  * Reth
   * Besu
+  * Nethermind
   * Geth
-  * Reth (beta)
   * Erigon
 * Whether to run a grafana dashboard for monitoring
 

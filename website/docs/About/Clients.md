@@ -16,10 +16,10 @@ Currently supported consensus clients:
 - [Prysm](https://github.com/prysmaticlabs/prysm)
 
 Currently supported execution clients:
-- [Nethermind](https://github.com/NethermindEth/nethermind)
+- [Reth](https://github.com/paradigmxyz/reth)
 - [Besu](https://github.com/hyperledger/besu)
+- [Nethermind](https://github.com/NethermindEth/nethermind)
 - [Geth](https://github.com/ethereum/go-ethereum)
-- [Reth](https://github.com/paradigmxyz/reth) (beta)
 - [Erigon](https://github.com/ledgerwatch/erigon)
 
 > An Ethereum node has one consensus client and one execution client. Eth Docker can be used to split this between two
