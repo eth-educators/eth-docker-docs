@@ -16,6 +16,19 @@ instead.
 > On 1/27/2022, Eth Docker's repository name changed. Everything should work as it did.
 > If you do wish to manually update your local reference, run `git remote set-url origin https://github.com/eth-educators/eth-docker.git`
 
+## v2.10.1.0 2024-07-10
+
+*This is an optional release with new features*
+
+New features
+- Add `./ethd prune-reth` command. This should be run once only, when upgrading from Reth 1.0.0
+  - While Reth 1.0.0 is running and fully synced, `./ethd update`. This brings in Reth 1.0.1 but does not activate it yet.
+  - `./ethd prune`. This prunes the Reth database, then restarts Reth. All other changed containers are also restarted.
+
+Bug fixes
+- `./ethd keys` works with Prysm again
+- Choosing "No" for SSV DKG during SSV configuration no longer quits ethd
+
 ## v2.10.0.0 2024-06-23
 
 *This is an optional release with breaking changes*
