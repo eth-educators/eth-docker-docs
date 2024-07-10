@@ -23,7 +23,7 @@ instead.
 New features
 - Add `./ethd prune-reth` command. This should be run once only, when upgrading from Reth 1.0.0
   - While Reth 1.0.0 is running and fully synced, `./ethd update`. This brings in Reth 1.0.1 but does not activate it yet.
-  - `./ethd prune`. This prunes the Reth database, then restarts Reth. All other changed containers are also restarted.
+  - `./ethd prune-reth`. This prunes the Reth database, then restarts Reth. All other changed containers are also restarted.
 
 Bug fixes
 - `./ethd keys` works with Prysm again
