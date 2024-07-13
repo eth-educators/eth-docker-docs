@@ -16,6 +16,21 @@ instead.
 > On 1/27/2022, Eth Docker's repository name changed. Everything should work as it did.
 > If you do wish to manually update your local reference, run `git remote set-url origin https://github.com/eth-educators/eth-docker.git`
 
+## v2.11.0.0 2024-07-13
+
+*This is an optional release with breaking changes*
+
+**Breaking** changes
+- Require Lodestar `1.20.0` or later when using `lodestar.yml`
+- Require Besu `24.7.0` or later when using `./ethd prune-besu`
+
+Changes
+- Replace Grandine deprecated `--builder-api-url` with `--builder-url`
+- Change Grandine default tag to `stable` from `latest`
+- Replace Besu deprecated `storage x-trie-log prune` with `storage trie-log prune`
+- Reenable Nethermind `--Pruning.CacheMb 4096` on systems with 32 GiB of RAM or more
+- `lodestar.yml` uses SSZ wire format and no longer specifies the REST namespace. Thanks @nflaig!
+
 ## v2.10.1.0 2024-07-10
 
 *This is an optional release with new features*
