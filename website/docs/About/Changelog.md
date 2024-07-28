@@ -16,6 +16,21 @@ instead.
 > On 1/27/2022, Eth Docker's repository name changed. Everything should work as it did.
 > If you do wish to manually update your local reference, run `git remote set-url origin https://github.com/eth-educators/eth-docker.git`
 
+## v2.11.0.1 2024--07-28
+
+*This is a recommended release for SSV node operators, with bug fixes*
+
+Changes
+- Switch Nimbus source build to alpine, from debian
+- Support RISC-V architecture in `./ethd config`. Thanks to @lazyprogrammerio and @haurog!
+
+Bug fixes
+- Remove Nimbus from SSV config query, see [Nimbus PR](https://github.com/status-im/nimbus-eth2/pull/6413). Thanks to
+@jwhelan72, celticwarrior on Ethstaker Discord!
+- Allow `--debug` on `./ethd keys import`
+- Only grep `~/.profile` if it exists
+- Recognize `arm64` (Mac M1/2/3) during `./ethd config`
+
 ## v2.11.0.0 2024-07-13
 
 *This is an optional release with breaking changes*
