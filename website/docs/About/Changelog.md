@@ -16,6 +16,14 @@ instead.
 > On 1/27/2022, Eth Docker's repository name changed. Everything should work as it did.
 > If you do wish to manually update your local reference, run `git remote set-url origin https://github.com/eth-educators/eth-docker.git`
 
+## v2.11.2.0 2024-08-08
+
+*This is an optional release*
+
+Changes
+- Support IPv6 with Teku `24.8.0`
+- Users can freely set the Nethermind RPC namespaces through `EL_EXTRAS`
+
 ## v2.11.1.0 2024-08-01
 
 *This is a mandatory release for users of Lighthouse Siren*
