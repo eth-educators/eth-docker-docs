@@ -7,9 +7,7 @@ Below are steps for initialising and reproducing this portal for development.
 ## Dependencies
 
 1.  The latest version of [Node](https://nodejs.org/en/download/) installed. 
-2. The latest version of [Yarn](https://yarnpkg.com/en/docs/install) installed. (Optional, but recommended)
-
-    > You have to be on Node >= 8.x and Yarn >= 1.5.
+    > You have to be on Node >= 18.x
 
 ## Installation
 
