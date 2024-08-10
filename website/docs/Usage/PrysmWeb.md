@@ -9,7 +9,7 @@ should be used to access it if your node is on a cloud VPS.
 
 If you wish to expose the Web UI across the network, which also exposes the key management UI, you can add `prysm-web-shared.yml` to your `COMPOSE_FILE` in `.env`.
 
-If you wish to only expose the Web UI to `localhost` and then use either a browser on the host or an SSH tunnel, you can add `validator-keyapi-localhost.yml` to `COMPOSE_FILE` in `.env`.
+If you wish to only expose the Web UI to `localhost` and then use either a browser on the host or an SSH tunnel, you can add `validator-keyapi-localport.yml` to `COMPOSE_FILE` in `.env`.
 
 ## Prepare the validator client
 
@@ -28,7 +28,7 @@ and validator.
 
 You need the Web UI secret first. It is shown during startup in the validator client log. You can also run `./ethd keys get-api-token` to get it.
 
-The first time you connect to the Web UI, you'll want to use `http://IP:7500/initalize?token=THETOKEN`, replacing `IP` and `THETOKEN` with the actual IP address and access token.
+The first time you connect to the Web UI, you'll want to use `http://IP:7500/initialize?token=THETOKEN`, replacing `IP` and `THETOKEN` with the actual IP address and access token.
 
 If your node is on a local, protected LAN, you can access the Web UI on a browser from any machine on your network via the node's IP address, if you use `prysm-web-shared.yml`.
 
@@ -51,7 +51,7 @@ command line.
 
 # Import keys
 
-Assuming you have some `keystore-m` JSON files from `./ethd cmd run --rm deposit-cli-new --eth1_withdrawal_address YOURHARDWAREWALLETADDRESS` or some other way of creating Launchpad compatible keys, click on "Create a Wallet".
+Assuming you have some `keystore-m` JSON files from `./ethd cmd run --rm deposit-cli-new --execution_address YOURHARDWAREWALLETADDRESS` or some other way of creating Launchpad compatible keys, click on "Create a Wallet".
 
 > These files are in `.eth/validator_keys` if you used the `deposit-cli` workflow. You'll want to move them to the machine you are running the browser on.
 

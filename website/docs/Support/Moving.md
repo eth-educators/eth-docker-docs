@@ -20,7 +20,7 @@ at once.
 When you absolutely have to. You incur an offline penalty of 3/4 of the reward
 you could have made in the same time. This means it is often better to take a day
 or several of downtime and work on getting the node back online, than risk
-slashing while moving validator keys. 
+slashing while moving validator keys.
 
 That said, if you are down during non-finality, or are abandoning a node to start
 a new one elsewhere, you may need to know how to move your key(s) safely.
@@ -31,7 +31,7 @@ a new one elsewhere, you may need to know how to move your key(s) safely.
 >  If you do not have these any more, you can recreate them with the `existing-mnemonic`
 >  workflow of deposit-cli, `./ethd cmd run --rm deposit-cli-existing` in
 >  this project, or offline to be very secure.
-- [ ] Ideally, an export of the slashing protection DB. If you are using eth-docker, `./ethd keys delete` will export the slashing protection database.
+- [ ] Ideally, an export of the slashing protection DB. If you are using Eth Docker, `./ethd keys delete` will export the slashing protection database.
 - [ ] A checklist, and diligence
 
 ## Checklist
@@ -48,10 +48,8 @@ First, you'll want to bring down the old client and make sure it can't come back
 In the directory of the old client:
 
 - [ ] `./ethd keys list`
-- [ ] `./ethd keys delete 0xPUBKEY` for each one so you get the slashing protection database
-- [ ] `./ethd down`
-- [ ] `docker volume ls` - find the volume for the validator
-- [ ] `docker volume rm VOLUMENAME` - remove the volume for the validator
+- [ ] `./ethd keys delete all` so you get the slashing protection database
+- [ ] `./ethd terminate`
 
 ### Verify
 
@@ -61,7 +59,7 @@ Verify that you removed the right client:
   finds validator keys, do not proceed until you fixed that and it doesn't.
   > For Nimbus and Teku, the command is `./ethd cmd run --rm consensus` instead
 - [ ] Look at https://beaconcha.in/ and verify that the validator(s) you just removed are now
-  missing an attestation. Take a note of the epoch the last successful attestion was in.
+  missing an attestation. Take a note of the epoch the last successful attestation was in.
 - [ ] Verify that both machines are synchronized to time and are using NTP.
 - [ ] Allow 15 minutes to go by and verify that the last successful attestation's epoch is now
   finalized. Only then take the next step.

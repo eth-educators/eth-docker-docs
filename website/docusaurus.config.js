@@ -12,10 +12,16 @@ module.exports = {
     },
     scripts: ['https://buttons.github.io/buttons.js'],
     themeConfig: {
+        docs: {
+            sidebar: {
+                hideable: true,
+                autoCollapseCategories: true,
+            },
+        },
         navbar: {
-            title: "eth-docker Docs",
+            title: "Eth Docker Docs",
             logo: {
-                alt: "eth-docker logo",
+                alt: "Eth Docker logo",
                 href: '/',
                 src: 'img/eth-moby-logo.png',
             },
@@ -29,18 +35,18 @@ module.exports = {
         },
         footer: {
             logo: {
-                alt: "eth-docker logo",
+                alt: "Eth Docker logo",
                 href: '/',
                 src: 'img/eth-moby-logo.png',
             },
-            copyright: `Copyright © ${new Date().getFullYear()} eth-docker contributors`,
+            copyright: `Copyright © ${new Date().getFullYear()} Eth Docker contributors`,
             links: [],
         },
         algolia: {
-            appId: 'BH4D9OD16A',
-            apiKey: 'a51366ded1891d634408de0e1e4cf1c5',
-            indexName: 'eth-docker',
-            algoliaOptions: { 'facetFilters': ["type:content", "version:current"] }
+            appId: '0ADJW6A3YH',
+            apiKey: 'ac048855a81596948b9d8386b6ccc0c1',
+            indexName: 'eth2-docker',
+            contextualSearch: false
         }
     },
     presets: [

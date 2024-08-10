@@ -4,7 +4,7 @@ title:  Securing a cloud VPS.
 sidebar_label: Cloud Security
 ---
 
-For the most part, nothing special needs to be done to run eth-docker on a VPS. However, budget VPS providers do not
+For the most part, nothing special needs to be done to run Eth Docker on a VPS. However, budget VPS providers do not
 filter the traffic that can reach the machine: This is definitely not desirable for unsecured ports like Grafana
 or execution client, if the shared option is being used. All that should be reachable are the P2P ports.
 
@@ -31,8 +31,12 @@ be used to secure Grafana.
 
 # ufw in front of docker while allowing all inter-container traffic
 
--A DOCKER-USER -j RETURN -s 10.0.0.0/8
--A DOCKER-USER -j RETURN -s 172.16.0.0/12
+-A DOCKER-USER -j RETURN -s 172.17.0.0/16
+-A DOCKER-USER -j RETURN -s 172.18.0.0/16
+-A DOCKER-USER -j RETURN -s 172.19.0.0/16
+-A DOCKER-USER -j RETURN -s 172.20.0.0/14
+-A DOCKER-USER -j RETURN -s 172.24.0.0/14
+-A DOCKER-USER -j RETURN -s 172.28.0.0/14
 -A DOCKER-USER -j RETURN -s 192.168.0.0/16
 
 -A DOCKER-USER -j ufw-user-input
@@ -41,8 +45,8 @@ be used to secure Grafana.
 COMMIT
 ```
 
-Note this deliberately keeps ufw rules from influencing any traffic sourced from RFC1918 (private) addresses, which includes the
-docker containers.  This may *not* be what you need, in which case just remove those three lines, and be sure to allow needed
+Note this deliberately keeps ufw rules from influencing any traffic sourced from the standard Docker private IP ranges.
+This may *not* be what you need, in which case just remove those seven lines, and be sure to allow needed
 container traffic through explicit ufw rules, if you are blocking a port.
 
 ### 2) Edit before.init
@@ -79,8 +83,8 @@ First, verify that Grafana is running and port 3000 is open to world using somet
 
 Next, create ufw rules to allow access from `localhost` and drop access from anywhere else:
 
-- `sudo ufw allow from 127.0.0.1 to any port 3000` 
-- `sudo ufw deny 3000` 
+- `sudo ufw allow from 127.0.0.1 to any port 3000`
+- `sudo ufw deny 3000`
 
 Check again on "yougetsignal" or the like that port 3000 is now closed.
 
