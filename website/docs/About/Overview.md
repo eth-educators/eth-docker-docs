@@ -7,13 +7,14 @@ sidebar_label: Overview
 
 ## This project
 
-eth-docker aims to make running an Ethereum staking full node simpler than setting everything up manually,
-while allowing the user choice when it comes to the exact client mix they wish to run.
+Eth Docker aims to make running an Ethereum staking full node simpler than setting everything up manually,
+while allowing the user choice when it comes to the exact client mix they wish to run. It's the "easy button" for home stakers,
+with full control for advanced users.
 
 Recommended hardware, whether your own hardware or a VPS, is:
 - 32 GiB of RAM - 16 GiB works but can be challenging depending on client mix
 - 4 CPU cores
-- 2TB ["mainstream" SSD](https://gist.github.com/yorickdowne/f3a3e79a573bf35767cd002cc977b038) - neither QLC nor DRAMless. 1TB can work with some client combinations but is very tight; 2TB affords more room for growth
+- 4TB ["mainstream" SSD](https://gist.github.com/yorickdowne/f3a3e79a573bf35767cd002cc977b038) - TLC and DRAM.
 
 ## Node components
 
@@ -26,16 +27,33 @@ An Ethereum staking full node has many moving parts. Here's a high level, concep
 > particularly in the logs of the consensus client.
 > Ethereum PoS (Proof-of-Stake) was also called Ethereum 2.0 at one point, but uses the same ETH token.
 
+## Eth Docker feature highlights
+
+- Supports all FOSS (Free and Open Source Software) Ethereum clients in any combination: Lodestar, Nimbus, Teku,
+Grandine, Lighthouse, Prysm; and Nethermind, Besu, Reth, Erigon, Geth
+- Runs on Linux or macOS, Intel/AMD x64 or ARM CPUs
+- Supports running Ethereum nodes, staking or RPC, on Ethereum and Gnosis Chain; supports running ssv.network DVT
+nodes; supports integration with RocketPool in (reverse) hybrid mode
+- Supports Grafana dashboards and alerting, either locally or Grafana Cloud or even your own remote Mimir/Thanos cluster
+- Uses official client teams' images, does not publish its own images
+- Supports advanced use cases such as exposing interfaces over https with traefik secure web proxy, or source-building clients locally
+
+## Guiding principles:
+
+- Reduce the attack surface of the client as much as feasible.
+- Guide users to good key management as much as possible
+- Create something that makes for a good user experience and guides people new to docker and Linux as much as feasible
+
+## Staking workflow
+
 When setting up an Ethereum staking full node, you'll:
 
-- Configure and run an execution client and sync it with the Görli testnet or main net
-- Configure and run an Ethereum consensus client and sync it with the Görli testnet or main net
+- Configure and run consensus client and  execution client and sync them with testnet or mainnet
 - Generate validator keys, one per 32 Eth you wish to stake. This can and often is done outside of the
   machine used to run the node, for security reasons.
 - Import validator keys into the validator client, each validator key activates one validator
 - Once the Ethereum execution client and consensus client are fully synced with the chain, deposit Ethereum
-  at the launchpad, 32 ETH per validator key. That Ethereum is now locked up until after the "merge" 
-  of Ethereum PoS (Proof-of-Stake) with Ethereum PoW (Proof-of-Work).
+  at the launchpad, 32 ETH per validator key.
 
 Here's what then happens:
 
@@ -53,13 +71,8 @@ Here's what then happens:
   values.
 - "Slashing" is a harsh penalty and forced exit for malicious validators; regular penalties could be
   described as "Leaking" instead. The most likely mistake that gets you slashed is to run a validator key
-  in two separate validator clients simultaneously. The initial slashing penalty on main net has been reduced
-  to 1/4th of its eventual value.
-- If all of the above was so much Gobbledegook, you may want to read the [Ethereum PoS primer](https://ethos.dev/beacon-chain/) and come
-  back to it every time you have questions. 
+  in two separate validator clients simultaneously.
+- If all of the above was so much Gobbledegook, you may want to read the
+[EthStaker knowlege base](https://docs.ethstaker.cc/ethstaker-knowledge-base) and come back to it every time you have
+questions.
 
-## Guiding principles:
-
-- Reduce the attack surface of the client as much as feasible.
-- Guide users to good key management as much as possible
-- Create something that makes for a good user experience and guides people new to docker and Linux as much as feasible

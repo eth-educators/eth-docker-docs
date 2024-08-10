@@ -42,7 +42,7 @@ net, however.
 > The slashing protection DB will be gone, and you risk slashing your validator(s)
 > otherwise.
 
-## Using eth-docker with a VPN on the node
+## Using Eth Docker with a VPN on the node
 
 VPNs typically need IP addressing in the RFC1918 (private) range, and docker by default will utilize the entire range, leaving the VPN to not find a free prefix.
 

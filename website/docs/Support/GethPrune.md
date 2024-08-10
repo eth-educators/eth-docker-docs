@@ -1,54 +1,27 @@
 ---
 id: GethPrune
-title:  Offline prune Geth.
-sidebar_label: Prune Geth
+title: Execution client prune
+sidebar_label: Prune execution client
 ---
 
-The Geth DB will [grow over time](../Usage/ResourceUsage.md), and may fill a 1TB SSD in
-about 6 months.
+### Automatic Nethermind prune
 
-You can offline prune Geth, bringing it back down close to its initial DB size.
+By default, Nethermind will prune when free disk space falls below 350 GiB on mainnet, or 50 GiB on testnet. If you
+want to disable that, `nano .env` and change `AUTOPRUNE_NM` to `false`.
 
-### Semi-automated Geth prune
+### Continuous Besu prune
 
-Run `./ethd prune-geth`. It will check prerequisites, prune Geth, and restart it
+Besu continuously prunes with BONSAI, and from 24.1.0 on also prunes its trie-logs. A long-running Besu may benefit
+from a manual trie-log prune, once.
 
-### Fully automated Geth prune
+### Continuous Geth prune
 
-The script `./autoprune.sh` can be run in crontab to monitor disk space, and start a Geth prune when free disk space is below 100 GiB or below 10%, whichever comes first.
+Geth continuously prunes if synced with PBSS. If you are using an old hash-synced Geth, run `./ethd resync-execution`
+to use PBSS. This will cause downtime while Geth syncs, which can take 6-12 hours.
 
-The script requires the `bc` package, install that first: `sudo apt install bc`
+### Manual Nethermind or Besu prune
 
-The script needs to be able to execute docker commands. If your user is a member of the `docker` group - that is, you can run `docker ps` without needing `sudo` - then you can `crontab -e` to add a crontab entry. If you require `sudo` for docker commands, place the script in root's crontab instead via `sudo crontab -e`.
+Run `./ethd prune-nethermind` if using Nethermind. It will check prerequisites, online prune Nethermind, and restart it.
 
-An entry such as the following would run the script every day at 8AM local. Adjust the path to point to where your instance of eth-docker has been installed.
-
-```
-MAILTO=user@example.com
-00 8 * * * /home/USER/eth-docker/auto-prune.sh
-```
-
-The `MAILTO` line will attempt to send you email when the script starts a prune. You'll need something like [ssmtp](https://help.ubuntu.com/community/EmailAlerts) for those mails to reach you.
-
-The script can be run as `auto-prune.sh --dry-run` if you just want the email alert and not the automatic prune itself. `--dry-run` works without eth-docker installed, as well.
-
-### Manual Geth prune
-
-To prune the Geth database manually:
-
-Check the prerequisites for offline pruning Geth, which are:
-- [ ] The volume Geth stores its DB on has 40 GiB of free space or more. We know 25 GiB is not enough, and may corrupt the DB.
-- [ ] Geth 1.10.x installed
-- [ ] Geth is fully synced
-- [ ] Geth has finished creating a snapshot, and this snapshot is 128 blocks old or older
-
-You can observe Geth logs with `./ethd logs -f execution`. If it is importing (not syncing) blocks, is done with initial
-state import, and does not show a snapshot ETA, it is fully synced and has finished the snapshot generation.
-
-Then run these commands:
-
-* `./ethd cmd stop execution && ./ethd cmd rm execution` - stop Geth
-* `./ethd cmd run --rm --name geth_prune -d execution snapshot prune-state` - start the pruning process
-* Observe pruning progress with `docker logs -f --tail 500 geth_prune`
-* When pruning is done: `./ethd up`
-* And observe that Geth is running correctly: `./ethd logs -f execution`
+Run `./ethd prune-besu` if using a long-running Besu. It will check prerequisites, offline prune Besu trie-logs, and
+restart it.

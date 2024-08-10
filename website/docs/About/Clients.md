@@ -8,20 +8,22 @@ This project builds from client teams' official docker images or from official s
 directly from docker hub or github, respectively. In most cases, binary is the default.
 
 Currently supported consensus clients:
-- Teku
-- Lighthouse
-- Nimbus
-- Lodestar
-- Prysm
+- [Lodestar](https://github.com/ChainSafe/lodestar)
+- [Nimbus](https://github.com/status-im/nimbus-eth2)
+- [Teku](https://github.com/Consensys/teku)
+- [Grandine](https://github.com/grandinetech/grandine)
+- [Lighthouse](https://github.com/sigp/lighthouse)
+- [Prysm](https://github.com/prysmaticlabs/prysm)
 
 Currently supported execution clients:
-- Geth
-- Besu
-- Nethermind
-- Erigon
+- [Reth](https://github.com/paradigmxyz/reth)
+- [Besu](https://github.com/hyperledger/besu)
+- [Nethermind](https://github.com/NethermindEth/nethermind)
+- [Geth](https://github.com/ethereum/go-ethereum)
+- [Erigon](https://github.com/ledgerwatch/erigon)
 
-> An Ethereum node has one consensus client and one execution client. eth-docker can be used to
-> split this between two machines, but that distributed setup has not yet been tested.
+> An Ethereum node has one consensus client and one execution client. Eth Docker can be used to split this between two
+machines, but that distributed setup is rare
 
 Currently supported additional options:
 - Sending stats to https://beaconcha.in

@@ -1,41 +1,43 @@
 {
-  	"docs": {
-		"About": [
-			"About/Overview",
-			"About/Acknowledgements",
-			"About/Clients",
-			"About/Rewards",
-			"About/MergePrep",
-			"About/Changelog"
-		],
-		"Usage": [
-			"Usage/BeforeYouStart",
-			"Usage/Hardware",
-			"Usage/Prerequisites",
-			"Usage/ClientSetup",
-			"Usage/ConfigureWallet",
-			"Usage/ImportKeys",
-			"Usage/StartClient",
-			"Usage/Deposit",
-			"Usage/Dashboards",
-			"Usage/PrysmWeb",
-			"Usage/ReverseProxy",
-			"Usage/ResourceUsage"
-		],
-		"Support" : [
-			"Support/Troubleshooting",
-			"Support/Recommendations",
-			"Support/Update",
-			"Support/AddValidator",		
-			"Support/Cloud",
-                        "Support/Moving",
-                        "Support/SwitchClient",
-			"Support/Exit",
-			"Support/GethPrune",
-			"Support/Rocketpool",
-			"Support/BloxSSV",
-			"Support/Windows",
-			"Support/Testing"
-		]
-	}	
+    "docs": {
+        "About": [
+            "About/Overview",
+            "About/Acknowledgements",
+            "About/Clients",
+            "About/Rewards",
+            "About/MergePrep",
+            "About/Changelog",
+            "About/SecurityAudit"
+        ],
+        "Usage": [
+            "Usage/QuickStart",
+            "Usage/ImportKeys",
+            "Usage/Hardware",
+            "Usage/Networking",
+            "Usage/LinuxSecurity",
+            "Usage/Advanced",
+            "Usage/Dashboards",
+            "Usage/PrysmWeb",
+            "Usage/ReverseProxy",
+            "Usage/ResourceUsage",
+            "Usage/Prerequisites"
+        ],
+        "Support" : [
+            "Support/Troubleshooting",
+            "Support/Recommendations",
+            "Support/Update",
+            "Support/AddValidator",
+            "Support/Cloud",
+            "Support/Moving",
+            "Support/SwitchClient",
+            "Support/ChangingWithdrawalCredentials",
+            "Support/Exit",
+            "Support/GethPrune",
+            "Support/Rocketpool",
+            "Support/SSV",
+            "Support/Windows",
+            "Support/ipv6",
+            "Support/HelpfulWebsites"
+        ]
+    }
 }
