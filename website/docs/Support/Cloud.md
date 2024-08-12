@@ -127,6 +127,27 @@ To allow Docker traffic to the execution client while dropping all other traffic
 
 > With ISP traffic caps, it could be quite attractive to run the execution client in a small VPS, and reference it from a consensus client somewhere
 > else. This requires a [secure proxy](../Usage/ReverseProxy.md).
+
+### Allowing Docker traffic to the host IP
+
+Ports mapped to host by Docker are reachable by default without the need for ufw rules. There is one exeption:
+If a Docker container on the host tries to reach a port mapped to host by the host IP, this will fail by default.
+
+Example: I am running a Docker container on a host with IP `1.2.3.4`, port `26000` is mapped to host, and the container
+tries to reach its own port as `1.2.3.4:26000` instead of `localhost:26000`. This will fail.
+
+This is a highly unusual configuration, as a Docker bridge network would typically be used instead of the host IP.
+If you do need to reach the host IP from a Docker container, however, a ufw rule like this would do it:
+
+```
+sudo ufw allow from 172.16.0.0/12 to any port <PORT>
+sudo ufw allow from 192.168.0.0/16 to any port <PORT>
+````
+
+The rules above are a little overly broad for simplicity, to cover all default Docker subnets. You can restrict this
+to the actual defaults by adding more specific rules. For the Docker default subnets, see the section about
+`after.rules`.
+
 ## Acknowledgements
 
 The ufw integration is a slightly tweaked version of https://github.com/chaifeng/ufw-docker by way 
