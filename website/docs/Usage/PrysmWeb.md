@@ -1,8 +1,16 @@
 ---
 id: PrysmWeb
-title:  Prysm Web UI.
-sidebar_label: Prysm Web
+title:  Web UI
+sidebar_label: Web UI
 ---
+
+## Lighthouse
+
+The Lighthouse Siren Web UI uses https with self-signed certificates. To use it, add `siren.yml` to `COMPOSE_FILE` in
+`.env`, and if you are not going to use traefik, add `siren-shared.yml` as well. It is then reachable on port `2443`
+by default. The port can be adjusted in `.env`.
+
+## Prysm
 
 The Prysm Web UI is insecure http, which means an [SSH tunnel](https://www.howtogeek.com/168145/how-to-use-ssh-tunneling/)
 should be used to access it if your node is on a cloud VPS.

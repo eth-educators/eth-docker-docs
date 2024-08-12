@@ -19,6 +19,7 @@ Please choose:
   * Grandine
   * Lighthouse
   * Prysm
+  * Caplin - built into Erigon
 * Your execution client you wish to run
   * Reth
   * Besu
@@ -60,18 +61,21 @@ the file names.
 Choose one consensus client:
 
 - `teku.yml` - Teku
-- `lighthouse.yml` - Lighthouse
 - `lodestar.yml` - Lodestar
 - `nimbus.yml` - Nimbus
+- `lighthouse.yml` - Lighthouse
 - `prysm.yml` - Prysm
 
 Choose one execution client:
 
-- `nethermind.yml` - nethermind execution client
-- `besu.yml` - besu execution client
-- `reth.yml` - reth execution client
-- `erigon.yml` - erigon execution client
-- `geth.yml` - geth execution client
+- `reth.yml` - Reth
+- `besu.yml` - Besu
+- `nethermind.yml` - Nethermind
+- `erigon.yml` - Erigon execution client
+- `geth.yml` - Geth execution client
+
+> If you wish to use the built-in Caplin consensus client with Erigon, use `erigon.yml` without a consensus client file,
+and it will use the built-in Caplin consensus client
 
 Optionally, enable MEV boost:
 
