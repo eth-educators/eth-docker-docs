@@ -1,7 +1,7 @@
 module.exports = {
     title: 'eth-docker',
     tagline: 'Ethereum  Docker Client',
-    url: 'https://eth-docker.net',
+    url: 'https://ethdocker.com',
     baseUrl: '/',
     onBrokenLinks: 'throw',
     favicon: 'img/eth-moby-logo.png',
