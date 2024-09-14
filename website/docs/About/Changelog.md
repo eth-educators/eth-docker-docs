@@ -16,6 +16,30 @@ instead.
 > On 1/27/2022, Eth Docker's repository name changed. Everything should work as it did.
 > If you do wish to manually update your local reference, run `git remote set-url origin https://github.com/eth-educators/eth-docker.git`
 
+## v2.12.2.0 2024-09-14
+
+*This is an optional release*
+
+Changes
+- Reth full sync now supports RocketPool, SSV and StakeWise by including their contracts for eth_getLogs / receipts.
+If you have an existing synced Reth, you'd need to make the change to `reth.toml` manually.
+- Erigon now defaults to the new `erigontech/erigon` repo and `latest` tag
+- Updated SSV dashboards
+- Add `./ethd keys count` command. Thanks @Hydepwns!
+- Persist Web3signer keys registered with Prysm
+- Use Go 1.23 for source builds
+- Support IPv6 for traefik
+- Besu sync mode and RPC API can be configured with `EL_EXTRAS`
+- Do not override Nethermind's `--Pruning.CacheMb`, as it was causing performance issues
+- Offer Prysm on ARM64
+- Offer Erigon on ARM64
+- Clarify the OS version nag
+- Source build for Teku and Besu uses Noble Numbat
+- Fresh sync of Besu, Geth or Nethermind prefers a Docker volume without `eth1` in the name
+
+Bug fixes
+- Only use `sudo` for `dkg_output` directory permission changes when needed. Thanks @jshufro!
+
 ## v2.12.1.0 2024-08-10
 
 *This is an optional release*
