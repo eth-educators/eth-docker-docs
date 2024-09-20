@@ -16,6 +16,20 @@ instead.
 > On 1/27/2022, Eth Docker's repository name changed. Everything should work as it did.
 > If you do wish to manually update your local reference, run `git remote set-url origin https://github.com/eth-educators/eth-docker.git`
 
+## v2.12.3.0 2024-09-20
+
+*This is a recommended release*
+
+Changes
+- Support Lido CSM module. Thanks @dgusakov, @vgorkavenko and @cnupy!
+- Add non-censoring Titan relay to mainnet default
+- Remove Eden relay from defaults
+- Do not switch Erigon repo to `erigontech/erigon`, yet, until images there contain `linux/amd64`
+
+Bug Fixes
+- `grafana.yml` and `grafana-cloud.yml` work with Docker `27.3.0` and later. Thanks u/ChewsMacRibs!
+- Fix incorrect method name during `./ethd update`. Thanks @kajeagentspi!
+
 ## v2.12.2.0 2024-09-14
 
 *This is an optional release*
