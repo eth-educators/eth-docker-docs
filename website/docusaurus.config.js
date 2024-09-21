@@ -11,6 +11,15 @@ module.exports = {
         image: 'img/eth-moby-logo.png',
     },
     scripts: ['https://buttons.github.io/buttons.js'],
+    i18n: {
+      defaultLocale: 'en',
+      locales: ['en', 'fr'],
+      localeConfigs: {
+        en: {
+          htmlLang: 'en-GB',
+        },
+      },
+    },
     themeConfig: {
         docs: {
             sidebar: {
@@ -30,6 +39,10 @@ module.exports = {
                     href: '/',
                     label: 'Get Started',
                     position: 'right',
+                },
+                {
+                  type: 'localeDropdown',
+                  position: 'left',
                 }
             ],
         },
