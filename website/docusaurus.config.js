@@ -59,7 +59,7 @@ module.exports = {
             appId: '0ADJW6A3YH',
             apiKey: 'ac048855a81596948b9d8386b6ccc0c1',
             indexName: 'eth2-docker',
-            contextualSearch: false
+            contextualSearch: true
         }
     },
     presets: [
