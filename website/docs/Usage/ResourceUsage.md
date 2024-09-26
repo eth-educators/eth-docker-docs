@@ -8,7 +8,7 @@ sidebar_label: Client Resource Usage
 
 | Client | Version | Date | DB Size  |  RAM | Notes |
 |--------|---------|----  |----------|------|-------|
-| Teku   | 23.12.1  | Jan 2024 | ~130 GiB | ~10 GiB |
+| Teku   | 24.8.0  | Sep 2024 | ~84 GiB | ~10 GiB |
 | Lighthouse | 4.5.0  | Jan 2024 | ~130 GiB | ~5 GiB |
 | Nimbus | 24.1.1 | Jan 2024 | ~170 GiB | ~2 to 3 GiB |
 | Prysm | 4.1.1 | Jan 2024 | ~130 GiB | ~5 GiB |
@@ -33,7 +33,7 @@ Please pay attention to the Version and Date. These are snapshots in time of cli
 |--------|---------|----  |----------|-----------|-----|-------|
 | Geth   | 1.13.8 | Jan 2024 | ~1.1 TiB | ~7-8 GiB / week | ~ 8 GiB | with PBSS |
 | Nethermind | 1.27.0 | Jun 2024 | ~800 GiB | ~11 GiB / week | ~ 7 GiB | With HalfPath, can automatic online prune at ~350 GiB free |
-| Besu | v23.10.3-hotfix | Jan 2024 | ~1.1 TiB | ~7-8 GiB / week | ~ 10 GiB | with Bonsai and trie log limit |
+| Besu | v24.9.1 | Sep 2024 | ~1.2 TiB | ~7-8 GiB / week | ~ 10 GiB | |
 | Reth | alpha.13 | Jan 2024 | ~1.1 TiB | ~ 3.5 GiB / week | ~ 9 GiB | throws away all logs except deposit contract, and so grows more slowly |
 | Erigon | 2.56.1 | Jan 2024 | ~1.7 TiB | ~7-8 GiB / week | See comment | Erigon will have the OS use all available RAM as a DB cache during post-sync operation, but this RAM is free to be used by other programs as needed. During sync, it may run out of memory on machines with less than 32 GiB |
 
@@ -87,7 +87,7 @@ Cache size default in all tests.
 |--------|---------|------|-------------|------------|--------|
 | Geth   | 1.13.0  | August 2023 | OVH Baremetal NVMe | ~ 6 hours | |
 | Nethermind | 1.24.0| Jan 2024 | OVH Baremetal NVMe | ~ 5 hours | Ready to attest after ~ 1 hour |
-| Besu | v23.10.4-dev | December 2023 | OVH Baremetal NVMe | ~ 16 hours | With X_SNAP sync |
+| Besu | v24.9.1 | Sep 2024 | OVH Baremetal NVMe | ~ 22 hours | |
 | Erigon | 2.48.1 | August 2023 | OVH Baremetal NVMe | ~ 9 days | |
 | Reth  | beta.1 | March 2024 | OVH Baremetal NVMe | ~ 2 days 16 hours | |
 
