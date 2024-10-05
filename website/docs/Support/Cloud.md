@@ -32,11 +32,9 @@ be used to secure Grafana.
 # ufw in front of docker while allowing all inter-container traffic
 
 -A DOCKER-USER -j RETURN -s 172.17.0.0/16
--A DOCKER-USER -j RETURN -s 172.18.0.0/16
--A DOCKER-USER -j RETURN -s 172.19.0.0/16
+-A DOCKER-USER -j RETURN -s 172.18.0.0/15
 -A DOCKER-USER -j RETURN -s 172.20.0.0/14
--A DOCKER-USER -j RETURN -s 172.24.0.0/14
--A DOCKER-USER -j RETURN -s 172.28.0.0/14
+-A DOCKER-USER -j RETURN -s 172.24.0.0/13
 -A DOCKER-USER -j RETURN -s 192.168.0.0/16
 
 -A DOCKER-USER -j ufw-user-input
