@@ -16,6 +16,26 @@ instead.
 > On 1/27/2022, Eth Docker's repository name changed. Everything should work as it did.
 > If you do wish to manually update your local reference, run `git remote set-url origin https://github.com/eth-educators/eth-docker.git`
 
+## v2.13.0.0 2024-10-16
+
+*This is a recommended release*
+
+**Breaking** changes
+- Require Prysm `v5.1.1` or later
+
+Changes
+- Add support for commit boost
+- A fresh Reth sync keeps all receipts, for compatibility with sundry protocols such as SSV, RocketPool, NodeSet,
+StakeWise
+- Improved IPv4/v6 dual stack support
+- IPv6 is enabled on hosts that have IPv6 connectivity
+- Add Titan relay to Lido CM config dialog. Thanks @vgorkavenko!
+
+Bug Fixes
+- Fixes to Lido CSM support. Thanks @cnupy!
+- Undo the Prysm VC REST use that "snuck in" with CSM. Prysm VC uses RPC again on port 4000, until the Prysm team
+promote the REST VC from experimental to released
+
 ## v2.12.3.0 2024-09-20
 
 *This is a recommended release*
