@@ -13,7 +13,7 @@ module.exports = {
     scripts: ['https://buttons.github.io/buttons.js'],
     i18n: {
       defaultLocale: 'en',
-      locales: ['en', 'fr', 'es'],
+      locales: ['en', 'fr', 'es', 'de'],
     },
     themeConfig: {
         docs: {
