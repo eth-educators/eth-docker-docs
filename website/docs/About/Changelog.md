@@ -16,6 +16,26 @@ instead.
 > On 1/27/2022, Eth Docker's repository name changed. Everything should work as it did.
 > If you do wish to manually update your local reference, run `git remote set-url origin https://github.com/eth-educators/eth-docker.git`
 
+## v2.14.0.0 2024-10-29
+
+*This is a recommended release*
+
+**Breaking** changes
+- Require Erigon `v2.60.9` or later
+
+Changes
+- Use new `erigontech/erigon` repo, instead of `thorax/erigon`
+- Use new `ssvlabs/ssv-node` repo, instead of `bloxstaking/ssv-node`
+- Teku default heap to 7g
+- Lighthouse archive node aggressively backfills: 3 days instead of 2 weeks
+- Update Lido Oracle addresses on mainnet. Thanks @nameisremus!
+- `MEV_RELAYS` can now be a multi-line value. Thanks h.m.23 for suggesting this feature!
+
+Bug fixes
+- Don't check for Docker service on Microsoft WSL
+- `./ethd keys send-exit` works with a `CL_NODE` that has comma-separated backup CLs
+- Fix Lido mainnet fee recipient. Thanks @vgorkavenko!
+
 ## v2.13.0.0 2024-10-16
 
 *This is a recommended release*
