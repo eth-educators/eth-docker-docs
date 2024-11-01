@@ -16,9 +16,20 @@ instead.
 > On 1/27/2022, Eth Docker's repository name changed. Everything should work as it did.
 > If you do wish to manually update your local reference, run `git remote set-url origin https://github.com/eth-educators/eth-docker.git`
 
-## v2.14.0.0 2024-10-29
+## v2.14.0.1 2024-11-01
 
 *This is a recommended release*
+
+Changes
+- Add support for Ephemery testnet to `./ethd config`
+
+Bug fixes
+- Resolve `awk` warning messages on GNU awk, which impacted all versions of Ubuntu
+- Fix errors causing `./ethd config` to fail on several configuration options
+
+## v2.14.0.0 2024-10-29
+
+*Avoid this release and use `v2.14.0.1`*
 
 **Breaking** changes
 - Require Erigon `v2.60.9` or later
