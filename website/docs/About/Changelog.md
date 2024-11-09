@@ -16,6 +16,16 @@ instead.
 > On 1/27/2022, Eth Docker's repository name changed. Everything should work as it did.
 > If you do wish to manually update your local reference, run `git remote set-url origin https://github.com/eth-educators/eth-docker.git`
 
+## v2.14.0.2 2024-11-09
+
+*This is a recommended release*
+
+Bug fixes
+- `prysm-stats.yml` and `nimbus-stats.yml` survive reboot and Docker update. Thanks qiqsilver!
+- Siren fixes for `CL_NODE` with commata, and IPv6 machines. @pietjepuk2 flexing those maintainer muscles!
+- Lido CSM Titan in optional list. Thanks @vgorkavenko!
+- Reth logs its receipts pruning accurately. Thanks marc_blockshard!
+
 ## v2.14.0.1 2024-11-01
 
 *This is a recommended release*
