@@ -17,7 +17,7 @@ configured with `RAPID_SYNC_URL` in `.env`, can sync one in minutes.
 # Exit using keymanager API
 
 - Get a list of your keys with `./ethd keys list`
-- Sign an exit message with `./ethd keys sign-exit 0xpubkey`
+- Sign an exit message with `./ethd keys sign-exit <0xpubkey>`
 
 This signed message is valid for the life of your validator; you do not have to use it right away
 (you could, for example, keep it for your heirs). 
