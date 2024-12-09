@@ -4,7 +4,7 @@ title: IPv6
 sidebar_label: IPv6 support
 ---
 
-## Conquer network anxiety
+## Conquer network amxiety
 
 As of mid 2024:
 
