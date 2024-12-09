@@ -8,7 +8,7 @@ sidebar_label: IPv6 support
 
 As of mid 2024:
 
-CGNAT is becoming more prevalant, making it harder to make P2P ports available inbound and get good peering.
+CGNAT is becoming more prevalent, making it harder to make P2P ports available inbound and get good peering.
 
 Docker support for IPv6 is better.
 
