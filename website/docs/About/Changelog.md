@@ -16,6 +16,30 @@ instead.
 > On 1/27/2022, Eth Docker's repository name changed. Everything should work as it did.
 > If you do wish to manually update your local reference, run `git remote set-url origin https://github.com/eth-educators/eth-docker.git`
 
+## v2.15.0.0 2024-12-11
+
+*This is a recommended release*
+
+**Breaking changes**
+- Require Nethermind `1.30.0`; use `--data-dir` in place of the deprecated `--datadir`
+
+Changes
+- Support `EL_MAX_PEER_COUNT` for Reth. Thanks @victorelec14!
+- `CL_NODE` can be comma-separated for Nimbus. Thanks @b0a7!
+- Switch to ethstaker-deposit-cli, from staking-deposit-cli
+- The Docker root dir is detected upon startup, for ease of use with `grafana.yml`
+- The validator alias is configurable, to run multiple copies of Eth Docker on the same bridge network and still
+have `ethd keys` work correctly
+- The default IPv6 P2P port does not conflict with a host-mapped Prometheus
+- Compatible with Lighthouse `v6.0.0`
+
+Bug fixes
+- Resolve `.env` getting `root` permissions when running `sudo ./ethd update`. Reminder that `ethd` is best run
+without `sudo`
+- The Nimbus execution layer client compiles again
+- `CL_IPV6_P2P_PORT` is retained during `ethd update`
+- Lido Obol exiter service survives Docker update, reboot, &c
+
 ## v2.14.0.2 2024-11-09
 
 *This is a recommended release*
