@@ -15,6 +15,9 @@ module.exports = {
       defaultLocale: 'en',
       locales: ['en', 'fr', 'es', 'de'],
     },
+    future: {
+      experimental_faster: true,
+    },
     themeConfig: {
         docs: {
             sidebar: {
