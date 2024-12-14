@@ -4,6 +4,8 @@ title:  Voluntary validator exit
 sidebar_label: Voluntary exit
 ---
 
+# Voluntary validator exit
+
 Ethereum PoS has a concept of "voluntary validator exit", which will remove the
 validator from attesting duties. Staked ETH will be withdrawn automatically
 to the withdrawal address, as long as one has been set.
@@ -14,7 +16,7 @@ be credited, and you will battle support for them.
 Exiting a validator requires a fully synced consensus client. Checkpoint sync,
 configured with `RAPID_SYNC_URL` in `.env`, can sync one in minutes.
 
-# Exit using keymanager API
+## Exit using keymanager API
 
 - Get a list of your keys with `./ethd keys list`
 - Sign an exit message with `./ethd keys sign-exit <0xpubkey>`
@@ -35,13 +37,13 @@ There are three steps:
 tab at `https://beaconcha.in/validator/<validator-id>` for the next scheduled withdraw for your validator)
 
 
-# Avoid penalties
+## Avoid penalties
 
 Note you will need to continue running your validator until the exit has been processed by the chain, if you wish to
 avoid incurring offline penalties. You can check the status of your validator with tools such as
 [beaconcha.in](https://beaconcha.in).
 
-# Exit using keystore-m and ethdo
+## Exit using keystore-m and ethdo
 
 - Place all keys to be exited into `.eth/validator-keys`
 - Run `./ethd keys sign-exit from-keystore`, optionally with `--offline` if you have an `offline-preparation.json` for
@@ -57,19 +59,19 @@ This works when Eth Docker is not the primary way to run the node. For example, 
 of your node and `5052` to the port REST is available on. Note that for this to work, the REST port needs to be
 reachable by host IP, *not* just by `localhost`. When in doubt, the `--offline` method will always work.
 
-# Legacy exit using client-specific tools
+## Legacy exit using client-specific tools
 
-## Teku
+### Teku
 
 Teku will exit all validators that have been imported to it. Run
 `./ethd cmd run --rm validator-exit` and follow the prompts.
 
-## Prysm
+### Prysm
 
 To exit, run `./ethd cmd run --rm validator-exit` and follow the
 prompts.
 
-## Lighthouse
+### Lighthouse
 
 The exit procedure for Lighthouse requires a copy of the keystore JSON files.
 
@@ -90,7 +92,7 @@ validator-dir path: "/keys"
 Enter the keystore password for validator in "/keys/keystore-m_12381_3600_0_0_0-1605672506.json"  
 ```
 
-## Nimbus
+### Nimbus
 
 The exit procedure for Nimbus requires a copy of the keystore JSON files.
 
@@ -107,7 +109,7 @@ Please enter the password for decrypting '/keys/keystore-m_12381_3600_0_0_0-1681
 Password:
 ```
 
-## Lodestar
+### Lodestar
 
 To exit a specific validator, run `./ethd cmd run --rm validator-exit --pubkeys <0xPUBKEY>`.  
 Multiple validators can be exited by providing a comma-separated list of public keys to `pubkeys`.  
