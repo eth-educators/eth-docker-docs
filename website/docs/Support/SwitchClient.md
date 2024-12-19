@@ -6,17 +6,23 @@ sidebar_label: Switch Clients
 
 ## Overview
 
-It may be desirable to switch clients if you are using one that is close to a supermajority of validators. If any one client has a supermajority of the chain, there is a risk that a [consensus bug could lead to a mass slashing](https://www.symphonious.net/2021/09/23/what-happens-if-beacon-chain-consensus-fails/) and validators on this client would lose 3/4th of their staked ETH in that worst-case scenario.  
+It may be desirable to switch clients if you are using one that is close to a supermajority of validators. If any one
+client has a supermajority of the chain, there is a risk that a
+[consensus bug could lead to a large inactivity leak](https://www.symphonious.net/2021/09/23/what-happens-if-beacon-chain-consensus-fails/)
+and validators on this client would lose almost all of their staked ETH in that worst-case scenario.
 
 Choose any consensus client and any execution client you'd like to use, and then follow the instructions below.
 
-Note that if you change the execution client, you either need sufficient disk space to sync two execution clients, or accept downtime while your new execution client syncs.
+Note that if you change the execution client, you either need sufficient disk space to sync two execution clients, or
+accept downtime while your new execution client syncs.
 
 > `sudo` commands for docker are necessary if your user is not part of the `docker` group. If `docker ps` does not succeed, you need to use `sudo` for `docker` or `docker-compose`, or make your user part of the `docker` group.
 
 ## Switching to web3signer
 
-With web3signer, the keys do not need to be moved when switching the consensus client. If keys are currently loaded directly into the validator client, which is the default, they need to be just as carefully moved as when switching between consensus clients without web3signer.
+With web3signer, the keys do not need to be moved when switching the consensus client. If keys are currently loaded
+directly into the validator client, which is the default, they need to be just as carefully moved as when switching
+between consensus clients without web3signer.
 
 ### 1. Delete validator keys
 
@@ -55,7 +61,14 @@ This carries a slashing risk, take extreme care.
 
 ### 5. Verify that validators are attesting again
 
-Check https://beaconcha.in/ for your validator public keys, as well as the logs of `consensus` and, if not Nimbus or Teku, `validator` services.
+Check https://beaconcha.in/ for your validator public keys, as well as the logs of `consensus` and, if not using an
+`client-allin1.yml`, `validator` services.
+
+### 6. Reapply any custom per-validator settings
+
+Custom fee recipient, graffiti and gas limit are stored by the validator client. By default, there are no custom
+settings. If, however, you used `./ethd keys set-recipient`, `./ethd keys set-gas` or `./ethd keys set-graffiti`
+before, you need to do so again after switching to a new validator client.
 
 ## Switching only the consensus client, keys in web3signer
 
@@ -79,9 +92,16 @@ remain in web3signer, this does not carry a slashing risk.
 
 Nimbus and Prysm register the web3signer keys automatically on startup, you need not register them manually.
 
-### 4. Verify that validators are attesting
+### 4. Verify that validators are still attesting
 
-Check https://beaconcha.in/ for your validator public keys, as well as the logs of `consensus` and, if not Nimbus or Teku, `validator` services.
+Check https://beaconcha.in/ for your validator public keys, as well as the logs of `consensus` and, if not using an
+`client-allin1.yml`, `validator` services.
+
+### 5. Reapply any custom per-validator settings
+
+Custom fee recipient, graffiti and gas limit are stored by the validator client. By default, there are no custom
+settings. If, however, you used `./ethd keys set-recipient`, `./ethd keys set-gas` or `./ethd keys set-graffiti`
+before, you need to do so again after switching to a new validator client.
 
 ## Switching only the consensus client, keys *not* in web3signer
 
@@ -118,7 +138,14 @@ This carries a slashing risk, take extreme care.
 
 ### 5. Verify that validators are attesting again
 
-Check https://beaconcha.in/ for your validator public keys, as well as the logs of `consensus` and, if not Nimbus or Teku, `validator` services.
+Check https://beaconcha.in/ for your validator public keys, as well as the logs of `consensus` and, if not using an
+`client-allin1.yml`, `validator` services.
+
+### 6. Reapply any custom per-validator settings
+
+Custom fee recipient, graffiti and gas limit are stored by the validator client. By default, there are no custom
+settings. If, however, you used `./ethd keys set-recipient`, `./ethd keys set-gas` or `./ethd keys set-graffiti`
+before, you need to do so again after switching to a new validator client.
 
 ## Switching the execution client if downtime is acceptable
 
