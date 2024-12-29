@@ -16,6 +16,22 @@ instead.
 > On 1/27/2022, Eth Docker's repository name changed. Everything should work as it did.
 > If you do wish to manually update your local reference, run `git remote set-url origin https://github.com/eth-educators/eth-docker.git`
 
+## v2.15.0.1 2024-12-29
+
+*This is a recommended release*
+
+Changes
+- Build Nethermind with .NET 9
+- Clearly identify Nethermind during `./ethd version`
+- CloudFlare DDNS updates v6 address, as well as v4
+
+Bug fixes
+- Legacy Prysm API token files are handled gracefully. Thanks @ThomasBlock for reporting and @BriungRi for finding
+root cause!
+- Eth Docker's utility commands such as `./ethd resync-consensus` work when there are upper-case letters in the
+directory name, such as `Eth-Docker`
+- `./ethd space` works with large volume lists
+
 ## v2.15.0.0 2024-12-11
 
 *This is a recommended release*
