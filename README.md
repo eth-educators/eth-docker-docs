@@ -12,11 +12,21 @@ Below are steps for initialising and reproducing this portal for development.
 ## Installation
 
 1. Clone this repository.
-2.  Enter the newly cloned repo and enter the ` website` directory.
+2. Enter the newly cloned repo and enter the ` website` directory.
 3. Issue the command `npm ci`
 4. Wait for the installation process to complete.
 
+## Version update
+
+1. Enter the `website` directory in this repo
+2. Update `package.json` if the Docusaurus major version changed
+3. Run `npm update`
+4. Check that the website will still load with `npm start`
+
 ## Running the development server  
+
+> Do this every time the `website/docs` directory had changes, to ensure there are no breaking changes such as
+outdated links
 
 1. From within the `website` directory, run the local web server using `yarn start` or `npm start`.
 2.  Load the example site at http://localhost:3000 if it did not already open automatically. If port 3000 has already been taken, another port will be used. Look at the console messages to see which.
