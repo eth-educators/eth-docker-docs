@@ -13,7 +13,7 @@ Below are steps for initialising and reproducing this portal for development.
 
 1. Clone this repository.
 2.  Enter the newly cloned repo and enter the ` website` directory.
-3. Issue the command `npm install`
+3. Issue the command `npm ci`
 4. Wait for the installation process to complete.
 
 ## Running the development server  
