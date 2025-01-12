@@ -16,6 +16,15 @@ instead.
 > On 1/27/2022, Eth Docker's repository name changed. Everything should work as it did.
 > If you do wish to manually update your local reference, run `git remote set-url origin https://github.com/eth-educators/eth-docker.git`
 
+## v2.15.0.2 2025-01-12
+
+*This is an optional release with bug fixes*
+
+Bug fixes
+- Fix Xatu. Thanks @samcm!
+- Do not offer Lido CSM SSV on ARM hardware
+- Fix Nimbus source build
+
 ## v2.15.0.1 2024-12-29
 
 *This is a recommended release*
