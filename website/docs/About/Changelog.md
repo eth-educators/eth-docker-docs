@@ -20,8 +20,10 @@ instead.
 
 *This is an optional release with bug fixes*
 
+Changes
+- Add Xatu. Thanks @samcm for making it work!
+
 Bug fixes
-- Fix Xatu. Thanks @samcm!
 - Do not offer Lido CSM SSV on ARM hardware
 - Fix Nimbus source build
 
