@@ -16,6 +16,29 @@ instead.
 > On 1/27/2022, Eth Docker's repository name changed. Everything should work as it did.
 > If you do wish to manually update your local reference, run `git remote set-url origin https://github.com/eth-educators/eth-docker.git`
 
+
+## v2.15.1.0 2025-02-04
+
+*This release is mandatory for users of SSV DKG*
+
+Changes
+- Support SSV DKG 3.x. Please adjust `ssv-config/dkg-config.yaml` manually to add a dot `.` in front of every path.
+See `ssv-config/ssv-config-sample.yaml` for an example
+- Replace Xatu with Contributoor. Thanks @samcm!
+- Support Erigon 3 beta
+- Add a `MINIMAL_NODE` option for nodes that implement EIP-4444 and expire pre-merge history. At present, only
+Erigon 3 beta
+- `./ethd config` checks the contents of `JWT_SECRET` more closely. Thanks @b0a7!
+- Add SSV Pulse benchmark
+- No longer suggest our own `GRAFFITI` and use the client default
+- `ethdo` now prints debug log lines
+
+Bug fixes
+- Nimbus works on Gnosis
+- Fix Lodestar source build
+- Fix Nimbus source builds
+- Improve prep for changing ext-network.yml
+
 ## v2.15.0.2 2025-01-12
 
 *This is an optional release with bug fixes*
