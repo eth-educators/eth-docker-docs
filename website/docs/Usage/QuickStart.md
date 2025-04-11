@@ -14,8 +14,13 @@ Take a look at some [build ideas](../Usage/Hardware.md) and consider clients' [r
 
 ## Eth Docker QuickStart
 
-For a rapid start, have Ubuntu or Debian Linux installed, and then follow these steps. This has been tested on Ubuntu
-20.04/22.04 and Debian 11/12. 
+For a rapid start, have Ubuntu or Debian Linux installed, and then follow these steps. This has been tested on Debian
+11/12 and Ubuntu 22.04/24.04. 
+
+> If you are using a minimal version of Debian without common utilities installed, please install `sudo` and `git`
+> as the `root` user with `apt install sudo git`, then make your main non-root user a member of the sudo group
+> with `usermod -aG sudo <username>`.
+> Eth Docker itself needs to be installed as that non-root user, for security purposes.
 
 Download Eth Docker
 
