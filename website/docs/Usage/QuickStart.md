@@ -18,9 +18,10 @@ For a rapid start, have Ubuntu or Debian Linux installed, and then follow these 
 11/12 and Ubuntu 22.04/24.04. 
 
 > If you are using a minimal version of Debian without common utilities installed, please install `sudo` and `git`
-> as the `root` user with `apt install sudo git`, then make your main non-root user a member of the sudo group
+> as the `root` user with `apt install sudo git`, then make your non-root user a member of the sudo group
 > with `usermod -aG sudo <username>`.
-> Eth Docker itself needs to be installed as that non-root user, for security purposes.
+
+Eth Docker needs to be installed while logged into a user account other than `root`, for security purposes.
 
 Download Eth Docker
 
