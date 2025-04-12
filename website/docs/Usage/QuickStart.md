@@ -1,6 +1,6 @@
 ---
-id: QuickStart
 title:  Eth Docker QuickStart
+sidebar_position: 1
 sidebar_label: QuickStart
 ---
 
@@ -63,8 +63,8 @@ Deposit your 32 ETH using the official [Staking Launchpad](https://launchpad.eth
 
 macOS requires [manual installation](../Usage/Prerequisites.md) of Docker Desktop. 
 
-Explore the sidebar for advanced options. In particular, you can [integrate with RocketPool](../Support/Rocketpool.md),
-run an [SSV operator node](../Support/SSV.md), or run an [RPC node](../Usage/ClientSetup.md) with either locally
+Explore the sidebar for advanced options. In particular, you can [integrate with RocketPool](../Usage/Advanced/Rocketpool.md),
+run an [SSV operator node](../Usage/Advanced/SSV.md), or run an [RPC node](../Usage/Advanced/ClientSetup.md) with either locally
 shared RPC/WS ports or these ports [secured by Traefik and https](../Usage/ReverseProxy.md).
 
 ## Additional resources

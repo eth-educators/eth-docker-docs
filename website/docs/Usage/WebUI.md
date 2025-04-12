@@ -1,6 +1,6 @@
 ---
-id: PrysmWeb
-title:  Web UI
+title: Web UI
+sidebar_position: 8
 sidebar_label: Web UI
 ---
 

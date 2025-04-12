@@ -1,6 +1,6 @@
 ---
-id: Rewards
 title: Chain Rewards	 
+sidebar_position: 4
 sidebar_label: Chain Rewards
 ---
 

@@ -1,6 +1,6 @@
 ---
-id: Cloud
 title:  Securing a cloud VPS.
+sidebar_position: 5
 sidebar_label: Cloud Security
 ---
 

@@ -1,6 +1,6 @@
 ---
-id: GethPrune
 title: Execution client prune
+sidebar_position: 10
 sidebar_label: Prune execution client
 ---
 

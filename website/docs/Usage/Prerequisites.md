@@ -1,6 +1,6 @@
 ---
-id: Prerequisites
-title: "Step 1: Install Prerequisites."
+title: "Install Prerequisites."
+sidebar_position: 11
 sidebar_label: Prerequisites
 ---
 

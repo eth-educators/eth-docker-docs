@@ -1,6 +1,6 @@
 ---
-id: Rocketpool
 title: Integration with Rocketpool.
+sidebar_position: 1
 sidebar_label: Integration with Rocketpool
 ---
 
