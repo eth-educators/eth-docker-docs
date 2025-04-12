@@ -17,11 +17,11 @@ Take a look at some [build ideas](../Usage/Hardware.md) and consider clients' [r
 For a rapid start, have Ubuntu or Debian Linux installed, and then follow these steps. This has been tested on Debian
 11/12 and Ubuntu 22.04/24.04. 
 
-> If you are using a minimal version of Debian without common utilities installed, please install `sudo` and `git`
-> as the `root` user with `apt update && apt install sudo git`, then make your non-root user a member of the sudo group
-> with `usermod -aG sudo <username>`.
+> If you are using a version of Debian with a root password set, please install `sudo` as the `root` user with
+> `apt update && apt install sudo git`, then make your non-root user a member of the sudo group with
+> `usermod -aG sudo <username>`.
 
-> If you are using a minimal version of Ubuntu Desktop, please install `git` with `sudo apt update && sudo apt install git`
+> If you are using a minimal version of Ubuntu or Debian, please install `git` with `sudo apt update && sudo apt install git`
 
 Eth Docker needs to be installed while logged into a user account other than `root`, for security purposes.
 
