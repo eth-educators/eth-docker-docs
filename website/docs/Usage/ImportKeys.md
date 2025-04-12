@@ -1,6 +1,6 @@
 ---
-id: ImportKeys
 title: "Create and import validator keys to the client"
+sidebar_position: 2
 sidebar_label: Import Validator Keys
 ---
 
@@ -84,7 +84,7 @@ Do **not** run keys in both the client directly and web3signer. This can get you
 **Warning** Import your validator key(s) to only *one* client. If you run them in two locations at once,
 you will be slashed: Forcibly exited and assessed a penalty greater than 1 ETH.
 
-> If you use the [Prysm Web](../Usage/PrysmWeb.md), you can use it
+> If you use the [Prysm Web](../Usage/WebUI.md), you can use it
 > or this command-line process to import keys.
 
 ### Prysm - create a wallet

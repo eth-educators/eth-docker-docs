@@ -1,6 +1,6 @@
 ---
-id: Dashboards
-title: "Step 7: Choose a Grafana dashboard (optional)"
+title: "Choose a Grafana dashboard (optional)"
+sidebar_position: 7
 sidebar_label: Dashboards
 ---
 

@@ -1,6 +1,6 @@
 ---
-id: LinuxSecurity
 title: Linux security and setup recommendations
+sidebar_position: 5
 sidebar_label: Linux Security
 ---
 

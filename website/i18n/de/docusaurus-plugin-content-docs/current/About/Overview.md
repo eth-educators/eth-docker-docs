@@ -1,7 +1,7 @@
 ---
-id: Overview
 slug: /
 title: High Level Overview.
+sidebar_position: 1
 sidebar_label: Overview
 ---
 
@@ -12,9 +12,19 @@ while allowing the user choice when it comes to the exact client mix they wish t
 with full control for advanced users.
 
 Recommended hardware, whether your own hardware or a VPS, is:
-- 32 GiB of RAM - 16 GiB works but can be challenging depending on client mix
-- 4 CPU cores
+- 32 to 64 GiB of RAM - 16 GiB works but can be challenging depending on client mix
+- 4 to 8 CPU cores
 - 4TB ["mainstream" SSD](https://gist.github.com/yorickdowne/f3a3e79a573bf35767cd002cc977b038) - TLC and DRAM.
+
+## Getting started
+
+After installing Linux, either Debian or [Ubuntu](https://docs.ethstaker.org/tutorials/installing-linux),
+please take a look at the [Quick Start](../Usage/QuickStart.md) instructions.
+
+If you wish to use a separate drive for Ethereum data, please check how to
+[tell Docker to use a second drive](../Usage/Prerequisites.md#change-docker-storage-location).
+
+macOS and Windows users should start at the [Prerequisites](../Usage/Prerequisites.md#macos-prerequisites).
 
 ## Node components
 
@@ -49,11 +59,13 @@ nodes; supports integration with RocketPool in (reverse) hybrid mode
 When setting up an Ethereum staking full node, you'll:
 
 - Configure and run consensus client and  execution client and sync them with testnet or mainnet
-- Generate validator keys, one per 32 Eth you wish to stake. This can and often is done outside of the
-  machine used to run the node, for security reasons.
+- Generate validator keys. This can and often is done outside of the machine used to run the node, for security reasons.
+- Validator keys can be distributing (type 1) and hold 32 ETH, or accumulating (type 2) and hold 32-2048 ETH.
+- Consensus layer rewards go to the unchangeable "withdrawal address" set when generating the keys; execution layer rewards go to
+the "fee recipient address", which can be changed at a whim.
 - Import validator keys into the validator client, each validator key activates one validator
 - Once the Ethereum execution client and consensus client are fully synced with the chain, deposit Ethereum
-  at the launchpad, 32 ETH per validator key.
+  at the launchpad.
 
 Here's what then happens:
 
@@ -69,7 +81,7 @@ Here's what then happens:
   far harsher penalties for offline validators kick in. Stay online during non-finality. The initial
   penalties on main net for this "inactivity" during non-finality have been reduced to 1/4th of their eventual
   values.
-- "Slashing" is a harsh penalty and forced exit for malicious validators; regular penalties could be
+- "Slashing" is a penalty and forced exit for malicious validators; regular penalties could be
   described as "Leaking" instead. The most likely mistake that gets you slashed is to run a validator key
   in two separate validator clients simultaneously.
 - If all of the above was so much Gobbledegook, you may want to read the

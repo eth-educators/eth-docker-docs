@@ -1,7 +1,7 @@
 ---
-id: Overview
 slug: /
 title: High Level Overview.
+sidebar_position: 1
 sidebar_label: Overview
 ---
 

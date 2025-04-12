@@ -1,6 +1,6 @@
 ---
-id: SecurityAudit
 title: Security Audit
+sidebar_position: 6
 sidebar_label: Security Audit
 ---
 

@@ -1,6 +1,6 @@
 ---
-id: Windows
 title:  Windows
+sidebar_position: 12
 sidebar_label: Windows
 ---
 

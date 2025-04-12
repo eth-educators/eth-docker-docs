@@ -1,7 +1,7 @@
 ---
-id: Advanced
-title: "Advanced use and manual setup"
-sidebar_label: Advanced Use
+title: "Manual setup"
+sidebar_position: 6
+sidebar_label: Manual setup
 ---
 
 ## Client choice - manual setup
@@ -94,7 +94,7 @@ not be exposed to the Internet. Used *in addition* to `grafana.yml`, not instead
 not be exposed to the Internet. Using encryption instead via `traefik-*.yml` is recommended.
 - `siren.yml` - Lighthouse's Siren UI
 
-> See [Prysm Web](../Usage/PrysmWeb.md) for notes on using the Prysm Web UI
+> See [Prysm Web](../../Usage/WebUI.md) for notes on using the Prysm Web UI
 
 Optionally, add ethdo for beacon chain queries:
 
@@ -111,63 +111,13 @@ Optionally, add encryption to the Grafana and/or Prysm Web pages:
 - `traefik-aws.yml` - use encrypting secure web proxy and use AWS Route53 for DNS management
 - `el-traefik.yml,` `cl-traefik.yml`, `ee-traefik.yml` - advanced use, use traefik for access to execution RPC,
 consensus REST and execution engine RPC API ports respectively. Be very cautious with these, always
-[firewall](../Support/Cloud.md) that access to trusted source IPs.
+[firewall](../../Support/Cloud.md) that access to trusted source IPs.
 
-With these, you wouldn't use the `-shared.yml` files. Please see [Secure Web Proxy Instructions](../Usage/ReverseProxy.md)
+With these, you wouldn't use the `-shared.yml` files. Please see [Secure Web Proxy Instructions](../../Usage/ReverseProxy.md)
 for setup instructions for either option.
 
 For example, Teku with Besu:
 `COMPOSE_FILE=teku.yml:besu.yml`
-
-## Sharing RPC and REST ports
-
-These are largely for running RPC nodes, instead of validator nodes. Most users will not require them.
-
-The `SHARE_IP` variable in `.env` can be used to restrict these shares to `127.0.0.1`, for local use or for use
-with an SSH tunnel.
-
-- `el-shared.yml` - as an insecure alternative to traefik-\*.yml, makes the RPC and WS ports of the execution client
-available from the host. To be used alongside one of the execution client yml files. **Not encrypted**, do not expose
-to Internet.
-- `cl-shared.yml` - as an insecure alternative to traefik-\*.yml, makes the REST port of the consensus client available
-from the host. To be used alongside one of the consensus client yml files. **Not encrypted**, do not expose to Internet.
-- `ee-shared.yml` - as an insecure alternative to traefik-\*.yml, makes the engine API port of the execution client
-available from the host. To be used alongside one of the execution client yml files. **Not encrypted**, do not expose
-to Internet.
-
-- `CLIENT-cl-only.yml` - for running a [distributed consensus client and validator client](../Usage/ReverseProxy.md)
-setup.
-- `CLIENT-vc-only.yml` - the other side of the distributed client setup.
-
-## Proposer Builder Separation
-
-### MEV Boost
-
-Your Consensus Layer client connects to the mev-boost container. If you are running a CL in Eth Docker, then in `.env`
-you'd add `mev-boost.yml` to `COMPOSE_FILE`, set `MEV_BOOST=true` and set `MEV_RELAYS` to the
-[relays you wish to use](https://ethstaker.cc/mev-relay-list/).
-
-### Commit Boost
-
-This is an alternative to MEV Boost. Your Consensus Layer client connects to the cb-pbs container. If you are running
-a CL in Eth Docker, then in `.env` you'd add `commit-boost-pbs.yml` to `COMPOSE_FILE`, set `MEV_BOOST=true` and
-set `MEV_NODE=http://cb-pbs:18550`.
-
-Next, edit `commit-boost/cb-config.toml` and configure the relays you'd like to use.
-
-### Verify
-
-If you would like to verify whether your MEV relay has registered your validator, follow the documentation for your
-chosen relays. For instance, if you have included Flashbots, you can see whether your validator has been registered by
-querying their API. Add your validator's public key to the end of this endpoint:
-https://boost-relay.flashbots.net/relay/v1/data/validator_registration?pubkey=
-
-### Just a VC, example RocketPool
-
-If you are running a validator client only, such as with a RocketPool "reverse hybrid" setup, then all you need to do
-is to set `MEV_BOOST=true` in `.env`. `mev-boost.yml` and `MEV_RELAYS` are not needed and won't be used if they are
-set, as they are relevant only where the Consensus Layer client runs. See the [Overview](/) drawing for how these
-components communicate.
 
 ## Specialty yml files
 
@@ -180,29 +130,3 @@ to a central traefik/prometheus.
 - `nimbus-stats.yml` - Send Nimbus stats to beaconcha.in app
 - `prysm-stats.yml` - Send Prysm stats to beaconcha.in app
 - `ssv.yml` - Run an SSV DVT node
-
-## Multiple nodes on one host
-
-In this setup, clients are isolated from each other. Each run their own validator client, and if an execution client
-is in use, their own execution client. This is perfect for running a single client, or multiple isolated
-clients each in their own directory.
-
-If you want to run multiple isolated clients, just clone this project into a new directory for
-each. This is great for running testnet and mainnet in parallel, for example.
-
-## Prysm or Lighthouse Slasher
-
-Running [slasher](https://docs.prylabs.network/docs/prysm-usage/slasher/) is an optional setting in `.env`, and helps
-secure the chain. There are [no additional earnings](https://github.com/ethereum/consensus-specs/issues/1631) from
-running a slasher: Whistleblower rewards are not implemented, and may not ever be implemented.
-
-> Slasher can be a huge resource hog during times of no chain finality, which can manifest as massive RAM usage. Please
-make sure you understand the risks of this, especially if you want high uptime for your Ethereum staking full node.
-Slasher places significant stress on the consensus client when the chain has no finality, and might be the reason why
-your validators are underperforming if your consensus client is under this much stress.
-
-To run a slasher, add the relevant command(s) to `CL_EXTRAS` in your `.env` file.
-
-## Build the client
-
-Build all required images. `./ethd update`

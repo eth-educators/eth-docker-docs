@@ -1,6 +1,6 @@
 ---
-id: Exit
 title:  Voluntary validator exit
+sidebar_position: 9
 sidebar_label: Voluntary exit
 ---
 

@@ -1,6 +1,6 @@
 ---
-id: SSV
 title: Run an SSV node.
+sidebar_position: 2
 sidebar_label: Run an SSV node
 ---
 
@@ -25,11 +25,11 @@ of storage to it
 
 Run `./ethd config` and choose SSV Node in the first dialog:
 
-![eth-docker deployment type dialog](../../static/img/ssv-node.png)
+![eth-docker deployment type dialog](../../../static/img/ssv-node.png)
 
 The next question asks if the operator should be participating in DKG ceremonies. For more information, visit [SSV official documentation on the subject](https://docs.ssv.network/developers/tools/ssv-dkg-client).
 
-![eth-docker deployment type dialog](../../static/img/dkg.png)
+![eth-docker deployment type dialog](../../../static/img/dkg.png)
 
 Follow the instructions and finally, choose your preferred consensus and execution clients, and
 rapid sync for the consensus client. Choose Grafana for visibility.
@@ -63,7 +63,7 @@ same way, you expect it to work, as well.
 
 Grafana dashboards are included.
 
-Please see the [secure proxy](../Usage/ReverseProxy.md) docs if you'd like to run Grafana on a secured https port,
+Please see the [secure proxy](../../Usage/ReverseProxy.md) docs if you'd like to run Grafana on a secured https port,
 rather than insecure 3000.
 
 ## Debug logs

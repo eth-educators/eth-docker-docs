@@ -1,6 +1,6 @@
 ---
-id: Hardware
 title: Resources, hardware
+sidebar_position: 3
 sidebar_label: Hardware
 ---
 

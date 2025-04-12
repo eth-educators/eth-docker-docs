@@ -1,6 +1,6 @@
 ---
-id: Clients
 title:  Supported Clients.
+sidebar_position: 3
 sidebar_label: Clients
 ---
 
@@ -31,4 +31,4 @@ Currently supported additional options:
 - Grafana dashboard
 - slasher - running slasher is optional and requires additional resources
 
-Please see [Prysm Web](../Usage/PrysmWeb.md) for Web UI support on Prysm.
+Please see [Prysm Web](../Usage/WebUI.md) for Web UI support on Prysm.

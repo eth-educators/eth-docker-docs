@@ -1,7 +1,6 @@
 ---
-id: Update
 title:  Updating the software.
-
+sidebar_position: 4
 sidebar_label: Client Updates
 ---
 
