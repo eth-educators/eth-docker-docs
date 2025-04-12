@@ -1,6 +1,6 @@
 ---
 title: "Manual setup"
-sidebar_position: 6
+sidebar_position: 7
 sidebar_label: Manual setup
 ---
 
