@@ -29,6 +29,8 @@ For this example, I will use Teku/Besu, Nimbus/Reth and Lodestar/Erigon, with a 
 
 ## Vero inna box - all on the same machine
 
+You will need sufficient RAM and storage. On mainnet, 64 GiB RAM and 8TB NVMe should be enough.
+
 ### Prepare four (4) Eth Docker stacks
 
 Clone Eth Docker four times, then configure each copy. The directory names should reflect the client mix you use in each,
