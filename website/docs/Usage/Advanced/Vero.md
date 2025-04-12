@@ -82,7 +82,7 @@ CL_IPV6_P2P_PORT=<adjusted-port>
 ```
 
 You need to make sure the P2P ports do not conflict. An easy way to do this would be to add `100` for the second client pair
-and `200` for the third client par. As an example:
+and `200` for the third client pair. As an example:
 - Do not change the P2P ports on the first client pair
 - On the second client pair, increase them all by `100`, e.g. `CL_P2P_PORT=9100`
 - On the third client pair, increase them all by `200`, e.g. `CL_P2P_PORT=9200`
