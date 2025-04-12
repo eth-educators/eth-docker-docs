@@ -9,7 +9,7 @@ sidebar_label: Vero
 Vero can be used to protect against a black swan event, where the wrong chain justifies or finalizes on Ethereum mainnet,
 and validators that signed for this incorrect chain may lose significant value, upwards of several ETH.
 
-The concern is a about a correlated, consensus-impacting bug in multiple clients, which together have a supermajority of
+The concern is about a correlated, consensus-impacting bug in multiple clients, which together have a supermajority of
 the chain. This happened in 2025 on Holesky testnet, for example, with Geth, Nethermind and Besu all having the same bug.
 
 To protect against this, you'd run the Vero validator client, and multiple CL/EL pairs, then require an N of M consensus
@@ -74,7 +74,21 @@ EL_ALIAS=<paircode>-execution
 MEV_ALIAS=<paircode>-mev
 EL_NODE=http://<paircode>-execution:8551
 MEV_NODE=http://<<paircode>-mev:18550
+CL_P2P_PORT=<adjusted-port>
+CL_QUIC_PORT=<adjusted-port>
+EL_P2P_PORT=<adjusted-port>
+EL_P2P_PORT_2=<adjusted-port>
+CL_IPV6_P2P_PORT=<adjusted-port>
 ```
+
+You need to make sure the P2P ports do not conflict. An easy way to do this would be to add `100` for the second client pair
+and `200` for the third client par. As an example:
+- Do not change the P2P ports on the first client pair
+- On the second client pair, increase them all by `100`, e.g. `CL_P2P_PORT=9100`
+- On the third client pair, increase them all by `200`, e.g. `CL_P2P_PORT=9200`
+
+You'll have better peering when you port forward all P2P ports, most of them both UDP and TCP, with the QUIC port being UDP only.
+The intent is to make sure the ports are Internet-reachable.
 
 Also `nano ext-network.yml` and edit it to use `name: vero_default`. This is only necessary until roughly one month after
 Pectra, when the `DOCKER_EXT_NETWORK` variable will start to be used.
