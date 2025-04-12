@@ -27,4 +27,3 @@ This address could be a hardware wallet, a software wallet, or even a multi-sig 
 [MEV](https://ethereum.org/en/developers/docs/mev/), or "maximal extractable value", is a controversial topic. Node operators can extract MEV by accepting blocks built by "searchers", via a small side program called ["mev-boost"](https://ethresear.ch/t/mev-boost-merge-ready-flashbots-architecture/11177) by Flashbots. In this case, the CL ... Consensus Layer client such as Nimbus, Teku, &c ... will, when asked to procure a block to propose, get blocks from MEV relays via mev-boost and from the EL ... Execution Layer client such as Besu, Geth, &c ... and then choose whichever block from the relay pays best. The EL does not currently communicate its expected payout and would only be chosen when the relay offers no block. For this, the relay has to be trusted to deliver valid blocks.
 
 Rewards from MEV are paid to the same `--suggested-fee-recipient` address that priority fees go to.
- 
