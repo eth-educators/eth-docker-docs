@@ -5,12 +5,13 @@ sidebar_label: Hardware
 ---
 
 Recommended hardware:
-* 32 GiB of RAM - 16 GiB works but can be challenging depending on client mix
-* Quad Core CPU
+* 32 to 64 GiB of RAM - 16 GiB works but can be challenging depending on client mix
+* 4 to 8 CPU cores
 * 4TB ["mainstream" SSD](https://gist.github.com/yorickdowne/f3a3e79a573bf35767cd002cc977b038) - TLC and DRAM
 
 Generally, 8 GiB of RAM is a very tight fit, with only Nimbus/Geth reported to work. 16 GiB can be a tight fit
-depending on client mix, and 32 GiB is recommended. For 16 GiB RAM, a Nimbus/Nethermind combo works well.
+depending on client mix, and 32 GiB is recommended. 64 GiB makes it possible to run additional services or
+even 3 different client combinations for safety. For 16 GiB RAM, a Nimbus/Nethermind combo works well.
 
 4+ CPU cores are recommended to deal with spikes in processing.
 

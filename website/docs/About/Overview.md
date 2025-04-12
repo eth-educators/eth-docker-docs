@@ -12,9 +12,19 @@ while allowing the user choice when it comes to the exact client mix they wish t
 with full control for advanced users.
 
 Recommended hardware, whether your own hardware or a VPS, is:
-- 32 GiB of RAM - 16 GiB works but can be challenging depending on client mix
-- 4 CPU cores
+- 32 to 64 GiB of RAM - 16 GiB works but can be challenging depending on client mix
+- 4 to 8 CPU cores
 - 4TB ["mainstream" SSD](https://gist.github.com/yorickdowne/f3a3e79a573bf35767cd002cc977b038) - TLC and DRAM.
+
+## Getting started
+
+After installing Linux, either Debian or [Ubuntu](https://docs.ethstaker.org/tutorials/installing-linux),
+please take a look at the [Quick Start](../Usage/QuickStart.md) instructions.
+
+If you wish to use a separate drive for Ethereum data, please check how to
+[tell Docker to use a second drive](../Usage/Prerequisites.md#change-docker-storage-location).
+
+macOS and Windows users should start at the [Prerequisites](../Usage/Prerequisites.md#macos-prerequisites).
 
 ## Node components
 
