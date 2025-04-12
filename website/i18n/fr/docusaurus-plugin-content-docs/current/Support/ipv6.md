@@ -1,14 +1,14 @@
 ---
-id: ipv6
 title: IPv6
+sidebar_position: 11
 sidebar_label: IPv6 support
 ---
 
-## Y tho
+## Conquer network amxiety
 
 As of mid 2024:
 
-CGNAT is becoming more prevalant, making it harder to make P2P ports available inbound and get good peering.
+CGNAT is becoming more prevalent, making it harder to make P2P ports available inbound and get good peering.
 
 Docker support for IPv6 is better.
 
@@ -34,31 +34,24 @@ If you previously had IPv6-specific settings in `/etc/docker/daemon.json`, you c
 
 ### Configure Eth Docker
 
-`nano .env` and set `IPV6=true`, which will tell Compose to enable v6 for the networks it creates.
+`nano .env` and set `IPV6=true`, which will tell Docker Compose to enable v6 for the networks it creates. Then
+`./ethd restart` to recreate the bridge network Eth Docker uses.
 
-## Safu?
+### Verify
 
-Maybe. I still have to test ufw integration.  
+Look at Eth Docker's default network with `docker network ls` and then `docker network inspect eth-docker_default`,
+or whatever network it actually is. If IPv6 is enabled, you'll see that and you will see assigned IPv4 and IPv6
+addresses.
+
+## Security
+
+`ufw` integration works; ports mapped to host can be blocked by a v6 deny rule. As with v4, ufw needs to be
+["in front of Docker"](../Support/Cloud.md) for this to work.
+
 On your LAN firewall, if this is in a LAN, you'd need rules to allow the P2P ports incoming to the v6 address of your
 node.
 
 ## Which clients?
 
-CL
-
-- [x] Lighthouse
-- [x] Lodestar
-- [x] Nimbus
-- [ ] Teku: Unsure, advertisement not tested
-- [ ] Prysm: Maybe, `--p2p-local-ip ::`, but [not dual-stack](https://github.com/prysmaticlabs/prysm/issues/12303)
-- [ ] Grandine: Unsure
-- [ ] Lambda: Unsure
-
-EL
-
-- [ ] Besu: not fully tested
-- [ ] Geth: not fully tested
-- [ ] Erigon: not fully tested
-- [ ] Nethermind: Possibly no advertisement, no explicit discv5 option
-- [ ] Reth: No IPv6 connectivity on `main` as of mid Nov 2023
-- [ ] Nimbus: Unsure
+This is a moving target and best tracked by [Sonic's site](https://ipv6eth.info). As of mid 2024, all CLs with
+the exception of Prysm support a v4/v6 dual stack, and ELs have added support as well.

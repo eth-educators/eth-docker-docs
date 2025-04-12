@@ -1,6 +1,6 @@
 ---
-id: ImportKeys
 title: "Create and import validator keys to the client"
+sidebar_position: 2
 sidebar_label: Import Validator Keys
 ---
 
@@ -19,19 +19,22 @@ If you are going to use the deposit-cli that is bundled with Eth Docker, please 
 
 Make sure you're in the project directory, `cd ~/eth-docker` by default.
 
-When creating keys, you can specify an Ethereum address that withdrawals will be paid to. If you have a hardware wallet that withdrawals should go to, this is a good option.
-> Make sure the Ethereum address is correct, you cannot change it after you deposit. You can also remove that parameter, in which  case withdrawals would be done with the mnemonic seed, not against a fixed address
+When creating keys, you should specify an Ethereum address that withdrawals will be paid to. If you have a hardware wallet that withdrawals should go to, this is a good option.
+> Make sure the Ethereum address is correct, you cannot change it after you deposit.
 
-**Do not** set your withdrawal address to an exchange wallet. The funds will not
-be credited, and you will battle support for them.
+**Do not** set your withdrawal address to an exchange wallet. The funds will not be credited, and you will battle support for them.
 
 This command will create the keys to deposit ETH against:
 
 `./ethd cmd run --rm deposit-cli-new --execution_address YOURHARDWAREWALLETADDRESS --uid $(id -u)`
 > Specifying the uid is optional. If this is not done, the generated files will be owned by the user with uid `1000`
 
-Choose the number of validators you wish to create.
-> A validator is synonymous to one 32 Ethereum stake. Multiple validators can be imported to a single validator client.
+Choose the number of validators you wish to create, and whether to create a distributing (type 1) or accumulating (type 2) validator.
+> A distributing validator is synonymous to one 32 ETH stake. Multiple validators can be imported to a single validator client.
+
+> An accumulating validator can have 32 to 2048 ETH staked. It will grow its balance as it earns rewards, and earn additional
+> rewards - that is, compound - at every whole ETH boundary (technically when the "effective balance" rises, so at N.25 ETH).
+> When it reaches 2048 ETH, it will instead distribute rewards to the withdrawal address, just like a distributing validator.
 
 The created files will be in the directory `.eth/validator_keys` in this project.
 > staking-deposit-cli shows you a different directory, that's because it has a view from inside the container.
@@ -81,7 +84,7 @@ Do **not** run keys in both the client directly and web3signer. This can get you
 **Warning** Import your validator key(s) to only *one* client. If you run them in two locations at once,
 you will be slashed: Forcibly exited and assessed a penalty greater than 1 ETH.
 
-> If you use the [Prysm Web](../Usage/PrysmWeb.md), you can use it
+> If you use the [Prysm Web](../Usage/WebUI.md), you can use it
 > or this command-line process to import keys.
 
 ### Prysm - create a wallet
@@ -129,7 +132,7 @@ Please read all of the warnings about slashing and make sure to exercise tons of
 **Caution**: You may wish to wait until the consensus and execution client are fully synchronized before you deposit. Check their logs with `./ethd logs -f consensus` and `./ethd logs -f execution`. This safe-guards against the validator being marked offline if your validator is activated before the consensus client syncs.
 
 Once you are ready, you can send eth to the deposit contract by using
-the `.eth/validator_keys/deposit_data-TIMESTAMP.json` file at the [Goerli launchpad](https://goerli.launchpad.ethereum.org/)
+the `.eth/validator_keys/deposit_data-TIMESTAMP.json` file at the [Hoodi testnet launchpad](https://hoodi.launchpad.ethereum.org/)
 or [Mainnet launchpad](https://launchpad.ethereum.org).
 
 > You can transfer files from your node to a machine with a browser using scp. A graphical

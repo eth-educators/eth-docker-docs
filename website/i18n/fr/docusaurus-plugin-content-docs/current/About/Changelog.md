@@ -1,6 +1,6 @@
 ---
-id: Changelog
 title:  Changelog
+sidebar_position: 5
 sidebar_label: Changelog
 ---
 
@@ -15,6 +15,141 @@ instead.
 
 > On 1/27/2022, Eth Docker's repository name changed. Everything should work as it did.
 > If you do wish to manually update your local reference, run `git remote set-url origin https://github.com/eth-educators/eth-docker.git`
+
+
+## v2.15.1.0 2025-02-04
+
+*This release is mandatory for users of SSV DKG*
+
+Changes
+- Support SSV DKG 3.x. Please adjust `ssv-config/dkg-config.yaml` manually to add a dot `.` in front of every path.
+See `ssv-config/ssv-config-sample.yaml` for an example
+- Replace Xatu with Contributoor. Thanks @samcm!
+- Support Erigon 3 beta
+- Add a `MINIMAL_NODE` option for nodes that implement EIP-4444 and expire pre-merge history. At present, only
+Erigon 3 beta
+- `./ethd config` checks the contents of `JWT_SECRET` more closely. Thanks @b0a7!
+- Add SSV Pulse benchmark
+- No longer suggest our own `GRAFFITI` and use the client default
+- `ethdo` now prints debug log lines
+
+Bug fixes
+- Nimbus works on Gnosis
+- Fix Lodestar source build
+- Fix Nimbus source builds
+- Improve prep for changing ext-network.yml
+
+## v2.15.0.2 2025-01-12
+
+*This is an optional release with bug fixes*
+
+Changes
+- Add Xatu. Thanks @samcm for making it work!
+
+Bug fixes
+- Do not offer Lido CSM SSV on ARM hardware
+- Fix Nimbus source build
+
+## v2.15.0.1 2024-12-29
+
+*This is a recommended release*
+
+Changes
+- Build Nethermind with .NET 9
+- Clearly identify Nethermind during `./ethd version`
+- CloudFlare DDNS updates v6 address, as well as v4
+
+Bug fixes
+- Legacy Prysm API token files are handled gracefully. Thanks @ThomasBlock for reporting and @BriungRi for finding
+root cause!
+- Eth Docker's utility commands such as `./ethd resync-consensus` work when there are upper-case letters in the
+directory name, such as `Eth-Docker`
+- `./ethd space` works with large volume lists
+
+## v2.15.0.0 2024-12-11
+
+*This is a recommended release*
+
+**Breaking changes**
+- Require Nethermind `1.30.0`; use `--data-dir` in place of the deprecated `--datadir`
+
+Changes
+- Support `EL_MAX_PEER_COUNT` for Reth. Thanks @victorelec14!
+- `CL_NODE` can be comma-separated for Nimbus. Thanks @b0a7!
+- Switch to ethstaker-deposit-cli, from staking-deposit-cli
+- The Docker root dir is detected upon startup, for ease of use with `grafana.yml`
+- The validator alias is configurable, to run multiple copies of Eth Docker on the same bridge network and still
+have `ethd keys` work correctly
+- The default IPv6 P2P port does not conflict with a host-mapped Prometheus
+- Compatible with Lighthouse `v6.0.0`
+
+Bug fixes
+- Resolve `.env` getting `root` permissions when running `sudo ./ethd update`. Reminder that `ethd` is best run
+without `sudo`
+- The Nimbus execution layer client compiles again
+- `CL_IPV6_P2P_PORT` is retained during `ethd update`
+- Lido Obol exiter service survives Docker update, reboot, &c
+
+## v2.14.0.2 2024-11-09
+
+*This is a recommended release*
+
+Bug fixes
+- `prysm-stats.yml` and `nimbus-stats.yml` survive reboot and Docker update. Thanks qiqsilver!
+- Siren fixes for `CL_NODE` with commata, and IPv6 machines. @pietjepuk2 flexing those maintainer muscles!
+- Lido CSM Titan in optional list. Thanks @vgorkavenko!
+- Reth logs its receipts pruning accurately. Thanks marc_blockshard!
+
+## v2.14.0.1 2024-11-01
+
+*This is a recommended release*
+
+Changes
+- Add support for Ephemery testnet to `./ethd config`
+
+Bug fixes
+- Resolve `awk` warning messages on GNU awk, which impacted all versions of Ubuntu
+- Fix errors causing `./ethd config` to fail on several configuration options
+
+## v2.14.0.0 2024-10-29
+
+*Avoid this release and use `v2.14.0.1`*
+
+**Breaking** changes
+- Require Erigon `v2.60.9` or later
+
+Changes
+- Use new `erigontech/erigon` repo, instead of `thorax/erigon`
+- Use new `ssvlabs/ssv-node` repo, instead of `bloxstaking/ssv-node`
+- Teku default heap to 7g
+- Lighthouse archive node aggressively backfills: 3 days instead of 2 weeks
+- Update Lido Oracle addresses on mainnet. Thanks @nameisremus!
+- `MEV_RELAYS` can now be a multi-line value. Thanks h.m.23 for suggesting this feature!
+
+Bug fixes
+- Don't check for Docker service on Microsoft WSL
+- `./ethd keys send-exit` works with a `CL_NODE` that has comma-separated backup CLs
+- Fix Lido mainnet fee recipient. Thanks @vgorkavenko!
+
+## v2.13.0.0 2024-10-16
+
+*This is a recommended release*
+
+**Breaking** changes
+- Require Prysm `v5.1.1` or later
+
+Changes
+- Add support for commit boost
+- A fresh Reth sync keeps all receipts, for compatibility with sundry protocols such as SSV, RocketPool, NodeSet,
+StakeWise
+- Improved IPv4/v6 dual stack support
+- IPv6 is enabled on hosts that have IPv6 connectivity
+- Add Titan relay to Lido CM config dialog. Thanks @vgorkavenko!
+
+Bug Fixes
+- Fixes to Lido CSM support. Thanks @cnupy!
+- Undo the Prysm VC REST use that "snuck in" with CSM. Prysm VC uses RPC again on port 4000, until the Prysm team
+promote the REST VC from experimental to released
 
 ## v2.12.3.0 2024-09-20
 

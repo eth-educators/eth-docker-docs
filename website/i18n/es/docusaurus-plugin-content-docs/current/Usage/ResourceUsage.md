@@ -1,6 +1,6 @@
 ---
-id: ResourceUsage
-title:  Client Resource Usage
+title: Client Resource Usage
+sidebar_position: 10
 sidebar_label: Client Resource Usage
 ---
 
@@ -39,7 +39,7 @@ Please pay attention to the Version and Date. These are snapshots in time of cli
 
 Notes on disk usage
 - Reth, Besu, Geth and Erigon continously prune
-- Nethermind - DB size can be reduced when it grew too large, by [online prune](../Support/GethPrune.md). Keep an eye
+- Nethermind - DB size can be reduced when it grew too large, by [online prune](../Support/Prune.md). Keep an eye
 on [Paprika](https://github.com/NethermindEth/nethermind/pull/7157) and
 [Path](https://github.com/NethermindEth/nethermind/pull/6499) work
 - Erigon does not compress its DB, leaving that to the filesystem

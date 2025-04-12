@@ -1,6 +1,6 @@
 ---
-id: AddValidator
 title: Manage validator keys.
+sidebar_position: 4
 sidebar_label: Manage validator keys
 ---
 

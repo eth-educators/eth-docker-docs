@@ -1,6 +1,6 @@
 ---
-id: ChangingWithdrawalCredentials
 title: Changing Withdrawal Credentials
+sidebar_position: 8
 sidebar_label: Changing Withdrawal Credentials
 ---
 

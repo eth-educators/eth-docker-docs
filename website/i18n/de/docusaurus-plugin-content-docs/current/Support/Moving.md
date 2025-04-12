@@ -1,6 +1,6 @@
 ---
-id: Moving
 title:  Moving a validator.
+sidebar_position: 6
 sidebar_label: Moving
 ---
 

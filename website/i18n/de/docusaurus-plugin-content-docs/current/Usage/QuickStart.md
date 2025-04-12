@@ -1,6 +1,6 @@
 ---
-id: QuickStart
 title:  Eth Docker QuickStart
+sidebar_position: 1
 sidebar_label: QuickStart
 ---
 
@@ -14,8 +14,16 @@ Take a look at some [build ideas](../Usage/Hardware.md) and consider clients' [r
 
 ## Eth Docker QuickStart
 
-For a rapid start, have Ubuntu or Debian Linux installed, and then follow these steps. This has been tested on Ubuntu
-20.04/22.04 and Debian 11/12. 
+For a rapid start, have Ubuntu or Debian Linux installed, and then follow these steps. This has been tested on Debian
+11/12 and Ubuntu 22.04/24.04. 
+
+> If you are using a version of Debian with a root password set, please install `sudo` as the `root` user with
+> `apt update && apt install sudo git`, then make your non-root user a member of the sudo group with
+> `usermod -aG sudo <username>`.
+
+> If you are using a minimal version of Ubuntu or Debian, please install `git` with `sudo apt update && sudo apt install git`
+
+Eth Docker needs to be installed while logged into a user account other than `root`, for security purposes.
 
 Download Eth Docker
 
@@ -55,8 +63,8 @@ Deposit your 32 ETH using the official [Staking Launchpad](https://launchpad.eth
 
 macOS requires [manual installation](../Usage/Prerequisites.md) of Docker Desktop. 
 
-Explore the sidebar for advanced options. In particular, you can [integrate with RocketPool](../Support/Rocketpool.md),
-run an [SSV operator node](../Support/SSV.md), or run an [RPC node](../Usage/ClientSetup.md) with either locally
+Explore the sidebar for advanced options. In particular, you can [integrate with RocketPool](../Usage/Advanced/Rocketpool.md),
+run an [SSV operator node](../Usage/Advanced/SSV.md), or run an [RPC node](../Usage/Advanced/ClientSetup.md) with either locally
 shared RPC/WS ports or these ports [secured by Traefik and https](../Usage/ReverseProxy.md).
 
 ## Additional resources
