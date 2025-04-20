@@ -17,6 +17,35 @@ instead.
 > If you do wish to manually update your local reference, run `git remote set-url origin https://github.com/eth-educators/eth-docker.git`
 
 
+## v2.15.2.0 2025-04-20
+
+*This release is optional, yet recommended*
+
+Changes
+
+- Support Vero "in a box" with multiple Ethereum nodes, by introducing additional aliases
+- Better support for Caplin
+- Split EL and CL archive nodes
+- Better PostgreSQL update
+- `./ethd update` runs in `screen` by default: Use `./ethd update --non-interactive` to override that
+- Default to PostgreSQL 17
+- Source build with Go 1.24
+- New SSV Grafana dashboard
+- Dependency upgrades, such as ethereum-metrics-exporter and pre-commit-hooks
+- Web3signer heap is configurable
+- `./ethd update` refactor to eliminate "did not migrate an .env variable" style bugs
+- Hoodi network support in `./ethd config`
+- Caplin support in `./ethd config`
+- Besu no longer defaults to "high spec" on 64 GiB RAM - I don't know that Besu may use the RAM. If you want it
+to, use `EL_EXTRAS`
+- Query history expiry when using Erigon: Expect this to change again as history expiry gets fleshed out
+post-Pectra
+- A small zoo of messaging improvements to make things (hopefully) clearer
+
+Bug fixes
+- Custom `NETWORK` as a github repo adjusted to work again, this had been broken for a while. Thanks early Hoodi!
+- Lido Obol works with Lodestar
+
 ## v2.15.1.0 2025-02-04
 
 *This release is mandatory for users of SSV DKG*
