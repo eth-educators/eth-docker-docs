@@ -29,9 +29,11 @@ SSD, RAM and CPU use is after initial sync, when keeping up with head. 100% CPU 
 
 Please pay attention to the Version and Date. These are snapshots in time of client behavior. Initial state size increases over time, and execution clients are always working on improving their storage engines.
 
+DB Size if not specified is for a full node. If you see two values like " 1.2 TiB / 820 GiB", it's for a full node and a node with pre-merge history expiry, respectively.
+
 | Client | Version | Date | DB Size  | DB Growth | RAM | Notes |
 |--------|---------|----  |----------|-----------|-----|-------|
-| Geth   | 1.13.8 | Jan 2024 | ~1.1 TiB | ~7-8 GiB / week | ~ 8 GiB | with PBSS |
+| Geth   | 1.15.10 | Apr 2025 | ~1.2 TiB / 820 GiB | ~7-8 GiB / week | ~ 8 GiB | |
 | Nethermind | 1.27.0 | Jun 2024 | ~800 GiB | ~11 GiB / week | ~ 7 GiB | With HalfPath, can automatic online prune at ~350 GiB free |
 | Besu | v24.9.1 | Sep 2024 | ~1.2 TiB | ~7-8 GiB / week | ~ 10 GiB | |
 | Reth | alpha.13 | Jan 2024 | ~1.1 TiB | ~ 3.5 GiB / week | ~ 9 GiB | throws away all logs except deposit contract, and so grows more slowly |
@@ -52,7 +54,7 @@ Specifically `fio --randrepeat=1 --ioengine=libaio --direct=1 --gtod_reduce=1 --
 
 150G was chosen to "break through" any caching strategems the SSD uses for bursty writes. Execution clients write steadily, and the performance of an SSD under heavy write is more important than its performance with bursty writes.
 
-Read and write latencies are measured with `sudo iostat -mdx 240 2` during Geth sync, look at `r_await` and `w_await` of the second output block.
+Read and write latencies can be measured with `sudo ioping -D -c 30 /dev/<ssd-device>` during the `fio`.
 
 Servers have been configured with [noatime](https://www.howtoforge.com/reducing-disk-io-by-mounting-partitions-with-noatime) and [no swap](https://www.geeksforgeeks.org/how-to-permanently-disable-swap-in-linux/) to improve available IOPS.
 
@@ -85,7 +87,7 @@ Cache size default in all tests.
 
 | Client | Version | Date | Test System | Time Taken |  Notes |
 |--------|---------|------|-------------|------------|--------|
-| Geth   | 1.13.0  | August 2023 | OVH Baremetal NVMe | ~ 6 hours | |
+| Geth   | 1.15.10  | Apr 2025 | OVH Baremetal NVMe | ~ 5 hours | |
 | Nethermind | 1.24.0| Jan 2024 | OVH Baremetal NVMe | ~ 5 hours | Ready to attest after ~ 1 hour |
 | Besu | v24.9.1 | Sep 2024 | OVH Baremetal NVMe | ~ 22 hours | |
 | Erigon | 2.48.1 | August 2023 | OVH Baremetal NVMe | ~ 9 days | |
