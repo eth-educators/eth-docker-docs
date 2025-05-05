@@ -46,31 +46,6 @@ on [Paprika](https://github.com/NethermindEth/nethermind/pull/7157) and
 [Path](https://github.com/NethermindEth/nethermind/pull/6499) work
 - Erigon does not compress its DB, leaving that to the filesystem
 
-## Test Systems
-
-IOPS is random read-write IOPS [measured by fio with "typical" DB parameters](https://arstech.net/how-to-measure-disk-performance-iops-with-fio-in-linux/), 150G file, without other processes running.
-
-Specifically `fio --randrepeat=1 --ioengine=libaio --direct=1 --gtod_reduce=1 --name=test --filename=test --bs=4k --iodepth=64 --size=150G --readwrite=randrw --rwmixread=75`, then `rm test` to get rid of the 150G test file. If the test shows it'd take hours to complete, feel free to cut it short once the IOPS display for the test looks steady.
-
-150G was chosen to "break through" any caching strategems the SSD uses for bursty writes. Execution clients write steadily, and the performance of an SSD under heavy write is more important than its performance with bursty writes.
-
-Read and write latencies can be measured with `sudo ioping -D -c 30 /dev/<ssd-device>` during the `fio`.
-
-Servers have been configured with [noatime](https://www.howtoforge.com/reducing-disk-io-by-mounting-partitions-with-noatime) and [no swap](https://www.geeksforgeeks.org/how-to-permanently-disable-swap-in-linux/) to improve available IOPS.
-
-
-| Name                 | RAM    | SSD Size | CPU        | r/w IOPS | r/w latency | Notes |
-|----------------------|--------|----------|------------|------|-------|--------|
-| Homebrew Xeon ZFS zvol | 32 GiB | 1.2 TiB | Intel Quad | 3.5k/1k | | Intel SATA SSD, 16k recordsize, stripe, xfs; fio with --bs=16k |
-| Homebrew Xeon ZFS dataset | 32 GiB | 1.2 TiB | Intel Quad | 1.2k/500 | | Intel SATA SSD, 16k recordsize, stripe, xfs; 16G Optane SLOG |
-| Dell R420 w/ HBA     | 32 GiB | 1 TB | Dual Intel Octo | 35.9k/11k | Xeon E5-2450 |
-| [Contabo](https://contabo.com) Storage VPS L  | 16 GiB | 1600 GiB | AMD EPYC Hexa  | 3k/1k | |  |
-| [Netcup](https://netcup.eu) VPS 3000 G9   | 24 GiB | 600 GiB  | AMD Hexa | 11.2k/3.7k | 2.25/6 ms | |
-| Netcup RS 8000 G9.5 | 64 GiB | 2 TB | AMD EPYC 7702 | 15.6k/5k | 3.4/1.5 ms | |
-| [OVH](https://ovhcloud.com/) Baremetal NVMe   | 32 GiB | 1.9 TB  | Intel Hexa | 177k/59k | 0.08/3.5 ms | |
-| [AWS](https://aws.amazon.com/) io1 w/ 10K IOPS  | 8 GiB  | NA      | Intel Dual | 7.6k/2.5k | | t2.large, could not sync Geth. Note t2 throttles CPU |
-| AWS gp3 w/ 16K IOPS  | 16 GiB | NA      | Intel Quad | 12.2k/4.1k | | m6i.xlarge |
-
 ## Initial sync times
 
 Please pay attention to the Version and Date. These are snapshots in time of client behavior.
@@ -92,6 +67,23 @@ Cache size default in all tests.
 | Besu | v24.9.1 | Sep 2024 | OVH Baremetal NVMe | ~ 22 hours | |
 | Erigon | 2.48.1 | August 2023 | OVH Baremetal NVMe | ~ 9 days | |
 | Reth  | beta.1 | March 2024 | OVH Baremetal NVMe | ~ 2 days 16 hours | |
+
+## Test Systems
+
+IOPS is random read-write IOPS [measured by fio with "typical" DB parameters](https://arstech.net/how-to-measure-disk-performance-iops-with-fio-in-linux/), 150G file, without other processes running.
+
+Specifically `fio --randrepeat=1 --ioengine=libaio --direct=1 --gtod_reduce=1 --name=test --filename=test --bs=4k --iodepth=64 --size=150G --readwrite=randrw --rwmixread=75; rm test`. If the test shows it'd take hours to complete, feel free to cut it short once the IOPS display for the test looks steady.
+
+150G was chosen to "break through" any caching strategems the SSD uses for bursty writes. Execution clients write steadily, and the performance of an SSD under heavy write is more important than its performance with bursty writes.
+
+Read and write latencies can be measured with `sudo ioping -D -c 30 /dev/<ssd-device>` during the `fio`.
+
+Servers have been configured with [noatime](https://www.howtoforge.com/reducing-disk-io-by-mounting-partitions-with-noatime) and [no swap](https://www.geeksforgeeks.org/how-to-permanently-disable-swap-in-linux/) to improve available IOPS.
+
+
+| Name                 | RAM    | SSD Size | CPU        | r/w IOPS | r/w latency | Notes |
+|----------------------|--------|----------|------------|------|-------|--------|
+| [OVH](https://ovhcloud.com/) Baremetal NVMe   | 32 GiB | 1.9 TB  | Intel Hexa | 177k/59k | | |
 
 ## Getting better IOPS
 
