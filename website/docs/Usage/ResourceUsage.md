@@ -37,7 +37,7 @@ DB Size if not specified is for a full node. If you see two values like " 1.2 Ti
 | Nethermind | 1.31.10 | May 2025 | ~1.1 TiB / 740 GiB | ~11 GiB / week | ~ 7 GiB | With HalfPath, can automatic online prune at ~350 GiB free |
 | Besu | v25.4.1 | May 2025 | ~1.35 TiB / ?? | ~7-8 GiB / week | ~ 10 GiB | |
 | Reth | 1.3.12 | May 2025 | ~1.3 TiB / ?? | ~ 7-8 GiB / week | ~ 9 GiB | |
-| Erigon | 3.0.3 | May 2025 | ~1.2 TiB / ?? | ~7-8 GiB / week | See comment | Erigon will have the OS use all available RAM as a DB cache during post-sync operation, but this RAM is free to be used by other programs as needed. During sync, it may run out of memory on machines with 32 GiB or less |
+| Erigon | 3.0.3 | May 2025 | ~1.0 TiB / ?? | ~7-8 GiB / week | See comment | Erigon will have the OS use all available RAM as a DB cache during post-sync operation, but this RAM is free to be used by other programs as needed. During sync, it may run out of memory on machines with 32 GiB or less |
 | Nimbus | 0.1.0-alpha | May 2025 | ?? / 110 GiB | ?? | ?? | With Era1/Era import |
 
 Notes on disk usage
@@ -65,7 +65,7 @@ Cache size default in all tests.
 | Geth   | 1.15.10  | Apr 2025 | OVH Baremetal NVMe | ~ 5 hours | |
 | Nethermind | 1.24.0| Jan 2024 | OVH Baremetal NVMe | ~ 5 hours | Ready to attest after ~ 1 hour |
 | Besu | v24.9.1 | Sep 2024 | OVH Baremetal NVMe | ~ 22 hours | |
-| Erigon | 3.0.3 | May 2025 | OVH Baremetal NVMe | ~ ?? hours | Test will need to be re-run, Erigon OOMd repeatedly. Less than a day likely |
+| Erigon | 3.0.3 | May 2025 | OVH Baremetal NVMe | ~ ?? hours | |
 | Reth  | beta.1 | March 2024 | OVH Baremetal NVMe | ~ 2 days 16 hours | |
 | Nimbus | 0.1.0-alpha | May 2025 | OVH Baremetal NVME | ~ 5 1/2 days | With Era1/Era import |
 
