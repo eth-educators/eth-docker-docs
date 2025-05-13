@@ -33,26 +33,26 @@ DB Size if not specified is for a full node. If you see two values like " 1.2 Ti
 
 | Client | Version | Date | DB Size  | DB Growth | RAM | Notes |
 |--------|---------|----  |----------|-----------|-----|-------|
-| Geth   | 1.15.10 | Apr 2025 | ~1.2 TiB / 820 GiB | ~7-8 GiB / week | ~ 8 GiB | |
-| Nethermind | 1.27.0 | Jun 2024 | ~800 GiB | ~11 GiB / week | ~ 7 GiB | With HalfPath, can automatic online prune at ~350 GiB free |
-| Besu | v24.9.1 | Sep 2024 | ~1.2 TiB | ~7-8 GiB / week | ~ 10 GiB | |
-| Reth | alpha.13 | Jan 2024 | ~1.1 TiB | ~ 3.5 GiB / week | ~ 9 GiB | throws away all logs except deposit contract, and so grows more slowly |
-| Erigon | 2.56.1 | Jan 2024 | ~1.7 TiB | ~7-8 GiB / week | See comment | Erigon will have the OS use all available RAM as a DB cache during post-sync operation, but this RAM is free to be used by other programs as needed. During sync, it may run out of memory on machines with less than 32 GiB |
+| Geth   | 1.15.11 | May 2025 | ~1.2 TiB / 830 GiB | ~7-8 GiB / week | ~ 8 GiB | |
+| Nethermind | 1.31.10 | May 2025 | ~1.1 TiB / 740 GiB | ~11 GiB / week | ~ 7 GiB | With HalfPath, can automatic online prune at ~350 GiB free |
+| Besu | v25.4.1 | May 2025 | ~1.35 TiB / ?? | ~7-8 GiB / week | ~ 10 GiB | |
+| Reth | 1.3.12 | May 2025 | ~1.3 TiB / ?? | ~ 7-8 GiB / week | ~ 9 GiB | |
+| Erigon | 3.0.3 | May 2025 | ~1.2 TiB / ?? | ~7-8 GiB / week | See comment | Erigon will have the OS use all available RAM as a DB cache during post-sync operation, but this RAM is free to be used by other programs as needed. During sync, it may run out of memory on machines with 32 GiB or less |
+| Nimbus | 0.1.0-alpha | May 2025 | ?? / 110 GiB | ?? | ?? | With Era1/Era import |
 
 Notes on disk usage
 - Reth, Besu, Geth and Erigon continously prune
 - Nethermind - DB size can be reduced when it grew too large, by [online prune](../Support/Prune.md). Keep an eye
 on [Paprika](https://github.com/NethermindEth/nethermind/pull/7157) and
 [Path](https://github.com/NethermindEth/nethermind/pull/6499) work
-- Erigon does not compress its DB, leaving that to the filesystem
 
 ## Initial sync times
 
-Please pay attention to the Version and Date. These are snapshots in time of client behavior.
+Please pay attention to the Version and Date. Newer versions might sync faster, or slower.
+
+These are initial syncs of a full node without history expiry. For clients that support it, snap sync was used; otherwise, full sync.
 
 NB: All execution clients need to [download state](https://github.com/ethereum/go-ethereum/issues/20938#issuecomment-616402016) after getting blocks. If state isn't "in" yet, your sync is not done. This is a heavily disk IOPS dependent operation, which is why HDD cannot be used for a node.
-
-For Nethermind, seeing "branches" percentage reset to "0.00%" after state root changes with "Setting sync state root to" is normal and expected. With sufficient IOPS, the node will "catch up" and get in sync.
 
 For Geth, you will see "State heal in progress" after initial sync, which will persist for a few hours if IOPS are low-ish.
 
@@ -65,8 +65,9 @@ Cache size default in all tests.
 | Geth   | 1.15.10  | Apr 2025 | OVH Baremetal NVMe | ~ 5 hours | |
 | Nethermind | 1.24.0| Jan 2024 | OVH Baremetal NVMe | ~ 5 hours | Ready to attest after ~ 1 hour |
 | Besu | v24.9.1 | Sep 2024 | OVH Baremetal NVMe | ~ 22 hours | |
-| Erigon | 2.48.1 | August 2023 | OVH Baremetal NVMe | ~ 9 days | |
+| Erigon | 3.0.3 | May 2025 | OVH Baremetal NVMe | ~ ?? hours | Test will need to be re-run, Erigon OOMd repeatedly. Less than a day likely |
 | Reth  | beta.1 | March 2024 | OVH Baremetal NVMe | ~ 2 days 16 hours | |
+| Nimbus | 0.1.0-alpha | May 2025 | OVH Baremetal NVME | ~ 5 1/2 days | With Era1/Era import |
 
 ## Test Systems
 
