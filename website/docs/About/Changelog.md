@@ -17,6 +17,41 @@ instead.
 > If you do wish to manually update your local reference, run `git remote set-url origin https://github.com/eth-educators/eth-docker.git`
 
 
+## v2.15.3.0 2025-05-13
+
+*This release is optional, yet recommended*
+
+Changes
+
+- Support pre-merge history expiry with Geth, Nethermind and Nimbus-EL: `./ethd prune-history`
+- Offer Nimbus EL alpha during `./ethd config` if on Hoodi or Sepolia
+- Support Era1/Era file import for Nimbus EL
+- Support Fluffy Portal client for use with Nimbus EL
+- Offer Teku when configuring Ephemery testnet during `./ethd config`
+- Nag users about old Docker Compose and about hosts that haven't been updated in 300+ days
+- Erigon's current expiry changed to `EL_MINIMAL_NODE=aggressive`, to support coming pre-merge expiry
+- Switch users to new Offchainlabs Prysm repos
+- Switch users to new Besu tags
+- Update Lido default oracles on Hoodi
+- Bump `cadvisor` to `0.52.1`
+- Enable `cadvisor` to detect OOM events
+- Interactive `./ethd update` writes a log into `/tmp`
+- Support doppelganger protection in SSV `2.3.1` and later
+- Create `.env.bak` earlier when migrating `.env`, improve the error handler: Better chance a backup exists
+and user is not left with a broken `.env` if `./ethd update` fails
+- Increase Web3signer heap to 6g. There is a memory issue here somewhere - a remote signer *should* work
+just fine with 2g, and mine does. If yours takes >2g on startup, recommend discussing with Consensys so
+this can be fixed.
+
+Bug fixes
+- Fix Lighthouse IPv6 ENR
+- Nimbus EL Compose labels cleaned up
+- Resolve an incompatibility with Docker Compose 2.17.2 and earlier
+- Exact match for `--help` - can now run `./ethd cmd run --rm execution --help` for example and get the help
+screen for the execution layer client, not the help screen for `./ethd`
+- Fix Nimbus slottime source build
+- `ethereum-metrics-exporter` will query the `consensus` service when used in a Lido x Obol setup
+
 ## v2.15.2.0 2025-04-20
 
 *This release is optional, yet recommended*
