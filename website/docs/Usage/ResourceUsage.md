@@ -38,7 +38,7 @@ DB Size if not specified is for a full node. If you see two values like " 1.2 Ti
 | Besu | v25.4.1 | May 2025 | ~1.35 TiB / ~865 GiB | ~7-8 GiB / week | ~ 10 GiB | |
 | Reth | 1.3.12 | May 2025 | ~1.6 TiB / ?? | ~ 7-8 GiB / week | ~ 9 GiB | |
 | Erigon | 3.0.3 | May 2025 | ~1.0 TiB / ~650 GiB | ~7-8 GiB / week | See comment | Erigon will have the OS use all available RAM as a DB cache during post-sync operation, but this RAM is free to be used by other programs as needed. During sync, it may run out of memory on machines with 32 GiB or less |
-| Nimbus | 0.1.0-alpha | May 2025 | ?? / 110 GiB | ?? | ?? | With Era1 import |
+| Nimbus | 0.1.0-alpha | May 2025 | ?? / 755 GiB | ?? | ?? | With Era1 import |
 
 Notes on disk usage
 - Reth, Besu, Geth, Erigon and Nimbus continously prune
